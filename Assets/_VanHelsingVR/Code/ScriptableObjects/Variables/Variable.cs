@@ -1,0 +1,28 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UniRx;
+
+public abstract class Variable<T> : ScriptableObject
+{
+    private Subject<T> _subject = new();
+    
+    public IObservable<T> OnValueChanged => _subject;
+
+    
+    private T _value = default(T);
+    
+    public virtual T Value
+    {
+        get
+        {
+            return _value;
+        }
+        set
+        {
+            _value = value;
+            _subject.OnNext(_value);
+        }
+    }
+}
