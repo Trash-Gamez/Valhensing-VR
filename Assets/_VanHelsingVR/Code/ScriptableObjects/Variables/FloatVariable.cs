@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class FloatVariable : Variable<float>
+namespace _VanHelsingVR.Variables
 {
+    [CreateAssetMenu(order = -1, fileName = "FloatVariable", menuName = "GameVariable/Float")]
+    public sealed class FloatVariable : Variable<float>
+    {
     
+    }
 }

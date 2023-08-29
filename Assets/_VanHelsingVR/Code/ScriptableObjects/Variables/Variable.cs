@@ -1,28 +1,29 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UniRx;
+using UnityEngine;
 
-public abstract class Variable<T> : ScriptableObject
+namespace _VanHelsingVR.Variables
 {
-    private Subject<T> _subject = new();
+    public abstract class Variable<T> : ScriptableObject
+    {
+        private Subject<T> _subject = new();
     
-    public IObservable<T> OnValueChanged => _subject;
+        public IObservable<T> OnValueChanged => _subject;
 
     
-    private T _value = default(T);
+        private T _value = default(T);
     
-    public virtual T Value
-    {
-        get
+        public virtual T Value
         {
-            return _value;
-        }
-        set
-        {
-            _value = value;
-            _subject.OnNext(_value);
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                _value = value;
+                _subject.OnNext(_value);
+            }
         }
     }
 }
