@@ -22,24 +22,26 @@ public abstract class VariableVizualizer<T> : MonoBehaviour
     
     private void Start()
     {
+        var onValueChanged = _variable.OnValueChanged;
         if (_useParamString)
         {
-            var onValueChanged = _variable.OnValueChanged;
-            
             if (_useSample)
                 onValueChanged = onValueChanged.Sample(TimeSpan.FromSeconds(_sampleSeconds));
             
             onValueChanged.SubscribeWithState(_text, (f, text) =>
                 {
-                    var newString = String.Format(_paramString, f.ToString());
+                    var newString = string.Format(_paramString, f.ToString());
                     _text.text = newString;
                 })
                 .AddTo(this);
 
             return;
         }
-        
-        _variable.OnValueChanged.SubscribeToText(_text)
+
+        if (_useSample)
+            onValueChanged = onValueChanged.Sample(TimeSpan.FromSeconds(_sampleSeconds));
+
+        onValueChanged.SubscribeToText(_text)
             .AddTo(this);
     }
 }
