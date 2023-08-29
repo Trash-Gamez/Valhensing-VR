@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using _VanHelsingVR.Variables;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TEST_HandVelocityTrack : MonoBehaviour
 {
@@ -19,12 +20,20 @@ public class TEST_HandVelocityTrack : MonoBehaviour
     [SerializeField] 
     private IntVariable _reloadedTimes;
     
-    [SerializeField]
-    private bool _useLocal = false;
+    [FormerlySerializedAs("_useLocal")] [SerializeField]
+    private bool _useLocalRot = false;
 
     [SerializeField, Min(0.001f), BoxGroup("Realod Config")] private float _speedToReload;
     [SerializeField, BoxGroup("Realod Config")] private float _reloadCadence;
     private Coroutine _reloadCor = null;
+
+    public enum WayToDoIt
+    {
+        First,
+        Second
+    }
+
+    [SerializeField] private WayToDoIt _wayToDoIt;
 
     private void Start()
     {
@@ -33,24 +42,56 @@ public class TEST_HandVelocityTrack : MonoBehaviour
 
     void Update()
     {
-        var newPos = transform.localPosition.y;
+        switch (_wayToDoIt)
+        {
+            case WayToDoIt.First:
+                FirstWayToReload();
+                break;
+            case WayToDoIt.Second:
+                break;
+        }
+    }
+    
+    #region FirstReload
+    private void FirstWayToReload()
+    {
+        var newPos = transform.localPosition;
+        float newYPos = 0;
+        
+        if (_useLocalRot)
+            newPos = transform.rotation * newPos;
 
-        _yDelta.Value = newPos - _yPos.Value;
+        newYPos = newPos.y;
+                
+        
+
+        _yDelta.Value = newYPos - _yPos.Value;
 
         _ySpeed.Value = _yDelta.Value / Time.deltaTime;
         
-        _yPos.Value = newPos;
+        _yPos.Value = newYPos;
 
         if (Mathf.Abs(_ySpeed.Value) < _speedToReload) return;
         if (_reloadCor != null) return;
         
-        _reloadCor = StartCoroutine(ReloadCor());    
+        _reloadCor = StartCoroutine(FirstReloadCor());
     }
 
-    IEnumerator ReloadCor()
+    IEnumerator FirstReloadCor()
     {
         _reloadedTimes.Value++;
         yield return new WaitForSeconds(_reloadCadence);
         _reloadCor = null;
     }
+    #endregion
+    
+    #region SecondReload
+
+    private void SecondWayToReload()
+    {
+        
+    }
+
+    #endregion
+    
 }

@@ -234,6 +234,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7b44d1f79407b154e8d2aaf48560d04d, type: 2}
     - target: {fileID: 1906075016853646982, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+      propertyPath: _reloadCadence
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906075016853646982, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       propertyPath: _reloadedTimes
       value: 
       objectReference: {fileID: 11400000, guid: a524af3b7ee3d174cad439e207aa4e4e, type: 2}
@@ -289,7 +293,8 @@ PrefabInstance:
       propertyPath: m_Origin
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3610797656757543528, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
 --- !u!4 &8733093507751517968 stripped
 Transform:

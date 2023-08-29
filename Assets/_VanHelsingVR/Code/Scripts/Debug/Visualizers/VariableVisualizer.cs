@@ -20,7 +20,7 @@ public abstract class VariableVizualizer<T> : MonoBehaviour
     [SerializeField, HideInPlayMode] private bool _useSample;
     [FormerlySerializedAs("_throttleSeconds")] [SerializeField, HideInPlayMode, ShowIf(nameof(_useSample)) ] private float _sampleSeconds;
     
-    private void Start()
+    protected virtual void Start()
     {
         var onValueChanged = _variable.OnValueChanged;
         if (_useParamString)
@@ -28,10 +28,10 @@ public abstract class VariableVizualizer<T> : MonoBehaviour
             if (_useSample)
                 onValueChanged = onValueChanged.Sample(TimeSpan.FromSeconds(_sampleSeconds));
             
-            onValueChanged.SubscribeWithState(_text, (f, text) =>
+            onValueChanged.SubscribeToText(_text, (f) =>
                 {
                     var newString = string.Format(_paramString, f.ToString());
-                    _text.text = newString;
+                    return newString;
                 })
                 .AddTo(this);
 
@@ -43,5 +43,10 @@ public abstract class VariableVizualizer<T> : MonoBehaviour
 
         onValueChanged.SubscribeToText(_text)
             .AddTo(this);
+    }
+
+    protected virtual IObservable<T> GetObservable()
+    {
+        return _variable.OnValueChanged;
     }
 }
