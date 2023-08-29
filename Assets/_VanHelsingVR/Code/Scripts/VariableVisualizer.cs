@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using Sirenix.OdinInspector;
+using UnityEngine.Serialization;
 
 public abstract class VariableVizualizer<T> : MonoBehaviour
 {
@@ -15,21 +16,30 @@ public abstract class VariableVizualizer<T> : MonoBehaviour
 
     [SerializeField] private bool _useParamString;
     [SerializeField, ShowIf(nameof(_useParamString))] private string _paramString;
+
+    [SerializeField, HideInPlayMode] private bool _useSample;
+    [FormerlySerializedAs("_throttleSeconds")] [SerializeField, HideInPlayMode, ShowIf(nameof(_useSample)) ] private float _sampleSeconds;
+    
     private void Start()
     {
         if (_useParamString)
         {
-            _variable.OnValueChanged.SubscribeWithState(_text, (f, text) =>
+            var onValueChanged = _variable.OnValueChanged;
+            
+            if (_useSample)
+                onValueChanged = onValueChanged.Sample(TimeSpan.FromSeconds(_sampleSeconds));
+            
+            onValueChanged.SubscribeWithState(_text, (f, text) =>
                 {
                     var newString = String.Format(_paramString, f.ToString());
                     _text.text = newString;
                 })
                 .AddTo(this);
+
+            return;
         }
-        else
-        {
-            _variable.OnValueChanged.SubscribeToText(_text)
-                .AddTo(this);
-        }
+        
+        _variable.OnValueChanged.SubscribeToText(_text)
+            .AddTo(this);
     }
 }
