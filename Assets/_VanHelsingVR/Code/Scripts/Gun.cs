@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 public class Gun : MonoBehaviour
 {
     public TextMeshPro text;
@@ -16,27 +17,40 @@ public class Gun : MonoBehaviour
     [SerializeField] private int magazineSize;
     [SerializeField] private float reloadTime;
     [SerializeField] private float speedLimit;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Animator gunAnimator;
+    
 
-    // Update is called once per frame
+    [SerializeField] private InputActionProperty fistAnimationAction;
+    [SerializeField] private InputActionProperty pointAnimationAction;
+
+    private bool trigger;
+    private bool grip;
     void Update()
     {
+        GetInput();
+       
         speedY = ((transform.position.y - previousPos.y)) / Time.deltaTime;
         previousPos = transform.position;
-       // Debug.Log(speedY);
-        if (Mathf.Abs(speedY) > speedLimit&&canReload)
+      
+        if (Mathf.Abs(speedY) > speedLimit&&canReload&&!grip)
         {
             StartCoroutine("ReloadCoroutine");
         }
     }
 
+    void GetInput()
+    {
+        float gripvalue = pointAnimationAction.action.ReadValue<float>();
+        float triggervalue = fistAnimationAction.action.ReadValue<float>();
+        if (gripvalue != 0) { grip = true; } else { grip = false; }
+        if (triggervalue != 0) { trigger = true; } else { trigger = false; }
+
+    }
+
    IEnumerator ReloadCoroutine()
     {
         canReload = false;
+        gunAnimator.Play("Reload");
         yield return new WaitForSeconds(reloadTime);
         Reload();
         canReload = true;
@@ -48,5 +62,6 @@ public class Gun : MonoBehaviour
         magazine++;
         if (magazine > magazineSize) magazine = magazineSize;
         text.text = magazine.ToString();
+       
     }
 }
