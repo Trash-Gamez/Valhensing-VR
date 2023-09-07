@@ -431,6 +431,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4985752224023325858}
+  - component: {fileID: 1202634279}
+  - component: {fileID: 1202634278}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -454,6 +456,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1202634279
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5655152892596090392}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2fd93c68d5697124ea9d338781eaf9f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1202634278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5655152892596090392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a996f90ae63e5f41b90c1ae2be233ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fistAnimationAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Fist Animation
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 892db88c-9deb-4be6-8a89-2b5ffda0c8e8
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  pointAnimationAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Point Animation
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: aeb2a48c-18e1-4d58-915f-bc499eb10a35
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  handAnimator: {fileID: 0}
 --- !u!1 &6072078498746579415
 GameObject:
   m_ObjectHideFlags: 0
