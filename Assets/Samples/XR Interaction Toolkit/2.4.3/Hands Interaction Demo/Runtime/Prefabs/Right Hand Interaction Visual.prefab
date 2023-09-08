@@ -73,6 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3395978642719627775}
+  - component: {fileID: 276233063737135294}
   m_Layer: 0
   m_Name: R_Wrist
   m_TagString: Untagged
@@ -101,6 +102,25 @@ Transform:
   m_Father: {fileID: 3266887667944164143}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &276233063737135294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842518933317442901}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4729a349a548f8d489f1536d6bc4a766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _yPos: {fileID: 11400000, guid: 6242f1d2e8821e6459d796b5ce3e8ac0, type: 2}
+  _ySpeed: {fileID: 11400000, guid: 7b44d1f79407b154e8d2aaf48560d04d, type: 2}
+  _yDelta: {fileID: 11400000, guid: 5ca692e599ef58a4d9386bf0598a2fb7, type: 2}
+  _reloadedTimes: {fileID: 11400000, guid: a524af3b7ee3d174cad439e207aa4e4e, type: 2}
+  _useLocal: 0
+  _speedToReload: 1.7
+  _reloadCadence: 1.2
 --- !u!1 &1735877724861123878
 GameObject:
   m_ObjectHideFlags: 0
