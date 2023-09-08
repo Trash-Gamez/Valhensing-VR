@@ -10,23 +10,33 @@ public class Gun : MonoBehaviour
     private Vector3 previousPos;
     private float speedY;
     private bool canReload=true;
+    private bool canShoot = true;
 
     private int magazine=0;
 
-
+    [Header("Gun Settings")]
     [SerializeField] private int magazineSize;
     [SerializeField] private float reloadTime;
     [SerializeField] private float speedLimit;
-    [SerializeField] private Animator gunAnimator;
-    
+    [SerializeField] private float shootingSpeed;
+    [SerializeField] private float spread;
+    [SerializeField] private float fireRange;
+    [SerializeField] private LayerMask hittableLayer;
 
-    [SerializeField] private InputActionProperty fistAnimationAction;
-    [SerializeField] private InputActionProperty pointAnimationAction;
+    [Header("Gun Properties")]
+    [SerializeField] private Animator gunAnimator;
+    [SerializeField] private Transform shootPoint;
+
+    [SerializeField] private InputActionProperty triggerAction;
+    [SerializeField] private InputActionProperty gripAction;
 
     private bool trigger;
     private bool grip;
+
+
     void Update()
     {
+        text.text = magazine.ToString();
         GetInput();
        
         speedY = ((transform.position.y - previousPos.y)) / Time.deltaTime;
@@ -36,12 +46,17 @@ public class Gun : MonoBehaviour
         {
             StartCoroutine("ReloadCoroutine");
         }
+
+        if (trigger)
+        {
+            StartCoroutine("Shoot");
+        }
     }
 
-    void GetInput()
+    private void GetInput()
     {
-        float gripvalue = pointAnimationAction.action.ReadValue<float>();
-        float triggervalue = fistAnimationAction.action.ReadValue<float>();
+        float gripvalue = gripAction.action.ReadValue<float>();
+        float triggervalue = triggerAction.action.ReadValue<float>();
         if (gripvalue != 0) { grip = true; } else { grip = false; }
         if (triggervalue != 0) { trigger = true; } else { trigger = false; }
 
@@ -57,11 +72,56 @@ public class Gun : MonoBehaviour
     }
 
 
-    void Reload()
+    private void Reload()
     {
         magazine++;
         if (magazine > magazineSize) magazine = magazineSize;
-        text.text = magazine.ToString();
        
+       
+    }
+
+    IEnumerator Shoot()
+    {
+        if (canShoot)
+        {
+            if (magazine > 0)
+            {
+                canShoot = false;
+                RaycastHit hit;
+
+
+
+
+                Vector3 direction = GetDirection();
+                if (Physics.Raycast(shootPoint.position, direction, out hit, fireRange, hittableLayer))
+                {
+                    Debug.Log(hit.transform.name);
+                    Debug.Log("Shoot");
+                }
+                Debug.DrawRay(shootPoint.position, direction, Color.green);
+                magazine--;
+                if (magazine < 0) magazine = 0;
+                yield return new WaitForSeconds(shootingSpeed);
+                canShoot = true;
+            }
+            else
+            {
+                canShoot = false;
+                yield return new WaitForSeconds(shootingSpeed);
+                Debug.Log("Sin Munición");
+                canShoot = true;
+            }
+        }
+
+       
+    }
+
+
+    private Vector3 GetDirection()
+    {
+        Vector3 newDirection = transform.forward;
+        newDirection += new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread), Random.Range(-spread, spread));
+        newDirection.Normalize();
+        return newDirection;
     }
 }
