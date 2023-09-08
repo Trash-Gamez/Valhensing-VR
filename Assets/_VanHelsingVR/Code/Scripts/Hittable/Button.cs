@@ -1,0 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class Button : Hittable
+{
+    [SerializeField] UnityEvent OnPress;
+    public override void OnHit()
+    {
+        OnPress.Invoke();
+        Destroy(gameObject);
+    }
+}

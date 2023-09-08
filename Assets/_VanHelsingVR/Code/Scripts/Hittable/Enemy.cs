@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : Hittable
 {
-    
+    [SerializeField] Renderer[] renderers;
     public override void OnHit()
     {
         StartCoroutine("ColorChange");
@@ -13,8 +13,14 @@ public class Enemy : Hittable
 
     IEnumerator ColorChange()
     {
-        transform.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material.SetColor("_Color", Color.red);
+        }
         yield return new WaitForSeconds(0.3f);
-        transform.GetComponent<Renderer>().material.SetColor("_Color", Color.white);
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material.SetColor("_Color", Color.white);
+        }
     }
 }

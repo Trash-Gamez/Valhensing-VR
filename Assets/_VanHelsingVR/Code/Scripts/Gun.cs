@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using System;
 public class Gun : MonoBehaviour
 {
     public TextMeshPro text;
@@ -26,6 +27,7 @@ public class Gun : MonoBehaviour
     [Header("Gun Properties")]
     [SerializeField] private Animator gunAnimator;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private GameObject bulletPrefab;
 
     [SerializeField] private InputActionProperty triggerAction;
     [SerializeField] private InputActionProperty gripAction;
@@ -74,7 +76,7 @@ public class Gun : MonoBehaviour
 
     private void Reload()
     {
-        magazine++;
+        magazine+=2;
         if (magazine > magazineSize) magazine = magazineSize;
        
        
@@ -97,8 +99,15 @@ public class Gun : MonoBehaviour
                 {
                     Debug.Log(hit.transform.name);
                     Debug.Log("Shoot");
-                    hit.transform.GetComponent<Hittable>().OnHit();
+                    try
+                    {
+                        hit.transform.GetComponent<Hittable>().OnHit();
+                    } catch(Exception e)
+                    {
+                        Debug.Log("This Object does not have Hittable Script");
+                    }
                 }
+                InstantiateVisual(direction);
                 Debug.DrawRay(shootPoint.position, direction, Color.green);
                 magazine--;
                 if (magazine < 0) magazine = 0;
@@ -121,8 +130,13 @@ public class Gun : MonoBehaviour
     private Vector3 GetDirection()
     {
         Vector3 newDirection = transform.forward;
-        newDirection += new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread), Random.Range(-spread, spread));
+        newDirection += new Vector3(UnityEngine.Random.Range(-spread, spread), UnityEngine.Random.Range(-spread, spread), UnityEngine.Random.Range(-spread, spread));
         newDirection.Normalize();
         return newDirection;
+    }
+
+    private void InstantiateVisual(Vector3 direction)
+    {
+        Instantiate(bulletPrefab, shootPoint.position, Quaternion.LookRotation(direction));
     }
 }
