@@ -13,7 +13,7 @@ public class PlatformController : MonoBehaviour
     [SerializeField] private WayPoint[] wayPoints;
     private int actualIndex=0;
    
-    void StartSystem()
+    void Start()
     {
        
         StartCoroutine("MoveToNextPoint", wayPoints[actualIndex].transform.position);
