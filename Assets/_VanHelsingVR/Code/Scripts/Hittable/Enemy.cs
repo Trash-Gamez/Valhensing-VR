@@ -7,7 +7,7 @@ public class Enemy : Hittable
     
     public override void OnHit()
     {
-        transform.GetComponent<Renderer>().material.SetColor("_Color",Color.red);
+        StartCoroutine("ColorChange");
     }
 
 
