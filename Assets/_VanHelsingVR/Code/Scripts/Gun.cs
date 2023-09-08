@@ -97,6 +97,7 @@ public class Gun : MonoBehaviour
                 {
                     Debug.Log(hit.transform.name);
                     Debug.Log("Shoot");
+                    hit.transform.GetComponent<Hittable>().OnHit();
                 }
                 Debug.DrawRay(shootPoint.position, direction, Color.green);
                 magazine--;
