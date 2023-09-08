@@ -26,6 +26,7 @@ public class Gun : MonoBehaviour
     [Header("Gun Properties")]
     [SerializeField] private Animator gunAnimator;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private GameObject bulletPrefab;
 
     [SerializeField] private InputActionProperty triggerAction;
     [SerializeField] private InputActionProperty gripAction;
@@ -99,6 +100,7 @@ public class Gun : MonoBehaviour
                     Debug.Log("Shoot");
                     hit.transform.GetComponent<Hittable>().OnHit();
                 }
+                InstantiateVisual(direction);
                 Debug.DrawRay(shootPoint.position, direction, Color.green);
                 magazine--;
                 if (magazine < 0) magazine = 0;
@@ -124,5 +126,10 @@ public class Gun : MonoBehaviour
         newDirection += new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread), Random.Range(-spread, spread));
         newDirection.Normalize();
         return newDirection;
+    }
+
+    private void InstantiateVisual(Vector3 direction)
+    {
+        Instantiate(bulletPrefab, shootPoint.position, Quaternion.LookRotation(direction));
     }
 }

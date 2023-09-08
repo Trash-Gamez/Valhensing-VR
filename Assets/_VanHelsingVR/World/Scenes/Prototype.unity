@@ -8433,7 +8433,7 @@ GameObject:
   - component: {fileID: 1348514811}
   - component: {fileID: 1348514810}
   - component: {fileID: 1348514809}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Hittable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12796,13 +12796,14 @@ MonoBehaviour:
   reloadTime: 0.5
   speedLimit: 3
   shootingSpeed: 0.1
-  spread: 0.5
+  spread: 0.06
   fireRange: 10
   hittableLayer:
     serializedVersion: 2
     m_Bits: 64
   gunAnimator: {fileID: 1202634279}
   shootPoint: {fileID: 1737615223}
+  bulletPrefab: {fileID: 5350107894232743978, guid: 0d4afeeaad72db2439bfac177a59f8d9, type: 3}
   triggerAction:
     m_UseReference: 1
     m_Action:
@@ -13614,7 +13615,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140364607}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f85f3a2eff527d44812b3fe9afd4ec6, type: 3}
   m_Name: 
