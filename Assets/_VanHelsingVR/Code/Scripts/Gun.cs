@@ -49,7 +49,7 @@ public class Gun : MonoBehaviour
             StartCoroutine("ReloadCoroutine");
         }
 
-        if (trigger)
+        if (trigger && grip)
         {
             StartCoroutine("Shoot");
         }
@@ -59,8 +59,9 @@ public class Gun : MonoBehaviour
     {
         float gripvalue = gripAction.action.ReadValue<float>();
         float triggervalue = triggerAction.action.ReadValue<float>();
-        if (gripvalue != 0) { grip = true; } else { grip = false; }
-        if (triggervalue != 0) { trigger = true; } else { trigger = false; }
+
+        grip = gripvalue > 0;
+        trigger = triggervalue > 0;
 
     }
 
@@ -102,7 +103,7 @@ public class Gun : MonoBehaviour
                     try
                     {
                         hit.transform.GetComponent<Hittable>().OnHit();
-                    } catch(Exception e)
+                    } catch(Exception)
                     {
                         Debug.Log("This Object does not have Hittable Script");
                     }

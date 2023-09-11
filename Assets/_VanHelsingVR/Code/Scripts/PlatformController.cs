@@ -13,10 +13,10 @@ public class PlatformController : MonoBehaviour
     [SerializeField] private WayPoint[] wayPoints;
     private int actualIndex=0;
    
-    public void StartSecuence()
+    public void Start()
     {
        
-        StartCoroutine("MoveToNextPoint", wayPoints[actualIndex].transform.position);
+        StartCoroutine(MoveToNextPoint(wayPoints[actualIndex].transform.position));
     }
 
     IEnumerator MoveToNextPoint(Vector3 nextPosition)

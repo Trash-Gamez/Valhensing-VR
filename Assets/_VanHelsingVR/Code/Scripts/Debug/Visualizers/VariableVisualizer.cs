@@ -7,12 +7,14 @@ using UnityEngine.UI;
 using UniRx;
 using Sirenix.OdinInspector;
 using UnityEngine.Serialization;
+using TMPro;
 
 public abstract class VariableVizualizer<T> : MonoBehaviour
 {
     [SerializeField] private Variable<T> _variable;
 
     [SerializeField] private Text _text;
+    private Text
 
     [SerializeField] private bool _useParamString;
     [SerializeField, ShowIf(nameof(_useParamString))] private string _paramString;
