@@ -1,54 +1,56 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using _VanHelsingVR.Variables;
 using UnityEngine;
-using UnityEngine.UI;
 using UniRx;
 using Sirenix.OdinInspector;
-using UnityEngine.Serialization;
-using TMPro;
+using _VanHelsingVR.Extensions.UniRX;
+using _VanHelsingVR.Variables;
 
 public abstract class VariableVizualizer<T> : MonoBehaviour
 {
-    [SerializeField] private Variable<T> _variable;
+    [SerializeField] private TextReference textReference;
 
-    [SerializeField] private Text _text;
-    private Text
+    [SerializeField] private Variable<T> variable;
+    
+    [SerializeField] private bool useParamString;
+    [SerializeField]
+    #if UNITY_EDITOR
+    [ShowIf(nameof(useParamString))]
+    #endif
+    private string paramString;
 
-    [SerializeField] private bool _useParamString;
-    [SerializeField, ShowIf(nameof(_useParamString))] private string _paramString;
-
-    [SerializeField, HideInPlayMode] private bool _useSample;
-    [FormerlySerializedAs("_throttleSeconds")] [SerializeField, HideInPlayMode, ShowIf(nameof(_useSample)) ] private float _sampleSeconds;
+    [SerializeField, HideInPlayMode] private bool useSample;
+    [SerializeField]
+    #if UNITY_EDITOR
+    [HideInPlayMode, ShowIf(nameof(useSample)) ]
+    #endif 
+    private float _sampleSeconds;
     
     protected virtual void Start()
     {
-        var onValueChanged = _variable.OnValueChanged;
-        if (_useParamString)
+        var onValueChanged = variable.OnValueChanged;
+        if (useParamString)
         {
-            if (_useSample)
+            if (useSample)
                 onValueChanged = onValueChanged.Sample(TimeSpan.FromSeconds(_sampleSeconds));
             
-            onValueChanged.SubscribeToText(_text, (f) =>
+            onValueChanged.SubscribeToTextRef(textReference, f =>
                 {
-                    var newString = string.Format(_paramString, f.ToString());
+                    var newString = string.Format(paramString, f.ToString());
                     return newString;
-                })
-                .AddTo(this);
+                }).AddTo(this);
 
             return;
         }
 
-        if (_useSample)
+        if (useSample)
             onValueChanged = onValueChanged.Sample(TimeSpan.FromSeconds(_sampleSeconds));
 
-        onValueChanged.SubscribeToText(_text)
+        onValueChanged.SubscribeToTextRef(textReference)
             .AddTo(this);
     }
 
     protected virtual IObservable<T> GetObservable()
     {
-        return _variable.OnValueChanged;
+        return variable.OnValueChanged;
     }
 }

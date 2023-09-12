@@ -4669,7 +4669,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sample text
+  m_text: Magazine
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4790,16 +4790,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415771723}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cab4196c11a48544a9ce0fcd5f66fb0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _variable: {fileID: 0}
-  _text: {fileID: 0}
-  _useParamString: 0
-  _paramString: 
-  _useSample: 0
+  textReference:
+    textType: 1
+    legacyText: {fileID: 0}
+    tmpText: {fileID: 415771725}
+  variable: {fileID: 11400000, guid: 811677921c028d743b3c76aab6a6888d, type: 2}
+  useParamString: 1
+  paramString: 'Mag: {0}'
+  useSample: 0
   _sampleSeconds: 0
 --- !u!1 &417144548
 GameObject:
@@ -21133,7 +21136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87588843c698f7344bb62699de1ce846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 415771725}
+  magazine: {fileID: 11400000, guid: 811677921c028d743b3c76aab6a6888d, type: 2}
   magazineSize: 30
   reloadTime: 0.5
   speedLimit: 3

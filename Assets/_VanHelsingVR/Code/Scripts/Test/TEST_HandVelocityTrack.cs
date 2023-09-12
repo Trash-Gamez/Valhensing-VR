@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using _VanHelsingVR.Variables;
-using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
+
+#if UNITY_EDITOR
+using Sirenix.OdinInspector;
+#endif
 
 public class TEST_HandVelocityTrack : MonoBehaviour
 {
@@ -20,11 +21,21 @@ public class TEST_HandVelocityTrack : MonoBehaviour
     [SerializeField] 
     private IntVariable _reloadedTimes;
     
-    [FormerlySerializedAs("_useLocal")] [SerializeField]
-    private bool _useLocalRot = false;
+    [SerializeField]
+    private bool useLocalRot = false;
 
-    [SerializeField, Min(0.001f), BoxGroup("Realod Config")] private float _speedToReload;
-    [SerializeField, BoxGroup("Realod Config")] private float _reloadCadence;
+    [SerializeField, Min(0.001f)]
+#if UNITY_EDITOR
+    [BoxGroup("Realod Config")]
+#endif
+    private float _speedToReload;
+    
+    [SerializeField]
+#if UNITY_EDITOR
+    [BoxGroup("Relaod Config")]
+#endif
+    private float _reloadCadence;
+    
     private Coroutine _reloadCor = null;
 
     public enum WayToDoIt
@@ -58,7 +69,7 @@ public class TEST_HandVelocityTrack : MonoBehaviour
         var newPos = transform.localPosition;
         float newYPos = 0;
         
-        if (_useLocalRot)
+        if (useLocalRot)
             newPos = transform.rotation * newPos;
 
         newYPos = newPos.y;

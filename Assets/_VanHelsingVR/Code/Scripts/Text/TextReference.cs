@@ -1,23 +1,56 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
 [Serializable]
 public class TextReference
 {
-    [SerializeField] private bool _useTMPro;
+    private enum TextType
+    {
+        Legacy,
+        TMPro
+    }
+    
+    [SerializeField] private TextType textType;
 
-    [SerializeField] private Text _text;
-    [SerializeField] private TMPro.TMP_Text _tmpText;
+    [SerializeField]
+#if UNITY_EDITOR
+    [ShowIf(nameof(textType), TextType.Legacy)]
+#endif 
+    private Text legacyText;
+    [SerializeField]
+#if UNITY_EDITOR
+    [ShowIf(nameof(textType), TextType.TMPro)]
+#endif 
+    private TMPro.TMP_Text tmpText;
 
     public string Value
     {
         get
         {
-            return _useTMPro ? _tmpText.text : _text.text;
-            //TODO SET
+            return textType switch
+            {
+                TextType.Legacy => legacyText.text,
+                TextType.TMPro => tmpText.text,
+                _ => throw new Exception("TextType is not assigned")
+            };
+        }
+        set
+        {
+            switch (textType)
+            {
+                case TextType.Legacy:
+                    legacyText.text = value;
+                    break;
+                case TextType.TMPro:
+                    tmpText.text = value;
+                    break;
+                default:
+                    throw new Exception("TextType is not assigned");
+            }
         }
     }
 }
