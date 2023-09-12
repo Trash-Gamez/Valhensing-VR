@@ -23,4 +23,6 @@ public class Enemy : Hittable
             renderer.material.SetColor("_Color", Color.white);
         }
     }
+
+   
 }
