@@ -1,21 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using UnityEngine.InputSystem;
 using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using _VanHelsingVR.Variables;
+
+#if UNITY_EDITOR
+using Sirenix.OdinInspector;
+#endif
+
 public class Gun : MonoBehaviour
 {
-    public TextMeshPro text;
+    #if UNITY_EDITOR
+    [Title("Gun Variables")]
+    #endif
+    [SerializeField]
+    private Variable<int> magazine;
 
-    private Vector3 previousPos;
-    private float speedY;
-    private bool canReload=true;
-    private bool canShoot = true;
-
-    private int magazine=0;
-
-    [Header("Gun Settings")]
+    #if UNITY_EDITOR
+    [Title("Gun Settings")]
+    #endif
     [SerializeField] private int magazineSize;
     [SerializeField] private float reloadTime;
     [SerializeField] private float speedLimit;
@@ -24,44 +27,53 @@ public class Gun : MonoBehaviour
     [SerializeField] private float fireRange;
     [SerializeField] private LayerMask hittableLayer;
 
-    [Header("Gun Properties")]
+    #if UNITY_EDITOR
+    [Title("Gun Properties")]
+    #endif
     [SerializeField] private Animator gunAnimator;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private GameObject bulletPrefab;
 
+    #if UNITY_EDITOR
+    [Title("Gun Input")]
+    #endif
     [SerializeField] private InputActionProperty triggerAction;
     [SerializeField] private InputActionProperty gripAction;
 
     private bool trigger;
     private bool grip;
 
+    private Vector3 previousPos;
+    private float speedY;
+    private bool canReload=true;
+    private bool canShoot = true;
+    
 
     void Update()
     {
-        text.text = magazine.ToString();
         GetInput();
        
         speedY = ((transform.position.y - previousPos.y)) / Time.deltaTime;
         previousPos = transform.position;
       
-        if (Mathf.Abs(speedY) > speedLimit&&canReload&&!grip)
+        if (Mathf.Abs(speedY) > speedLimit && canReload && !grip)
         {
-            StartCoroutine("ReloadCoroutine");
+            StartCoroutine(nameof(ReloadCoroutine));
         }
 
-        if (trigger)
+        if (trigger && grip)
         {
-            StartCoroutine("Shoot");
+            StartCoroutine(nameof(Shoot));
         }
     }
 
     private void GetInput()
     {
-        float gripvalue = gripAction.action.ReadValue<float>();
-        float triggervalue = triggerAction.action.ReadValue<float>();
-        if (gripvalue != 0) { grip = true; } else { grip = false; }
-        if (triggervalue != 0) { trigger = true; } else { trigger = false; }
+        var gripValue = gripAction.action.ReadValue<float>();
+        var triggerValue = triggerAction.action.ReadValue<float>();
 
+        grip = gripValue > 0;
+        trigger = triggerValue > 0;
     }
 
    IEnumerator ReloadCoroutine()
@@ -72,61 +84,53 @@ public class Gun : MonoBehaviour
         Reload();
         canReload = true;
     }
-
-
+   
     private void Reload()
     {
-        magazine+=2;
-        if (magazine > magazineSize) magazine = magazineSize;
-       
-       
+        magazine.Value += 2;
+        if (magazine.Value > magazineSize) magazine.Value = magazineSize;
     }
 
     IEnumerator Shoot()
     {
-        if (canShoot)
+        if (!canShoot) yield break;
+        
+        if (magazine.Value > 0)
         {
-            if (magazine > 0)
+            canShoot = false;
+            RaycastHit hit;
+
+
+            Vector3 direction = GetDirection();
+            if (Physics.Raycast(shootPoint.position, direction, out hit, fireRange, hittableLayer))
             {
-                canShoot = false;
-                RaycastHit hit;
-
-
-
-
-                Vector3 direction = GetDirection();
-                if (Physics.Raycast(shootPoint.position, direction, out hit, fireRange, hittableLayer))
+                Debug.Log(hit.transform.name);
+                Debug.Log("Shoot");
+                try
                 {
-                    Debug.Log(hit.transform.name);
-                    Debug.Log("Shoot");
-                    try
-                    {
-                        hit.transform.GetComponent<Hittable>().OnHit();
-                    } catch(Exception e)
-                    {
-                        Debug.Log("This Object does not have Hittable Script");
-                    }
+                    hit.transform.GetComponent<Hittable>().OnHit();
+                } catch(Exception)
+                {
+                    Debug.Log("This Object does not have Hittable Script");
                 }
-                InstantiateVisual(direction);
-                Debug.DrawRay(shootPoint.position, direction, Color.green);
-                magazine--;
-                if (magazine < 0) magazine = 0;
-                yield return new WaitForSeconds(shootingSpeed);
-                canShoot = true;
             }
-            else
-            {
-                canShoot = false;
-                yield return new WaitForSeconds(shootingSpeed);
-                Debug.Log("Sin Munición");
-                canShoot = true;
-            }
+            InstantiateVisual(direction);
+            Debug.DrawRay(shootPoint.position, direction, Color.green);
+            magazine.Value--;
+            if (magazine.Value < 0) magazine.Value = 0;
+            yield return new WaitForSeconds(shootingSpeed);
+            canShoot = true;
         }
-
-       
+        else
+        {
+            canShoot = false;
+            yield return new WaitForSeconds(shootingSpeed);
+            Debug.Log("Sin Municiï¿½n");
+            canShoot = true;
+        }
+        
     }
-
-
+    
     private Vector3 GetDirection()
     {
         Vector3 newDirection = transform.forward;

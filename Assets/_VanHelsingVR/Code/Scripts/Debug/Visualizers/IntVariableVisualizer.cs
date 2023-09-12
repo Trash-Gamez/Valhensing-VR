@@ -1,6 +1,1 @@
-
-
-public class IntVariableVisualizer : VariableVizualizer<int>
-{
-    
-}
+public class IntVariableVisualizer : VariableVizualizer<int>{}

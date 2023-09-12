@@ -9,9 +9,8 @@ namespace _VanHelsingVR.Variables
         private Subject<T> _subject = new();
     
         public IObservable<T> OnValueChanged => _subject;
-
     
-        private T _value = default(T);
+        private T _value = default;
     
         public virtual T Value
         {
