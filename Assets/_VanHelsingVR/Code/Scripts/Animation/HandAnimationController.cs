@@ -7,8 +7,6 @@ using UnityEngine.InputSystem;
 
 public class HandAnimationController : MonoBehaviour
 {
-
-
     [SerializeField] private InputActionProperty fistAnimationAction;
     [SerializeField] private InputActionProperty pointAnimationAction;
 
