@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using _VanHelsingVR.Variables;
 using UnityEngine;
 
 public class SistemaVida : MonoBehaviour
 {
-    private int _vida;
+    private Variable<int> _vida;
     public int Vida
     {
-        get { return _vida; }
-        set { _vida = value; }
+        get { return _vida.Value; }
+        set { _vida.Value = value; }
     }
-
-
-
     SistemaVida sistemaVida = new SistemaVida();
 
     public void Damage(int hit)

@@ -12,6 +12,16 @@ public class GameEventListener : MonoBehaviour
 
     private void OnEnable()
     {
-        
+        gameEvent.AddListener(this);
+    }
+
+    private void OnDisable()
+    {
+        gameEvent.RemoveListener(this);
+    }
+
+    public void Raise()
+    {
+        callback.Invoke();
     }
 }
