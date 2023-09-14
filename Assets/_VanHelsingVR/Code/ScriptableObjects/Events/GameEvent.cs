@@ -1,28 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class GameEvent : ScriptableObject
+namespace _VanHelsingVR.Events
 {
-    private List<GameEventListener> _listeners = new();
-
-    public void AddListener(GameEventListener listener)
+    [CreateAssetMenu(order = 1, fileName = "GameEvent", menuName = "Events/Game Event")]
+    public sealed class GameEvent : ScriptableObject 
+    
     {
-        if (_listeners.Contains(listener)) return;
-        _listeners.Add(listener);
-    }
+        private List<GameEventListener> _listeners = new();
 
-    public void RemoveListener(GameEventListener listener)
-    {
-        if (!_listeners.Contains(listener)) return;
-        _listeners.Remove(listener);
-    }
-
-    public void Raise()
-    {
-        for (int i = _listeners.Count - 1; i >= 0; i--)
+        public void AddListener(GameEventListener listener)
         {
-            _listeners[i].Raise();
+            if (_listeners.Contains(listener)) return;
+            _listeners.Add(listener);
         }
+
+        public void RemoveListener(GameEventListener listener)
+        {
+            if (!_listeners.Contains(listener)) return;
+            _listeners.Remove(listener);
+        }
+
+        public void Raise()
+        {
+            for (int i = _listeners.Count - 1; i >= 0; i--)
+            {
+                _listeners[i].Raise();
+            }
+        }
+        
     }
 }

@@ -1,27 +1,27 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameEventListener : MonoBehaviour
+namespace _VanHelsingVR.Events
 {
-    [SerializeField] private GameEvent gameEvent;
-
-    [SerializeField] private UnityEvent callback;
-
-    private void OnEnable()
+    public sealed class GameEventListener : MonoBehaviour
     {
-        gameEvent.AddListener(this);
-    }
+        [SerializeField] private GameEvent gameEvent;
 
-    private void OnDisable()
-    {
-        gameEvent.RemoveListener(this);
-    }
+        [SerializeField] private UnityEvent callback;
 
-    public void Raise()
-    {
-        callback.Invoke();
+        private void OnEnable()
+        {
+            gameEvent.AddListener(this);
+        }
+
+        private void OnDisable()
+        {
+            gameEvent.RemoveListener(this);
+        }
+
+        public void Raise()
+        {
+            callback.Invoke();
+        }
     }
 }
