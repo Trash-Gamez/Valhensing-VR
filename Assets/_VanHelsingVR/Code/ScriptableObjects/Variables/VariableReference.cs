@@ -10,18 +10,18 @@ namespace _VanHelsingVR.Variables
     [Serializable]
     public abstract class VariableReference<T>
     {
-        [SerializeField] private bool useConstant;
+        [SerializeField] private bool useConstant = true;
 
-        [SerializeField]
-    #if UNITY_EDITOR
+        #if UNITY_EDITOR
         [HideIf(nameof(useConstant))]
-    #endif
+        #endif
+        [SerializeField]
         private Variable<T> reference;
         
-        [SerializeField]
-    #if UNITY_EDITOR
+        #if UNITY_EDITOR
         [ShowIf(nameof(useConstant))]
-    #endif
+        #endif
+        [SerializeField]
         private T constant;
 
         public T value
