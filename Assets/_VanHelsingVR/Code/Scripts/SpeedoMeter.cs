@@ -45,7 +45,9 @@ public class SpeedoMeter : MonoBehaviour
         var deltaPosition = currentPos - _oldPosition;
         _velocity = deltaPosition / Time.deltaTime;
         SetSpeedVar();
-
+        Debug.Log(_velocity);
+        Debug.Log(_velocity.sqrMagnitude);
+        
         _oldPosition = currentPos;
     }
 
@@ -54,19 +56,19 @@ public class SpeedoMeter : MonoBehaviour
         switch (varType)
         {
             case VarType.Vector:
-                if(velocityVar != null)
-                    velocityVar.Value = _velocity;
+                
+                velocityVar.Value = _velocity;
                 break;
             case VarType.X:
-                if(speedVar != null)
-                    speedVar.Value = _velocity.x;
+                
+                 speedVar.Value = _velocity.x;
                 break;
             case VarType.Y:
-                if(speedVar != null)
+                
                     speedVar.Value = _velocity.y;
                 break;
             case VarType.Z:
-                if(speedVar != null)
+                
                     speedVar.Value = _velocity.z;
                 break;
             default:

@@ -10,8 +10,9 @@ public class GunJointController : MonoBehaviour
 {
     [System.Flags]
     private enum WaysToDoIt{
-        WithSpringJoint,
-        WithLimits
+        WithJointSpring = 1,
+        WithJointLimits = 2,
+        All = WithJointLimits | WithJointSpring
     }
 
     #if UNITY_EDITOR
@@ -35,8 +36,15 @@ public class GunJointController : MonoBehaviour
     #endif
     [SerializeField]
     private Range jointLimitRange;
-    
-    #if UNITY_EDITOR
+
+#if UNITY_EDITOR
+    [InlineProperty]
+    [PropertySpace]
+#endif
+    [SerializeField]
+    private Range speedRange;
+
+#if UNITY_EDITOR
     [Title("Physics Stuff"), Required]
     #endif
     
@@ -44,6 +52,10 @@ public class GunJointController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //TODO: Make the map for the {gunSpeed} for the gun pos;
+        var limits = gunJoint.limits;
+        limits.max = UtilitieExtensions.Map(gunXSpeed.value, speedRange, jointLimitRange);
+        gunJoint.limits = limits;
+
+        //TODO: SMOOTH!!!
     }
 }
