@@ -12,16 +12,16 @@ namespace _VanHelsingVR.Variables
     {
         [SerializeField] private bool useConstant = true;
 
-        [SerializeField]
-    #if UNITY_EDITOR
+        #if UNITY_EDITOR
         [HideIf(nameof(useConstant))]
-    #endif
+        #endif
+        [SerializeField]
         private Variable<T> reference;
         
-        [SerializeField]
-    #if UNITY_EDITOR
+        #if UNITY_EDITOR
         [ShowIf(nameof(useConstant))]
-    #endif
+        #endif
+        [SerializeField]
         private T constant;
 
         public T value

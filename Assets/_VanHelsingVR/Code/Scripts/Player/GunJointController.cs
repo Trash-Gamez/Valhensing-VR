@@ -8,23 +8,37 @@ using Sirenix.OdinInspector;
 
 public class GunJointController : MonoBehaviour
 {
-    
-#if UNITY_EDITOR
-    [InlineProperty]
-#endif
-    [SerializeField]
-    private Range jointLimitRange;
+    [System.Flags]
+    private enum WaysToDoIt{
+        WithSpringJoint,
+        WithLimits
+    }
 
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
+    [Title("Way To Do it")]
+    #endif
+    
+    [SerializeField]
+    private WaysToDoIt wayToDoIt;
+
+    #if UNITY_EDITOR
     [Title("Gun Varibles"), Required, InlineProperty]
-#endif
+    #endif
     
     [SerializeField]
     private FloatReference gunXSpeed;
     
-#if UNITY_EDITOR
+    
+    #if UNITY_EDITOR
+    [InlineProperty]
+    [PropertySpace]
+    #endif
+    [SerializeField]
+    private Range jointLimitRange;
+    
+    #if UNITY_EDITOR
     [Title("Physics Stuff"), Required]
-#endif
+    #endif
     
     [SerializeField] private HingeJoint gunJoint;
 

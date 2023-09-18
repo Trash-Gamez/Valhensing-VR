@@ -239,10 +239,10 @@ BoxCollider:
   m_GameObject: {fileID: 1151427149}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.096547686, y: 0.6093751, z: 0.14474943}
-  m_Center: {x: -0.024836343, y: 0.2617188, z: -0.010374707}
+  m_Center: {x: -0, y: 0.2617188, z: -0.010374707}
 --- !u!59 &1151427156
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -258,18 +258,18 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 0.5
-    damper: 8.5
-    targetPosition: 10
+    spring: 25
+    damper: 2.7
+    targetPosition: 100
   m_UseMotor: 0
   m_Motor:
     targetVelocity: -250
     force: 25
     freeSpin: 0
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_Limits:
     min: 8
-    max: 80
+    max: 31.8
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -391,14 +391,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062ecec80e2b8174b93aa6a86b4cdbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointLimitRange:
-    <Min>k__BackingField: 0
-    <Max>k__BackingField: 0
+  wayToDoIt: 0
   gunXSpeed:
     useConstant: 1
     reference: {fileID: 0}
     constant: 0
+  jointLimitRange:
+    <Min>k__BackingField: 0
+    <Max>k__BackingField: 0
   gunJoint: {fileID: 1151427156}
+--- !u!114 &1662292717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662292711}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e3020e932514d141b9343b032d67993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  varType: 0
+  speedVar: {fileID: 0}
+  velocityVar: {fileID: 0}
 --- !u!1 &1796361935
 GameObject:
   m_ObjectHideFlags: 0
