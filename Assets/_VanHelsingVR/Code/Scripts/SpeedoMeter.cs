@@ -16,7 +16,6 @@ public class SpeedoMeter : MonoBehaviour
         Vector
     }
 
-
     [SerializeField] private VarType varType = VarType.X;
 
     #if UNITY_EDITOR
@@ -32,13 +31,6 @@ public class SpeedoMeter : MonoBehaviour
     [SerializeField]
     private Variable<Vector3> velocityVar;
     
-    /*
-    #if UNITY_EDITOR
-    [HideIf(nameof(varType), VarType.Scalar)]
-    #endif
-    [SerializeField]
-    private
-    */  
 
     private Transform _transform;
     private Vector3 _oldPosition = Vector3.zero;
@@ -50,9 +42,35 @@ public class SpeedoMeter : MonoBehaviour
     private void Update()
     {
         var currentPos = _transform.position;
-        var deltaPosition = currentPos.x - _oldPosition.x;
-        speedVar.Value = deltaPosition / Time.deltaTime;
+        var deltaPosition = currentPos - _oldPosition;
+        _velocity = deltaPosition / Time.deltaTime;
+        SetSpeedVar();
 
         _oldPosition = currentPos;
+    }
+
+    private void SetSpeedVar()
+    {
+        switch (varType)
+        {
+            case VarType.Vector:
+                if(velocityVar != null)
+                    velocityVar.Value = _velocity;
+                break;
+            case VarType.X:
+                if(speedVar != null)
+                    speedVar.Value = _velocity.x;
+                break;
+            case VarType.Y:
+                if(speedVar != null)
+                    speedVar.Value = _velocity.y;
+                break;
+            case VarType.Z:
+                if(speedVar != null)
+                    speedVar.Value = _velocity.z;
+                break;
+            default:
+                break;
+        }
     }
 }
