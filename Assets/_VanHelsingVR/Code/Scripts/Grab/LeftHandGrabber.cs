@@ -19,23 +19,24 @@ public class LeftHandGrabber : Grabber
     
     private RaycastHit[] grabHits = new RaycastHit[5];
     private int _hitNumber = 0;
-    private bool _alreadyCheckedhits = false;
+    private bool _alreadyCheckedHits = false;
     
     protected override void TryGrab(Grabbable grabbable)
     {
-        
+        if(canGrab)
+            base.TryGrab(grabbable);
     }
 
     protected override void UnGrab(Grabbable grabbable)
     {
-        
+        base.UnGrab(grabbable);
     }
 
     private void Update()
     {
-        if (_alreadyCheckedhits) return;
+        if (_alreadyCheckedHits) return;
+
         var grabValue = grabInput.action.ReadValue<float>();
-        Debug.Log("Grab Value: " + grabValue);
         if (grabValue < minimumValueToGrab) return;
         if (_hitNumber <= 0) return;
         
@@ -70,17 +71,17 @@ public class LeftHandGrabber : Grabber
 
         if (nearestGrabbable == null)
         {
-            _alreadyCheckedhits = true;
+            _alreadyCheckedHits = true;
             return;
         }
-        
-        Debug.Log("Tenemos Grabbable");
+
+        TryGrab(nearestGrabbable);
     }
 
     private void FixedUpdate()
     {
         _hitNumber = Physics.SphereCastNonAlloc(base.grabOrigin.position, grabRadius, transform.right, grabHits,grabMask);
-        _alreadyCheckedhits = false;
+        _alreadyCheckedHits = false;
     }
     
     private void OnDrawGizmos()

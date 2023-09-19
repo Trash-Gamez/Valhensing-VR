@@ -4,33 +4,49 @@ using UnityEngine;
 
 using _VanHelsingVR.Events;
 using UnityEngine.Serialization;
+using _VanHelsingVR.Variables;
+using Sirenix.OdinInspector;
 
 public abstract class Grabber : MonoBehaviour
 {
     #region EVENTS
 
     [SerializeField] private ReactiveEvent<Grabbable> OnGrab;
-    
+
     #endregion
 
-    
-    
-    [FormerlySerializedAs("originGrab")] [SerializeField] protected Transform grabOrigin;
-    protected List<Grabbable> currentGrabbables = new();
+#if UNITY_EDITOR
+    [InlineProperty]
+    #endif
+
+    [SerializeField] protected ConditionPool canGrab;
+
+    public Transform GrabOrigin => grabOrigin;
+    [FormerlySerializedAs("originGrab")] 
+    [SerializeField] 
+    protected Transform grabOrigin;
+
+    protected Grabbable currentGrabbable;
     
     protected void AddGrabbable(Grabbable grabbable)
     {
-        if (currentGrabbables.Contains(grabbable)) return;
-        currentGrabbables.Add(grabbable);
+        if (currentGrabbable) return;
+        currentGrabbable = grabbable;
     }
     
     protected void RemoveGrabbable(Grabbable grabbable)
     {
-        if (!currentGrabbables.Contains(grabbable)) return;
-        currentGrabbables.Remove(grabbable);
+        if (!currentGrabbable) return;
+        currentGrabbable = null;
     }
     
-    protected abstract void TryGrab(Grabbable grabbable);
+    protected virtual void TryGrab(Grabbable grabbable)
+    {
+        AddGrabbable(grabbable);
+    }
 
-    protected abstract void UnGrab(Grabbable grabbable);
+    protected virtual void UnGrab(Grabbable grabbable)
+    {
+        RemoveGrabbable(grabbable);
+    }
 }
