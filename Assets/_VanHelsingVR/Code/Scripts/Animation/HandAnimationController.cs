@@ -10,7 +10,12 @@ public class HandAnimationController : MonoBehaviour
     [SerializeField] private InputActionProperty fistAnimationAction;
     [SerializeField] private InputActionProperty pointAnimationAction;
 
+
     [SerializeField] Animator handAnimator;
+
+    public GameObject fistCollider;
+
+  
 
     void Update()
     {
@@ -18,5 +23,21 @@ public class HandAnimationController : MonoBehaviour
         float triggervalue = fistAnimationAction.action.ReadValue<float>();
         handAnimator.SetFloat("Trigger", triggervalue);
         handAnimator.SetFloat("Grip", gripvalue);
+
+        if (triggervalue == 1)
+        {
+            fistCollider.SetActive(true);
+        }
+        else
+        {
+            fistCollider.SetActive(false);
+        }
     }
+
+    public void Grap(string nombre)
+    {
+        handAnimator.Play(nombre);
+    }
+
+
 }
