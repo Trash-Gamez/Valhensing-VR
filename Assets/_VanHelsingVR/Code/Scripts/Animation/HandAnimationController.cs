@@ -10,7 +10,9 @@ public class HandAnimationController : MonoBehaviour
     [SerializeField] private InputActionProperty fistAnimationAction;
     [SerializeField] private InputActionProperty pointAnimationAction;
 
+
     [SerializeField] Animator handAnimator;
+    
 
     void Update()
     {
@@ -19,4 +21,11 @@ public class HandAnimationController : MonoBehaviour
         handAnimator.SetFloat("Trigger", triggervalue);
         handAnimator.SetFloat("Grip", gripvalue);
     }
+
+    public void Grap(string nombre)
+    {
+        handAnimator.Play(nombre);
+    }
+
+
 }
