@@ -391,14 +391,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062ecec80e2b8174b93aa6a86b4cdbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayToDoIt: 0
+  wayToDoIt: 3
   gunXSpeed:
-    useConstant: 1
-    reference: {fileID: 0}
+    useConstant: 0
+    reference: {fileID: 11400000, guid: e12a8a1ebca9d2040a8845d433353a73, type: 2}
     constant: 0
   jointLimitRange:
-    <Min>k__BackingField: 0
-    <Max>k__BackingField: 0
+    <Min>k__BackingField: 8
+    <Max>k__BackingField: 60
+  speedRange:
+    <Min>k__BackingField: -10
+    <Max>k__BackingField: 10
   gunJoint: {fileID: 1151427156}
 --- !u!114 &1662292717
 MonoBehaviour:
@@ -407,13 +410,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662292711}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e3020e932514d141b9343b032d67993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  varType: 0
-  speedVar: {fileID: 0}
+  varType: 2
+  speedVar: {fileID: 11400000, guid: e12a8a1ebca9d2040a8845d433353a73, type: 2}
   velocityVar: {fileID: 0}
 --- !u!1 &1796361935
 GameObject:
