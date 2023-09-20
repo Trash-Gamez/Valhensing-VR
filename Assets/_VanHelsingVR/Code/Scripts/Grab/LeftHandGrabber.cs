@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +16,7 @@ public class LeftHandGrabber : Grabber
     private RaycastHit[] grabHits = new RaycastHit[5];
     private int _hitNumber = 0;
     private bool _alreadyCheckedHits = false;
+    private float _grabValue;
     
     protected override void TryGrab(Grabbable grabbable)
     {
@@ -29,15 +26,27 @@ public class LeftHandGrabber : Grabber
 
     protected override void UnGrab(Grabbable grabbable)
     {
+        if (!canUnGrab) return;
+
+        if (minimumValueToGrab < _grabValue) return;
+        
         base.UnGrab(grabbable);
     }
 
     private void Update()
     {
+        var _grabValue = grabInput.action.ReadValue<float>();
+        
+        if (currentGrabbable != null)
+        {
+            UnGrab(currentGrabbable);
+            return;
+        }
+        
+        // Check if we already checked the hits behind FixedUpdate
         if (_alreadyCheckedHits) return;
 
-        var grabValue = grabInput.action.ReadValue<float>();
-        if (grabValue < minimumValueToGrab) return;
+        if (_grabValue < minimumValueToGrab) return;
         if (_hitNumber <= 0) return;
         
         //TRY TO GRAB OBJECT

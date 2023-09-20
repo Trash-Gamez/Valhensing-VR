@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 using _VanHelsingVR.Events;
 using UnityEngine.Serialization;
-using _VanHelsingVR.Variables;
+
+#if UNITY_EDITOR
 using Sirenix.OdinInspector;
+#endif
 
 public abstract class Grabber : MonoBehaviour
 {
@@ -20,6 +20,7 @@ public abstract class Grabber : MonoBehaviour
     #endif
 
     [SerializeField] protected ConditionPool canGrab;
+    [SerializeField] protected ConditionPool canUnGrab;
 
     public Transform GrabOrigin => grabOrigin;
     [FormerlySerializedAs("originGrab")] 
