@@ -15,11 +15,14 @@ public abstract class Grabber : MonoBehaviour
 
     #endregion
 
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
     [InlineProperty]
     #endif
-
     [SerializeField] protected ConditionPool canGrab;
+    
+    #if UNITY_EDITOR
+    [InlineProperty]
+    #endif
     [SerializeField] protected ConditionPool canUnGrab;
 
     public Transform GrabOrigin => grabOrigin;
@@ -33,11 +36,15 @@ public abstract class Grabber : MonoBehaviour
     {
         if (currentGrabbable) return;
         currentGrabbable = grabbable;
+        currentGrabbable.Grab(this);
     }
     
     protected void RemoveGrabbable(Grabbable grabbable)
     {
         if (!currentGrabbable) return;
+        if (currentGrabbable != grabbable) return;
+        
+        currentGrabbable.UnGrab();
         currentGrabbable = null;
     }
     
@@ -49,5 +56,6 @@ public abstract class Grabber : MonoBehaviour
     protected virtual void UnGrab(Grabbable grabbable)
     {
         RemoveGrabbable(grabbable);
+        
     }
 }

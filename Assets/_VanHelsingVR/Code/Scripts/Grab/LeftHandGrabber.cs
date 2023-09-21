@@ -20,8 +20,10 @@ public class LeftHandGrabber : Grabber
     
     protected override void TryGrab(Grabbable grabbable)
     {
-        if(canGrab)
-            base.TryGrab(grabbable);
+        Debug.Log($"Puede agarrar: {canGrab.CanDo}");
+        if (!canGrab) return;
+        
+        base.TryGrab(grabbable);
     }
 
     protected override void UnGrab(Grabbable grabbable)
