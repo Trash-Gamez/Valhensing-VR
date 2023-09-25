@@ -1,12 +1,15 @@
 using System;
-using UnityEngine;
 using UniRx;
+using UnityEngine;
 using Sirenix.OdinInspector;
+
 using _VanHelsingVR.Extensions.UniRX;
 using _VanHelsingVR.Variables;
 
 public abstract class VariableVizualizer<T> : MonoBehaviour
 {
+    [InlineProperty] //TODO: Make only editor
+
     [SerializeField] private TextReference textReference;
 
     [SerializeField] private Variable<T> variable;
