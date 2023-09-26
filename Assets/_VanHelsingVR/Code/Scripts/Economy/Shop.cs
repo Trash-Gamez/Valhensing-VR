@@ -11,9 +11,32 @@ namespace _VanHelsingVR.Economy
          * AND THE *RESTOCKER* OF  EVERY ITEM
          *
         */
+        //[SerializeField] private 
+        [SerializeField] private List<ShopItem> shopItems = new List<ShopItem>();
 
+        /*
+        private void Awake()
+        {
+            foreach (Products p in products)
+            {
+                groupDictionary.Add(p.name, p.product);
+            }
+        }
 
+        public GameObject GetProductFromName(string name)
+        {
+            if (groupDictionary.ContainsKey(name))
+            {
+                GameObject pro = groupDictionary[name];
+                return pro;
+            }
+            return null;
+        }
+        */
 
-        //[SerializeField] private List<>
+        public void BuyItem(ShopItem itemToBuy)
+        {
+
+        }
     }
 }

@@ -5,10 +5,14 @@ namespace _VanHelsingVR.Economy
     [CreateAssetMenu(menuName = "Economy/Buyable Item", order = 1, fileName = "Buy_Item")]
     public sealed class Buyable : ScriptableObject
     {
-        public int id;
-        public string itemName;
-        public float price;
+        public int ID;
+        public string ItemName;
+        public int Price;
 
-        [TextArea] public string description;
+        // SKINS
+        public Mesh Mesh;
+        public Sprite Sprite;
+
+        [TextArea] public string Description;
     }
 }
