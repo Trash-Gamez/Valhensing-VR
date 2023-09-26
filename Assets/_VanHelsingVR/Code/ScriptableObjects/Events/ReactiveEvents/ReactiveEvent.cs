@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace _VanHelsingVR.Events
 {
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     public interface IEditorReactiveEvent
     {
         void RaiseDefaultEvent();
     }
-    #endif
-    
+#endif
+
     public abstract class ReactiveEvent<T> : ScriptableObject
-        
-    #if UNITY_EDITOR
-    ,IEditorReactiveEvent
-    #endif
-    
+
+#if UNITY_EDITOR
+    , IEditorReactiveEvent
+#endif
+
     {
         protected Subject<T> subject;
 
@@ -27,12 +27,24 @@ namespace _VanHelsingVR.Events
             subject.OnNext(param);
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public void RaiseDefaultEvent()
         {
             Raise(default);
         }
-        #endif
+#endif
+    }
+
+    public abstract class ReactiveEvent<T1, T2> : ScriptableObject
+    {
+        protected Subject<(T1,T2)> subject;
+
+        public virtual IObservable<(T1, T2)> Event => subject;
+
+        public void Raise(T1 param1, T2 param2)
+        {
+            subject.OnNext((param1, param2));
+        }
     }
     
     [CreateAssetMenu(order = 0,fileName = "Reactive Event", menuName = "Events/Reactive/Reactive Event")]
