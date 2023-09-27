@@ -13,8 +13,7 @@ namespace _VanHelsingVR.Health
     public class Health : MonoBehaviour
     {
         [Title("Health Config")]
-        [SerializeField] private Variable<int> health;
-        [SerializeField] private Variable<int> maxHealth;
+        [field: SerializeField] public VariableReference<int> maxHealth { get; private set; }
 
         [Space] [SerializeField] private ConditionPool canBeDamaged;
         [SerializeField] private ConditionPool canBeHealed;
@@ -22,9 +21,19 @@ namespace _VanHelsingVR.Health
         [SerializeField] private UnityEvent onDamage;
         [SerializeField] private UnityEvent onRecoverHealth;
         [SerializeField] private UnityEvent onDead;
+        public int health{get; private set;}
         
         public void AddHealth(int addedLife)
         {
+            if (addedLife == 0) return;
+
+            if(addedLife < 0 && canBeDamaged.CanDo)
+            {
+                HandleDamage(addedLife);
+            }
+
+            if(addedLife > 0 && canBeDamaged)
+
             switch (addedLife)
             {
                 case < 0:
@@ -35,24 +44,23 @@ namespace _VanHelsingVR.Health
                     break;
             }
 
-            health.Value = Mathf.Clamp(addedLife + health.Value,0, maxHealth.Value);
+            health = Mathf.Clamp(addedLife + health,0, maxHealth.Value);
         }
 
         protected virtual void HandleDamage(int damagedValue)
         {
-            var damaged = health.Value + damagedValue;
+            var damaged = health + damagedValue;
 
             if (damaged <= 0)
             {
                 //TODO: milagro por parte del jugador, salvarse
-                
+                HandleDead();
             }
         }
 
         protected virtual void HandleHeal(int healValue)
         {
             onRecoverHealth.Invoke();
-
         }
 
         protected virtual void HandleDead()

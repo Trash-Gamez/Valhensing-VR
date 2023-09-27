@@ -24,7 +24,7 @@ namespace _VanHelsingVR.Variables
         [SerializeField]
         private T constant;
 
-        public T value
+        public T Value
         {
             get
             {
