@@ -14,9 +14,16 @@ namespace _VanHelsingVR.Economy
             currency.Value += addedCurrency;
         }
 
-        public void BuyItem(/*BuyableItem buyable*/)
+        public void BuyItem(Buyable buyable)
         {
+            currency.Value -= buyable.Price;
+        }
 
+        // returns true if can buy item
+        public bool CanAfford(Buyable buyable)
+        {
+            //Discounts and other stuff
+            return currency.Value >= buyable.Price;
         }
     }
 }

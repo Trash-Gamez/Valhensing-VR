@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace _VanHelsingVR.Economy
@@ -10,8 +11,10 @@ namespace _VanHelsingVR.Economy
         public int Price;
 
         // SKINS
-        public Mesh Mesh;
-        public Sprite Sprite;
+        [AssetsOnly]
+        public GameObject ObjectPreview;
+
+        public GameObject ObjectBuyable;
 
         [TextArea] public string Description;
     }

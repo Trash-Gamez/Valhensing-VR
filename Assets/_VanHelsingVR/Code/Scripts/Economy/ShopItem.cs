@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ModestTree;
+using Unity.XR.CoreUtils;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace _VanHelsingVR.Economy
 {
-    public class ShopItem : MonoBehaviour
+    public class ShopItem : XRSimpleInteractable
     {
+        public Buyable Buyable => buyable;
         [SerializeField] private Buyable buyable = null;
 
         [field: SerializeField]
@@ -20,32 +22,16 @@ namespace _VanHelsingVR.Economy
         [ContextMenu("Set Skins")]
         private void SetSkins()
         {
-            if (TryGetComponent<MeshFilter>(out var filter))
+            var previewSkin = gameObject.GetNamedChild("Skin");
+            if (previewSkin != null)
             {
-                if (buyable.Mesh == null)
-                    Debug.LogError($"No existe una malla 3D asignada al scriptable: {buyable.name}", buyable);
-                else
-                    filter.sharedMesh = buyable.Mesh;
+                DestroyImmediate(previewSkin);
             }
-
-            if (TryGetComponent<SpriteRenderer>(out var renderer))
-            {
-                if (buyable.Sprite == null)
-                    Debug.LogError($"No existe una Sprite asignada al scriptable: {buyable.name}", buyable);
-                else
-                    renderer.sprite = buyable.Sprite;
-            }
+            previewSkin = Instantiate(buyable.ObjectPreview, transform);
+            previewSkin.name = "Skin";
         }
-
-
-
-        //TODO: Make instantiate of the buyable gameobject
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-
-        }
-#endif
+        
+        //TOOD: MAKE A BUTTON OF THIS
 
     }
 }

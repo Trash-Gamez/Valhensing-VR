@@ -14,29 +14,24 @@ namespace _VanHelsingVR.Economy
         //[SerializeField] private 
         [SerializeField] private List<ShopItem> shopItems = new List<ShopItem>();
 
-        /*
-        private void Awake()
-        {
-            foreach (Products p in products)
-            {
-                groupDictionary.Add(p.name, p.product);
-            }
-        }
+        [SerializeField] private EconomySystem economySystem;
 
-        public GameObject GetProductFromName(string name)
-        {
-            if (groupDictionary.ContainsKey(name))
-            {
-                GameObject pro = groupDictionary[name];
-                return pro;
-            }
-            return null;
-        }
-        */
+        [SerializeField] private Transform positionToSpawn;
 
         public void BuyItem(ShopItem itemToBuy)
         {
+            var buyable = itemToBuy.Buyable;
+            if (!economySystem.CanAfford(buyable)) return;
+            
+            economySystem.BuyItem(buyable);
+            AppearItem(buyable);
+        }
 
+        private void AppearItem(Buyable buyableToAppear)
+        {
+            //TODO: Make logic for composite pattern
+            // USE UNITAKS FOR APPEARING THE OBJECT
+            Instantiate(buyableToAppear.ObjectBuyable, positionToSpawn.position, Quaternion.identity);
         }
     }
 }
