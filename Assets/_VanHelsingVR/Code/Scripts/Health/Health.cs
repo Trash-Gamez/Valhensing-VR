@@ -32,16 +32,9 @@ namespace _VanHelsingVR.Health
                 HandleDamage(addedLife);
             }
 
-            if(addedLife > 0 && canBeDamaged)
-
-            switch (addedLife)
+            if (addedLife > 0 && canBeDamaged)
             {
-                case < 0:
-                    HandleDamage(addedLife);
-                    break;
-                case > 0:
-                    HandleHeal(addedLife);
-                    break;
+                HandleDamage(addedLife);
             }
 
             health = Mathf.Clamp(addedLife + health,0, maxHealth.Value);
