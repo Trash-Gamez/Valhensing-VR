@@ -1,35 +1,54 @@
 using System;
 using UnityEngine;
-
-#if UNITY_EDITOR
 using Sirenix.OdinInspector;
-#endif
 
 namespace _VanHelsingVR.Variables
 {
     [Serializable]
-    public abstract class VariableReference<T>
+    public class VariableReference<T>
     {
-        [SerializeField] private bool useConstant = true;
-
-        #if UNITY_EDITOR
-        [HideIf(nameof(useConstant))]
-        #endif
-        [SerializeField]
-        private Variable<T> reference;
+        public enum VariableType
+        {
+            Constant,
+            Reference,
+            Instance
+        }
         
-        #if UNITY_EDITOR
-        [ShowIf(nameof(useConstant))]
-        #endif
+        [SerializeField] private VariableType variableType;
+        
+        [SerializeField]
+        private Variable<T> reference = null;
+        
         [SerializeField]
         private T constant;
 
-        public T value
+        private Variable<T> _instance = null;
+
+        public T Value
         {
             get
             {
-                return useConstant ? constant : reference.Value;
+                return variableType switch
+                {
+                    VariableType.Constant => constant,
+                    VariableType.Reference => reference.Value,
+                    VariableType.Instance => GetInstance().Value
+                };
             }
+        }
+
+        private Variable<T> GetInstance()
+        {
+            if (reference == null)
+            {
+                Debug.LogError("There is no reference value to instantiate variable");
+                return default;
+            }
+
+            if (_instance == null)
+                _instance = UnityEngine.Object.Instantiate(reference);
+
+            return _instance;
         }
     }
 }
