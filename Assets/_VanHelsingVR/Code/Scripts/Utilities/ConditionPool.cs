@@ -8,18 +8,25 @@ using UnityEngine;
 [Serializable]
 public class ConditionPool
 {
-    [SerializeField] private List<Condition> conditions;
+    [SerializeField] private List<Condition> conditions = new();
 
     public bool CanDo
     {
         get
         {
-            var canDo = conditions.All(variable =>
+            if (!conditions.Any())
             {
-                return variable.Value;
-            });
+                return true;
+            }
+            
+            var canDo = conditions.All(variable => variable.Value);
             return canDo;
         }
+    }
+
+    public void AddCondition(Condition contition)
+    {
+        
     }
 
     public static implicit operator bool(ConditionPool cp) => cp.CanDo;

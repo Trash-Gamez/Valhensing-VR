@@ -53,7 +53,7 @@ public class GunJointController : MonoBehaviour
     private void FixedUpdate()
     {
         var limits = gunJoint.limits;
-        limits.max = UtilitieExtensions.Map(gunXSpeed.value, speedRange, jointLimitRange);
+        limits.max = UtilitieExtensions.Map(gunXSpeed.Value, speedRange, jointLimitRange);
         gunJoint.limits = limits;
 
         //TODO: SMOOTH!!!
