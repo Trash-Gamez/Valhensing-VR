@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Unity.XR.CoreUtils;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -9,14 +10,16 @@ namespace _VanHelsingVR.Economy
     public class ShopItem : XRSimpleInteractable
     {
         public Buyable Buyable => buyable;
+        [Title("SHOPT ITEM")]
         [SerializeField] private Buyable buyable = null;
 
         [field: SerializeField]
         public byte stock = 255;
 
-        private void Awake()
+        protected override void Awake()
         {
             SetSkins();
+            base.Awake();
         }
 
         [ContextMenu("Set Skins")]

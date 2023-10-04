@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Hittable
 {
     [SerializeField] Renderer[] renderers;
+
+    private Coroutine _hitCoroutine;
 
     private MaterialPropertyBlock _materialRed;
     private MaterialPropertyBlock MaterialRed
@@ -37,12 +38,12 @@ public class Enemy : Hittable
 
     public override void OnHit()
     {
-        StartCoroutine("ColorChange");
+        if (_hitCoroutine != null) return;
+        _hitCoroutine = StartCoroutine("ColorChange");
     }
 
     IEnumerator ColorChange()
     {
-        
         foreach (Renderer renderer in renderers)
         {
             renderer.SetPropertyBlock(_materialRed);
@@ -52,6 +53,8 @@ public class Enemy : Hittable
         {
             renderer.SetPropertyBlock(_materialWhite);
         }
+
+        _hitCoroutine = null;
     }
 
    

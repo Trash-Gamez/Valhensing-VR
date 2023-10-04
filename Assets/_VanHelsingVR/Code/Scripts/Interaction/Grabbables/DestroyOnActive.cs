@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace _VanHelsingVR.Interaction
@@ -7,7 +8,9 @@ namespace _VanHelsingVR.Interaction
     public class DestroyOnActive : Grabbable
     {
         [Tooltip("The number of times the 'OnActivated' Event has to trigger for this object to be destroyed")]
-        [Min(1),SerializeField] private int destroyAfter = 1;
+        [Min(1),SerializeField]
+        [FormerlySerializedAs("Destroy After i Timer")]
+        private int destroyAfter = 1;
 
         private int _timesTriggered = 0;
         protected override void OnActivated(ActivateEventArgs args)
