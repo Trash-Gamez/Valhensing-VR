@@ -8,6 +8,8 @@ using Sirenix.OdinInspector;
 
 public class SpeedoMeter : MonoBehaviour
 {
+    public Vector3 Velocity => velocityVar.Value;
+    
     private enum VarType
     {
         X ,
@@ -45,8 +47,6 @@ public class SpeedoMeter : MonoBehaviour
         var deltaPosition = currentPos - _oldPosition;
         _velocity = deltaPosition / Time.deltaTime;
         SetSpeedVar();
-        Debug.Log(_velocity);
-        Debug.Log(_velocity.sqrMagnitude);
         
         _oldPosition = currentPos;
     }
@@ -56,7 +56,6 @@ public class SpeedoMeter : MonoBehaviour
         switch (varType)
         {
             case VarType.Vector:
-                
                 velocityVar.Value = _velocity;
                 break;
             case VarType.X:

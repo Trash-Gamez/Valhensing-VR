@@ -8,7 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class XRPunchInteractor : XRDirectInteractor
 {
-    [SerializeField] private float fistClosedValue;
+    [SerializeField, Range(0.1f, 1)] private float fistClosedValue;
     [SerializeField] private InputActionProperty fistAction;
 
     public bool IsEntireClosed

@@ -6,7 +6,7 @@ public class Enemy : Hittable
 {
     [SerializeField] Renderer[] renderers;
 
-    private Coroutine _hitCoroutine;
+    private Coroutine _hitCoroutine = null;
 
     private MaterialPropertyBlock _materialRed;
     private MaterialPropertyBlock MaterialRed
@@ -32,14 +32,15 @@ public class Enemy : Hittable
 
     private void Start()
     {
-        MaterialRed.SetColor("_Color", Color.red);
-        MaterialWhite.SetColor("_Color", Color.white);
+        MaterialRed.SetColor("_BaseColor", Color.red);
+        MaterialWhite.SetColor("_BaseColor", Color.white);
     }
 
     public override void OnHit()
     {
         if (_hitCoroutine != null) return;
-        _hitCoroutine = StartCoroutine("ColorChange");
+        Debug.Log("Iniciando corutina de golpe");
+        _hitCoroutine = StartCoroutine(ColorChange());
     }
 
     IEnumerator ColorChange()

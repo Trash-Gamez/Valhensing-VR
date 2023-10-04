@@ -1,12 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using _VanHelsingVR.Variables;
 using _VanHelsingVR.Events;
 using Sirenix.OdinInspector;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
+
+#if UNITY_EDITOR
+using _VanHelsingVR.Instructions;
+using UnityEditor.Events;
+#endif
 
 namespace _VanHelsingVR.Health
 {
@@ -22,7 +23,12 @@ namespace _VanHelsingVR.Health
         [SerializeField] private UnityEvent onRecoverHealth;
         [SerializeField] private UnityEvent onDead;
         public int health{get; private set;}
-        
+
+        private void Awake()
+        {
+            health = maxHealth.Value;
+        }
+
         public void AddHealth(int addedLife)
         {
             if (addedLife == 0) return;
@@ -60,5 +66,42 @@ namespace _VanHelsingVR.Health
         {
             onDead.Invoke();
         }
+        
+        #if UNITY_EDITOR
+        [ContextMenu("DestroySelf/On Dead")]
+        public void AddDestroyInstructionOnDead()
+        {
+            DestroyInstruction destroy;
+            if (!TryGetComponent(out destroy))
+            {
+                destroy = gameObject.AddComponent<DestroyInstruction>();
+            }
+            UnityEventTools.AddFloatPersistentListener(onDead, destroy.DestroySelf, 0);
+        }
+        
+        [ContextMenu("DestroySelf/On Damage")]
+        public void AddDestroyInstructionOnDamage()
+        {
+            DestroyInstruction destroy;
+            if (!TryGetComponent(out destroy))
+            {
+                destroy = gameObject.AddComponent<DestroyInstruction>();
+            }
+            
+            UnityEventTools.AddFloatPersistentListener(onDamage, destroy.DestroySelf, 0);
+        }
+        
+        [ContextMenu("DestroySelf/On Recover Health")]
+        public void AddDestroyInstructionOnRecoverHealth()
+        {
+            DestroyInstruction destroy;
+            if (!TryGetComponent(out destroy))
+            {
+                destroy = gameObject.AddComponent<DestroyInstruction>();
+            }
+            
+            UnityEventTools.AddFloatPersistentListener(onRecoverHealth, destroy.DestroySelf, 0);
+        }
+        #endif
     }
 }

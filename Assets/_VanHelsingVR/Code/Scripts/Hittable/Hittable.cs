@@ -1,20 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
+using _VanHelsingVR.Health;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public abstract class Hittable: XRSimpleInteractable
 {
+    [SerializeField] private DamagableHealthReference damagableHealthReference = null;
     [SerializeField] private float speedToBeHit = 5;
     protected override void OnHoverEntered(HoverEnterEventArgs args)
     {
-        if (!args.interactorObject.transform.TryGetComponent(out XRPunchInteractor punch)) return;
+        var interactor = args.interactorObject.transform;
+        if (!interactor.TryGetComponent(out XRPunchInteractor punch)) return;
         if (!punch.IsEntireClosed) return;
-        if (!args.interactorObject.transform.TryGetComponent(out Rigidbody rb)) return;
+        if (!interactor.TryGetComponent(out SpeedoMeter speed)) return;
         
-        Debug.Log(rb.velocity.sqrMagnitude);
-        if(rb.velocity.sqrMagnitude >= speedToBeHit - Mathf.Epsilon)
-            base.OnHoverEntered(args);
+        //Know how many damage is done
+        
+        if (speed.Velocity.sqrMagnitude >= speedToBeHit - Mathf.Epsilon)
+        {
+            if(damagableHealthReference.HealthSystem != null)
+                OnDamageHit();
+            OnHit();
+        }
+        
+        base.OnHoverEntered(args);
+    }
+
+    /// <summary>
+    /// If there is a health system attached to this component, makes a damage control
+    /// </summary>
+    protected virtual void OnDamageHit(int damageDeal = 1)
+    {
+        damageDeal = Mathf.Abs(damageDeal);
+        damagableHealthReference.HealthSystem.AddHealth(-damageDeal);
     }
 
     public abstract void OnHit();
