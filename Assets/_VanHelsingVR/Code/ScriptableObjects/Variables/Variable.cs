@@ -1,6 +1,7 @@
 using System;
 using UniRx;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace _VanHelsingVR.Variables
 {
@@ -11,7 +12,8 @@ namespace _VanHelsingVR.Variables
         public IObservable<T> OnValueChanged => _subject;
     
         private T _value = default;
-    
+        
+        [ShowInInspector]
         public virtual T Value
         {
             get

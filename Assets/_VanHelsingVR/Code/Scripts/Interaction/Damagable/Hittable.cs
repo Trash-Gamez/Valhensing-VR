@@ -9,8 +9,8 @@ public abstract class Hittable: Damagable
     protected override void OnHoverEntered(HoverEnterEventArgs args)
     {
         var interactor = args.interactorObject.transform;
-        if (!interactor.TryGetComponent(out XRPunchInteractor punch)) return;
-        if (!punch.IsEntireClosed) return;
+        if (!interactor.TryGetComponent(out XRLeftHandInteractor hand)) return;
+        if (!hand.IsEntireClosed) return;
         if (!interactor.TryGetComponent(out SpeedoMeter speed)) return;
         
         //Know how many damage is done

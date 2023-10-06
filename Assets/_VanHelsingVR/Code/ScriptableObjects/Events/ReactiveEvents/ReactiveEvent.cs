@@ -27,6 +27,11 @@ namespace _VanHelsingVR.Events
             subject.OnNext(param);
         }
 
+        private void OnEnable()
+        {
+            subject = new Subject<T>();
+        }
+
 #if UNITY_EDITOR
         public void RaiseDefaultEvent()
         {
@@ -44,6 +49,11 @@ namespace _VanHelsingVR.Events
         public void Raise(T1 param1, T2 param2)
         {
             subject.OnNext((param1, param2));
+        }
+
+        private void OnEnable()
+        {
+            subject = new Subject<(T1, T2)>();
         }
     }
     

@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 namespace _VanHelsingVR.Variables
 {
@@ -23,7 +22,8 @@ namespace _VanHelsingVR.Variables
         private T constant;
 
         private Variable<T> _instance = null;
-
+        
+        
         public T Value
         {
             get
