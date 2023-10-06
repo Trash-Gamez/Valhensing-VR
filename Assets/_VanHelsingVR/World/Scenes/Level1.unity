@@ -97193,7 +97193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Time: 0
-  canContinue: 1
+  canContinue: 0
 --- !u!1 &716984939
 GameObject:
   m_ObjectHideFlags: 0
@@ -127719,6 +127719,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial Door
       objectReference: {fileID: 0}
+    - target: {fileID: 6664150272390601209, guid: e87508369af26b94aa5af7fa303e5130, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664150272390601209, guid: e87508369af26b94aa5af7fa303e5130, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664150272390601209, guid: e87508369af26b94aa5af7fa303e5130, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8830689112380992618}
+    - target: {fileID: 6664150272390601209, guid: e87508369af26b94aa5af7fa303e5130, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664150272390601209, guid: e87508369af26b94aa5af7fa303e5130, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RestartMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664150272390601209, guid: e87508369af26b94aa5af7fa303e5130, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PlatformController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664150272390601209, guid: e87508369af26b94aa5af7fa303e5130, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e87508369af26b94aa5af7fa303e5130, type: 3}
 --- !u!1 &939909907
@@ -140264,7 +140292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Time: 0
-  canContinue: 0
+  canContinue: 1
 --- !u!1 &1046850590
 GameObject:
   m_ObjectHideFlags: 0
@@ -238030,7 +238058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Time: 0
-  canContinue: 1
+  canContinue: 0
 --- !u!1 &1759915842
 GameObject:
   m_ObjectHideFlags: 0
@@ -284778,7 +284806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Time: 0
-  canContinue: 0
+  canContinue: 1
 --- !u!1 &2125024162
 GameObject:
   m_ObjectHideFlags: 0
@@ -288922,33 +288950,41 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5073555446315334006}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f85f3a2eff527d44812b3fe9afd4ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
   wayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2124576764}
+  - {fileID: 1046569441}
+  - {fileID: 1758813742}
+  - {fileID: 1452538412}
+  - {fileID: 1658084077}
+  - {fileID: 1252231211}
+  - {fileID: 2093504020}
+  - {fileID: 1594720198}
+  - {fileID: 1358894100}
+  - {fileID: 1371339824}
+  - {fileID: 151342181}
+  - {fileID: 1927259207}
+  - {fileID: 973564093}
+  - {fileID: 1503668271}
+  - {fileID: 999819052}
+  - {fileID: 395047783}
+  - {fileID: 217966383}
+  - {fileID: 273568408}
+  - {fileID: 188014953}
+  - {fileID: 1609076929}
+  - {fileID: 1403533551}
+  - {fileID: 1244767076}
+  - {fileID: 528685456}
+  - {fileID: 634116606}
+  - {fileID: 981712154}
+  - {fileID: 1249515911}
+  - {fileID: 1501179080}
+  - {fileID: 716340075}
 --- !u!65 &8830689112380992619
 BoxCollider:
   m_ObjectHideFlags: 0
