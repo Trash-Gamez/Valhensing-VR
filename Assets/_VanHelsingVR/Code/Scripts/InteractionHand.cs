@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class InteractionHand : MonoBehaviour
 {
-    private HandAnimationController handAnimationController;
+    private HandEffectsController _handEffectsController;
     public string nombreAnimacion;
     
     void Start()
     {
-        handAnimationController = FindObjectOfType<HandAnimationController>();
+        _handEffectsController = FindObjectOfType<HandEffectsController>();
     }
 
     public void LlamarAnimacion()
     {
-        handAnimationController.Grap(nombreAnimacion);
+        _handEffectsController.Grap(nombreAnimacion);
     }
 
     

@@ -13,8 +13,8 @@ namespace _VanHelsingVR.Health
 {
     public class Health : MonoBehaviour
     {
-        [Title("Health Config")]
-        [field: SerializeField] public VariableReference<int> maxHealth { get; private set; }
+        [Title("Health Config")] [field: SerializeField]
+        private VariableReference<int> maxHealth;
 
         [Space] [SerializeField] private ConditionPool canBeDamaged;
         [SerializeField] private ConditionPool canBeHealed;

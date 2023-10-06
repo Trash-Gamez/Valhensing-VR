@@ -1,45 +1,23 @@
-using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using _VanHelsingVR.Events;
 
-#if UNITY_EDITOR
-using Sirenix.OdinInspector;
-#endif
-
-[RequireComponent(typeof(SphereCollider))]
-public class Grabbable : MonoBehaviour
+public class Grabbable : XRGrabInteractable
 {
-#if UNITY_EDITOR
-    [Title("Grabbable Stuff")]
-#endif
-    [SerializeField] private ReactiveEvent<Grabbable> OnGrab;
-
-    public string AnimName => animName;
-    [SerializeField] private string animName;
-
-    private Rigidbody _rb;
-
-    private void Awake()
+    protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
-        _rb = GetComponent<Rigidbody>();
+        if (!args.interactableObject.transform.TryGetComponent(out XRLeftHandInteractor leftHand)) return;
+        Debug.Log("Si hy mano izquierda");
+        leftHand.Grab(this);
+        base.OnSelectEntered(args);
     }
 
-    public void Grab(Grabber grabber)
+    protected override void OnSelectExited(SelectExitEventArgs args)
     {
-        if(_rb != null && !_rb.IsSleeping()) _rb.Sleep();
-        transform.position = grabber.GrabOrigin.position;
-        transform.parent = grabber.GrabOrigin;
+        if (args.interactableObject.transform.TryGetComponent(out XRLeftHandInteractor leftHand))
+        {
+            leftHand.Ungrab(this);
+        }
         
-        Debug.Log($"Ahora estoy attached a: {grabber.name}");
-        if(OnGrab != null)
-            OnGrab.Raise(this);
+        base.OnSelectExited(args);
     }
-
-    public void UnGrab()
-    {
-        if (_rb != null && _rb.IsSleeping()) _rb.WakeUp();
-        transform.parent = null;
-    }
-
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace _VanHelsingVR.Events
 {
     [Serializable]
-    public abstract class ReactiveEventReference<T>
+    public class ReactiveEventReference<T>
     {
         [SerializeField] private ReactiveEvent<T> reactiveEvent;
 
