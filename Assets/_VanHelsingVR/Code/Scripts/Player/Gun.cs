@@ -108,10 +108,10 @@ public class Gun : MonoBehaviour
                 Debug.Log("Shoot");
                 try
                 {
-                    hit.transform.GetComponent<Hittable>().OnDamage();
+                    hit.transform.GetComponent<Damagable>().OnDamage();
                 } catch(Exception)
                 {
-                    Debug.Log("This Object does not have Hittable Script");
+                    Debug.Log("This Object does not have Damagable Script");
                 }
             }
             InstantiateVisual(direction);

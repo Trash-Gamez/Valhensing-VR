@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public abstract class Damagable : XRSimpleInteractable
+public class Damagable : XRSimpleInteractable
 {
     [SerializeField] protected DamagableHealthReference damagableHealthReference = null;
 
@@ -26,4 +26,12 @@ public abstract class Damagable : XRSimpleInteractable
         damageDeal = Mathf.Abs(damageDeal);
         damagableHealthReference.HealthSystem.AddHealth(-damageDeal);
     }
+    
+    #if UNITY_EDITOR
+    [ContextMenu("Force Damage")]
+    public void ForceHandleDamage()
+    {
+        OnDamage();
+    }
+    #endif
 }
