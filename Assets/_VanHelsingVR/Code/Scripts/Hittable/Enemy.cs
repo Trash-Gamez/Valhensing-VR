@@ -41,6 +41,7 @@ public class Enemy : Hittable
         if (_hitCoroutine != null) return;
         Debug.Log("Iniciando corutina de golpe");
         _hitCoroutine = StartCoroutine(ColorChange());
+        base.OnHit();
     }
 
     IEnumerator ColorChange()

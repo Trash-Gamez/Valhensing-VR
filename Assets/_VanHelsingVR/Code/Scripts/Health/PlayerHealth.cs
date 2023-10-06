@@ -6,7 +6,6 @@ namespace _VanHelsingVR.Health
     {
         protected override void HandleDead()
         {
-            //COSAS
             base.HandleDead();
         }
     }
