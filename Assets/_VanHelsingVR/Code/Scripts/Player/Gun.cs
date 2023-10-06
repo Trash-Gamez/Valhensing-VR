@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -47,10 +47,26 @@ public class Gun : MonoBehaviour
     private float speedY;
     private bool canReload=true;
     private bool canShoot = true;
-    
 
+#if UNITY_EDITOR
+    [Title("Gun VFX")]
+#endif
+
+    [SerializeField] private ParticleSystemRenderer lighting;
+    [SerializeField] private ParticleSystem muzzle;
+
+    private bool _firstFrameDone = false;
+
+    private void Start()
+    {
+        magazine.Value = 0;
+        previousPos = transform.position;
+        
+    }
     void Update()
     {
+       
+        
         GetInput();
        
         speedY = ((transform.position.y - previousPos.y)) / Time.deltaTime;
@@ -65,6 +81,15 @@ public class Gun : MonoBehaviour
         {
             StartCoroutine(nameof(Shoot));
         }
+
+        Vfx();
+    }
+    
+   private void Vfx()
+    {
+        float alpha = UtilitieExtensions.Map(magazine.Value, new Range(magazineSize, 0), Range.OneToZero);
+        Debug.Log(alpha);
+        lighting.material.SetFloat("_Alpha", alpha);
     }
 
     private void GetInput()
@@ -109,7 +134,7 @@ public class Gun : MonoBehaviour
                 try
                 {
                     hit.transform.GetComponent<Damagable>().OnDamage();
-                } catch(Exception)
+                } catch(System.Exception)
                 {
                     Debug.Log("This Object does not have Damagable Script");
                 }
@@ -142,5 +167,6 @@ public class Gun : MonoBehaviour
     private void InstantiateVisual(Vector3 direction)
     {
         Instantiate(bulletPrefab, shootPoint.position, Quaternion.LookRotation(direction));
+        muzzle.Play();
     }
 }
