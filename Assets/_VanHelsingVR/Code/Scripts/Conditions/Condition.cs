@@ -50,14 +50,13 @@ public class Condition
     }
 }
 
-
 #region CONDITIONS
 [Serializable]
 public sealed class TimeCondition : IInitializable, IDisposable
 {
-    [SerializeField] private Timer timer;
+    [Inject] private Timer timer;
 
-    private bool _isTimerEnded = true;
+    private bool _isTimerEnded = false;
     public bool IsTimerEnded => _isTimerEnded;
 
     private void OnTimerEnds()
@@ -72,14 +71,15 @@ public sealed class TimeCondition : IInitializable, IDisposable
 
     public void Initialize()
     {
-        timer.OnTimerEnded += OnTimerEnds;
+        Debug.Log("Inicializando Timer");
         timer.OnTimerInitialized += OnTimerStarted;
+        timer.OnTimerEnded += OnTimerEnds;
     }
 
     public void Dispose()
     {
-        timer.OnTimerEnded -= OnTimerEnds;
         timer.OnTimerInitialized -= OnTimerStarted;
+        timer.OnTimerEnded -= OnTimerEnds;
     }
 } 
 #endregion

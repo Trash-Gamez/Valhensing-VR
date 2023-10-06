@@ -1,7 +1,5 @@
-using _VanHelsingVR.Variables;
 using System;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,9 +22,16 @@ public class ConditionPool
         }
     }
 
-    public void AddCondition(Condition contition)
+    public void AddCondition(Condition condition)
     {
-        
+        if (conditions.Contains(condition)) return;
+        conditions.Add(condition);
+    }
+
+    public void RemoveCondition(Condition condition)
+    {
+        if (!conditions.Contains(condition)) return;
+        conditions.Remove(condition);
     }
 
     public static implicit operator bool(ConditionPool cp) => cp.CanDo;
