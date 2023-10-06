@@ -16,7 +16,7 @@ public static class UtilitieExtensions
     public static float Map(float inValue, float inMin, float inMax, float outMin, float outMax)
     {
         return (inValue - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
-    } 
+    }
     
     /// <summary>
     /// This Function return a mapped value between two ranges of value
@@ -28,5 +28,5 @@ public static class UtilitieExtensions
     public static float Map(float inValue, Range inRange, Range outRange)
     {
         return Map(inValue, inRange.Min, inRange.Max, outRange.Min, outRange.Max);
-    } 
+    }
 }
