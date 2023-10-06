@@ -9,7 +9,7 @@ public class ButtonFollowVisual : MonoBehaviour
     public Vector3 localAxis;
     private Vector3 _initialLocalPos;
     public float resetSpeed = 5;
-
+    public float followAngle = 45;
 
     private bool freeze = false;
 
@@ -34,16 +34,22 @@ public class ButtonFollowVisual : MonoBehaviour
         if(hover.interactorObject is XRPokeInteractor)
         {
             XRPokeInteractor interactor = (XRPokeInteractor)hover.interactorObject;
-            isFollowing = true;
-            freeze = false;
+            
             pokeAttachTransform = interactor.attachTransform;
             _offset = visualTarget.position - pokeAttachTransform.position;
+
+            float pokeAngle = Vector3.Angle(_offset, visualTarget.TransformDirection(localAxis));
+            if (pokeAngle < followAngle)
+            {
+                isFollowing = true;
+                freeze = false;
+            }
         }
     }
 
     public void Reset(BaseInteractionEventArgs hover)
     {
-        if(hover.interactableObject is XRPokeInteractor)
+        if(hover.interactorObject is XRPokeInteractor)
         {
             isFollowing = false;
             freeze = false;
@@ -52,7 +58,7 @@ public class ButtonFollowVisual : MonoBehaviour
 
     public void Freeze(BaseInteractionEventArgs hover)
     {
-        if (hover.interactableObject is XRPokeInteractor)
+        if (hover.interactorObject is XRPokeInteractor)
         {
             freeze = true;
         }
