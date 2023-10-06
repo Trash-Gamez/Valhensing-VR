@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using _VanHelsingVR.Interaction;
 using UnityEngine;
 using UnityEngine.Events;
 

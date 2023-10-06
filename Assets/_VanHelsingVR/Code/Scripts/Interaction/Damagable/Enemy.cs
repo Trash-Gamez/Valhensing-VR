@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using _VanHelsingVR.Interaction;
 using UnityEngine;
 
 public class Enemy : Hittable

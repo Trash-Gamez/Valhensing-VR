@@ -3,7 +3,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace _VanHelsingVR.Interaction
 {
-    public class ParticlesOnActive : Grabbable
+    public class ParticlesOnActive : GrabbableListener
     {
         [SerializeField] private ParticleSystem partycles;
 

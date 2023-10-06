@@ -4,7 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace _VanHelsingVR.Interaction
 {
-    public class HealOnActivate : Grabbable
+    public class HealOnActivate : GrabbableListener
     {
         [SerializeField] private ReactiveEvent<int> OnHealPlayer;
         protected override void OnActivated(ActivateEventArgs args)

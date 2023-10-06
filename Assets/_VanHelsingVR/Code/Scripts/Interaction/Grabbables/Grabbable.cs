@@ -3,43 +3,24 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace _VanHelsingVR.Interaction
 {
-    [RequireComponent(typeof(XRGrabInteractable))]
-    public abstract class Grabbable : Interactable
+    public class Grabbable : XRGrabInteractable
     {
-        protected XRGrabInteractable _grabbable;
-
-        protected override void Awake()
+        protected override void OnSelectEntered(SelectEnterEventArgs args)
         {
-            base.Awake();
-            _grabbable = GetComponent<XRGrabInteractable>();
-        }
-        
-        #region FOCUS
-        protected virtual void OnFocusEntered(FocusEnterEventArgs args){}
-        protected virtual void OnFocusExit(FocusExitEventArgs args){}
-        #endregion
-        
-        #region ACTIVATE
-        protected virtual void OnActivated(ActivateEventArgs args){}
-        protected virtual void OnDeactivated(DeactivateEventArgs args){}
-        #endregion
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            _grabbable.activated.AddListener(OnActivated);
-            _grabbable.deactivated.AddListener(OnDeactivated);
-            _grabbable.focusEntered.AddListener(OnFocusEntered);
-            _grabbable.focusExited.AddListener(OnFocusExit);
+            if (!args.interactorObject.transform.TryGetComponent(out XRLeftHandInteractor leftHand)) return;
+            Debug.Log("Si hy mano izquierda");
+            leftHand.Grab(this);
+            base.OnSelectEntered(args);
         }
 
-        protected override void OnDisable()
+        protected override void OnSelectExited(SelectExitEventArgs args)
         {
-            base.OnDisable();
-            _grabbable.activated.RemoveListener(OnActivated);
-            _grabbable.deactivated.RemoveListener(OnDeactivated);
-            _grabbable.focusEntered.RemoveListener(OnFocusEntered);
-            _grabbable.focusExited.RemoveListener(OnFocusExit);
+            if (args.interactableObject.transform.TryGetComponent(out XRLeftHandInteractor leftHand))
+            {
+                leftHand.Ungrab(this);
+            }
+
+            base.OnSelectExited(args);
         }
     }
 }

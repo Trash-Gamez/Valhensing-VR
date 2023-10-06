@@ -5,7 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 namespace _VanHelsingVR.Interaction
 {
     [DefaultExecutionOrder(1)]
-    public class DestroyOnActive : Grabbable
+    public class DestroyOnActive : GrabbableListener
     {
         [Tooltip("The number of times the 'OnActivated' Event has to trigger for this object to be destroyed")]
         [Min(1),SerializeField]

@@ -4,7 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 namespace _VanHelsingVR.Interaction
 {
     [RequireComponent(typeof(XRBaseInteractable))]
-    public abstract class Interactable : MonoBehaviour
+    public abstract class InteractableListener : MonoBehaviour
     {
         protected XRBaseInteractable _interactor;
         
