@@ -108,7 +108,7 @@ public class Gun : MonoBehaviour
                 Debug.Log("Shoot");
                 try
                 {
-                    hit.transform.GetComponent<Hittable>().OnHit();
+                    hit.transform.GetComponent<Hittable>().OnDamage();
                 } catch(Exception)
                 {
                     Debug.Log("This Object does not have Hittable Script");

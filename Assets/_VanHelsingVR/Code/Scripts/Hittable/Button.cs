@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Button : Hittable
 {
     [SerializeField] UnityEvent OnPress;
-    public override void OnHit()
+    public override void OnDamage()
     {
         OnPress.Invoke();
         Destroy(gameObject);

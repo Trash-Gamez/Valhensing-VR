@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerDamagable : Damagable
 {
-    public override void OnHit()
+    public override void OnDamage()
     {
         //Animacion del golpe
         Debug.Log("Player Has Been Hit");
-        base.OnHit();
+        base.OnDamage();
     }
 }

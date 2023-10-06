@@ -1,20 +1,21 @@
 using _VanHelsingVR.Health;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public abstract class Damagable : XRSimpleInteractable
 {
     [SerializeField] protected DamagableHealthReference damagableHealthReference = null;
 
-    [SerializeField] private UnityEvent OnHitEvent;
+    [FormerlySerializedAs("OnHitEvent")] [SerializeField] private UnityEvent OnHit;
     
-    public virtual void OnHit()
+    public virtual void OnDamage()
     {
         if(damagableHealthReference.HealthSystem != null)
             HandleDamage();
         
-        OnHitEvent?.Invoke();
+        OnHit?.Invoke();
     }
     
     /// <summary>

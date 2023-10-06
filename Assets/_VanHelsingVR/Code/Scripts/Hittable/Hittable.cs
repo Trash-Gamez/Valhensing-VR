@@ -17,7 +17,7 @@ public abstract class Hittable: Damagable
         
         if (speed.Velocity.sqrMagnitude >= speedToBeHit - Mathf.Epsilon)
         {
-            OnHit();
+            OnDamage();
         }
         
         base.OnHoverEntered(args);

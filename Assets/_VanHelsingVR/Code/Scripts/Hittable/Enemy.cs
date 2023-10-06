@@ -36,12 +36,12 @@ public class Enemy : Hittable
         MaterialWhite.SetColor("_BaseColor", Color.white);
     }
 
-    public override void OnHit()
+    public override void OnDamage()
     {
         if (_hitCoroutine != null) return;
         Debug.Log("Iniciando corutina de golpe");
         _hitCoroutine = StartCoroutine(ColorChange());
-        base.OnHit();
+        base.OnDamage();
     }
 
     IEnumerator ColorChange()

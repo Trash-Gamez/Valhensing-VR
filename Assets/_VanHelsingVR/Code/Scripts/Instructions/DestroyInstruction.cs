@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace _VanHelsingVR.Instructions
 {
+    [DefaultExecutionOrder(1)]
     public class DestroyInstruction : MonoBehaviour
     {
         public void DestroySelf(float timeToDestroy)

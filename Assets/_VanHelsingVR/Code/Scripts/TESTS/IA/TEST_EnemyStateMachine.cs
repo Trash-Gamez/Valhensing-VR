@@ -15,6 +15,9 @@ public class TEST_EnemyStateMachine : MonoBehaviour
     public Transform BoxOverlapPosition;
     public Vector3 BoxSize;
     public LayerMask LayerHit;
+    public float SeekAgainRadius;
+    public float SecondsForFirstHit;
+    public float SecondsForEveryOtherHit;
 
     [Header("Backup Info")] 
     public float SeconsOfBackup;
@@ -46,7 +49,9 @@ public class TEST_EnemyStateMachine : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, SeekRadius);
+        var relativePosition = transform.position;
+        relativePosition.y = Target.position.y;
+        Gizmos.DrawWireSphere(relativePosition, SeekRadius);
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(BoxOverlapPosition.position, BoxSize);
     }
