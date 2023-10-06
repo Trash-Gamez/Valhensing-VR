@@ -60,7 +60,7 @@ public class Gun : MonoBehaviour
     private void Start()
     {
         magazine.Value = 0;
-        previousPos = transform.position;
+        previousPos = transform.localPosition;
         
     }
     void Update()
@@ -69,8 +69,8 @@ public class Gun : MonoBehaviour
         
         GetInput();
        
-        speedY = ((transform.position.y - previousPos.y)) / Time.deltaTime;
-        previousPos = transform.position;
+        speedY = ((transform.localPosition.y - previousPos.y)) / Time.deltaTime;
+        previousPos = transform.localPosition;
       
         if (Mathf.Abs(speedY) > speedLimit && canReload && !grip)
         {
