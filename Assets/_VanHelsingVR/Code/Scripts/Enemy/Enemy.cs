@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using _VanHelsingVR.Interaction;
 
-namespace _VanHelsingVR.Interaction
+namespace _VanHelsingVR.Enemy
 {
     public class Enemy : Hittable
     {
