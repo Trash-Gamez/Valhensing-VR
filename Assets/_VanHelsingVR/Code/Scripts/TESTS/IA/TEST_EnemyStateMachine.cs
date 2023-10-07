@@ -49,9 +49,7 @@ public class TEST_EnemyStateMachine : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
-        var relativePosition = transform.position;
-        relativePosition.y = Target.position.y;
-        Gizmos.DrawWireSphere(relativePosition, SeekRadius);
+        Gizmos.DrawWireSphere(transform.position, SeekRadius);
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(BoxOverlapPosition.position, BoxSize);
     }

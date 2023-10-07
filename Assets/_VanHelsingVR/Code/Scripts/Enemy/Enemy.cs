@@ -32,16 +32,17 @@ namespace _VanHelsingVR.Enemy
             }
         }
 
+        private readonly int _detailMapColorID = Shader.PropertyToID("_DetailMapColor");
+
         private void Start()
         {
-            MaterialRed.SetColor("_BaseColor", Color.red);
-            MaterialWhite.SetColor("_BaseColor", Color.white);
+            MaterialRed.SetColor(_detailMapColorID, Color.red);
+            MaterialWhite.SetColor(_detailMapColorID, Color.white);
         }
 
         public override void OnDamage()
         {
             if (_hitCoroutine != null) return;
-            Debug.Log("Iniciando corutina de golpe");
             _hitCoroutine = StartCoroutine(ColorChange());
             base.OnDamage();
         }
@@ -52,7 +53,9 @@ namespace _VanHelsingVR.Enemy
             {
                 renderer.SetPropertyBlock(_materialRed);
             }
-            yield return new WaitForSeconds(0.3f);
+            
+            yield return new WaitForSeconds(.45f);
+            
             foreach (Renderer renderer in renderers)
             {
                 renderer.SetPropertyBlock(_materialWhite);

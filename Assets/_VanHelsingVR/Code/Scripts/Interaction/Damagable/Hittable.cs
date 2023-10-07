@@ -11,9 +11,12 @@ namespace _VanHelsingVR.Interaction
 
         protected override void OnHoverEntered(HoverEnterEventArgs args)
         {
+            Debug.Log("Se paro encima mio");
             var interactor = args.interactorObject.transform;
             if (!interactor.TryGetComponent(out XRLeftHandInteractor hand)) return;
+            Debug.Log("Si hay mano izquierda");
             if (!hand.CanPunch) return;
+            Debug.Log("Puede Pegar");
             if (!interactor.TryGetComponent(out SpeedoMeter speed)) return;
 
             //Know how many damage is done

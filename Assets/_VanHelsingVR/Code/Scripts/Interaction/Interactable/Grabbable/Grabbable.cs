@@ -17,7 +17,6 @@ namespace _VanHelsingVR.Interaction
         protected override void OnSelectEntered(SelectEnterEventArgs args)
         {
             if (!args.interactorObject.transform.TryGetComponent(out XRLeftHandInteractor leftHand)) return;
-            Debug.Log("Si hy mano izquierda");
             leftHand.Grab(this);
             base.OnSelectEntered(args);
         }
