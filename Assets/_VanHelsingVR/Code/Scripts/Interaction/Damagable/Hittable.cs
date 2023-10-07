@@ -13,7 +13,7 @@ namespace _VanHelsingVR.Interaction
         {
             var interactor = args.interactorObject.transform;
             if (!interactor.TryGetComponent(out XRLeftHandInteractor hand)) return;
-            if (!hand.IsEntireClosed) return;
+            if (!hand.CanPunch) return;
             if (!interactor.TryGetComponent(out SpeedoMeter speed)) return;
 
             //Know how many damage is done

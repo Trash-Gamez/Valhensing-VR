@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -8,21 +9,21 @@ using UnityEngine.Serialization;
 
 public class HandEffectsController : MonoBehaviour
 {
-    [SerializeField] private InputActionProperty fistAnimationAction;
-    [SerializeField] private InputActionProperty pointAnimationAction;
+    [Title("Input")][SerializeField]
+    private HandInputReference handInput;
 
-
+    [Title("Effects Reference")]
     [SerializeField]private Renderer meshRenderer;
     [SerializeField] private ParticleSystem particleSystem;
     [SerializeField] Animator handAnimator;
-
-    [SerializeField, Range(0.000001f, 1)] private float valueToCountFist;
-    [SerializeField] private ConditionPool isGrabbingSomething;
-    private float gripvalue, triggervalue;
-
+    
+    [Space, SerializeField] private ConditionPool canActiveEffects;
+    
     private MaterialPropertyBlock _mpb;
     private readonly int _alphaID = Shader.PropertyToID("_Alpha");
-
+    
+    private bool _isInPunchPose;
+    
     private void Start()
     {
         _mpb = new MaterialPropertyBlock();
@@ -30,28 +31,30 @@ public class HandEffectsController : MonoBehaviour
 
     void Update()
     {
-        gripvalue = pointAnimationAction.action.ReadValue<float>();
-        triggervalue = fistAnimationAction.action.ReadValue<float>();
-        handAnimator.SetFloat("Trigger", triggervalue);
-        handAnimator.SetFloat("Grip", gripvalue);
-        
+        HandleAnimations();
         HandleParticles();
     }
+    
+    private void HandleAnimations()
+    {
+        handAnimator.SetFloat("Trigger", handInput.Reference.ActiveInput);
+        handAnimator.SetFloat("Grip", handInput.Reference.SelectionInput);
+    }
 
+    private bool _areEffectsActive = true;
     private void HandleParticles()
     {
         if (particleSystem == null) return;
-        Debug.Log($"IsGrabbing: {isGrabbingSomething.CanDo}");
-        bool particleEnable = !isGrabbingSomething && triggervalue > valueToCountFist;
+        Debug.Log($"Can Active Effects: {canActiveEffects.CanDo}");
+        canActiveEffects.LogVars();
         
-        if (particleEnable && !particleSystem.isPlaying)
+        if (canActiveEffects && !_areEffectsActive)
         {
             _mpb.SetFloat(_alphaID, 1);
             meshRenderer.SetPropertyBlock(_mpb);
             particleSystem.Play();
         }
-        
-        else if(particleSystem.isPlaying)
+        else if(!canActiveEffects && _areEffectsActive)
         {
             _mpb.SetFloat(_alphaID, 0);
             meshRenderer.SetPropertyBlock(_mpb);

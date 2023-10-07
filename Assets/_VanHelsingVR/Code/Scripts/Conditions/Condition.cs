@@ -16,6 +16,8 @@ public class Condition
 
     [SerializeField]
     private ConditionType conditionType;
+
+    [SerializeField] private bool reversed;
     
     #if UNITY_EDITOR
     [ShowIf(nameof(conditionType), ConditionType.Literal)]
@@ -39,14 +41,28 @@ public class Condition
     {
         get
         {
-            return conditionType switch
+            bool value = conditionType switch
             {
                 ConditionType.Variable => variable.Value,
                 ConditionType.Literal => literal,
                 ConditionType.TimeCondition => timeCondition.IsTimerEnded,
                 _ => false
             };
+
+            return reversed ? !value : value;
         }
+    }
+
+    public override string ToString()
+    {
+        string conditionType = this.conditionType switch
+        {
+            ConditionType.Variable => $"Variable '{variable.name}'",
+            ConditionType.Literal => "Literal",
+            ConditionType.TimeCondition => "Time Condition"
+        };
+        var value = reversed ? !Value : Value;
+        return $"{conditionType}: {value}";
     }
 }
 

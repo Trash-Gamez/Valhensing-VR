@@ -1,24 +1,30 @@
 using _VanHelsingVR.Variables;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace _VanHelsingVR.Interaction
 {
     public class XRLeftHandInteractor : XRDirectInteractor
     {
-        [SerializeField, Range(0.1f, 1)] private float fistClosedValue;
-        [SerializeField] private InputActionProperty fistAction;
-        [SerializeField] private Variable<bool> isGrabbing;
+        [SerializeField] private HandInputReference handInput;
+        [SerializeField, Required] private Variable<bool> isGrabbing;
 
-        public bool IsEntireClosed
+        protected override void Start()
+        {
+            isGrabbing.Value = false;
+            base.Start();
+        }
+
+        public bool CanPunch
         {
             get
             {
                 if (isGrabbing) return false;
-                //TODO: get to know individually and not in this function if is grabbing something 
-                var fistValue = fistAction.action.ReadValue<float>();
-                return fistValue >= fistClosedValue;
+
+                return handInput.Reference.IsClosed;
             }
         }
 

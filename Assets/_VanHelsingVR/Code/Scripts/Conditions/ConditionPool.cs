@@ -22,6 +22,14 @@ public class ConditionPool
         }
     }
 
+    public void LogVars()
+    {
+        foreach (var condition in conditions)
+        {
+            Debug.Log(condition.ToString());
+        }
+    }
+
     public void AddCondition(Condition condition)
     {
         if (conditions.Contains(condition)) return;
