@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,12 +19,23 @@ namespace _VanHelsingVR.Economy
 
         [SerializeField] private Transform positionToSpawn;
 
+        private void Awake()
+        {
+            foreach (var shopItem in shopItems)
+            {
+                shopItem.InitItem(this);
+            }
+        }
+
         public void BuyItem(ShopItem itemToBuy)
         {
+            //MAKE ERROR FOR SHOPING
+            if (itemToBuy.stock <= 0) return;
             var buyable = itemToBuy.Buyable;
             if (!economySystem.CanAfford(buyable)) return;
             
             economySystem.BuyItem(buyable);
+            
             AppearItem(buyable);
         }
 
@@ -31,7 +43,7 @@ namespace _VanHelsingVR.Economy
         {
             //TODO: Make logic for composite pattern
             // USE UNITAKS FOR APPEARING THE OBJECT
-            Instantiate(buyableToAppear.ObjectBuyable, positionToSpawn.position, Quaternion.identity);
+            Instantiate(buyableToAppear.ObjectBuyable, positionToSpawn.position, Quaternion.identity, transform);
         }
     }
 }

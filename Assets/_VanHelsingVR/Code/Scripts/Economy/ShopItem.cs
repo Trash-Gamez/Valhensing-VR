@@ -1,20 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Unity.XR.CoreUtils;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Filtering;
 
 namespace _VanHelsingVR.Economy
 {
+    [RequireComponent(typeof(XRPokeFilter))]
     public class ShopItem : XRSimpleInteractable
     {
-        public Buyable Buyable => buyable;
         [Title("SHOPT ITEM")]
         [SerializeField] private Buyable buyable = null;
+        public Buyable Buyable => buyable;
 
         [field: SerializeField]
         public byte stock = 255;
+
+        private Shop _shop;
+
+        public void InitItem(Shop shopFrom)
+        {
+            _shop = shopFrom;
+        }
 
         protected override void Awake()
         {
@@ -25,6 +32,8 @@ namespace _VanHelsingVR.Economy
         [ContextMenu("Set Skins")]
         private void SetSkins()
         {
+            //SO BETTER SKINS SYSTEM
+            return;
             var previewSkin = gameObject.GetNamedChild("Skin");
             if (previewSkin != null)
             {
@@ -33,8 +42,17 @@ namespace _VanHelsingVR.Economy
             previewSkin = Instantiate(buyable.ObjectPreview, transform);
             previewSkin.name = "Skin";
         }
-        
-        //TOOD: MAKE A BUTTON OF THIS
 
+        private void BuyItem()
+        {
+            _shop.BuyItem(this);
+        }
+        
+        //bUTTON gETS pRESSED
+        protected override void OnSelectEntered(SelectEnterEventArgs args)
+        {
+            base.OnSelectEntered(args);
+            BuyItem();
+        }
     }
 }
