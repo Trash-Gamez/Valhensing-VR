@@ -113,7 +113,7 @@ public class Gun : MonoBehaviour
    
     private void Reload()
     {
-        magazine.Value += 2;
+        magazine.Value += 5;
         if (magazine.Value > magazineSize) magazine.Value = magazineSize;
     }
 

@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 1397445843595885235}
   - component: {fileID: 1397445843595885237}
   - component: {fileID: 1397445843595885260}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Demon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
   maxHealth:
     variableType: 0
     reference: {fileID: 0}
-    constant: 0
+    constant: 3
   canBeDamaged:
     conditions: []
   canBeHealed:
@@ -274,7 +274,7 @@ MonoBehaviour:
   OnHit:
     m_PersistentCalls:
       m_Calls: []
-  speedToBeHit: 5
+  speedToBeHit: 3
   renderers:
   - {fileID: 2259454414904717092}
 --- !u!114 &1397445843595885260
@@ -356,6 +356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VampireMelee
       objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: 6c64ec96ddca3044c81e47979867ef66, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f64c2752d514bc4ca207e4b5c05aaf7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c64ec96ddca3044c81e47979867ef66, type: 3}
 --- !u!4 &1040392880060814749 stripped

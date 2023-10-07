@@ -73,6 +73,7 @@ public class PlatformController : MonoBehaviour
 
     public void RestartMovement()
     {
+        if (canMove) return;
         canMove = true;
         StartCoroutine("MoveToNextPoint", wayPoints[actualIndex].transform.position);
     }
