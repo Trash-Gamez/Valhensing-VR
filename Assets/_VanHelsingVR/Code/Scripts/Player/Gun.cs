@@ -80,7 +80,7 @@ public class Gun : MonoBehaviour
 
         if (trigger && grip)
         {
-            StartCoroutine(nameof(Shoot));
+            StartCoroutine(Shoot());
         }
 
         Vfx();
@@ -89,7 +89,6 @@ public class Gun : MonoBehaviour
    private void Vfx()
     {
         float alpha = UtilitieExtensions.Map(magazine.Value, new Range(magazineSize, 0), Range.OneToZero);
-        Debug.Log(alpha);
         lighting.material.SetFloat("_Alpha", alpha);
     }
 
@@ -126,12 +125,9 @@ public class Gun : MonoBehaviour
             canShoot = false;
             RaycastHit hit;
 
-
             Vector3 direction = GetDirection();
             if (Physics.Raycast(shootPoint.position, direction, out hit, fireRange, hittableLayer))
             {
-                Debug.Log(hit.transform.name);
-                Debug.Log("Shoot");
                 try
                 {
                     hit.transform.GetComponent<Damagable>().OnDamage();

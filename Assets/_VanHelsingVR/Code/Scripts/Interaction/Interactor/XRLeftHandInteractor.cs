@@ -22,8 +22,7 @@ namespace _VanHelsingVR.Interaction
         {
             get
             {
-                if (isGrabbing) return false;
-
+                if (isGrabbing.Value) return false;
                 return handInput.Hand.IsClosed;
             }
         }
