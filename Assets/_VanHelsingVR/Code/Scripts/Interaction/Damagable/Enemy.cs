@@ -1,64 +1,65 @@
-using System;
 using System.Collections;
-using _VanHelsingVR.Interaction;
 using UnityEngine;
 
-public class Enemy : Hittable
+namespace _VanHelsingVR.Interaction
 {
-    [SerializeField] Renderer[] renderers;
-
-    private Coroutine _hitCoroutine = null;
-
-    private MaterialPropertyBlock _materialRed;
-    private MaterialPropertyBlock MaterialRed
+    public class Enemy : Hittable
     {
-        get
+        [SerializeField] Renderer[] renderers;
+
+        private Coroutine _hitCoroutine = null;
+
+        private MaterialPropertyBlock _materialRed;
+        private MaterialPropertyBlock MaterialRed
         {
-            if (_materialRed == null)
-                _materialRed = new();
-            return _materialRed;
+            get
+            {
+                if (_materialRed == null)
+                    _materialRed = new();
+                return _materialRed;
+            }
         }
-    }
     
-    private MaterialPropertyBlock _materialWhite;
-    private MaterialPropertyBlock MaterialWhite
-    {
-        get
+        private MaterialPropertyBlock _materialWhite;
+        private MaterialPropertyBlock MaterialWhite
         {
-            if (_materialWhite == null)
-                _materialWhite = new();
-            return _materialWhite;
-        }
-    }
-
-    private void Start()
-    {
-        MaterialRed.SetColor("_BaseColor", Color.red);
-        MaterialWhite.SetColor("_BaseColor", Color.white);
-    }
-
-    public override void OnDamage()
-    {
-        if (_hitCoroutine != null) return;
-        Debug.Log("Iniciando corutina de golpe");
-        _hitCoroutine = StartCoroutine(ColorChange());
-        base.OnDamage();
-    }
-
-    IEnumerator ColorChange()
-    {
-        foreach (Renderer renderer in renderers)
-        {
-            renderer.SetPropertyBlock(_materialRed);
-        }
-        yield return new WaitForSeconds(0.3f);
-        foreach (Renderer renderer in renderers)
-        {
-            renderer.SetPropertyBlock(_materialWhite);
+            get
+            {
+                if (_materialWhite == null)
+                    _materialWhite = new();
+                return _materialWhite;
+            }
         }
 
-        _hitCoroutine = null;
-    }
+        private void Start()
+        {
+            MaterialRed.SetColor("_BaseColor", Color.red);
+            MaterialWhite.SetColor("_BaseColor", Color.white);
+        }
+
+        public override void OnDamage()
+        {
+            if (_hitCoroutine != null) return;
+            Debug.Log("Iniciando corutina de golpe");
+            _hitCoroutine = StartCoroutine(ColorChange());
+            base.OnDamage();
+        }
+
+        IEnumerator ColorChange()
+        {
+            foreach (Renderer renderer in renderers)
+            {
+                renderer.SetPropertyBlock(_materialRed);
+            }
+            yield return new WaitForSeconds(0.3f);
+            foreach (Renderer renderer in renderers)
+            {
+                renderer.SetPropertyBlock(_materialWhite);
+            }
+
+            _hitCoroutine = null;
+        }
 
    
+    }
 }

@@ -1,13 +1,15 @@
-using _VanHelsingVR.Interaction;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Button : Hittable
+namespace _VanHelsingVR.Interaction
 {
-    [SerializeField] UnityEvent OnPress;
-    public override void OnDamage()
+    public class Button : Hittable
     {
-        OnPress.Invoke();
-        Destroy(gameObject);
+        [SerializeField] UnityEvent OnPress;
+        public override void OnDamage()
+        {
+            OnPress.Invoke();
+            Destroy(gameObject);
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _VanHelsingVR.Interaction;
 using UnityEngine;
 
 public class TEST_AttackState : TEST_State

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class RuntimeSet<T> : ScriptableObject
+public class RuntimeSet<T> : ScriptableObject
 {
     public List<T> List {get; private set;} = new List<T>();
     

@@ -1,5 +1,6 @@
 
 using System.Collections;
+using _VanHelsingVR.Interaction;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using _VanHelsingVR.Variables;
