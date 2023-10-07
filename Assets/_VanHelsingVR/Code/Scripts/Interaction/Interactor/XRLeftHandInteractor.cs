@@ -24,19 +24,17 @@ namespace _VanHelsingVR.Interaction
             {
                 if (isGrabbing) return false;
 
-                return handInput.Reference.IsClosed;
+                return handInput.Hand.IsClosed;
             }
         }
 
         public void Grab(Grabbable grabbable)
         {
             isGrabbing.Value = true;
-            Debug.Log("La mano izquierda agarro");
         }
 
         public void Ungrab(Grabbable grabbable)
         {
-            Debug.Log("La mano izquierda dejo");
             isGrabbing.Value = false;
         }
     }

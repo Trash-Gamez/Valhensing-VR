@@ -531,11 +531,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6151344893115263566}
+  - component: {fileID: 572934879}
   - component: {fileID: 6151344893115263560}
   - component: {fileID: 6151344893115263567}
-  - component: {fileID: 572934879}
-  - component: {fileID: 572934877}
+  - component: {fileID: 8890347636953715026}
   - component: {fileID: 572934878}
+  - component: {fileID: 572934877}
   - component: {fileID: 859075811}
   m_Layer: 6
   m_Name: DantePlayer
@@ -560,6 +561,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &572934879
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6151344893115263565}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &6151344893115263560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,20 +606,105 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
---- !u!136 &572934879
-CapsuleCollider:
+--- !u!114 &8890347636953715026
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6151344893115263565}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d595027c6172674081bec270c1c1a9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <LeftHandInput>k__BackingField:
+    selectAction:
+      m_UseReference: 1
+      m_Action:
+        m_Name: Select
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: d9520307-fd64-47e4-9865-13d6d93b0c3c
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+      m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    activateAction:
+      m_UseReference: 1
+      m_Action:
+        m_Name: Activate
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: f52cbf04-0980-4d9a-bc77-082a1b951362
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+      m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    closedValue:
+      variableType: 0
+      reference: {fileID: 0}
+      constant: 0.8
+  <RightHandInput>k__BackingField:
+    selectAction:
+      m_UseReference: 1
+      m_Action:
+        m_Name: Select
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: ea2e0733-df20-45fb-8707-3ac60bc8c3dd
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+      m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    activateAction:
+      m_UseReference: 1
+      m_Action:
+        m_Name: Activate
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 3a9190da-5062-4c32-b858-c8c5074ce51e
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+      m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    closedValue:
+      variableType: 0
+      reference: {fileID: 0}
+      constant: 0.8
+--- !u!114 &572934878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6151344893115263565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bba539b34a04d5598f5204a3db8f480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth:
+    variableType: 0
+    reference: {fileID: 0}
+    constant: 0
+  canBeDamaged:
+    conditions: []
+  canBeHealed:
+    conditions: []
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onRecoverHealth:
+    m_PersistentCalls:
+      m_Calls: []
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &572934877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,35 +810,6 @@ MonoBehaviour:
   damagableHealthReference:
     <HealthSystem>k__BackingField: {fileID: 0}
   OnHit:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &572934878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6151344893115263565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bba539b34a04d5598f5204a3db8f480, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth:
-    variableType: 0
-    reference: {fileID: 0}
-    constant: 0
-  canBeDamaged:
-    conditions: []
-  canBeHealed:
-    conditions: []
-  onDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  onRecoverHealth:
-    m_PersistentCalls:
-      m_Calls: []
-  onDead:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &859075811
@@ -1576,6 +1647,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 6151344893861388229}
     m_Modifications:
     - target: {fileID: 1957811112, guid: 1ff1091f102fc24439be2dfd71f16348, type: 3}
+      propertyPath: useEffects
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1957811112, guid: 1ff1091f102fc24439be2dfd71f16348, type: 3}
       propertyPath: meshRenderer
       value: 
       objectReference: {fileID: 1269548130051842334}
@@ -1592,13 +1667,33 @@ PrefabInstance:
       value: 0.854
       objectReference: {fileID: 0}
     - target: {fileID: 1957811112, guid: 1ff1091f102fc24439be2dfd71f16348, type: 3}
+      propertyPath: handInput.playerInput
+      value: 
+      objectReference: {fileID: 8890347636953715026}
+    - target: {fileID: 1957811112, guid: 1ff1091f102fc24439be2dfd71f16348, type: 3}
       propertyPath: fistAnimationAction.m_Action.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1957811112, guid: 1ff1091f102fc24439be2dfd71f16348, type: 3}
+      propertyPath: canActiveEffects.conditions.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1957811112, guid: 1ff1091f102fc24439be2dfd71f16348, type: 3}
       propertyPath: isGrabbingSomething.conditions.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1957811112, guid: 1ff1091f102fc24439be2dfd71f16348, type: 3}
+      propertyPath: canActiveEffects.conditions.Array.data[0].reversed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1957811112, guid: 1ff1091f102fc24439be2dfd71f16348, type: 3}
+      propertyPath: canActiveEffects.conditions.Array.data[0].variable
+      value: 
+      objectReference: {fileID: 11400000, guid: 769116f7f05edc54a992ea771c46db30, type: 2}
+    - target: {fileID: 1957811112, guid: 1ff1091f102fc24439be2dfd71f16348, type: 3}
+      propertyPath: canActiveEffects.conditions.Array.data[1].variable
+      value: 
+      objectReference: {fileID: 11400000, guid: ca34e792eafcf6644894cc54de6e6c03, type: 2}
     - target: {fileID: 1957811112, guid: 1ff1091f102fc24439be2dfd71f16348, type: 3}
       propertyPath: fistAnimationAction.m_Action.m_ExpectedControlType
       value: Button
@@ -1780,21 +1875,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_PhysicsTriggerInteraction: 1
-  fistClosedValue: 0.9
-  fistAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Fist
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 14e0e0c0-ad72-466e-8019-40d92183c069
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  handInput:
+    handOrientation: 0
+    playerInput: {fileID: 8890347636953715026}
   isGrabbing: {fileID: 11400000, guid: 769116f7f05edc54a992ea771c46db30, type: 2}
-  isLeftHandClosed: {fileID: 11400000, guid: ca34e792eafcf6644894cc54de6e6c03, type: 2}
 --- !u!114 &6151344892420767870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1840,6 +1924,14 @@ PrefabInstance:
     - target: {fileID: 2337822795512644619, guid: f138c835edec17748a0cef03a7a87c90, type: 3}
       propertyPath: valueToCountFist
       value: 0.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337822795512644619, guid: f138c835edec17748a0cef03a7a87c90, type: 3}
+      propertyPath: handInput.playerInput
+      value: 
+      objectReference: {fileID: 8890347636953715026}
+    - target: {fileID: 2337822795512644619, guid: f138c835edec17748a0cef03a7a87c90, type: 3}
+      propertyPath: handInput.handOrientation
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3303201616447865807, guid: f138c835edec17748a0cef03a7a87c90, type: 3}
       propertyPath: m_Materials.Array.size

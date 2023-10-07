@@ -2,6 +2,7 @@ using System;
 using _VanHelsingVR.Variables;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class PlayerInput : MonoBehaviour
 public class HandInput
 {
     [SerializeField] private InputActionProperty selectAction;
-    [SerializeField] private InputActionProperty activeAction;
+    [SerializeField] private InputActionProperty activateAction;
     
     [SerializeField] private FloatReference closedValue;
 
@@ -31,7 +32,7 @@ public class HandInput
     public void HandleInput()
     {
         SelectionInput = selectAction.action.ReadValue<float>();
-        ActiveInput = activeAction.action.ReadValue<float>();
+        ActiveInput = activateAction.action.ReadValue<float>();
     }
 }
 
@@ -41,7 +42,7 @@ public class HandInputReference
     [SerializeField] private HandOrientation handOrientation;
     [SerializeField] private PlayerInput playerInput;
     
-    public HandInput Reference => handOrientation switch
+    public HandInput Hand => handOrientation switch
     {
         HandOrientation.Left => playerInput.LeftHandInput,
         HandOrientation.Right => playerInput.RightHandInput

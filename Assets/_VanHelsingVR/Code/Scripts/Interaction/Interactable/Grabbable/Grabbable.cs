@@ -15,7 +15,7 @@ namespace _VanHelsingVR.Interaction
 
         protected override void OnSelectExited(SelectExitEventArgs args)
         {
-            if (args.interactableObject.transform.TryGetComponent(out XRLeftHandInteractor leftHand))
+            if (args.interactorObject.transform.TryGetComponent(out XRLeftHandInteractor leftHand))
             {
                 leftHand.Ungrab(this);
             }
