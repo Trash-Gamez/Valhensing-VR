@@ -23,6 +23,8 @@ public class InvokeDecals : MonoBehaviour
         while (i < numCollisionEvents)
         {
             GameObject actualObject = Instantiate(Decal, collisionEvents[i].intersection, Quaternion.LookRotation(-collisionEvents[i].normal));
+
+           actualObject.transform.Rotate(Vector3.forward*(Random.Range(-180,180)));
             Debug.Log(collisionEvents[i].normal);
             StartCoroutine(decalManager.DecalCoroutine(actualObject));
             i++;
