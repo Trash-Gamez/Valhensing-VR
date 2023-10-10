@@ -24,7 +24,7 @@ public class DecalManager : MonoBehaviour
        
         for(int i = 0; i<=20;i++) {
             projector.fadeFactor -= .05f;
-            Debug.Log(projector.fadeFactor);
+           
             yield return new WaitForSeconds(fadeOutTime);
         }
         yield return new WaitForSeconds(fadeOutTime * 10);
