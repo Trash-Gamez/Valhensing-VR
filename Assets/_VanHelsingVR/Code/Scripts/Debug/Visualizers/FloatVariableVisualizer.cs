@@ -1,6 +1,6 @@
 
 
-namespace _VanHelsingVR.Debug.Visualizers
+namespace _VanHelsingVR.Visualizers
 {
     public class FloatVariableVisualizer : VariableVizualizer<float>
     {

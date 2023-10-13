@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 using UniRx;
 using UnityEngine;
 
-namespace _VanHelsingVR.Debug.Visualizers
+namespace _VanHelsingVR.Visualizers
 {
     public abstract class VariableVizualizer<T> : MonoBehaviour
     {

@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace _VanHelsingVR.Utilities
 {
-#endif
 
     [System.Serializable]
     public struct Range
