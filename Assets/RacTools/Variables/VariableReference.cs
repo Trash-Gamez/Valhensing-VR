@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace _VanHelsingVR.Variables
+namespace RacTools.Variables
 {
     [Serializable]
     public class VariableReference<T>

@@ -1,6 +1,5 @@
 using UnityEngine;
-
-using _VanHelsingVR.Variables;
+using RacTools.Variables;
 
 namespace _VanHelsingVR.Economy 
 {

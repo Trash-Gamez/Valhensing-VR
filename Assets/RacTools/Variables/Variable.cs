@@ -1,9 +1,9 @@
 using System;
+using Sirenix.OdinInspector;
 using UniRx;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
-namespace _VanHelsingVR.Variables
+namespace RacTools.Variables
 {
     public abstract class Variable<T> : ScriptableObject
     {

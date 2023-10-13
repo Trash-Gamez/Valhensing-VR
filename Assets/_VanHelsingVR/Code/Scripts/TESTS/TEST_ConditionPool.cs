@@ -1,12 +1,16 @@
+using _VanHelsingVR.Conditions;
 using UnityEngine;
 
-public class TEST_ConditionPool : MonoBehaviour
+namespace _VanHelsingVR.TESTS
 {
-    [SerializeField] private ConditionPool pool;
-
-    private void Update()
+    public class TEST_ConditionPool : MonoBehaviour
     {
-        string message = pool ? "Se puede hacer todo" : "No se puede hacer nada";
-        Debug.Log(message);
+        [SerializeField] private ConditionPool pool;
+
+        private void Update()
+        {
+            string message = pool ? "Se puede hacer todo" : "No se puede hacer nada";
+            UnityEngine.Debug.Log(message);
+        }
     }
 }

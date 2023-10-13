@@ -1,59 +1,62 @@
 using System;
+using _VanHelsingVR.Extensions.UniRX;
+using _VanHelsingVR.Text;
+using RacTools.Variables;
+using Sirenix.OdinInspector;
 using UniRx;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
-using _VanHelsingVR.Extensions.UniRX;
-using _VanHelsingVR.Variables;
-
-public abstract class VariableVizualizer<T> : MonoBehaviour
+namespace _VanHelsingVR.Debug.Visualizers
 {
-    [InlineProperty] //TODO: Make only editor
-
-    [SerializeField] private TextReference textReference;
-
-    [SerializeField] private Variable<T> variable;
-    
-    [SerializeField] private bool useParamString;
-    [SerializeField]
-    #if UNITY_EDITOR
-    [ShowIf(nameof(useParamString))]
-    #endif
-    private string paramString;
-
-    [SerializeField, HideInPlayMode] private bool useSample;
-    [SerializeField]
-    #if UNITY_EDITOR
-    [HideInPlayMode, ShowIf(nameof(useSample)) ]
-    #endif 
-    private float _sampleSeconds;
-    
-    protected virtual void Start()
+    public abstract class VariableVizualizer<T> : MonoBehaviour
     {
-        var onValueChanged = variable.OnValueChanged;
-        if (useParamString)
+        [InlineProperty] //TODO: Make only editor
+
+        [SerializeField] private TextReference textReference;
+
+        [SerializeField] private Variable<T> variable;
+    
+        [SerializeField] private bool useParamString;
+        [SerializeField]
+#if UNITY_EDITOR
+        [ShowIf(nameof(useParamString))]
+#endif
+        private string paramString;
+
+        [SerializeField, HideInPlayMode] private bool useSample;
+        [SerializeField]
+#if UNITY_EDITOR
+        [HideInPlayMode, ShowIf(nameof(useSample)) ]
+#endif 
+        private float _sampleSeconds;
+    
+        protected virtual void Start()
         {
-            if (useSample)
-                onValueChanged = onValueChanged.Sample(TimeSpan.FromSeconds(_sampleSeconds));
+            var onValueChanged = variable.OnValueChanged;
+            if (useParamString)
+            {
+                if (useSample)
+                    onValueChanged = onValueChanged.Sample(TimeSpan.FromSeconds(_sampleSeconds));
             
-            onValueChanged.SubscribeToTextRef(textReference, f =>
+                onValueChanged.SubscribeToTextRef(textReference, f =>
                 {
                     var newString = string.Format(paramString, f.ToString());
                     return newString;
                 }).AddTo(this);
 
-            return;
+                return;
+            }
+
+            if (useSample)
+                onValueChanged = onValueChanged.Sample(TimeSpan.FromSeconds(_sampleSeconds));
+
+            onValueChanged.SubscribeToTextRef(textReference)
+                .AddTo(this);
         }
 
-        if (useSample)
-            onValueChanged = onValueChanged.Sample(TimeSpan.FromSeconds(_sampleSeconds));
-
-        onValueChanged.SubscribeToTextRef(textReference)
-            .AddTo(this);
-    }
-
-    protected virtual IObservable<T> GetObservable()
-    {
-        return variable.OnValueChanged;
+        protected virtual IObservable<T> GetObservable()
+        {
+            return variable.OnValueChanged;
+        }
     }
 }

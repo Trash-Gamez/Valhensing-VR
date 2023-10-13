@@ -1,101 +1,105 @@
-using _VanHelsingVR.Variables;
-using Sirenix.OdinInspector;
 using System;
+using _VanHelsingVR.Utilities;
+using RacTools.Variables;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
-[Serializable]
-public class Condition
+namespace _VanHelsingVR.Conditions
 {
-    private enum ConditionType
+    [Serializable]
+    public class Condition
     {
-        Variable,
-        Literal,
-        TimeCondition
-    }
+        private enum ConditionType
+        {
+            Variable,
+            Literal,
+            TimeCondition
+        }
 
-    [SerializeField]
-    private ConditionType conditionType;
+        [SerializeField]
+        private ConditionType conditionType;
 
-    [SerializeField] private bool reversed;
-    
-    #if UNITY_EDITOR
-    [ShowIf(nameof(conditionType), ConditionType.Literal)]
-    #endif
-    [SerializeField]
-    private bool literal;
-
-    #if UNITY_EDITOR
-    [ShowIf(nameof(conditionType), ConditionType.Variable)]
-    #endif
-    [SerializeField]
-    private Variable<bool> variable;
+        [SerializeField] private bool reversed;
     
 #if UNITY_EDITOR
-    [ShowIf(nameof(conditionType), ConditionType.TimeCondition)]
+        [ShowIf(nameof(conditionType), ConditionType.Literal)]
 #endif
-    [SerializeField]
-    private TimeCondition timeCondition;
+        [SerializeField]
+        private bool literal;
 
-    public bool Value
-    {
-        get
+#if UNITY_EDITOR
+        [ShowIf(nameof(conditionType), ConditionType.Variable)]
+#endif
+        [SerializeField]
+        private Variable<bool> variable;
+    
+#if UNITY_EDITOR
+        [ShowIf(nameof(conditionType), ConditionType.TimeCondition)]
+#endif
+        [SerializeField]
+        private TimeCondition timeCondition;
+
+        public bool Value
         {
-            bool value = conditionType switch
+            get
             {
-                ConditionType.Variable => variable.Value,
-                ConditionType.Literal => literal,
-                ConditionType.TimeCondition => timeCondition.IsTimerEnded,
-                _ => false
-            };
+                bool value = conditionType switch
+                {
+                    ConditionType.Variable => variable.Value,
+                    ConditionType.Literal => literal,
+                    ConditionType.TimeCondition => timeCondition.IsTimerEnded,
+                    _ => false
+                };
 
-            return reversed ? !value : value;
+                return reversed ? !value : value;
+            }
+        }
+
+        public override string ToString()
+        {
+            string conditionType = this.conditionType switch
+            {
+                ConditionType.Variable => $"Variable '{variable.name}'",
+                ConditionType.Literal => "Literal",
+                ConditionType.TimeCondition => "Time Condition"
+            };
+            var value = reversed ? !Value : Value;
+            return $"{conditionType}: {value}";
         }
     }
 
-    public override string ToString()
+    #region CONDITIONS
+    [Serializable]
+    public sealed class TimeCondition : IInitializable, IDisposable
     {
-        string conditionType = this.conditionType switch
+        [Inject] private Timer timer;
+
+        private bool _isTimerEnded = false;
+        public bool IsTimerEnded => _isTimerEnded;
+
+        private void OnTimerEnds()
         {
-            ConditionType.Variable => $"Variable '{variable.name}'",
-            ConditionType.Literal => "Literal",
-            ConditionType.TimeCondition => "Time Condition"
-        };
-        var value = reversed ? !Value : Value;
-        return $"{conditionType}: {value}";
-    }
-}
-
-#region CONDITIONS
-[Serializable]
-public sealed class TimeCondition : IInitializable, IDisposable
-{
-    [Inject] private Timer timer;
-
-    private bool _isTimerEnded = false;
-    public bool IsTimerEnded => _isTimerEnded;
-
-    private void OnTimerEnds()
-    {
-        _isTimerEnded = true;
-    }
+            _isTimerEnded = true;
+        }
     
-    private void OnTimerStarted()
-    {
-        _isTimerEnded = false;
-    }
+        private void OnTimerStarted()
+        {
+            _isTimerEnded = false;
+        }
 
-    public void Initialize()
-    {
-        Debug.Log("Inicializando Timer");
-        timer.OnTimerInitialized += OnTimerStarted;
-        timer.OnTimerEnded += OnTimerEnds;
-    }
+        public void Initialize()
+        {
+            UnityEngine.Debug.Log("Inicializando Timer");
+            timer.OnTimerInitialized += OnTimerStarted;
+            timer.OnTimerEnded += OnTimerEnds;
+        }
 
-    public void Dispose()
-    {
-        timer.OnTimerInitialized -= OnTimerStarted;
-        timer.OnTimerEnded -= OnTimerEnds;
-    }
-} 
-#endregion
+        public void Dispose()
+        {
+            timer.OnTimerInitialized -= OnTimerStarted;
+            timer.OnTimerEnded -= OnTimerEnds;
+        }
+    } 
+    #endregion
+}

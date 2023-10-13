@@ -1,11 +1,14 @@
 ﻿using System;
+using UnityEngine;
 using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 // TODO: Remove for URP 13.
 // https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@13.1/manual/upgrade-guide-2022-1.html
 #pragma warning disable CS0618
 
-namespace UnityEngine.Rendering.Universal.PostProcessing {
+namespace External.Quibli.Post_Process.Scripts {
 /// <summary>
 /// Custom Post Processing injection points.
 /// Since this is a flag, you can write a renderer that can be injected at multiple locations.

@@ -1,11 +1,10 @@
 ﻿#if UNITY_EDITOR
 
-using System;
 using ExternalPropertyAttributes;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Dustyroom {
+namespace External.Quibli.Scripts.Mesh_Generators {
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
 [ExecuteInEditMode]

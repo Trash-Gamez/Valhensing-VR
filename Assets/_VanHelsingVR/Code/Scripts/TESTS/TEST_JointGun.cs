@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using _VanHelsingVR.Events;
 using UnityEngine;
 
-public class TEST_JointGun : MonoBehaviour
+namespace _VanHelsingVR.TESTS
 {
-    //Esta funcion se manda a llamar desde el evento del inspector
-    public void Hello()
+    public class TEST_JointGun : MonoBehaviour
     {
-        Debug.Log("Esta es una funcion de evento");
+        //Esta funcion se manda a llamar desde el evento del inspector
+        public void Hello()
+        {
+            UnityEngine.Debug.Log("Esta es una funcion de evento");
+        }
     }
 }

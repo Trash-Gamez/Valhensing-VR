@@ -1,10 +1,10 @@
 ﻿using System;
+using External.Quibli.Post_Process.Scripts;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Rendering.Universal.PostProcessing;
 
-namespace CompoundRendererFeature.PostProcess {
+namespace External.Quibli.Post_Process.Effects.Scripts {
 [Serializable, VolumeComponentMenu("Quibli/Stylized Detail")]
 public class StylizedDetail : VolumeComponent {
     [Tooltip("Controls the amount of contrast added to the image details.")]

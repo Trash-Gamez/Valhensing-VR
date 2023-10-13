@@ -1,46 +1,49 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-[Serializable]
-public class ConditionPool
+namespace _VanHelsingVR.Conditions
 {
-    [SerializeField] private List<Condition> conditions = new();
-
-    public bool CanDo
+    [Serializable]
+    public class ConditionPool
     {
-        get
+        [SerializeField] private List<Condition> conditions = new();
+
+        public bool CanDo
         {
-            if (!conditions.Any())
+            get
             {
-                return true;
-            }
+                if (!conditions.Any())
+                {
+                    return true;
+                }
             
-            var canDo = conditions.All(variable => variable.Value);
-            return canDo;
+                var canDo = conditions.All(variable => variable.Value);
+                return canDo;
+            }
         }
-    }
 
-    public void LogVars()
-    {
-        foreach (var condition in conditions)
+        public void LogVars()
         {
-            Debug.Log(condition.ToString());
+            foreach (var condition in conditions)
+            {
+                UnityEngine.Debug.Log(condition.ToString());
+            }
         }
-    }
 
-    public void AddCondition(Condition condition)
-    {
-        if (conditions.Contains(condition)) return;
-        conditions.Add(condition);
-    }
+        public void AddCondition(Condition condition)
+        {
+            if (conditions.Contains(condition)) return;
+            conditions.Add(condition);
+        }
 
-    public void RemoveCondition(Condition condition)
-    {
-        if (!conditions.Contains(condition)) return;
-        conditions.Remove(condition);
-    }
+        public void RemoveCondition(Condition condition)
+        {
+            if (!conditions.Contains(condition)) return;
+            conditions.Remove(condition);
+        }
 
-    public static implicit operator bool(ConditionPool cp) => cp.CanDo;
+        public static implicit operator bool(ConditionPool cp) => cp.CanDo;
+    }
 }

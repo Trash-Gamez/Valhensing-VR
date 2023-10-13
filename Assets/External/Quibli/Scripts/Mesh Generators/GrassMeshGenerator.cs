@@ -6,7 +6,7 @@ using ExternalPropertyAttributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace Dustyroom {
+namespace External.Quibli.Scripts.Mesh_Generators {
 [System.Serializable]
 public class LODTopologyOptions {
     [Space] public int planeCount = 4;

@@ -1,16 +1,17 @@
-
-
 using System;
 using UnityEngine;
 
-public class MaxFloatVariableVisualizer : VariableVizualizer<float>
+namespace _VanHelsingVR.Debug.Visualizers
 {
-    [SerializeField, Min(0.1f)] private float _secondsToResetMax;
-
-    private float _currentMaxFloat;
-
-    protected override IObservable<float> GetObservable()
+    public class MaxFloatVariableVisualizer : VariableVizualizer<float>
     {
-        return base.GetObservable();
+        [SerializeField, Min(0.1f)] private float _secondsToResetMax;
+
+        private float _currentMaxFloat;
+
+        protected override IObservable<float> GetObservable()
+        {
+            return base.GetObservable();
+        }
     }
 }

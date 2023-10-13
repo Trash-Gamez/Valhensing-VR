@@ -1,10 +1,10 @@
 ﻿using System;
+using External.Quibli.Post_Process.Scripts;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Rendering.Universal.PostProcessing;
 
-namespace CompoundRendererFeature.PostProcess {
+namespace External.Quibli.Post_Process.Effects.Scripts {
 [Serializable, VolumeComponentMenu("Quibli/Stylized Color Grading")]
 public class ColorGrading : VolumeComponent {
     [Tooltip("Controls the amount to which image colors are modified.")]

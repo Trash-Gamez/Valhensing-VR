@@ -1,5 +1,6 @@
 using System;
-namespace _VanHelsingVR.Variables
+
+namespace RacTools.Variables
 {
     [Serializable]
     public class FloatReference : VariableReference<float> {}

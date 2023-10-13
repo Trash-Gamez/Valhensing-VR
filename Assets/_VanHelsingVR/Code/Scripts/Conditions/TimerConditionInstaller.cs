@@ -1,15 +1,19 @@
+using _VanHelsingVR.Utilities;
 using UnityEngine;
 using Zenject;
 
-public class TimerConditionInstaller : MonoInstaller
+namespace _VanHelsingVR.Conditions
 {
-    [SerializeField] private Timer timer;
-    
-    public override void InstallBindings()
+    public class TimerConditionInstaller : MonoInstaller
     {
-        Container.BindInterfacesAndSelfTo<TimeCondition>()
-            .AsSingle();
+        [SerializeField] private Timer timer;
+    
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesAndSelfTo<TimeCondition>()
+                .AsSingle();
         
-        Container.Bind<Timer>().FromInstance(timer);
+            Container.Bind<Timer>().FromInstance(timer);
+        }
     }
 }

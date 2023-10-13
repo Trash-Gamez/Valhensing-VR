@@ -1,169 +1,169 @@
-
 using System.Collections;
 using _VanHelsingVR.Interaction;
+using _VanHelsingVR.Utilities;
+using RacTools.Variables;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using _VanHelsingVR.Variables;
 
-#if UNITY_EDITOR
-using Sirenix.OdinInspector;
-#endif
-
-public class Gun : MonoBehaviour
+namespace _VanHelsingVR.Player
 {
-    #if UNITY_EDITOR
-    [Title("Gun Variables")]
-    #endif
-    [SerializeField]
-    private Variable<int> magazine;
-
-    #if UNITY_EDITOR
-    [Title("Gun Settings")]
-    #endif
-    [SerializeField] private int magazineSize;
-    [SerializeField] private float reloadTime;
-    [SerializeField] private float speedLimit;
-    [SerializeField] private float shootingSpeed;
-    [SerializeField] private float spread;
-    [SerializeField] private float fireRange;
-    [SerializeField] private LayerMask hittableLayer;
-
-    #if UNITY_EDITOR
-    [Title("Gun Properties")]
-    #endif
-    [SerializeField] private Animator gunAnimator;
-    [SerializeField] private Transform shootPoint;
-    [SerializeField] private GameObject bulletPrefab;
-
-    #if UNITY_EDITOR
-    [Title("Gun Input")]
-    #endif
-    [SerializeField] private InputActionProperty triggerAction;
-    [SerializeField] private InputActionProperty gripAction;
-
-    private bool trigger;
-    private bool grip;
-
-    private Vector3 previousPos;
-    private float speedY;
-    private bool canReload=true;
-    private bool canShoot = true;
+    public class Gun : MonoBehaviour
+    {
+#if UNITY_EDITOR
+        [Title("Gun Variables")]
+#endif
+        [SerializeField]
+        private Variable<int> magazine;
 
 #if UNITY_EDITOR
-    [Title("Gun VFX")]
+        [Title("Gun Settings")]
+#endif
+        [SerializeField] private int magazineSize;
+        [SerializeField] private float reloadTime;
+        [SerializeField] private float speedLimit;
+        [SerializeField] private float shootingSpeed;
+        [SerializeField] private float spread;
+        [SerializeField] private float fireRange;
+        [SerializeField] private LayerMask hittableLayer;
+
+#if UNITY_EDITOR
+        [Title("Gun Properties")]
+#endif
+        [SerializeField] private Animator gunAnimator;
+        [SerializeField] private Transform shootPoint;
+        [SerializeField] private GameObject bulletPrefab;
+
+#if UNITY_EDITOR
+        [Title("Gun Input")]
+#endif
+        [SerializeField] private InputActionProperty triggerAction;
+        [SerializeField] private InputActionProperty gripAction;
+
+        private bool trigger;
+        private bool grip;
+
+        private Vector3 previousPos;
+        private float speedY;
+        private bool canReload=true;
+        private bool canShoot = true;
+
+#if UNITY_EDITOR
+        [Title("Gun VFX")]
 #endif
 
-    [SerializeField] private ParticleSystemRenderer lighting;
-    [SerializeField] private ParticleSystem muzzle;
+        [SerializeField] private ParticleSystemRenderer lighting;
+        [SerializeField] private ParticleSystem muzzle;
 
-    private bool _firstFrameDone = false;
+        private bool _firstFrameDone = false;
 
-    private void Start()
-    {
-        magazine.Value = 0;
-        previousPos = transform.localPosition;
+        private void Start()
+        {
+            magazine.Value = 0;
+            previousPos = transform.localPosition;
         
-    }
-    void Update()
-    {
+        }
+        void Update()
+        {
        
         
-        GetInput();
+            GetInput();
        
-        speedY = ((transform.localPosition.y - previousPos.y)) / Time.deltaTime;
-        previousPos = transform.localPosition;
+            speedY = ((transform.localPosition.y - previousPos.y)) / Time.deltaTime;
+            previousPos = transform.localPosition;
       
-        if (Mathf.Abs(speedY) > speedLimit && canReload && !grip)
-        {
-            StartCoroutine(nameof(ReloadCoroutine));
-        }
-
-        if (trigger && grip)
-        {
-            StartCoroutine(Shoot());
-        }
-
-        Vfx();
-    }
-    
-   private void Vfx()
-    {
-        float alpha = UtilitieExtensions.Map(magazine.Value, new Range(magazineSize, 0), Range.OneToZero);
-        lighting.material.SetFloat("_Alpha", alpha);
-    }
-
-    private void GetInput()
-    {
-        var gripValue = gripAction.action.ReadValue<float>();
-        var triggerValue = triggerAction.action.ReadValue<float>();
-
-        grip = gripValue > 0;
-        trigger = triggerValue > 0;
-    }
-
-   IEnumerator ReloadCoroutine()
-    {
-        canReload = false;
-        gunAnimator.Play("Reload");
-        yield return new WaitForSeconds(reloadTime);
-        Reload();
-        canReload = true;
-    }
-   
-    private void Reload()
-    {
-        magazine.Value += 5;
-        if (magazine.Value > magazineSize) magazine.Value = magazineSize;
-    }
-
-    IEnumerator Shoot()
-    {
-        if (!canShoot) yield break;
-        
-        if (magazine.Value > 0)
-        {
-            canShoot = false;
-            RaycastHit hit;
-
-            Vector3 direction = GetDirection();
-            if (Physics.Raycast(shootPoint.position, direction, out hit, fireRange, hittableLayer))
+            if (Mathf.Abs(speedY) > speedLimit && canReload && !grip)
             {
-                try
-                {
-                    hit.transform.GetComponent<Damagable>().OnDamage();
-                } catch(System.Exception)
-                {
-                    Debug.Log("This Object does not have Damagable Script");
-                }
+                StartCoroutine(nameof(ReloadCoroutine));
             }
-            InstantiateVisual(direction);
-            Debug.DrawRay(shootPoint.position, direction, Color.green);
-            magazine.Value--;
-            if (magazine.Value < 0) magazine.Value = 0;
-            yield return new WaitForSeconds(shootingSpeed);
-            canShoot = true;
-        }
-        else
-        {
-            canShoot = false;
-            yield return new WaitForSeconds(shootingSpeed);
-            Debug.Log("Sin Munici�n");
-            canShoot = true;
-        }
-        
-    }
-    
-    private Vector3 GetDirection()
-    {
-        Vector3 newDirection = transform.forward;
-        newDirection += new Vector3(UnityEngine.Random.Range(-spread, spread), UnityEngine.Random.Range(-spread, spread), UnityEngine.Random.Range(-spread, spread));
-        newDirection.Normalize();
-        return newDirection;
-    }
 
-    private void InstantiateVisual(Vector3 direction)
-    {
-        Instantiate(bulletPrefab, shootPoint.position, Quaternion.LookRotation(direction));
-        muzzle.Play();
+            if (trigger && grip)
+            {
+                StartCoroutine(Shoot());
+            }
+
+            Vfx();
+        }
+    
+        private void Vfx()
+        {
+            float alpha = UtilitieExtensions.Map(magazine.Value, new Range(magazineSize, 0), Range.OneToZero);
+            lighting.material.SetFloat("_Alpha", alpha);
+        }
+
+        private void GetInput()
+        {
+            var gripValue = gripAction.action.ReadValue<float>();
+            var triggerValue = triggerAction.action.ReadValue<float>();
+
+            grip = gripValue > 0;
+            trigger = triggerValue > 0;
+        }
+
+        IEnumerator ReloadCoroutine()
+        {
+            canReload = false;
+            gunAnimator.Play("Reload");
+            yield return new WaitForSeconds(reloadTime);
+            Reload();
+            canReload = true;
+        }
+   
+        private void Reload()
+        {
+            magazine.Value += 5;
+            if (magazine.Value > magazineSize) magazine.Value = magazineSize;
+        }
+
+        IEnumerator Shoot()
+        {
+            if (!canShoot) yield break;
+        
+            if (magazine.Value > 0)
+            {
+                canShoot = false;
+                RaycastHit hit;
+
+                Vector3 direction = GetDirection();
+                if (Physics.Raycast(shootPoint.position, direction, out hit, fireRange, hittableLayer))
+                {
+                    try
+                    {
+                        hit.transform.GetComponent<Damagable>().OnDamage();
+                    } catch(System.Exception)
+                    {
+                        UnityEngine.Debug.Log("This Object does not have Damagable Script");
+                    }
+                }
+                InstantiateVisual(direction);
+                UnityEngine.Debug.DrawRay(shootPoint.position, direction, Color.green);
+                magazine.Value--;
+                if (magazine.Value < 0) magazine.Value = 0;
+                yield return new WaitForSeconds(shootingSpeed);
+                canShoot = true;
+            }
+            else
+            {
+                canShoot = false;
+                yield return new WaitForSeconds(shootingSpeed);
+                UnityEngine.Debug.Log("Sin Munici�n");
+                canShoot = true;
+            }
+        
+        }
+    
+        private Vector3 GetDirection()
+        {
+            Vector3 newDirection = transform.forward;
+            newDirection += new Vector3(UnityEngine.Random.Range(-spread, spread), UnityEngine.Random.Range(-spread, spread), UnityEngine.Random.Range(-spread, spread));
+            newDirection.Normalize();
+            return newDirection;
+        }
+
+        private void InstantiateVisual(Vector3 direction)
+        {
+            Instantiate(bulletPrefab, shootPoint.position, Quaternion.LookRotation(direction));
+            muzzle.Play();
+        }
     }
 }

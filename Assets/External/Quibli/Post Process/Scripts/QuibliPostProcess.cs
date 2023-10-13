@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 // TODO: Remove for URP 13.
 // https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@13.1/manual/upgrade-guide-2022-1.html
 #pragma warning disable CS0618
 
-namespace UnityEngine.Rendering.Universal.PostProcessing {
+namespace External.Quibli.Post_Process.Scripts {
 /// <summary>
 /// This render feature is responsible for:
 /// <list type="bullet">
