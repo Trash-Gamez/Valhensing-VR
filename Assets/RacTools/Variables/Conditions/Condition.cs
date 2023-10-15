@@ -1,9 +1,9 @@
 using System;
-using _VanHelsingVR.Utilities;
-using RacTools.Variables;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
+using RacTools.Variables;
+using _VanHelsingVR.Utilities;
 
 namespace _VanHelsingVR.Conditions
 {
