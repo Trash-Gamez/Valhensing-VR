@@ -1,3 +1,4 @@
+using RacTools.Views;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -7,6 +8,9 @@ namespace RacTools.BehaviourTree
 {
     public class BehaviourTreeEditorWindow : EditorWindow
     {
+        private BehaviourTreeView _treeView;
+        private InspectorView _inspectorView;
+        
         [MenuItem("Tools/RacTools/BehaviourTree Window")]
         public static void OpenWindow()
         {
@@ -14,6 +18,13 @@ namespace RacTools.BehaviourTree
             wnd.titleContent = new GUIContent("BehaviourTree");
         }
 
+        /*
+         * Estos metodos se realizan cuando unity detecta que se intenta abrir un asset, es decir, cualquier
+         * elemento en la pestaña de "Project"
+         */
+        
+        // Este primer metodo verifica sio oes un arbol de comportamiento el que se intenta abrir 
+        // Si no es asi ... Pasa al segundo metodo
         [OnOpenAsset(1)]
         public static bool OpenTree(int instanceID, int line)
         {
@@ -25,6 +36,8 @@ namespace RacTools.BehaviourTree
             return true;
         }
         
+        // Este metodo verifica si es un nodo HIJO de un arbol de comportamiento el que se intenta abrir
+        // si es asi se abre la ventana
         [OnOpenAsset(2)]
         public static bool OpenNode(int instanceID, int line)
         {
@@ -55,11 +68,16 @@ namespace RacTools.BehaviourTree
             // The style will be applied to the VisualElement and all of its children.
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/RacTools/BehaviourTree/Editor/BehaviourTreeEditorWindow.uss");
             root.styleSheets.Add(styleSheet);
+
+            _treeView = root.Q<BehaviourTreeView>();
+            _inspectorView = root.Q<InspectorView>();
         }
 
         private void OnSelectionChange()
         {
             var tree = Selection.activeObject as BehaviourTree;
+            
+            //TODO: Make this code to open a tree if there is no active tree in window
             if (tree != null)
             {
                 Debug.Log("Tengo un arbol seleccionado");
