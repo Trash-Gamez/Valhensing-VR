@@ -1,21 +1,51 @@
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace RacTools.BehaviourTree
 {
     [CreateAssetMenu(fileName = "BehaviourTree", menuName = "RacTools/BehaviourTree")]
     public class BehaviourTree : ScriptableObject
     {
-        public Node root;
-        public Node.State treeState = Node.State.Running;
+        private Node _root;
+        public Node.State TreeState { get; private set; } = Node.State.Running;
+        
+        public List<Node> Nodes { get; private set; } = new List<Node>();
 
         public Node.State Update()
         {
-            if (treeState == Node.State.Running)
+            if (TreeState == Node.State.Running)
             {
-                treeState = root.Update();
+                TreeState = _root.Update();
             }
 
-            return treeState;
+            return TreeState;
         }
+
+#if UNITY_EDITOR
+        public Node CreateNode<TNode>() where TNode : Node, new()
+        {
+            Node node = CreateInstance<TNode>();
+            node.name = typeof(TNode).Name;
+            node.guid = GUID.Generate().ToString();
+            Nodes.Add(node);
+            
+            AssetDatabase.AddObjectToAsset(node, this);
+            AssetDatabase.SaveAssets();
+            
+            return node;
+        }
+
+        public void DeleteNode(Node node)
+        {
+            if (!Nodes.Contains(node)) return;
+            Nodes.Remove(node);
+
+            if (!AssetDatabase.Contains(node)) return;
+            AssetDatabase.RemoveObjectFromAsset(node);
+            AssetDatabase.SaveAssets();
+        }
+#endif
     }
 }
