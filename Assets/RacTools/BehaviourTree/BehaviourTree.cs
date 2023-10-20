@@ -23,7 +23,7 @@ namespace RacTools.BehaviourTree
             return TreeState;
         }
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         public Node CreateNode<TNode>() where TNode : Node, new()
         {
             Node node = CreateInstance<TNode>();
@@ -46,6 +46,36 @@ namespace RacTools.BehaviourTree
             AssetDatabase.RemoveObjectFromAsset(node);
             AssetDatabase.SaveAssets();
         }
-#endif
+
+        private static Node _defaultNode = null;
+
+        [MenuItem("Assets/Add Default Node", true)]
+        private static bool AddDefaultNodeValidation()
+        {
+            return Selection.activeObject is BehaviourTree;
+        }
+        
+        [MenuItem("Assets/Removes Default Node", true)]
+        private static bool RemoveDefaultNodeValidation()
+        {
+            return Selection.activeObject is BehaviourTree;
+        }
+        
+        [MenuItem("Assets/Add Default Node")]
+        private static void AddDefaultNode()
+        {
+            if (_defaultNode != null) return;
+            var tree = Selection.activeObject as BehaviourTree;
+            _defaultNode = tree!.CreateNode<DebugLogNode>();
+        }
+        
+        [MenuItem("Assets/Removes Default Node")]
+        private static void RemoveDefaultNode()
+        {
+            if (_defaultNode == null) return;
+            var tree = Selection.activeObject as BehaviourTree;
+            tree!.DeleteNode(_defaultNode);
+        }
+        #endif
     }
 }

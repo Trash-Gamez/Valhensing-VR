@@ -1,18 +1,17 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/RacTools/BehaviourTree/Editor/BehaviourTreeEditorWindow.uss?fileID=7433441132597879392&amp;guid=71893b08bd5efb145bb7f08a22898acd&amp;type=3#BehaviourTreeEditorWindow" />
-    <uie:Toolbar>
+    <uie:Toolbar name="Toolbar">
         <uie:ToolbarMenu display-tooltip-when-elided="true" text="Menu" />
+        <uie:ToolbarButton text="Button" display-tooltip-when-elided="true" name="ToolbarButton" />
     </uie:Toolbar>
-    <RacTools.Views.SplitView>
-        <ui:VisualElement name="left" style="width: auto; height: auto; min-width: 125px;">
+    <RacTools.Views.SplitView name="SplitView" fixed-pane-initial-dimension="175" fixed-pane-index="0" style="flex-grow: 1; opacity: 1; visibility: visible; display: flex;">
+        <ui:VisualElement name="left" style="width: auto; height: auto; min-width: 150px;">
             <RacTools.Views.InspectorView name="InspectorView" />
-            <ui:Label text="Editor" display-tooltip-when-elided="true" style="background-color: rgb(70, 96, 124); flex-direction: row;" />
+            <ui:Label text="Editor" display-tooltip-when-elided="true" style="background-color: rgb(25, 25, 25);" />
         </ui:VisualElement>
         <ui:VisualElement name="right" style="flex-direction: row;">
             <RacTools.BehaviourTree.BehaviourTreeView focusable="true" style="width: auto; flex-direction: row; height: auto; flex-wrap: nowrap; flex-grow: 1;">
-                <ui:Label text="Behaviour Tree -" display-tooltip-when-elided="true" style="background-color: rgb(25, 25, 25);">
-                    <ui:Label text="NAME" display-tooltip-when-elided="true" style="left: auto; align-items: stretch; padding-left: 100px;" />
-                </ui:Label>
+                <ui:Label text="Behaviour Tree -" display-tooltip-when-elided="true" style="background-color: rgb(25, 25, 25);" />
             </RacTools.BehaviourTree.BehaviourTreeView>
         </ui:VisualElement>
     </RacTools.Views.SplitView>
