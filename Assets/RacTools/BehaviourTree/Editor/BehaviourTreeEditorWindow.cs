@@ -1,10 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.Callbacks;
-using UnityEngine.UIElements;
 using RacTools.Views;
-using System;
 
 namespace RacTools.BehaviourTree
 {

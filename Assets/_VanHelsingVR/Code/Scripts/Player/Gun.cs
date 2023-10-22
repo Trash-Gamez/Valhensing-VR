@@ -1,10 +1,12 @@
 using System.Collections;
-using _VanHelsingVR.Interaction;
-using _VanHelsingVR.Utilities;
-using RacTools.Variables;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Sirenix.OdinInspector;
+
+using _VanHelsingVR.Interaction;
+using _VanHelsingVR.Utilities;
+
+using RacTools.Variables;
 
 namespace _VanHelsingVR.Player
 {
@@ -65,8 +67,6 @@ namespace _VanHelsingVR.Player
         }
         void Update()
         {
-       
-        
             GetInput();
        
             speedY = ((transform.localPosition.y - previousPos.y)) / Time.deltaTime;

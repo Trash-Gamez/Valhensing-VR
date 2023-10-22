@@ -3,7 +3,6 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.XR.Interaction.Toolkit.Utilities.Tweenables.Primitives;
 
 namespace RacTools.BehaviourTree
 {
@@ -11,7 +10,7 @@ namespace RacTools.BehaviourTree
     {
         private BehaviourTree _currentTree;
 
-        public new class UxmlFactory : UxmlFactory<BehaviourTreeView, GraphView.UxmlTraits> { }
+        public new class UxmlFactory : UxmlFactory<BehaviourTreeView, UxmlTraits> { }
         public BehaviourTreeView()
         {
             Insert(0, new GridBackground());

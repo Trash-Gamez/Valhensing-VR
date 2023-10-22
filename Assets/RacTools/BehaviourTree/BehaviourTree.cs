@@ -12,8 +12,10 @@ namespace RacTools.BehaviourTree
         // TODO: Make Root Node a Type of Node
         private Node _root;
         public Node.State TreeState { get; private set; } = Node.State.Running;
-        
         public List<Node> Nodes { get; private set; } = new List<Node>();
+        
+        //TODO: Calculate the node in action an calculate the next one only when 
+        public Node CurrentNode { get; private set; }
 
         public Node.State Update()
         {
