@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace RacTools.BehaviourTree
     [CreateAssetMenu(fileName = "BehaviourTree", menuName = "RacTools/BehaviourTree")]
     public class BehaviourTree : ScriptableObject
     {
+        // TODO: Make Root Node a Type of Node
         private Node _root;
         public Node.State TreeState { get; private set; } = Node.State.Running;
         
@@ -23,6 +25,12 @@ namespace RacTools.BehaviourTree
             return TreeState;
         }
 
+        // TODO: get a hash set that difference between behaviourTrees
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         #if UNITY_EDITOR
         public Node CreateNode<TNode>() where TNode : Node, new()
         {
@@ -34,6 +42,24 @@ namespace RacTools.BehaviourTree
             AssetDatabase.AddObjectToAsset(node, this);
             AssetDatabase.SaveAssets();
             
+            return node;
+        }
+
+        public Node CreateNode(Type nodeType)
+        {
+            Node node = CreateInstance(nodeType) as Node;
+            if(node == null)
+            {
+                Debug.LogError($"Type of: {nodeType.Name} is not Node Type");
+                return null;
+            }
+
+            node.name = nodeType.Name;
+            node.guid = GUID.Generate().ToString();
+            Nodes.Add(node);
+
+            AssetDatabase.AddObjectToAsset(node, this);
+            AssetDatabase.SaveAssets();
             return node;
         }
 

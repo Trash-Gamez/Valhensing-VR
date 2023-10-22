@@ -1,15 +1,19 @@
-using RacTools.Views;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
-using UnityEngine;
 using UnityEngine.UIElements;
+using RacTools.Views;
+using System;
 
 namespace RacTools.BehaviourTree
 {
     public class BehaviourTreeEditorWindow : EditorWindow
     {
-        private BehaviourTreeView _treeView;
-        private InspectorView _inspectorView;
+        private static HashSet<BehaviourTree> _trees = new HashSet<BehaviourTree>();
+
+        private static BehaviourTreeView _treeView;
+        private static InspectorView _inspectorView;
         
         [MenuItem("Tools/RacTools/BehaviourTree Window")]
         public static void OpenWindow()
@@ -32,7 +36,8 @@ namespace RacTools.BehaviourTree
             if (tree == null) return false;
             
             OpenWindow();
-            //TODO: Make Tree View Populate with this tree
+            AddTree(tree);
+
             return true;
         }
         
@@ -50,27 +55,48 @@ namespace RacTools.BehaviourTree
             if (tree == null) return false;
             
             OpenWindow();
-            //TODO: Make Tree View Populate this tree
-            
+            AddTree(tree);
+
             return true;
         }
 
         public void CreateGUI()
         {
-            // Each editor window contains a root VisualElement object
             VisualElement root = rootVisualElement;
 
-            // Import UXML
             var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/RacTools/BehaviourTree/Editor/BehaviourTreeEditorWindow.uxml");
             visualTree.CloneTree(root);
 
-            // A stylesheet can be added to a VisualElement.
-            // The style will be applied to the VisualElement and all of its children.
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/RacTools/BehaviourTree/Editor/BehaviourTreeEditorWindow.uss");
             root.styleSheets.Add(styleSheet);
 
             _treeView = root.Q<BehaviourTreeView>();
             _inspectorView = root.Q<InspectorView>();
+        }
+
+        private static void AddTree(BehaviourTree tree)
+        {
+            if (_trees.Add(tree))
+            {
+                Debug.Log("Added New Tree");
+                AddTreeView(tree);
+            }
+            else
+            {
+                Debug.Log("Opening existing tree");
+                GetTreeView(tree);
+            }
+        }
+
+        private static void GetTreeView(BehaviourTree tree)
+        {
+            _treeView.PopulateTreeView(tree);
+        }
+
+        private static void AddTreeView(BehaviourTree tree)
+        {
+            //TODO: Add logic of the menu
+            _treeView.PopulateTreeView(tree);
         }
 
         private void OnSelectionChange()
