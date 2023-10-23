@@ -90,13 +90,13 @@ namespace RacTools.BehaviourTree
 
         private static void GetTreeView(BehaviourTree tree)
         {
-            _treeView.PopulateTreeView(tree);
+            _treeView.OpenTree(tree);
         }
 
         private static void AddTreeView(BehaviourTree tree)
         {
             //TODO: Add logic of the menu
-            _treeView.PopulateTreeView(tree);
+            _treeView.OpenTree(tree);
         }
 
         private void OnSelectionChange()

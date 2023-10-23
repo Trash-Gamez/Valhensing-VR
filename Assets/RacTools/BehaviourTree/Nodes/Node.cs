@@ -14,6 +14,7 @@ namespace RacTools.BehaviourTree
         public State state = State.Running;
         public bool started = false;
         public string guid;
+        public Vector2 pos; 
         
         public State Update()
         {
