@@ -32,7 +32,8 @@ namespace RacTools.Variables
                 {
                     VariableType.Constant => constant,
                     VariableType.Reference => reference.Value,
-                    VariableType.Instance => GetInstance().Value
+                    VariableType.Instance => GetInstance().Value,
+                    _ => throw new ArgumentOutOfRangeException()
                 };
             }
         }

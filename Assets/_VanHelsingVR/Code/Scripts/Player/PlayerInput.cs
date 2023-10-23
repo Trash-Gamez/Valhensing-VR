@@ -46,7 +46,8 @@ namespace _VanHelsingVR.Player
         public HandInput Hand => handOrientation switch
         {
             HandOrientation.Left => playerInput.LeftHandInput,
-            HandOrientation.Right => playerInput.RightHandInput
+            HandOrientation.Right => playerInput.RightHandInput,
+            _ => throw new ArgumentOutOfRangeException()
         };
     
         public enum HandOrientation

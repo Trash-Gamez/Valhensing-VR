@@ -57,8 +57,6 @@ public class Gun : MonoBehaviour
     [SerializeField] private ParticleSystemRenderer lighting;
     [SerializeField] private ParticleSystem muzzle;
 
-    private bool _firstFrameDone = false;
-
     private void Start()
     {
         magazine.Value = 0;
