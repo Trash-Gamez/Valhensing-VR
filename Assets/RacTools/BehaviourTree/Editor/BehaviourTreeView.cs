@@ -110,7 +110,15 @@ namespace RacTools.BehaviourTree
 
         private void CreateNodeView(Node node)
         {
-            NodeView view = new(node);
+            NodeView view = node switch
+            {
+                RootNode root => new RootNodeView(root),
+                CompositeNode composite => new CompositeNodeView(composite),
+                ActionNode action => new ActionNodeView(action),
+                DecoratorNode decorator => new DecoratorNodeView(decorator),
+                _ => throw new ArgumentOutOfRangeException(nameof(node), node, null)
+            };
+            
             AddElement(view);
         }
     }
