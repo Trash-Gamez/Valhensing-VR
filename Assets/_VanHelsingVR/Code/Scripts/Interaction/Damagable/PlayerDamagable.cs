@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using _VanHelsingVR.Interaction;
-using UnityEngine;
-
-public class PlayerDamagable : Damagable
+namespace _VanHelsingVR.Interaction
 {
-    public override void OnDamage()
+    public class PlayerDamagable : Damagable
     {
-        //Animacion del golpe
-        Debug.Log("Player Has Been Hit");
-        base.OnDamage();
+        public override void OnDamage()
+        {
+            //Animacion del golpe
+            UnityEngine.Debug.Log("Player Has Been Hit");
+            base.OnDamage();
+        }
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
-namespace Dustyroom {
+namespace External.Quibli.Scripts.Mesh_Generators {
 public class FoliageGenerator : MonoBehaviour {
     #region Options
 

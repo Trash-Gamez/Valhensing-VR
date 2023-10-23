@@ -1,9 +1,10 @@
 
 using System.Collections;
 using _VanHelsingVR.Interaction;
+using _VanHelsingVR.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using _VanHelsingVR.Variables;
+using RacTools.Variables;
 
 #if UNITY_EDITOR
 using Sirenix.OdinInspector;
@@ -73,12 +74,12 @@ public class Gun : MonoBehaviour
         speedY = ((transform.localPosition.y - previousPos.y)) / Time.deltaTime;
         previousPos = transform.localPosition;
       
-        if (Mathf.Abs(speedY) > speedLimit && canReload && !grip)
+        if (Mathf.Abs(speedY) > speedLimit && canReload && grip)
         {
             StartCoroutine(nameof(ReloadCoroutine));
         }
 
-        if (trigger && grip)
+        if (trigger && !grip)
         {
             StartCoroutine(Shoot());
         }

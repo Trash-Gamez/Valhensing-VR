@@ -1,4 +1,5 @@
 using System;
+using _VanHelsingVR.Text;
 using UniRx;
 
 namespace _VanHelsingVR.Extensions.UniRX

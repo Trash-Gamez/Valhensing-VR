@@ -1,6 +1,7 @@
+using _VanHelsingVR.Conditions;
 using UnityEngine;
-using _VanHelsingVR.Variables;
 using _VanHelsingVR.Events;
+using RacTools.Variables;
 using Sirenix.OdinInspector;
 using UnityEngine.Events;
 

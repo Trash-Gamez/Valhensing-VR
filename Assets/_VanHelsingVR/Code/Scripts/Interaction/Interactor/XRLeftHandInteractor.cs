@@ -1,4 +1,5 @@
-using _VanHelsingVR.Variables;
+using _VanHelsingVR.Player;
+using RacTools.Variables;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;

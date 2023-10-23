@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class LookAt : MonoBehaviour
+namespace _VanHelsingVR.Art.VFX.Code
 {
-    [SerializeField] private Transform target;
-    void Start()
+    public class LookAt : MonoBehaviour
     {
-        target = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
-    }
+        [SerializeField] private Transform target;
+        void Start()
+        {
+            target = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+        }
 
    
-    void Update()
-    {
-        transform.LookAt(target);
+        void Update()
+        {
+            transform.LookAt(target);
+        }
     }
 }

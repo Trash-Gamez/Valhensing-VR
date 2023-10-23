@@ -1,24 +1,27 @@
 using UnityEngine;
 
-public class TEST_BackUpState : TEST_State
+namespace _VanHelsingVR.TESTS.IA
 {
-    private float _secondsForBackup;
-
-    private float _currentSeconds = 0;
-    public override void EnterState(TEST_EnemyStateMachine stateMachine)
+    public class TEST_BackUpState : TEST_State
     {
-        _secondsForBackup = stateMachine.SeconsOfBackup;
-    }
+        private float _secondsForBackup;
 
-    public override void UpdateState(TEST_EnemyStateMachine stateMachine)
-    {
-        _currentSeconds += Time.deltaTime;
-        if(_currentSeconds >= _secondsForBackup)
-            stateMachine.ChangeState(stateMachine.seekState);
-    }
+        private float _currentSeconds = 0;
+        public override void EnterState(TEST_EnemyStateMachine stateMachine)
+        {
+            _secondsForBackup = stateMachine.SeconsOfBackup;
+        }
 
-    public override void EndState(TEST_EnemyStateMachine stateMachine)
-    {
+        public override void UpdateState(TEST_EnemyStateMachine stateMachine)
+        {
+            _currentSeconds += Time.deltaTime;
+            if(_currentSeconds >= _secondsForBackup)
+                stateMachine.ChangeState(stateMachine.seekState);
+        }
+
+        public override void EndState(TEST_EnemyStateMachine stateMachine)
+        {
         
+        }
     }
 }

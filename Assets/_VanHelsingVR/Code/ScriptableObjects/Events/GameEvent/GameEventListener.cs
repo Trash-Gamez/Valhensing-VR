@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace _VanHelsingVR.Events
+namespace _VanHelsingVR.Events.GameEvent
 {
     public sealed class GameEventListener : MonoBehaviour
     {

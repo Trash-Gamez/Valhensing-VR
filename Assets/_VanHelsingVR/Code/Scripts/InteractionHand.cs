@@ -1,21 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using _VanHelsingVR.Animation;
 using UnityEngine;
 
-public class InteractionHand : MonoBehaviour
+namespace _VanHelsingVR
 {
-    private HandEffectsController _handEffectsController;
-    public string nombreAnimacion;
-    
-    void Start()
+    public class InteractionHand : MonoBehaviour
     {
-        _handEffectsController = FindObjectOfType<HandEffectsController>();
-    }
+        private HandEffectsController _handEffectsController;
+        public string nombreAnimacion;
+    
+        void Start()
+        {
+            _handEffectsController = FindObjectOfType<HandEffectsController>();
+        }
 
-    public void LlamarAnimacion()
-    {
-        _handEffectsController.Grap(nombreAnimacion);
-    }
+        public void LlamarAnimacion()
+        {
+            _handEffectsController.Grap(nombreAnimacion);
+        }
 
     
+    }
 }

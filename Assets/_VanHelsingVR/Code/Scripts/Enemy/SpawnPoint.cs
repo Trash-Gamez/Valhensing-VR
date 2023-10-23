@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-using _VanHelsingVR.Variables;
+using _VanHelsingVR.TESTS.IA;
+using RacTools.Variables;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
