@@ -1,9 +1,10 @@
 
 using System.Collections;
 using _VanHelsingVR.Interaction;
+using _VanHelsingVR.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using _VanHelsingVR.Variables;
+using RacTools.Variables;
 
 #if UNITY_EDITOR
 using Sirenix.OdinInspector;
