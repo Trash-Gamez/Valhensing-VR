@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class WayPoint : MonoBehaviour
+namespace _VanHelsingVR
 {
-    public float Time;
-    public bool canContinue;
-    public bool canRotate=true;
-
-    public void Continue()
+    public class WayPoint : MonoBehaviour
     {
-        canContinue = true;
+        public float Time;
+        public bool canContinue;
+        public bool canRotate=true;
+
+        public void Continue()
+        {
+            canContinue = true;
+        }
     }
 }

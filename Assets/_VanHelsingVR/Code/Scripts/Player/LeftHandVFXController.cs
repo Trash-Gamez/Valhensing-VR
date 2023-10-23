@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class LeftHandVFXController : MonoBehaviour
+namespace _VanHelsingVR.Player
 {
+    public class LeftHandVFXController : MonoBehaviour
+    {
     
+    }
 }

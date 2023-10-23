@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using _VanHelsingVR.Variables;
+using RacTools.Variables;
 using UnityEngine;
 
-public class TEST_VariableRefernece : MonoBehaviour
+namespace _VanHelsingVR.TESTS
 {
-    [SerializeField] private VariableReference<int> _int;
+    public class TEST_VariableRefernece : MonoBehaviour
+    {
+        [SerializeField] private VariableReference<int> _int;
+    }
 }

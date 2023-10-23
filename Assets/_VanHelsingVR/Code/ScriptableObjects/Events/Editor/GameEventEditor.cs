@@ -3,6 +3,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 using _VanHelsingVR.Events;
+using _VanHelsingVR.Events.GameEvent;
 
 [CustomEditor(typeof(GameEvent))]
 public class GameEventEditor : Editor
