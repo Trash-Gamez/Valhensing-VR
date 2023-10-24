@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RacTools.BehaviourTree
@@ -38,5 +39,9 @@ namespace RacTools.BehaviourTree
         protected abstract void OnStart();
         protected abstract State OnUpdate();
         protected abstract void OnStop();
+
+        public abstract void AddChild(Node child);
+        public abstract void RemoveChild(Node child);
+        public abstract List<Node> GetChildren();
     }
 }

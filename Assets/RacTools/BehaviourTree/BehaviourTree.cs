@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.XR;
 
 namespace RacTools.BehaviourTree
@@ -9,10 +10,23 @@ namespace RacTools.BehaviourTree
     [CreateAssetMenu(fileName = "BehaviourTree", menuName = "RacTools/BehaviourTree")]
     public class BehaviourTree : ScriptableObject
     {
-        // TODO: Make Root Node a Type of Node
-        private Node _root;
+        [SerializeField, HideInInspector]
+        private RootNode root;
+
+        public RootNode Root
+        {
+            get
+            {
+                if (root == null)
+                    root = CreateNode<RootNode>();
+                return root;
+            }
+        }
+
+        [field: SerializeField]
+        public List<Node> Nodes { get; private set; } = new();
+        
         public Node.State TreeState { get; private set; } = Node.State.Running;
-        public List<Node> Nodes { get; private set; } = new List<Node>();
         
         //TODO: Calculate the node in action an calculate the next one only when 
         public Node CurrentNode { get; private set; }
@@ -21,22 +35,24 @@ namespace RacTools.BehaviourTree
         {
             if (TreeState == Node.State.Running)
             {
-                TreeState = _root.Update();
+                TreeState = root.Update();
             }
 
             return TreeState;
         }
-
-        // TODO: get a hash set that difference between behaviourTrees
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+        
+        
 
         #if UNITY_EDITOR
-        public Node CreateNode<TNode>() where TNode : Node, new()
+        public TNode CreateNode<TNode>() where TNode : Node, new()
         {
-            Node node = CreateInstance<TNode>();
+            //There can't be more than 1 RootNode
+            if (typeof(TNode) == typeof(RootNode) && root != null)
+            {
+                throw new AggregateException("There is already a RootNode on this tree");
+            }
+            
+            TNode node = CreateInstance<TNode>();
             node.name = typeof(TNode).Name;
             node.guid = GUID.Generate().ToString();
             Nodes.Add(node);
@@ -49,6 +65,11 @@ namespace RacTools.BehaviourTree
 
         public Node CreateNode(Type nodeType)
         {
+            if (nodeType == typeof(RootNode) && root != null)
+            {
+                throw new AggregateException("There is already a RootNode on this tree");
+            }
+            
             Node node = CreateInstance(nodeType) as Node;
             if(node == null)
             {
@@ -73,36 +94,6 @@ namespace RacTools.BehaviourTree
             if (!AssetDatabase.Contains(node)) return;
             AssetDatabase.RemoveObjectFromAsset(node);
             AssetDatabase.SaveAssets();
-        }
-
-        private static Node _defaultNode = null;
-
-        [MenuItem("Assets/Add Default Node", true)]
-        private static bool AddDefaultNodeValidation()
-        {
-            return Selection.activeObject is BehaviourTree;
-        }
-        
-        [MenuItem("Assets/Removes Default Node", true)]
-        private static bool RemoveDefaultNodeValidation()
-        {
-            return Selection.activeObject is BehaviourTree;
-        }
-        
-        [MenuItem("Assets/Add Default Node")]
-        private static void AddDefaultNode()
-        {
-            if (_defaultNode != null) return;
-            var tree = Selection.activeObject as BehaviourTree;
-            _defaultNode = tree!.CreateNode<DebugLogNode>();
-        }
-        
-        [MenuItem("Assets/Removes Default Node")]
-        private static void RemoveDefaultNode()
-        {
-            if (_defaultNode == null) return;
-            var tree = Selection.activeObject as BehaviourTree;
-            tree!.DeleteNode(_defaultNode);
         }
         #endif
     }

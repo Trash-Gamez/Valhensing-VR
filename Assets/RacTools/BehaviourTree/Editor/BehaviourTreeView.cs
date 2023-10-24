@@ -24,12 +24,6 @@ namespace RacTools.BehaviourTree
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/RacTools/BehaviourTree/Editor/BehaviourTreeEditorWindow.uss");
             styleSheets.Add(styleSheet);
         }
-        
-        internal void OpenTree(BehaviourTree tree)
-        {
-            _currentTree = tree;
-            PopulateTreeView(_currentTree);
-        }
 
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
@@ -38,18 +32,53 @@ namespace RacTools.BehaviourTree
             AppendDerivedNodeToMenu<ActionNode>(evt);
         }
 
-        private void PopulateTreeView(BehaviourTree tree)
+        public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
+        {
+            return ports
+                .ToList()
+                .Where(endPort => 
+                    endPort.direction != startPort.direction
+                    && endPort.node != startPort.node)
+                .ToList();
+        }
+
+        internal void PopulateTreeView(BehaviourTree tree)
         {
             //TODO: Make this method for multi pages
             graphViewChanged -= OnGraphViewChanged;
             DeleteElements(graphElements);
             graphViewChanged += OnGraphViewChanged;
+            
             _currentTree = tree;
-            _currentTree.Nodes.ForEach(node => CreateNodeView(node));
+            
+            //Creates the root for before adding other nodes
+            CreateNodeView(_currentTree.Root);
+            
+            //Create The Node Views
+            foreach (var node in _currentTree.Nodes)
+            {
+                if(node is RootNode) continue;
+                CreateNodeView(node);
+            }
+            
+            //Create The Edges
+            foreach (var node in _currentTree.Nodes)
+            {
+                var children = node.GetChildren();
+                if(children == null) continue;
+                
+                children.ForEach(child =>
+                {
+                    NodeView parentView = GetNodeByGuid(node.guid) as NodeView;
+                    NodeView childView = GetNodeByGuid(child.guid) as NodeView;
+
+                    var edge = parentView!.outputPort.ConnectTo(childView!.inputPort);
+                    AddElement(edge);
+                });
+            }
         }
 
         #region GraphView Changed Handler
-
         private GraphViewChange OnGraphViewChanged(GraphViewChange graphChangedElements)
         {
             HandleDeletedGraphElements(graphChangedElements.elementsToRemove);
@@ -59,32 +88,81 @@ namespace RacTools.BehaviourTree
             return graphChangedElements;
         }
         
+        #region Handlers
+        
+        /// <summary>
+        /// Handles The Deleted Elements In The Tree View.
+        /// Deletes All The Nodes That Where Removed
+        /// </summary>
+        /// <param name="elementsToRemove">The list of removed elements</param>
+        private void HandleDeletedGraphElements(List<GraphElement> elementsToRemove)
+        {
+            if (elementsToRemove == null) return;
+            
+            foreach (var removedElement in elementsToRemove)
+            {
+                switch (removedElement)
+                {
+                    case NodeView view:
+                        HandleDeletedNodeView(view);
+                        continue;
+                    case Edge edge:
+                        HandleDeletedEdge(edge);
+                        continue;
+                    default:
+                        continue;
+                }
+            }
+        }
+        
+        //Handles All The Deleted Edges
+        private void HandleDeletedEdge(Edge edgeRemoved)
+        {
+            NodeView parentView = edgeRemoved.output.node as NodeView;
+            NodeView childView = edgeRemoved.input.node as NodeView;
 
+            if (parentView == null || childView == null)
+            {
+                Debug.LogError("One of th edges created is no compatible");
+                return;
+            }
+            
+            parentView.Node.RemoveChild(childView.Node);
+        }
+        
+        //Handles All The Deleted Node Views
+        private void HandleDeletedNodeView(NodeView nodeView)
+        {
+            _currentTree.DeleteNode(nodeView.Node);
+        }
+
+        /// <summary>
+        /// Handles The Edge Creation From The Tree View.
+        /// Creates Children From The Nodes And Edges That Where Created
+        /// </summary>
+        /// <param name="edgesToCreate">The edges that were created</param>
+        private void HandleEdgesCreated(List<Edge> edgesToCreate)
+        {
+            if (edgesToCreate == null) return;
+            foreach (var edge in edgesToCreate)
+            {
+                NodeView parentView = edge.output.node as NodeView;
+                NodeView childView = edge.input.node as NodeView;
+                if (parentView == null || childView == null)
+                {
+                    Debug.LogError("One of th edges created is no compatible");
+                    continue;
+                }
+                
+                parentView.Node.AddChild(childView.Node);
+            }
+        }
         private void HandleMovedGraphElements(List<GraphElement> movedElements)
         {
             
         }
 
-        private void HandleDeletedGraphElements(List<GraphElement> elementsToRemove)
-        {
-            if (elementsToRemove == null) return;
-            Debug.Log("Se eliminan elementos");
-            
-            foreach (var removedElement in elementsToRemove)
-            {
-                Debug.Log(elementsToRemove.ToString());
-                if(removedElement is not NodeView view) continue;
-                
-                _currentTree.DeleteNode(view.Node);
-            }
-        }
-
-        private void HandleEdgesCreated(List<Edge> edgesToCreate)
-        {
-            
-        }
-        
-
+        #endregion
         #endregion
 
         private void AppendDerivedNodeToMenu<TNode>(ContextualMenuPopulateEvent e) where TNode : Node

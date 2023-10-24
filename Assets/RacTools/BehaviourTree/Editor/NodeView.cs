@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RacTools.BehaviourTree
 {
-    public abstract class NodeView : UnityEditor.Experimental.GraphView.Node
+    public class NodeView : UnityEditor.Experimental.GraphView.Node
     {
         public Node Node {get; private set;}
 
@@ -24,11 +24,13 @@ namespace RacTools.BehaviourTree
             if (inputCapacity != null)
             { 
                inputPort = CreateInputPort(inputCapacity.Value);
+               inputContainer.Add(inputPort);
             }
 
             if (outputCapacity != null)
             {
                 outputPort = CreateOutputPort(outputCapacity.Value);
+                outputContainer.Add(outputPort);
             }
         }
 
@@ -37,7 +39,7 @@ namespace RacTools.BehaviourTree
         /// </summary>
         protected virtual Port CreateInputPort(Port.Capacity capacity)
         {
-            var port = InstantiatePort(Orientation.Vertical, Direction.Input, capacity, typeof(bool));
+            var port = InstantiatePort(Orientation.Horizontal, Direction.Input, capacity, typeof(bool));
             return port;
         }
 
@@ -47,7 +49,7 @@ namespace RacTools.BehaviourTree
         /// <returns>The number of Ports Created</returns>
         protected virtual Port CreateOutputPort(Port.Capacity capacity)
         {
-            var port = InstantiatePort(Orientation.Vertical, Direction.Input, capacity, typeof(bool));
+            var port = InstantiatePort(Orientation.Horizontal, Direction.Output, capacity, typeof(bool));
             return port;
         }
 
@@ -55,7 +57,7 @@ namespace RacTools.BehaviourTree
         {
             newPos.x = Mathf.Clamp(newPos.x, -500, 500);
             newPos.y = Mathf.Clamp(newPos.y, -500, 500);
-            Node.pos.x = newPos.x;
+            Node.pos.x = newPos.xMin;
             Node.pos.y = newPos.yMin;
             base.SetPosition(newPos);
         }
@@ -65,7 +67,8 @@ namespace RacTools.BehaviourTree
     {
         public RootNodeView(RootNode node) : base(node, null, Port.Capacity.Single)
         {
-            
+            //Deletes the capabilitie of the node of being deleted
+            capabilities &= ~Capabilities.Deletable;
         }
     }
 
