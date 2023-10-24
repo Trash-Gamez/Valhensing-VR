@@ -20,7 +20,7 @@ namespace RacTools.BehaviourTree
 
         protected override void OnStop()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

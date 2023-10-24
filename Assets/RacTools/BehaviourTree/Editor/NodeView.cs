@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -7,6 +6,7 @@ namespace RacTools.BehaviourTree
 {
     public class NodeView : UnityEditor.Experimental.GraphView.Node
     {
+        public static event Action<NodeView> OnNodeSelected;
         public Node Node {get; private set;}
 
         public Port inputPort = null;
@@ -39,7 +39,7 @@ namespace RacTools.BehaviourTree
         /// </summary>
         protected virtual Port CreateInputPort(Port.Capacity capacity)
         {
-            var port = InstantiatePort(Orientation.Horizontal, Direction.Input, capacity, typeof(bool));
+            var port = InstantiatePort(Orientation.Horizontal, Direction.Input, capacity, typeof(Node));
             return port;
         }
 
@@ -49,7 +49,7 @@ namespace RacTools.BehaviourTree
         /// <returns>The number of Ports Created</returns>
         protected virtual Port CreateOutputPort(Port.Capacity capacity)
         {
-            var port = InstantiatePort(Orientation.Horizontal, Direction.Output, capacity, typeof(bool));
+            var port = InstantiatePort(Orientation.Horizontal, Direction.Output, capacity, typeof(Node));
             return port;
         }
 
@@ -60,6 +60,12 @@ namespace RacTools.BehaviourTree
             Node.pos.x = newPos.xMin;
             Node.pos.y = newPos.yMin;
             base.SetPosition(newPos);
+        }
+
+        public override void OnSelected()
+        {
+            base.OnSelected();
+            OnNodeSelected?.Invoke(this);
         }
     }
 

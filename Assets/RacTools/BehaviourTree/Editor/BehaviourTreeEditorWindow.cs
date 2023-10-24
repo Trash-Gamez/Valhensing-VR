@@ -15,6 +15,8 @@ namespace RacTools.BehaviourTree
         private static BehaviourTreeView _treeView;
         private static InspectorView _inspectorView;
         
+
+        #region Open Window Logic
         [MenuItem("Tools/RacTools/BehaviourTree Window")]
         public static void OpenWindow()
         {
@@ -35,6 +37,7 @@ namespace RacTools.BehaviourTree
             var tree = EditorUtility.InstanceIDToObject(instanceID) as BehaviourTree;
             if (tree == null) return false;
             
+            if (!AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID())) return false;
             OpenWindow();
             AddTree(tree);
 
@@ -53,13 +56,17 @@ namespace RacTools.BehaviourTree
             var nodePath = AssetDatabase.GetAssetPath(instanceID);
             var tree = AssetDatabase.LoadMainAssetAtPath(nodePath) as BehaviourTree;
             if (tree == null) return false;
-            
+
+            if (!AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID())) return false;
             OpenWindow();
             AddTree(tree);
 
             return true;
         }
+        
 
+        #endregion
+        
         public void CreateGUI()
         {
             VisualElement root = rootVisualElement;
@@ -71,6 +78,8 @@ namespace RacTools.BehaviourTree
             root.styleSheets.Add(styleSheet);
 
             _treeView = root.Q<BehaviourTreeView>();
+            _treeView.OnNodeSelectionChanged = OnNodeSelectionChanged;
+            
             _inspectorView = root.Q<InspectorView>();
         }
 
@@ -107,12 +116,16 @@ namespace RacTools.BehaviourTree
             if (tree != null)
             {
                 Debug.Log("Tengo un arbol seleccionado");
-                
             }
             else
             {
                 Debug.Log("No hay arbol seleccionado");
             }
+        }
+
+        private void OnNodeSelectionChanged(Node node)
+        {
+            _inspectorView.OnSelectedObject(node);
         }
     }
 }

@@ -12,10 +12,10 @@ namespace RacTools.BehaviourTree
             Success
         }
 
-        public State state = State.Running;
-        public bool started = false;
-        public string guid;
-        public Vector2 pos; 
+        [HideInInspector] public State state = State.Running;
+        [HideInInspector] public bool started = false;
+        [HideInInspector] public string guid;
+        [HideInInspector] public Vector2 pos; 
         
         public State Update()
         {
@@ -35,6 +35,12 @@ namespace RacTools.BehaviourTree
 
             return state;
         }
+
+        public virtual Node Clone()
+        {
+            var node = Instantiate(this);
+            return node;
+        } 
 
         protected abstract void OnStart();
         protected abstract State OnUpdate();

@@ -4,10 +4,11 @@
         <uie:ToolbarMenu display-tooltip-when-elided="true" text="Menu" />
         <uie:ToolbarButton text="Button" display-tooltip-when-elided="true" name="ToolbarButton" />
     </uie:Toolbar>
-    <RacTools.Views.SplitView name="SplitView" fixed-pane-initial-dimension="175" fixed-pane-index="0" style="flex-grow: 1; opacity: 1; visibility: visible; display: flex;">
-        <ui:VisualElement name="left" style="width: auto; height: auto; min-width: 150px;">
-            <RacTools.Views.InspectorView name="InspectorView" />
-            <ui:Label text="Editor" display-tooltip-when-elided="true" style="background-color: rgb(25, 25, 25);" />
+    <RacTools.Views.SplitView name="SplitView" fixed-pane-initial-dimension="250" fixed-pane-index="0" style="flex-grow: 1; opacity: 1; visibility: visible; display: flex; max-height: none; max-width: none;">
+        <ui:VisualElement name="left" style="width: auto; height: auto; min-width: 250px; padding-left: 0; margin-left: 0;">
+            <RacTools.Views.InspectorView name="InspectorView" style="padding-left: 0;">
+                <ui:Label text=" Editor" display-tooltip-when-elided="true" style="background-color: rgb(25, 25, 25); margin-left: 0; word-spacing: 0;" />
+            </RacTools.Views.InspectorView>
         </ui:VisualElement>
         <ui:VisualElement name="right" style="flex-direction: row;">
             <RacTools.BehaviourTree.BehaviourTreeView focusable="true" style="width: auto; flex-direction: row; height: auto; flex-wrap: nowrap; flex-grow: 1;" />

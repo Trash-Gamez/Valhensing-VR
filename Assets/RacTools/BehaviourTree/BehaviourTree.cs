@@ -10,18 +10,8 @@ namespace RacTools.BehaviourTree
     [CreateAssetMenu(fileName = "BehaviourTree", menuName = "RacTools/BehaviourTree")]
     public class BehaviourTree : ScriptableObject
     {
-        [SerializeField, HideInInspector]
-        private RootNode root;
-
-        public RootNode Root
-        {
-            get
-            {
-                if (root == null)
-                    root = CreateNode<RootNode>();
-                return root;
-            }
-        }
+        [HideInInspector]
+        public RootNode Root;
 
         [field: SerializeField]
         public List<Node> Nodes { get; private set; } = new();
@@ -35,19 +25,24 @@ namespace RacTools.BehaviourTree
         {
             if (TreeState == Node.State.Running)
             {
-                TreeState = root.Update();
+                TreeState = Root.Update();
             }
 
             return TreeState;
         }
-        
-        
+
+        public BehaviourTree Clone()
+        {
+            var tree = Instantiate(this);
+            tree.Root = Root.Clone() as RootNode;
+            return tree;
+        }
 
         #if UNITY_EDITOR
         public TNode CreateNode<TNode>() where TNode : Node, new()
         {
             //There can't be more than 1 RootNode
-            if (typeof(TNode) == typeof(RootNode) && root != null)
+            if (typeof(TNode) == typeof(RootNode) && Root != null)
             {
                 throw new AggregateException("There is already a RootNode on this tree");
             }
@@ -65,7 +60,7 @@ namespace RacTools.BehaviourTree
 
         public Node CreateNode(Type nodeType)
         {
-            if (nodeType == typeof(RootNode) && root != null)
+            if (nodeType == typeof(RootNode) && Root != null)
             {
                 throw new AggregateException("There is already a RootNode on this tree");
             }

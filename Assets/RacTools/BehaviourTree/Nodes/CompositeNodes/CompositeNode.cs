@@ -5,9 +5,16 @@ namespace RacTools.BehaviourTree
 {
     public abstract class CompositeNode : Node
     {
-        [field: SerializeField]
-        public List<Node> Children { get; set; } = new List<Node>();
         
+        [HideInInspector] public List<Node> Children = new List<Node>();
+
+        public override Node Clone()
+        {
+            var node = base.Clone() as CompositeNode;
+            node.Children = Children.ConvertAll(n => node.Clone());
+            return node;
+        }
+
         public override void AddChild(Node child)
         {
             if (Children.Contains(child)) return;

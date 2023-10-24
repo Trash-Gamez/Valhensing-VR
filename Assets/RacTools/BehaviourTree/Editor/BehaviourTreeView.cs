@@ -10,8 +10,11 @@ namespace RacTools.BehaviourTree
 {
     public class BehaviourTreeView : GraphView
     {
+        internal Action<Node> OnNodeSelectionChanged;
         private BehaviourTree _currentTree;
+        
         public new class UxmlFactory : UxmlFactory<BehaviourTreeView, UxmlTraits> { }
+        
         public BehaviourTreeView()
         {
             Insert(0, new GridBackground());
@@ -23,6 +26,9 @@ namespace RacTools.BehaviourTree
 
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/RacTools/BehaviourTree/Editor/BehaviourTreeEditorWindow.uss");
             styleSheets.Add(styleSheet);
+            
+            NodeView.OnNodeSelected -= OnSelectedNodeChanged;
+            NodeView.OnNodeSelected += OnSelectedNodeChanged;
         }
 
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
@@ -51,13 +57,17 @@ namespace RacTools.BehaviourTree
             
             _currentTree = tree;
             
-            //Creates the root for before adding other nodes
-            CreateNodeView(_currentTree.Root);
+            //Creates the root Node if its null
+            if (_currentTree.Root == null)
+            {
+                _currentTree.Root = _currentTree.CreateNode<RootNode>();
+                EditorUtility.SetDirty(_currentTree);
+                AssetDatabase.SaveAssets();
+            }
             
             //Create The Node Views
             foreach (var node in _currentTree.Nodes)
             {
-                if(node is RootNode) continue;
                 CreateNodeView(node);
             }
             
@@ -66,9 +76,12 @@ namespace RacTools.BehaviourTree
             {
                 var children = node.GetChildren();
                 if(children == null) continue;
+                if(!children.Any()) continue;
+                Debug.Log($"Hay hijos en: {node.name}");
                 
                 children.ForEach(child =>
                 {
+                    if (child == null) return;
                     NodeView parentView = GetNodeByGuid(node.guid) as NodeView;
                     NodeView childView = GetNodeByGuid(child.guid) as NodeView;
 
@@ -198,6 +211,11 @@ namespace RacTools.BehaviourTree
             };
             
             AddElement(view);
+        }
+
+        private void OnSelectedNodeChanged(NodeView nodeView)
+        {
+            OnNodeSelectionChanged?.Invoke(nodeView.Node);
         }
     }
 }

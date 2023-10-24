@@ -6,7 +6,15 @@ namespace RacTools.BehaviourTree
 {
     public class RootNode : Node
     {
-        public Node Child;
+        public Node Child = null;
+
+        public override Node Clone()
+        {
+            var node = base.Clone() as RootNode;
+            if (Child != null)
+                node!.Child = Child;
+            return node;
+        }
 
         protected override void OnStart(){}
 
@@ -34,6 +42,8 @@ namespace RacTools.BehaviourTree
 
         public override List<Node> GetChildren()
         {
+            if (Child == null) return null;
+            
             return new List<Node>()
             {
                 Child
