@@ -60,7 +60,7 @@ MonoBehaviour:
   m_AssetVersion: 2
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 16375
   m_TransparentLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -79,6 +79,25 @@ MonoBehaviour:
   m_ClusteredRendering: 0
   m_TileSize: 32
   m_IntermediateTextureMode: 0
+--- !u!114 &7481614725162449155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76938e42bbb540d46802e7dd42b3e598, type: 3}
+  m_Name: NewBasicFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    layerMask:
+      m_Bits: 16384
+    Event: 400
+    blitMat: {fileID: 2100000, guid: ef563c8e0bf6403458e1c495c1663abf, type: 2}
+    pixelDensity: 7.53
 --- !u!114 &7613899470456203311
 MonoBehaviour:
   m_ObjectHideFlags: 0
