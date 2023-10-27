@@ -8236,7 +8236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Time: 0
   canContinue: 1
-  canRotate: 1
+  canRotate: 0
 --- !u!1 &134508018
 GameObject:
   m_ObjectHideFlags: 0
@@ -12051,7 +12051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Time: 0
   canContinue: 1
-  canRotate: 1
+  canRotate: 0
 --- !u!1 &216001780
 GameObject:
   m_ObjectHideFlags: 0
@@ -44779,7 +44779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Time: 0
   canContinue: 1
-  canRotate: 1
+  canRotate: 0
 --- !u!1 &785423470
 GameObject:
   m_ObjectHideFlags: 0
@@ -50501,7 +50501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Time: 0
   canContinue: 1
-  canRotate: 1
+  canRotate: 0
 --- !u!1 &878188567
 GameObject:
   m_ObjectHideFlags: 0
@@ -85956,7 +85956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Time: 0
   canContinue: 0
-  canRotate: 0
+  canRotate: 1
 --- !u!1 &1440750566
 GameObject:
   m_ObjectHideFlags: 0
@@ -93329,28 +93329,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 5558342855592764364}
     m_Modifications:
     - target: {fileID: 2608027785443940791, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
-      propertyPath: moveWithTransform
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2608027785443940791, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
       propertyPath: moveWithCustomTransform
       value: 
       objectReference: {fileID: 5558342855592764364}
-    - target: {fileID: 2608027785443940791, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
-      propertyPath: ShapeModule.m_Position.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2608027785443940791, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
-      propertyPath: ShapeModule.m_Position.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6151344893115263565, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
       propertyPath: m_Name
       value: DantePlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 6151344893115263565, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6151344893115263566, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
       propertyPath: m_RootOrder
@@ -93362,7 +93346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6151344893115263566, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.266
       objectReference: {fileID: 0}
     - target: {fileID: 6151344893115263566, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
       propertyPath: m_LocalPosition.z
@@ -93395,18 +93379,6 @@ PrefabInstance:
     - target: {fileID: 6151344893115263566, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6151344893410716521, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
-      propertyPath: spread
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 6151344893410716521, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
-      propertyPath: fireRange
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6151344893410716521, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
-      propertyPath: hittableLayer.m_Bits
-      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
@@ -106192,7 +106164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Time: 0
   canContinue: 1
-  canRotate: 1
+  canRotate: 0
 --- !u!1 &1743264493
 GameObject:
   m_ObjectHideFlags: 0
@@ -131532,7 +131504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  rotationSpeed: 0.5
+  rotationSpeed: 0.2
   wayPoints:
   - {fileID: 2124576764}
   - {fileID: 1046569441}
