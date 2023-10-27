@@ -9,11 +9,11 @@ namespace RacTools.BehaviourTree
             
         }
 
-        protected override State OnUpdate()
+        protected override State OnTick()
         {
             // El nodo "RepeatNode" se basa en que si ignoras el estado del nodo hijo, y retornas que sigue corriendo
             // Entonces harás un loop
-            Child.Update();
+            Child.Tick();
             return State.Running;
         }
 

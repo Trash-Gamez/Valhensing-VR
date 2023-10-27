@@ -77,7 +77,6 @@ namespace RacTools.BehaviourTree
                 var children = node.GetChildren();
                 if(children == null) continue;
                 if(!children.Any()) continue;
-                Debug.Log($"Hay hijos en: {node.name}");
                 
                 children.ForEach(child =>
                 {

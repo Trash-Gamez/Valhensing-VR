@@ -12,12 +12,12 @@ namespace RacTools.BehaviourTree
             Success
         }
 
+        [HideInInspector] public string guid;
         [HideInInspector] public State state = State.Running;
         [HideInInspector] public bool started = false;
-        [HideInInspector] public string guid;
         [HideInInspector] public Vector2 pos; 
         
-        public State Update()
+        public State Tick()
         {
             if (!started)
             {
@@ -25,7 +25,7 @@ namespace RacTools.BehaviourTree
                 started = true;
             }
 
-            state = OnUpdate();
+            state = OnTick();
 
             if (state == State.Failure || state == State.Success)
             {
@@ -43,7 +43,7 @@ namespace RacTools.BehaviourTree
         } 
 
         protected abstract void OnStart();
-        protected abstract State OnUpdate();
+        protected abstract State OnTick();
         protected abstract void OnStop();
 
         public abstract void AddChild(Node child);

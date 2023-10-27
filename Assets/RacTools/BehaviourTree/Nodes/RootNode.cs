@@ -18,9 +18,9 @@ namespace RacTools.BehaviourTree
 
         protected override void OnStart(){}
 
-        protected override State OnUpdate()
+        protected override State OnTick()
         {
-            return Child != null ? Child.Update() : State.Failure;
+            return Child != null ? Child.Tick() : State.Failure;
         }
 
         protected override void OnStop()

@@ -25,7 +25,7 @@ namespace RacTools.BehaviourTree
         {
             if (TreeState == Node.State.Running)
             {
-                TreeState = Root.Update();
+                TreeState = Root.Tick();
             }
 
             return TreeState;

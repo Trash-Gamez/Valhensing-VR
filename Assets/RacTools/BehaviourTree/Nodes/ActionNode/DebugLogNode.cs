@@ -10,7 +10,7 @@ namespace RacTools.BehaviourTree
             Debug.Log($"OnStart: {message}");
         }
 
-        protected override State OnUpdate()
+        protected override State OnTick()
         {
             Debug.Log($"OnUpdate: {message}");
             return State.Success;

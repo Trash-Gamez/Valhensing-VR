@@ -12,7 +12,8 @@ namespace RacTools.BehaviourTree
         public Port inputPort = null;
         public Port outputPort = null;
 
-        protected NodeView(Node node, Port.Capacity? inputCapacity, Port.Capacity? outputCapacity)
+        protected NodeView(Node node, Port.Capacity? inputCapacity, Port.Capacity? outputCapacity) : 
+            base("Assets\\RacTools\\BehaviourTree\\Editor\\NodeDocument.uxml")
         {
             Node = node;
             title = node.name;
@@ -39,17 +40,17 @@ namespace RacTools.BehaviourTree
         /// </summary>
         protected virtual Port CreateInputPort(Port.Capacity capacity)
         {
-            var port = InstantiatePort(Orientation.Horizontal, Direction.Input, capacity, typeof(Node));
+            var port = InstantiatePort(Orientation.Vertical, Direction.Input, capacity, typeof(Node));
             return port;
         }
 
         /// <summary>
-        /// Create the ports that this NodeView is gonna use to output
+        /// Create the port that this NodeView is gonna use to output
         /// </summary>
         /// <returns>The number of Ports Created</returns>
         protected virtual Port CreateOutputPort(Port.Capacity capacity)
         {
-            var port = InstantiatePort(Orientation.Horizontal, Direction.Output, capacity, typeof(Node));
+            var port = InstantiatePort(Orientation.Vertical, Direction.Output, capacity, typeof(Node));
             return port;
         }
 

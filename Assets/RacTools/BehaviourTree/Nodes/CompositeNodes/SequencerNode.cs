@@ -12,11 +12,11 @@ namespace RacTools.BehaviourTree
             _current = 0;
         }
 
-        protected override State OnUpdate()
+        protected override State OnTick()
         {
             var child = Children[_current];
 
-            var childState = child.Update();
+            var childState = child.Tick();
             
             /*
              * Verificamos y devolvemos el mismo estado exceptuando en Success, cuando un hijo termina

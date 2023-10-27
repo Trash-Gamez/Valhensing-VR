@@ -11,7 +11,7 @@ namespace RacTools.BehaviourTree
             _startTime = Time.time;
         }
 
-        protected override State OnUpdate()
+        protected override State OnTick()
         {
             //Si el tiempo que transcurrido es mayor a el tiempo de espera se retorna un success y se termina
             //Si no sigue transcurriendo
