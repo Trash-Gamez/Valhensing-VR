@@ -9,12 +9,6 @@ public class DecalManager : MonoBehaviour
     [SerializeField] private float decalLife;
     [SerializeField] private float fadeOutTime;
 
-    private void Start()
-    {
-       
-
-    }
-
     public IEnumerator DecalCoroutine(GameObject decal)
     {
         DecalProjector projector = decal.GetComponent<DecalProjector>();
