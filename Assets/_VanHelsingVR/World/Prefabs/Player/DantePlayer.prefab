@@ -545,6 +545,7 @@ GameObject:
   - component: {fileID: 8096009772210068735}
   - component: {fileID: 1893552859059495524}
   - component: {fileID: 6160390305826999085}
+  - component: {fileID: 6738452356735903841}
   m_Layer: 6
   m_Name: DantePlayer
   m_TagString: Player
@@ -1019,6 +1020,20 @@ MonoBehaviour:
   m_LocomotionProvider: {fileID: 1557009611}
   m_MinHeight: 0
   m_MaxHeight: Infinity
+--- !u!114 &6738452356735903841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6151344893115263565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7395b6be7ed29d0438f579f49766979c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transform: {fileID: 6151344893115263566}
+  variable: {fileID: 11400000, guid: 881fc8074c8273e49bb5fa9d29d420ea, type: 2}
 --- !u!1 &6151344893321132016
 GameObject:
   m_ObjectHideFlags: 0

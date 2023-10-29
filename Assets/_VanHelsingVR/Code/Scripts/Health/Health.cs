@@ -1,6 +1,5 @@
 using _VanHelsingVR.Conditions;
 using UnityEngine;
-using _VanHelsingVR.Events;
 using RacTools.Variables;
 using Sirenix.OdinInspector;
 using UnityEngine.Events;
@@ -23,9 +22,9 @@ namespace _VanHelsingVR.Health
         [SerializeField] private UnityEvent onDamage;
         [SerializeField] private UnityEvent onRecoverHealth;
         [SerializeField] private UnityEvent onDead;
-        public int health{get; private set;}
+        [ShowInInspector]public int health{get; private set;}
 
-        private void Awake()
+        private void Start()
         {
             health = maxHealth.Value;
         }
