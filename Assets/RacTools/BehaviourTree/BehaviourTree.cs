@@ -21,6 +21,8 @@ namespace RacTools.BehaviourTree
         //TODO: Calculate the node in action an calculate the next one only when 
         public Node CurrentNode { get; private set; }
 
+        public Blackboard blackboard = new();
+
         public Node.State Update()
         {
             if (TreeState == Node.State.Running)
@@ -31,11 +33,40 @@ namespace RacTools.BehaviourTree
             return TreeState;
         }
 
+        public void VisitChildNodes(Node node, Action<Node> selector)
+        {
+            if (!node) return;
+            selector?.Invoke(node);
+            
+            var children = node.GetChildren();
+            if (children == null) return;
+            
+            foreach (var childNode in children)
+            {
+                if(childNode == null) continue;
+                VisitChildNodes(childNode, selector);
+            }
+        }
+
         public BehaviourTree Clone()
         {
             var tree = Instantiate(this);
+            //Clone the root and all the child nodes inside RootNode
             tree.Root = Root.Clone() as RootNode;
+            
+            //Adds the children that were clone on the previews Clone function 
+            tree.Nodes = new List<Node>();
+            VisitChildNodes(tree.Root, (n) => tree.Nodes.Add(n));
+            
             return tree;
+        }
+
+        public void Bind()
+        {
+            VisitChildNodes(Root, node =>
+            {
+                node.blackboard = blackboard;
+            });
         }
 
         #if UNITY_EDITOR
@@ -52,7 +83,9 @@ namespace RacTools.BehaviourTree
             node.guid = GUID.Generate().ToString();
             Nodes.Add(node);
             
-            AssetDatabase.AddObjectToAsset(node, this);
+            if(!Application.isPlaying)
+                AssetDatabase.AddObjectToAsset(node, this);
+            
             AssetDatabase.SaveAssets();
             
             return node;
@@ -75,8 +108,10 @@ namespace RacTools.BehaviourTree
             node.name = nodeType.Name;
             node.guid = GUID.Generate().ToString();
             Nodes.Add(node);
-
-            AssetDatabase.AddObjectToAsset(node, this);
+            
+            if(!Application.isPlaying)
+                AssetDatabase.AddObjectToAsset(node, this);
+            
             AssetDatabase.SaveAssets();
             return node;
         }

@@ -13,8 +13,10 @@
             <ui:VisualElement name="divider" class="horizontal" />
             <ui:VisualElement name="top">
                 <ui:VisualElement name="input" style="align-items: center;" />
-                <ui:VisualElement name="divider" class="vertical" style="opacity: 1;" />
-                <ui:VisualElement name="output" />
+                <ui:VisualElement name="divider" class="vertical" style="opacity: 1; display: none; visibility: hidden; overflow: hidden;" />
+                <ui:VisualElement style="background-image: none; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgb(0, 206, 255); flex-grow: 1; justify-content: flex-start; border-bottom-width: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); transform-origin: bottom; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px;">
+                    <ui:VisualElement name="output" style="border-bottom-width: 10px; transform-origin: bottom; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px;" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

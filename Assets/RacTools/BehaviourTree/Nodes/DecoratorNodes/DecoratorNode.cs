@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace RacTools.BehaviourTree
@@ -9,9 +10,9 @@ namespace RacTools.BehaviourTree
         
         public override Node Clone()
         {
-            var node = base.Clone() as DecoratorNode;
+            var node = Instantiate(this);
             if (Child != null)
-                node!.Child = Child;
+                node.Child = Child.Clone();
             return node;
         }
         
@@ -27,6 +28,10 @@ namespace RacTools.BehaviourTree
             Child = null;
         }
 
-        public override List<Node> GetChildren() => new List<Node>() { Child };
+        public override List<Node> GetChildren()
+        {
+            if(Child == null) return null;
+            return new List<Node>() { Child };
+        }
     }
 }

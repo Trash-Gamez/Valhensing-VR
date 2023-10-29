@@ -15,7 +15,8 @@ namespace RacTools.BehaviourTree
         [HideInInspector] public string guid;
         [HideInInspector] public State state = State.Running;
         [HideInInspector] public bool started = false;
-        [HideInInspector] public Vector2 pos; 
+        [HideInInspector] public Vector2 pos;
+        [HideInInspector] public Blackboard blackboard;
         
         public State Tick()
         {

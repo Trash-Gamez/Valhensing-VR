@@ -56,8 +56,8 @@ namespace RacTools.BehaviourTree
 
         public override void SetPosition(Rect newPos)
         {
-            newPos.x = Mathf.Clamp(newPos.x, -500, 500);
-            newPos.y = Mathf.Clamp(newPos.y, -500, 500);
+            newPos.x = Mathf.Clamp(newPos.x, -1000, 1000);
+            newPos.y = Mathf.Clamp(newPos.y, -1000, 1000);
             Node.pos.x = newPos.xMin;
             Node.pos.y = newPos.yMin;
             base.SetPosition(newPos);

@@ -10,11 +10,12 @@ namespace RacTools.BehaviourTree
 {
     public class BehaviourTreeView : GraphView
     {
+        public new class UxmlFactory : UxmlFactory<BehaviourTreeView, UxmlTraits> { }
+        
         internal Action<Node> OnNodeSelectionChanged;
         private BehaviourTree _currentTree;
         
-        public new class UxmlFactory : UxmlFactory<BehaviourTreeView, UxmlTraits> { }
-        
+        //Creation of the Behaviour Tree View (GraphView)
         public BehaviourTreeView()
         {
             Insert(0, new GridBackground());
@@ -27,17 +28,20 @@ namespace RacTools.BehaviourTree
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/RacTools/BehaviourTree/Editor/BehaviourTreeEditorWindow.uss");
             styleSheets.Add(styleSheet);
             
+            //Subscribe and unsubscribe from the OnSelectedNode
             NodeView.OnNodeSelected -= OnSelectedNodeChanged;
             NodeView.OnNodeSelected += OnSelectedNodeChanged;
         }
-
+        
+        //Builds the contextual menu to Add any Node Derived from the types written
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
             AppendDerivedNodeToMenu<DecoratorNode>(evt);
             AppendDerivedNodeToMenu<CompositeNode>(evt);
             AppendDerivedNodeToMenu<ActionNode>(evt);
         }
-
+    
+        //Make the compatible ports not be the same as himself and be output and input
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
         {
             return ports
@@ -47,14 +51,12 @@ namespace RacTools.BehaviourTree
                     && endPort.node != startPort.node)
                 .ToList();
         }
-
+        
+        //We use this function to Create all the nodes inside the Behaviour TreeView
         internal void PopulateTreeView(BehaviourTree tree)
         {
-            //TODO: Make this method for multi pages
-            graphViewChanged -= OnGraphViewChanged;
-            DeleteElements(graphElements);
-            graphViewChanged += OnGraphViewChanged;
-            
+            DeleteAllGraphElements();
+
             _currentTree = tree;
             
             //Creates the root Node if its null
@@ -88,6 +90,14 @@ namespace RacTools.BehaviourTree
                     AddElement(edge);
                 });
             }
+        }
+
+        private void DeleteAllGraphElements()
+        {
+            //TODO: Make this method for multi pages
+            graphViewChanged -= OnGraphViewChanged;
+            DeleteElements(graphElements);
+            graphViewChanged += OnGraphViewChanged;
         }
 
         #region GraphView Changed Handler
@@ -171,7 +181,31 @@ namespace RacTools.BehaviourTree
         }
         private void HandleMovedGraphElements(List<GraphElement> movedElements)
         {
-            
+            if (movedElements == null) return;
+            foreach (var graphElement in movedElements)
+            {
+                //Get The Node That is moved
+                var nodeView = graphElement as NodeView;
+                if (nodeView == null) continue;
+                
+                //Prevents that the nodes without an input port get the connections below
+                if(nodeView.inputPort == null) continue;
+                
+                //Get the edges that are connected
+                var connections = nodeView.inputPort.connections;
+                if (connections == null) continue;
+                if (!connections.Any()) continue;
+
+                //Get The parent of the node that is moved
+                var parentNode = connections.First().output.node as NodeView;
+                if (parentNode == null) continue;
+
+                //Get to know if the parent of the moved node is a composite node
+                var composite = parentNode.Node as CompositeNode;
+                if (composite == null) continue;
+                
+                composite.SortChildrenByPos();
+            }
         }
 
         #endregion

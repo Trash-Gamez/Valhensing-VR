@@ -6,13 +6,13 @@ namespace RacTools.BehaviourTree
 {
     public class RootNode : Node
     {
-        public Node Child = null;
+        [HideInInspector] public Node Child = null;
 
         public override Node Clone()
         {
-            var node = base.Clone() as RootNode;
+            var node = Instantiate(this);
             if (Child != null)
-                node!.Child = Child;
+                node.Child = Child.Clone();
             return node;
         }
 
