@@ -1,11 +1,13 @@
+using RacTools.Variables;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace RacTools.BehaviourTree
 {
     [System.Serializable]
     public class Blackboard
     {
-        public Vector3 pos;
-        public GameObject Player;
+        [FormerlySerializedAs("playerPos")] public Variable<Transform> playerTransform;
+        
     }
 }
