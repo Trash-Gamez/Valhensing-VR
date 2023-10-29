@@ -17,7 +17,7 @@ namespace _VanHelsingVR
 
         public void Start()
         {
-
+            AudioManager.Instance.PlayAmbient("Carrito_01",0);
             StartCoroutine(MoveToNextPoint(wayPoints[actualIndex].transform.position));
         }
 
@@ -67,13 +67,20 @@ namespace _VanHelsingVR
         {
             actualIndex++;
             UnityEngine.Debug.Log("Next Index: " + actualIndex);
-            if (!canContinue) return;
+            if (!canContinue)
+            {
+                AudioManager.Instance.PlaySound3D("CarritoStop", transform.position);
+                AudioManager.Instance.StopAmbient();
+
+                return;
+            }
             canMove = true;
             StartCoroutine("MoveToNextPoint", wayPoints[actualIndex].transform.position);
         }
 
         public void RestartMovement()
         {
+            AudioManager.Instance.PlayAmbient("Carrito_01", 0);
             if (canMove) return;
             canMove = true;
             StartCoroutine("MoveToNextPoint", wayPoints[actualIndex].transform.position);

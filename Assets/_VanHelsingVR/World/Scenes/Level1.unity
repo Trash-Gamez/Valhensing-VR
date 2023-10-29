@@ -78991,6 +78991,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356613745}
   m_Mesh: {fileID: -8634060567236447461, guid: b3a12f5416eeb64459d17d61aa45ecb8, type: 3}
+--- !u!23 &1356977028 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4294157506427991903, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
+  m_PrefabInstance: {fileID: 1557009604}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1357739375
 GameObject:
   m_ObjectHideFlags: 0
@@ -93135,6 +93140,10 @@ PrefabInstance:
       propertyPath: moveWithCustomTransform
       value: 
       objectReference: {fileID: 5558342855592764364}
+    - target: {fileID: 4294157507565047268, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
+      propertyPath: m_text
+      value: 000
+      objectReference: {fileID: 0}
     - target: {fileID: 6151344893115263565, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
       propertyPath: m_Name
       value: DantePlayer
@@ -93212,11 +93221,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19343f60aefcef5439fdb54a14561464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodMaterial: {fileID: 0}
-  soulMaterial: {fileID: 0}
+  bloodSphere: {fileID: 1801860067}
+  soulSphere: {fileID: 1356977028}
   health:
-    variableType: 0
-    reference: {fileID: 0}
+    variableType: 1
+    reference: {fileID: 11400000, guid: 413617df8ed72a441923d838cf2b0e28, type: 2}
+    constant: 0
+  souls:
+    variableType: 1
+    reference: {fileID: 11400000, guid: 0dd0760e681c25e49a4f38944fb220fe, type: 2}
     constant: 0
 --- !u!1 &1560313625
 GameObject:
@@ -108881,6 +108894,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800499517}
   m_Mesh: {fileID: -8634060567236447461, guid: b3a12f5416eeb64459d17d61aa45ecb8, type: 3}
+--- !u!23 &1801860067 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4294157507793228530, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
+  m_PrefabInstance: {fileID: 1557009604}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1804226283
 GameObject:
   m_ObjectHideFlags: 0
@@ -120908,6 +120926,43 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026076166}
   m_Mesh: {fileID: -4021145465717860425, guid: 1bd9c0ca1f8ab59419eb817a4c7608a8, type: 3}
+--- !u!1 &2026153620 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4294157507565047290, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
+  m_PrefabInstance: {fileID: 1557009604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2026153622 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4294157507565047268, guid: 21a55d246bfbf744dac0ee3c19828517, type: 3}
+  m_PrefabInstance: {fileID: 1557009604}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026153620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2026153624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026153620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab4196c11a48544a9ce0fcd5f66fb0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textReference:
+    textType: 1
+    legacyText: {fileID: 0}
+    tmpText: {fileID: 2026153622}
+  variable: {fileID: 11400000, guid: 0dd0760e681c25e49a4f38944fb220fe, type: 2}
+  useParamString: 0
+  paramString: 'Mag: {0}'
+  useSample: 0
+  _sampleSeconds: 0
 --- !u!1 &2026514602
 GameObject:
   m_ObjectHideFlags: 0
@@ -127329,7 +127384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Time: 0
-  canContinue: 1
+  canContinue: 0
   canRotate: 0
 --- !u!1 &2125024162
 GameObject:
