@@ -108,6 +108,7 @@ public class Gun : MonoBehaviour
     {
         canReload = false;
         gunAnimator.Play("Reload");
+        AudioManager.Instance.PlaySound3D("Reload", transform.position);
         yield return new WaitForSeconds(reloadTime);
         Reload();
         canReload = true;
@@ -118,7 +119,8 @@ public class Gun : MonoBehaviour
         magazine.Value += 5;
         magazineText.color = Color.white;
         if (magazine.Value >= magazineSize)
-        { 
+        {
+            AudioManager.Instance.PlaySound3D("FullReload", transform.position);
             magazine.Value = magazineSize;
             magazineText.color = Color.green;
         }
@@ -147,6 +149,7 @@ public class Gun : MonoBehaviour
             magazineText.color = Color.white;
             InstantiateVisual(direction);
             Debug.DrawRay(shootPoint.position, direction, Color.green);
+            AudioManager.Instance.PlaySound3D("Shoot_0"+Random.Range(1,8), transform.position);
             magazine.Value--;
             if (magazine.Value <= 0)
             {
@@ -159,6 +162,7 @@ public class Gun : MonoBehaviour
         else
         {
             canShoot = false;
+            AudioManager.Instance.PlaySound3D("DryShoot", transform.position);
             yield return new WaitForSeconds(shootingSpeed);
             Debug.Log("Sin Munici�n");
             canShoot = true;
