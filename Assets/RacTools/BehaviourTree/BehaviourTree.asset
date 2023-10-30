@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6439738901361259273
+--- !u!114 &-8268404449374685536
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,13 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29ee73a99a6f425a8087965a792cd4de, type: 3}
-  m_Name: RepeatNode
+  m_Script: {fileID: 11500000, guid: 014ddb233daf4d4f94d3fe8b914225a1, type: 3}
+  m_Name: RootNode
   m_EditorClassIdentifier: 
-  state: 0
+  guid: 04779907be74c264b995cb0a69472e7f
+  state: 2
   started: 0
-  guid: f23e351d31db7984eb02f31150262547
---- !u!114 &-4614788377572032654
+  pos: {x: 367, y: 115}
+  blackboard:
+    pos: {x: 0, y: 0, z: 0}
+    Player: {fileID: 0}
+  Child: {fileID: 7738410171480831651}
+--- !u!114 &-7044184164635292046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24,12 +29,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1a815e563da4a2c9c612c804e48f574, type: 3}
-  m_Name: SequencerNode
+  m_Script: {fileID: 11500000, guid: 0ae5dc3ee8cd4d9fb6f97fa1343b93f4, type: 3}
+  m_Name: DebugLogNode
   m_EditorClassIdentifier: 
-  state: 0
+  guid: 51cdf86b8c762514ca976147d5d298cc
+  state: 2
   started: 0
-  guid: c981c1793b3ca43429d32407aeb9e552
+  pos: {x: 233, y: 405.5}
+  blackboard:
+    pos: {x: 0, y: 0, z: 0}
+    Player: {fileID: 0}
+  message: Hola
+--- !u!114 &-736171735883005498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8ba451a1334eb0a449f606c63b8874, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  guid: 6424d0a99fb99df499b13a4fa833fc51
+  state: 2
+  started: 0
+  pos: {x: 370, y: 386}
+  blackboard:
+    pos: {x: 0, y: 0, z: 0}
+    Player: {fileID: 0}
+  waitTime: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,7 +72,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73077eadc1e14225bc5fe19d801072a6, type: 3}
   m_Name: BehaviourTree
   m_EditorClassIdentifier: 
---- !u!114 &2734290270230415601
+  Root: {fileID: -8268404449374685536}
+  <Nodes>k__BackingField:
+  - {fileID: -8268404449374685536}
+  - {fileID: 7738410171480831651}
+  - {fileID: 5885001387010519243}
+  - {fileID: 2778734096119845}
+  - {fileID: 2794658913241756514}
+  - {fileID: -736171735883005498}
+  - {fileID: -7044184164635292046}
+  - {fileID: 8755625811988528325}
+  blackboard:
+    pos: {x: 0, y: 0, z: 0}
+    Player: {fileID: 0}
+--- !u!114 &2778734096119845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8ba451a1334eb0a449f606c63b8874, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  guid: 6e054cb3ea6968e41a5ba3485832bdf9
+  state: 2
+  started: 0
+  pos: {x: 572, y: 394}
+  blackboard:
+    pos: {x: 0, y: 0, z: 0}
+    Player: {fileID: 0}
+  waitTime: 1
+--- !u!114 &2794658913241756514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,41 +117,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae5dc3ee8cd4d9fb6f97fa1343b93f4, type: 3}
   m_Name: DebugLogNode
   m_EditorClassIdentifier: 
-  state: 0
+  guid: 943aa134901efc7438a7e41ba8c6a495
+  state: 2
   started: 0
-  guid: 4b43e3ffb18277a428b521a61897ad49
-  message: 
---- !u!114 &2939202492941935349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29ee73a99a6f425a8087965a792cd4de, type: 3}
-  m_Name: RepeatNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: d1db742ccb52a3f4cb6fe4c9e267d8b6
---- !u!114 &4131321168233512972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29ee73a99a6f425a8087965a792cd4de, type: 3}
-  m_Name: RepeatNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: f05a86f73a2869d4ead4dffbf5ca39be
---- !u!114 &8916635200515439511
+  pos: {x: 447, y: 387}
+  blackboard:
+    pos: {x: 0, y: 0, z: 0}
+    Player: {fileID: 0}
+  message: Dos y dos son 4
+--- !u!114 &5885001387010519243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,7 +137,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae5dc3ee8cd4d9fb6f97fa1343b93f4, type: 3}
   m_Name: DebugLogNode
   m_EditorClassIdentifier: 
-  state: 0
+  guid: cf6cdcb4b449e7f4f85260b62004560c
+  state: 2
   started: 0
-  guid: 210778a58a7daa74ab32f79efca9be27
-  message: 
+  pos: {x: 633, y: 374}
+  blackboard:
+    pos: {x: 0, y: 0, z: 0}
+    Player: {fileID: 0}
+  message: UNO PITUDO
+--- !u!114 &7738410171480831651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a815e563da4a2c9c612c804e48f574, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  guid: 5f548443de7c8e348bb801a7c2e7d2c2
+  state: 2
+  started: 0
+  pos: {x: 341, y: 226}
+  blackboard:
+    pos: {x: 0, y: 0, z: 0}
+    Player: {fileID: 0}
+  Children:
+  - {fileID: 8755625811988528325}
+  - {fileID: -7044184164635292046}
+  - {fileID: -736171735883005498}
+  - {fileID: 2794658913241756514}
+  - {fileID: 2778734096119845}
+  - {fileID: 5885001387010519243}
+--- !u!114 &8755625811988528325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8ba451a1334eb0a449f606c63b8874, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  guid: fb5e40063fe3db5498d97616a5358900
+  state: 2
+  started: 0
+  pos: {x: 124, y: 389}
+  blackboard:
+    pos: {x: 0, y: 0, z: 0}
+    Player: {fileID: 0}
+  waitTime: 5

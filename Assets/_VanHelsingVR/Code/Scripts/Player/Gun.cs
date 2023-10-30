@@ -59,8 +59,6 @@ public class Gun : MonoBehaviour
     [SerializeField] private ParticleSystem muzzle;
     [SerializeField] private TextMeshPro magazineText;
 
-    private bool _firstFrameDone = false;
-
     private void Start()
     {
         magazine.Value = 0;

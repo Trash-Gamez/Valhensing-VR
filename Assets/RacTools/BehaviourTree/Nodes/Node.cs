@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RacTools.BehaviourTree
@@ -11,11 +12,13 @@ namespace RacTools.BehaviourTree
             Success
         }
 
-        public State state = State.Running;
-        public bool started = false;
-        public string guid;
+        [HideInInspector] public string guid;
+        [HideInInspector] public State state = State.Running;
+        [HideInInspector] public bool started = false;
+        [HideInInspector] public Vector2 pos;
+        [HideInInspector] public Blackboard blackboard;
         
-        public State Update()
+        public State Tick()
         {
             if (!started)
             {
@@ -23,7 +26,7 @@ namespace RacTools.BehaviourTree
                 started = true;
             }
 
-            state = OnUpdate();
+            state = OnTick();
 
             if (state == State.Failure || state == State.Success)
             {
@@ -34,8 +37,18 @@ namespace RacTools.BehaviourTree
             return state;
         }
 
+        public virtual Node Clone()
+        {
+            var node = Instantiate(this);
+            return node;
+        } 
+
         protected abstract void OnStart();
-        protected abstract State OnUpdate();
+        protected abstract State OnTick();
         protected abstract void OnStop();
+
+        public abstract void AddChild(Node child);
+        public abstract void RemoveChild(Node child);
+        public abstract List<Node> GetChildren();
     }
 }

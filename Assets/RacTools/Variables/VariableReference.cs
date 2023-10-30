@@ -32,13 +32,15 @@ namespace RacTools.Variables
                 {
                     VariableType.Constant => constant,
                     VariableType.Reference => reference.Value,
-                    VariableType.Instance => GetInstance().Value
+                    VariableType.Instance => GetInstance().Value,
+                    _ => throw new ArgumentOutOfRangeException()
                 };
             }
         }
 
         private Variable<T> GetInstance()
         {
+            Debug.Log("Se llamo la instancia");
             if (reference == null)
             {
                 Debug.LogError("There is no reference value to instantiate variable");

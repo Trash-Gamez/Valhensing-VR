@@ -13,7 +13,7 @@ namespace _VanHelsingVR.Animation
         [Title("Effects Reference")] 
         [SerializeField] private bool useEffects;
         [SerializeField, ShowIf(nameof(useEffects))] private Renderer meshRenderer;
-        [SerializeField, ShowIf(nameof(useEffects))] private ParticleSystem particleSystem;
+        [SerializeField, ShowIf(nameof(useEffects))] private new ParticleSystem particleSystem;
         [SerializeField, ShowIf(nameof(useEffects))] Animator handAnimator;
         [SerializeField , ShowIf(nameof(useEffects))] private ConditionPool canActiveEffects;
     

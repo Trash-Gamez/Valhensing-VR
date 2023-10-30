@@ -58,14 +58,15 @@ namespace _VanHelsingVR.Conditions
 
         public override string ToString()
         {
-            string conditionType = this.conditionType switch
+            var condition = this.conditionType switch
             {
                 ConditionType.Variable => $"Variable '{variable.name}'",
                 ConditionType.Literal => "Literal",
-                ConditionType.TimeCondition => "Time Condition"
+                ConditionType.TimeCondition => "Time Condition",
+                _ => throw new ArgumentOutOfRangeException()
             };
             var value = reversed ? !Value : Value;
-            return $"{conditionType}: {value}";
+            return $"{condition}: {value}";
         }
     }
 
