@@ -75,6 +75,7 @@ namespace _VanHelsingVR.Animation
             _mpb.SetFloat(_alphaID, 1);
             meshRenderer.SetPropertyBlock(_mpb);
             particleSystem.Play();
+            AudioManager.Instance.PlaySound3D("FireFist", transform.position);
             _areEffectsActive = true;
         }
 
