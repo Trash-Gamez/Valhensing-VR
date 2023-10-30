@@ -10,6 +10,7 @@ namespace _VanHelsingVR.Instructions
         {
             element.enemy.Remove(this.gameObject);
             Destroy(gameObject, timeToDestroy);
+
         }
 
         public void DestroyGameObject(GameObject gameObjectToDestroy)
