@@ -16,7 +16,7 @@ namespace _VanHelsingVR.Interaction
         protected override void OnActivated(ActivateEventArgs args)
         {
             if(++_timesTriggered >= destroyAfter)
-                Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }

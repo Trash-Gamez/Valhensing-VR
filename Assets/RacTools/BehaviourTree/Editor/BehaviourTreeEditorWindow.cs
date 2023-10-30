@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
@@ -14,7 +15,14 @@ namespace RacTools.BehaviourTree
 
         private static BehaviourTreeView _treeView;
         private static InspectorView _inspectorView;
+        private static IMGUIContainer _blackboardView;
+
+        private static SerializedObject _treeObject;
+        private static SerializedProperty _blackBoardProperty;
+
+        private static BehaviourTreeController _treeController = null;
         
+        #region Open Window Logic
         [MenuItem("Tools/RacTools/BehaviourTree Window")]
         public static void OpenWindow()
         {
@@ -35,6 +43,7 @@ namespace RacTools.BehaviourTree
             var tree = EditorUtility.InstanceIDToObject(instanceID) as BehaviourTree;
             if (tree == null) return false;
             
+            if (!AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID())) return false;
             OpenWindow();
             AddTree(tree);
 
@@ -53,13 +62,17 @@ namespace RacTools.BehaviourTree
             var nodePath = AssetDatabase.GetAssetPath(instanceID);
             var tree = AssetDatabase.LoadMainAssetAtPath(nodePath) as BehaviourTree;
             if (tree == null) return false;
-            
+
+            if (!AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID())) return false;
             OpenWindow();
             AddTree(tree);
 
             return true;
         }
+        
 
+        #endregion
+        
         public void CreateGUI()
         {
             VisualElement root = rootVisualElement;
@@ -71,8 +84,26 @@ namespace RacTools.BehaviourTree
             root.styleSheets.Add(styleSheet);
 
             _treeView = root.Q<BehaviourTreeView>();
+            _treeView.OnNodeSelectionChanged = OnNodeSelectionChanged;
+            
             _inspectorView = root.Q<InspectorView>();
+
+            BlackBoardHandler(root);
         }
+
+        private static void BlackBoardHandler(VisualElement root)
+        {
+            _blackboardView = root.Q<IMGUIContainer>();
+            _blackboardView.onGUIHandler = () =>
+            {
+                if (_treeObject == null) return;
+                _treeObject.Update();
+                EditorGUILayout.PropertyField(_blackBoardProperty);
+                _treeObject.ApplyModifiedProperties();
+            };
+        }
+
+        #region Multi Tree Selection
 
         private static void AddTree(BehaviourTree tree)
         {
@@ -90,29 +121,53 @@ namespace RacTools.BehaviourTree
 
         private static void GetTreeView(BehaviourTree tree)
         {
-            _treeView.OpenTree(tree);
+            Debug.Log("Added Tree View");
+            _treeObject = new SerializedObject(tree);
+            _blackBoardProperty = _treeObject.FindProperty("blackboard");
+            _treeView.PopulateTreeView(tree);
         }
 
         private static void AddTreeView(BehaviourTree tree)
         {
             //TODO: Add logic of the menu
-            _treeView.OpenTree(tree);
+            _treeObject = new SerializedObject(tree);
+            _blackBoardProperty = _treeObject.FindProperty("blackboard");
+            _treeView.PopulateTreeView(tree);
         }
 
+        #endregion
+        
         private void OnSelectionChange()
         {
-            var tree = Selection.activeObject as BehaviourTree;
+            var selectedGameObject = Selection.activeGameObject;
             
-            //TODO: Make this code to open a tree if there is no active tree in window
-            if (tree != null)
+            //Opens the Tree View Only if the selected gameObject is not null
+            //The selected GameObject has a BehaviourTreeController Script Attached
+            //The BehaviourTree in the BehaviourTreeController is not null
+            if (selectedGameObject 
+                && selectedGameObject.TryGetComponent<BehaviourTreeController>(out var treeController)
+                && treeController.behaviourTree != null)
             {
-                Debug.Log("Tengo un arbol seleccionado");
-                
+                GetTreeView(treeController.behaviourTree);
+                return;
             }
-            else
-            {
-                Debug.Log("No hay arbol seleccionado");
-            }
+            
+            //OtherWise Pupulate with the first tree in the _trees HashSet
+            PopulateWithFirstTree();
+        }
+
+        private void PopulateWithFirstTree()
+        {
+            var tree = _trees.FirstOrDefault();
+            if (!tree) return;
+            var canOpen = Application.isPlaying ? true : AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID());
+            
+            if(tree && canOpen) GetTreeView(tree);
+        }
+
+        private void OnNodeSelectionChanged(Node node)
+        {
+            _inspectorView.OnSelectedObject(node);
         }
     }
 }

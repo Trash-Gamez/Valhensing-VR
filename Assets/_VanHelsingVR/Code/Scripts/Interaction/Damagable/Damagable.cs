@@ -10,7 +10,8 @@ namespace _VanHelsingVR.Interaction
     {
         [SerializeField] protected DamagableHealthReference damagableHealthReference = null;
 
-        [FormerlySerializedAs("OnHitEvent")] [SerializeField] private UnityEvent OnHit;
+        public UnityEvent OnHit => onHit;
+        [FormerlySerializedAs("OnHitEvent")] [SerializeField] private UnityEvent onHit;
     
         public virtual void OnDamage()
         {

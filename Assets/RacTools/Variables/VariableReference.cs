@@ -40,6 +40,7 @@ namespace RacTools.Variables
 
         private Variable<T> GetInstance()
         {
+            Debug.Log("Se llamo la instancia");
             if (reference == null)
             {
                 Debug.LogError("There is no reference value to instantiate variable");

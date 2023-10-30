@@ -5,6 +5,7 @@ using _VanHelsingVR.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using RacTools.Variables;
+using TMPro;
 
 #if UNITY_EDITOR
 using Sirenix.OdinInspector;
@@ -56,6 +57,7 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private ParticleSystemRenderer lighting;
     [SerializeField] private ParticleSystem muzzle;
+    [SerializeField] private TextMeshPro magazineText;
 
     private void Start()
     {
@@ -104,6 +106,7 @@ public class Gun : MonoBehaviour
     {
         canReload = false;
         gunAnimator.Play("Reload");
+        AudioManager.Instance.PlaySound3D("Reload", transform.position);
         yield return new WaitForSeconds(reloadTime);
         Reload();
         canReload = true;
@@ -112,7 +115,13 @@ public class Gun : MonoBehaviour
     private void Reload()
     {
         magazine.Value += 5;
-        if (magazine.Value > magazineSize) magazine.Value = magazineSize;
+        magazineText.color = Color.white;
+        if (magazine.Value >= magazineSize)
+        {
+            AudioManager.Instance.PlaySound3D("FullReload", transform.position);
+            magazine.Value = magazineSize;
+            magazineText.color = Color.green;
+        }
     }
 
     IEnumerator Shoot()
@@ -130,21 +139,37 @@ public class Gun : MonoBehaviour
                 try
                 {
                     hit.transform.GetComponent<Damagable>().OnDamage();
+                    
                 } catch(System.Exception)
                 {
                     Debug.Log("This Object does not have Damagable Script");
                 }
+                if (hit.transform.CompareTag("Enemy"))
+                {
+                    AudioManager.Instance.PlaySound3D("FleshImpact_" + Random.Range(1, 10), hit.point);
+                }
+                else
+                {
+                    AudioManager.Instance.PlaySound3D("ConcreteImpact_0" + Random.Range(1, 8), hit.point);
+                }
             }
+            magazineText.color = Color.white;
             InstantiateVisual(direction);
             Debug.DrawRay(shootPoint.position, direction, Color.green);
+            AudioManager.Instance.PlaySound3D("Shoot_0"+Random.Range(1,8), transform.position);
             magazine.Value--;
-            if (magazine.Value < 0) magazine.Value = 0;
+            if (magazine.Value <= 0)
+            {
+                magazine.Value = 0;
+                magazineText.color = Color.red;
+            }
             yield return new WaitForSeconds(shootingSpeed);
             canShoot = true;
         }
         else
         {
             canShoot = false;
+            AudioManager.Instance.PlaySound3D("DryShoot", transform.position);
             yield return new WaitForSeconds(shootingSpeed);
             Debug.Log("Sin Munici�n");
             canShoot = true;

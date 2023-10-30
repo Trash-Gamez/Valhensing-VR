@@ -7,9 +7,10 @@ namespace _VanHelsingVR.Interaction
     public class HealOnActivate : GrabbableListener
     {
         [SerializeField] private ReactiveEvent<int> OnHealPlayer;
+        
         protected override void OnActivated(ActivateEventArgs args)
         {
-            //TODO: HEAL_PLAYER ON ACTIVE
+            //TODO: HEAL_PLAYER ON ACTIVE          
             OnHealPlayer.Raise(1);
         }
     }

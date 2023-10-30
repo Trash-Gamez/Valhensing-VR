@@ -1,14 +1,19 @@
 using System.Collections;
 using UnityEngine;
 using _VanHelsingVR.Interaction;
+using UnityEngine.Serialization;
 
 namespace _VanHelsingVR.Enemy
 {
+    
     public class Enemy : Hittable
     {
         [SerializeField] Renderer[] renderers;
 
+        [SerializeField] protected float invincibleFrames;
+
         private Coroutine _hitCoroutine = null;
+        private Coroutine _changeColorCoroutine = null;
 
         private MaterialPropertyBlock _materialRed;
         private MaterialPropertyBlock MaterialRed
@@ -43,8 +48,24 @@ namespace _VanHelsingVR.Enemy
         public override void OnDamage()
         {
             if (_hitCoroutine != null) return;
-            _hitCoroutine = StartCoroutine(ColorChange());
+            _hitCoroutine = StartCoroutine(DamageCoroutine());
+            
+            if(_changeColorCoroutine != null)
+                StopCoroutine(_changeColorCoroutine);
+            
+            _changeColorCoroutine = StartCoroutine(ColorChange());
             base.OnDamage();
+        }
+
+        IEnumerator DamageCoroutine()
+        {
+            var passedFrames = 0;
+            while (passedFrames < invincibleFrames)
+            {
+                passedFrames ++;
+                yield return null;
+            }
+            _hitCoroutine = null;
         }
 
         IEnumerator ColorChange()
@@ -54,14 +75,14 @@ namespace _VanHelsingVR.Enemy
                 renderer.SetPropertyBlock(_materialRed);
             }
             
-            yield return new WaitForSeconds(.45f);
+            yield return new WaitForSeconds(.15f);
             
             foreach (Renderer renderer in renderers)
             {
                 renderer.SetPropertyBlock(_materialWhite);
             }
 
-            _hitCoroutine = null;
+            _changeColorCoroutine = null;
         }
 
    
