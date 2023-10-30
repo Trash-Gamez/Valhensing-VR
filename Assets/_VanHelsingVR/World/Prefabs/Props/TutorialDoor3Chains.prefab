@@ -2507,10 +2507,11 @@ GameObject:
   - component: {fileID: 754198057}
   - component: {fileID: 754198062}
   - component: {fileID: 754198061}
+  - component: {fileID: 429464779232344993}
   - component: {fileID: 754198060}
   - component: {fileID: 754198059}
   - component: {fileID: 754198058}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2755,6 +2756,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 429464779232344993}
+        m_TargetAssemblyTypeName: Play3DSound, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Lock
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &429464779232344993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754198056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7137695250dfd44aa988f0906046e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &754198060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5020,9 +5045,10 @@ GameObject:
   - component: {fileID: 1999026226}
   - component: {fileID: 1999026225}
   - component: {fileID: 1999026224}
+  - component: {fileID: 3066193500426448616}
   - component: {fileID: 1999026223}
   - component: {fileID: 1999026231}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5250,7 +5276,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   damagableHealthReference:
-    <HealthSystem>k__BackingField: {fileID: 0}
+    <HealthSystem>k__BackingField: {fileID: 6664150272390601209}
   OnHit:
     m_PersistentCalls:
       m_Calls:
@@ -5267,6 +5293,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3066193500426448616}
+        m_TargetAssemblyTypeName: Play3DSound, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Lock
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1999026224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5277,6 +5315,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5ee736803124634580b24b37eb1e52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3066193500426448616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999026221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7137695250dfd44aa988f0906046e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &1999026223
@@ -8700,6 +8750,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: WayPoint, Assembly-CSharp
+        m_MethodName: Continue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6879098178302390372
 GameObject:
   m_ObjectHideFlags: 0
@@ -8714,10 +8776,11 @@ GameObject:
   - component: {fileID: 4278190462862618054}
   - component: {fileID: 4278190462862618053}
   - component: {fileID: 4278190462862618073}
+  - component: {fileID: 7579447528577862019}
   - component: {fileID: 4278190462862618072}
   - component: {fileID: 4557972494478312512}
   - component: {fileID: 2002087223}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8962,6 +9025,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7579447528577862019}
+        m_TargetAssemblyTypeName: Play3DSound, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Lock
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7579447528577862019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6879098178302390372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7137695250dfd44aa988f0906046e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4278190462862618072
 MonoBehaviour:
   m_ObjectHideFlags: 0

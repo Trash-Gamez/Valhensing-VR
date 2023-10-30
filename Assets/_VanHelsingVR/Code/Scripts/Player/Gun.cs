@@ -141,9 +141,18 @@ public class Gun : MonoBehaviour
                 try
                 {
                     hit.transform.GetComponent<Damagable>().OnDamage();
+                    
                 } catch(System.Exception)
                 {
                     Debug.Log("This Object does not have Damagable Script");
+                }
+                if (hit.transform.CompareTag("Enemy"))
+                {
+                    AudioManager.Instance.PlaySound3D("FleshImpact_" + Random.Range(1, 10), hit.point);
+                }
+                else
+                {
+                    AudioManager.Instance.PlaySound3D("ConcreteImpact_0" + Random.Range(1, 8), hit.point);
                 }
             }
             magazineText.color = Color.white;
