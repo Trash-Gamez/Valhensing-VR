@@ -5,7 +5,7 @@ namespace _VanHelsingVR.Instructions
     [DefaultExecutionOrder(1)]
     public class DestroyInstruction : MonoBehaviour
     {
-        public RoomSpawner element;
+        [SerializeField] RoomSpawner element;
         public void DestroySelf(float timeToDestroy)
         {
             element.enemy.Remove(this.gameObject);
