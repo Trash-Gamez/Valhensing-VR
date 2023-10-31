@@ -5,9 +5,10 @@ using UnityEngine;
 public class RoomSpawner : MonoBehaviour
 {
     public Collider[] door;
-    public GameObject[] enemy;
+    public List <GameObject> enemy;
     
     public Animator[] shortDoor;
+    public int enemies;
     
     void Start()
     {
@@ -22,7 +23,9 @@ public class RoomSpawner : MonoBehaviour
     
     void Update()
     {
-        if(enemy.Length <= 0){
+        enemies = enemy.Count;
+
+        if(enemies <= 0){
             foreach(Animator doors in shortDoor){
                 doors.Play("Open");
             }
