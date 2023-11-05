@@ -8,7 +8,7 @@ namespace _VanHelsingVR.Instructions
         [SerializeField] RoomSpawner element;
         public void DestroySelf(float timeToDestroy)
         {
-            element.enemy.Remove(this.gameObject);
+            if(element!=null) element.enemy.Remove(this.gameObject);
             Destroy(gameObject, timeToDestroy);
 
         }
