@@ -18,7 +18,6 @@ namespace RacTools.Variables
     [Serializable]
     public class VariableReference<T> : VariableReference
     {
-        
         [SerializeField]
         private Variable<T> reference = null;
         
@@ -26,7 +25,6 @@ namespace RacTools.Variables
         private T constant;
 
         private Variable<T> _instance = null;
-        
         
         public T Value
         {
