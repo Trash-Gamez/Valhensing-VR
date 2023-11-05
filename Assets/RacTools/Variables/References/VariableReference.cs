@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace RacTools.Variables
 {
-    [Serializable]
-    public class VariableReference<T>
+    public abstract class VariableReference
     {
         public enum VariableType
         {
@@ -13,7 +12,12 @@ namespace RacTools.Variables
             Instance
         }
         
-        [SerializeField] private VariableType variableType;
+        [SerializeField] protected VariableType variableType;
+    }
+    
+    [Serializable]
+    public class VariableReference<T> : VariableReference
+    {
         
         [SerializeField]
         private Variable<T> reference = null;

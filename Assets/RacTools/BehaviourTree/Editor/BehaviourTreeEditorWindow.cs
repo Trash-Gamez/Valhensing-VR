@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.Callbacks;
-using RacTools.Views;
+using RacTools.Editor.Views;
 
 namespace RacTools.BehaviourTree
 {
