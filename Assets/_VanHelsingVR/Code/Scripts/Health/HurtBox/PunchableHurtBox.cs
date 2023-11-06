@@ -2,33 +2,29 @@ using UnityEngine;
 using _VanHelsingVR.Interaction;
 
 using RacTools.Variables;
+using UnityEngine.Events;
 
 namespace _VanHelsingVR.Health
 {
+    
     public abstract class PunchableHurtBox : Hurtbox
     {
         [SerializeField] protected VariableReference<int> speedToBeHit;
-        [SerializeField] protected VariableReference<bool> justPunch;
-        
-        //TODO: Saber diferencia entre punch y un hit
-        /*
-        protected override bool OnBeforeHit(Hitbox hitbox)
+        [SerializeField] private UnityEvent onPunch;
+
+        protected override bool OnBeforePunch(PunchableHitbox punchable)
         {
-            var interactor = hitbox.transform;
-            
-            if (!interactor.TryGetComponent(out XRLeftHandInteractor hand)) return !justPunch.Value;
-            
-            if (!hand.CanPunch) return;
-            
-            if (!interactor.TryGetComponent(out SpeedoMeter speed)) return;
+            var interactor = punchable.transform;
+           
+            if (!interactor.TryGetComponent(out SpeedoMeter speed)) return false;
 
-            //Know how many damage is done
-
-            if (speed.Velocity.sqrMagnitude >= speedToBeHit - Mathf.Epsilon)
+            if (speed.Velocity.sqrMagnitude >= speedToBeHit.Value - Mathf.Epsilon)
             {
-                //OnDamage();
+                onPunch?.Invoke();
+                return true;
             }
+
+            return false;
         }
-        */
     }
 }

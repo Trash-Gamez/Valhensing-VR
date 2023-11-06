@@ -1,21 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using _VanHelsingVR.Conditions;
+using Sirenix.OdinInspector;
 
 namespace _VanHelsingVR.Health
 {
     [RequireComponent(typeof(Collider))]
     public class Hurtbox : MonoBehaviour
     {
-        [SerializeField] private Collider hurtBoxCollider;
+        [SerializeField] protected Collider hurtBoxCollider;
 
-        [SerializeField] private LayerMask hurtLayer;
-        [SerializeField] private DamagableHealthReference healthReference;
-        [SerializeField] private DamageTeam damageTeam;
+        [SerializeField] protected LayerMask hurtLayer;
+        [SerializeField] protected DamagableHealthReference healthReference;
+        
+        [field: SerializeField] public DamageTeam DamageTeam { get; private set; }
+        [SerializeField] protected ConditionPool friendlyFire;
+
+        [Title("Inmunity")] 
+        [SerializeField] private InmunityType inmunityType;
+        [SerializeField, Min(0)] private int inmunityFrames;
+        private static readonly HashSet<Transform> _hurtBoxesInmune = new HashSet<Transform>();
         
         [Space]
-        [SerializeField] private UnityEvent<int> onHit;
-        
+        [SerializeField] protected UnityEvent<int> onHit;
 
+        private enum InmunityType
+        {
+            HurtBox, 
+            All
+        }
+        
         protected virtual void Awake()
         {
             hurtBoxCollider ??= GetComponent<Collider>();
@@ -28,9 +44,11 @@ namespace _VanHelsingVR.Health
         /// <returns>Si procede el golpe o no</returns>
         protected virtual bool OnBeforeHit(Hitbox _) => true;
 
-        private void OnHit(Hitbox hitbox)
+        protected void OnHit(Hitbox hitbox)
         {
+            if(_invulneravilityCor != null || _hurtBoxesInmune.Contains(transform.parent)) return;
             if (hitbox == null) return;
+            if (hitbox.DamageTeam == DamageTeam && !friendlyFire) return;
             
             if (!OnBeforeHit(hitbox)) return;
             
@@ -39,9 +57,11 @@ namespace _VanHelsingVR.Health
             
             if(healthReference != null)
                 healthReference.HealthSystem.Damage(damageDealed);
-            
+
             onHit?.Invoke(damageDealed);
+            _invulneravilityCor = StartCoroutine(InvulnerabilityCor());
         }
+
         
         /// <summary>
         /// Este metodo sucede justo antes de Sucede un HitScan
@@ -50,7 +70,7 @@ namespace _VanHelsingVR.Health
         /// <returns>Si procede el rayo o no</returns>
         protected virtual bool OnBeforeHitScan() => true;
 
-        public virtual void OnHitScan(int damaged = 1)
+        public void OnHitScan(int damaged = 1)
         {
             if (!OnBeforeHitScan()) return;
             
@@ -60,6 +80,15 @@ namespace _VanHelsingVR.Health
             onHit?.Invoke(damaged);
         }
 
+        protected virtual bool OnBeforePunch(PunchableHitbox _) => true;
+
+        protected virtual void OnPunch(PunchableHitbox punchable)
+        {
+            if (!OnBeforePunch(punchable)) return;
+            
+            OnHit(punchable);
+        }
+
         protected void OnForcedHit(int damageDealed = 1)
         {
             if (healthReference == null) return;
@@ -67,6 +96,31 @@ namespace _VanHelsingVR.Health
             healthReference.HealthSystem.Damage(damageDealed);
         }
 
+        private Coroutine _invulneravilityCor;
+        protected IEnumerator InvulnerabilityCor()
+        {
+            if (inmunityFrames == 0)
+            {
+                _invulneravilityCor = null;
+                yield break;
+            }
+
+            if (inmunityType == InmunityType.All)
+            {
+                _hurtBoxesInmune.Add(transform.parent);
+            }
+            else
+            {
+                for (int i = 1; i < inmunityFrames; i++)
+                {
+                    yield return new WaitForFixedUpdate();
+                }
+            }
+
+            _hurtBoxesInmune.Remove(transform.parent);
+            _invulneravilityCor = null;
+        }
+        
         protected virtual void OnTriggerEnter(Collider other)
         {
             var otherLayer = other.gameObject.layer;
@@ -82,7 +136,16 @@ namespace _VanHelsingVR.Health
 
             if (!other.TryGetComponent(out Hitbox hitBox)) return;
             
-            OnHit(hitBox);
+            //Selecciona si es punch o hit
+            switch (hitBox)
+            {
+                case PunchableHitbox punchable:
+                    OnPunch(punchable);
+                    break;
+                case Hitbox hitbox:
+                    OnHit(hitbox);
+                    break;
+            }
         }
 
         #region Editor Methods

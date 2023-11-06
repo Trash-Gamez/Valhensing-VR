@@ -18,12 +18,21 @@ namespace _VanHelsingVR.Conditions
         {
             get
             {
-                if (!conditions.Any())
+                if (conditions == null || conditions.Count <= 0)
                 {
                     return true;
                 }
-            
-                var canDo = conditions.All(variable => variable.Value);
+
+                var canDo = true;
+                
+                //Solo si todas las condiciones se cumplen
+                foreach (var condition in conditions)
+                {
+                    if(condition.Value) continue;
+                    canDo = false;
+                    break;
+                }
+                
                 return canDo;
             }
         }

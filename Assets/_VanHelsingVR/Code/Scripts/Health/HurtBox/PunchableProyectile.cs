@@ -15,10 +15,5 @@ namespace _VanHelsingVR.Health
             var rot = Quaternion.LookRotation(dir);
             transform.rotation = rot;
         }
-
-        private void OnCollisionEnter(Collision other)
-        {
-            Destroy(gameObject);
-        }
     }
 }
