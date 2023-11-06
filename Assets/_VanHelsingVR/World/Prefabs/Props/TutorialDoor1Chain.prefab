@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 1316356064416343253}
   - component: {fileID: 1805787806795562608}
   - component: {fileID: 1805787806795562609}
+  - component: {fileID: 3255486381187891579}
   m_Layer: 0
   m_Name: TutorialDoor1Chain
   m_TagString: Untagged
@@ -239,7 +240,7 @@ MonoBehaviour:
   maxHealth:
     variableType: 0
     reference: {fileID: 0}
-    constant: 3
+    constant: 1
   canBeDamaged:
     conditions: []
   canBeHealed:
@@ -265,18 +266,30 @@ MonoBehaviour:
           m_StringArgument: Open
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlatformController, Assembly-CSharp
-        m_MethodName: RestartMovement
-        m_Mode: 1
+      - m_Target: {fileID: 3255486381187891579}
+        m_TargetAssemblyTypeName: Play3DSound, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: BigDoor
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3255486381187891579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805787806795562607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7137695250dfd44aa988f0906046e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4386649476643257813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,7 +2832,8 @@ GameObject:
   - component: {fileID: 5004804497424998328}
   - component: {fileID: 5004804497424998311}
   - component: {fileID: 5004804497424998335}
-  m_Layer: 11
+  - component: {fileID: 893526506}
+  m_Layer: 6
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3047,8 +3061,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   damagableHealthReference:
-    <HealthSystem>k__BackingField: {fileID: 0}
-  OnHit:
+    <HealthSystem>k__BackingField: {fileID: 1805787806795562609}
+  onHit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5004804497424998328}
@@ -3064,6 +3078,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 893526506}
+        m_TargetAssemblyTypeName: Play3DSound, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Lock
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5004804497424998328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3076,6 +3102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ee736803124634580b24b37eb1e52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  element: {fileID: 0}
 --- !u!135 &5004804497424998311
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3102,6 +3129,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.625, y: 0.1524193, z: 0.7733126}
   m_Center: {x: 0, y: -0.000000003725291, z: -0.10540626}
+--- !u!114 &893526506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004804497424998309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7137695250dfd44aa988f0906046e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6008633727235233980
 GameObject:
   m_ObjectHideFlags: 0

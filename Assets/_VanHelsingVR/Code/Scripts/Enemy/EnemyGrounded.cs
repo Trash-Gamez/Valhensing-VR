@@ -11,8 +11,10 @@ namespace _VanHelsingVR.Enemy
     [RequireComponent(typeof(Rigidbody))]
     public class EnemyGrounded : Enemy
     {
+        
         [Title("IA config")] [Header("Behaviour Setting")] [SerializeField]
         private float maxForce;
+        public RoomSpawner list;
 
         [Header("Seek")] [SerializeField] private VariableReference<Transform> target;
         [SerializeField] private float seekSpeed;
@@ -244,5 +246,10 @@ namespace _VanHelsingVR.Enemy
             if (enemies != null)
                 enemies.RemoveFromSet(transform);
         }
+        
+        public void GetOff(){
+            list.enemy.Remove(gameObject);
+        }
+        
     }
 }
