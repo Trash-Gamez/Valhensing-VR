@@ -165,14 +165,6 @@ MonoBehaviour:
       <FloatValue>k__BackingField: 1
       <IntValue>k__BackingField: 1
       <BoolValue>k__BackingField: 1
-  - dataType: 1
-    attribute:
-      <Vector4Value>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
-      <Vector3Value>k__BackingField: {x: 0, y: 0, z: 0}
-      <Vector2Value>k__BackingField: {x: 0, y: 0}
-      <FloatValue>k__BackingField: 0
-      <IntValue>k__BackingField: 0
-      <BoolValue>k__BackingField: 0
   destroyAfterPopulate: 1
 --- !u!114 &69820795
 MonoBehaviour:
@@ -583,12 +575,16 @@ MonoBehaviour:
   maxHealth:
     variableType: 0
     reference: {fileID: 0}
-    constant: 2
+    constant: 3
   currentHealth:
     variableType: 0
     reference: {fileID: 0}
+    constant: 5
+  maxOverHeal:
+    variableType: 0
+    reference: {fileID: 0}
     constant: 0
-  overHealValue:
+  currentOverHeal:
     variableType: 0
     reference: {fileID: 0}
     constant: 0
@@ -601,7 +597,10 @@ MonoBehaviour:
   onDamage:
     m_PersistentCalls:
       m_Calls: []
-  onRecoverHealth:
+  onHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  onOverHeal:
     m_PersistentCalls:
       m_Calls: []
   onDead:
@@ -641,7 +640,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469357717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.13, y: 1.3308816, z: -1.4}
+  m_LocalPosition: {x: -1.66, y: 1.3308816, z: -0.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
