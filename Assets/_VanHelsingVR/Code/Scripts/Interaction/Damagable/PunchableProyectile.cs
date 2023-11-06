@@ -3,7 +3,7 @@ using _VanHelsingVR.Interaction;
 using UnityEngine;
 
 
-public class HittableProyectile : Hittable
+public class PunchableProyectile : Punchable
 {
     public Transform target;
     [SerializeField] private float speed;

@@ -1,5 +1,6 @@
 
 using System.Collections;
+using _VanHelsingVR.Health;
 using _VanHelsingVR.Interaction;
 using _VanHelsingVR.Utilities;
 using UnityEngine;
@@ -63,12 +64,10 @@ public class Gun : MonoBehaviour
     {
         magazine.Value = 0;
         previousPos = transform.localPosition;
-        
     }
+    
     void Update()
     {
-       
-        
         GetInput();
        
         speedY = ((transform.localPosition.y - previousPos.y)) / Time.deltaTime;
@@ -87,7 +86,7 @@ public class Gun : MonoBehaviour
         Vfx();
     }
     
-   private void Vfx()
+    private void Vfx()
     {
         float alpha = UtilitieExtensions.Map(magazine.Value, new Range(magazineSize, 0), Range.OneToZero);
         lighting.material.SetFloat("_Alpha", alpha);
@@ -138,22 +137,26 @@ public class Gun : MonoBehaviour
             {
                 try
                 {
-                    hit.transform.GetComponent<Damagable>().OnDamage();
+                    hit.transform.GetComponent<Hurtbox>().OnHitScan();
                 } catch(System.Exception)
                 {
                     Debug.Log("This Object does not have Damagable Script");
                 }
             }
+            
             magazineText.color = Color.white;
             InstantiateVisual(direction);
+            
             Debug.DrawRay(shootPoint.position, direction, Color.green);
             AudioManager.Instance.PlaySound3D("Shoot_0"+Random.Range(1,8), transform.position);
+            
             magazine.Value--;
             if (magazine.Value <= 0)
             {
                 magazine.Value = 0;
                 magazineText.color = Color.red;
             }
+            
             yield return new WaitForSeconds(shootingSpeed);
             canShoot = true;
         }
@@ -161,7 +164,9 @@ public class Gun : MonoBehaviour
         {
             canShoot = false;
             AudioManager.Instance.PlaySound3D("DryShoot", transform.position);
+            
             yield return new WaitForSeconds(shootingSpeed);
+            
             Debug.Log("Sin Munici�n");
             canShoot = true;
         }

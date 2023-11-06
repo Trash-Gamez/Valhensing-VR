@@ -8,6 +8,12 @@ namespace RacTools.Editor
         private float _maxPropertyHeight = 0;
         protected float MaxPropertyHeight = 0;
         
+        //TODO: Saber cuando inicia el drawer
+        protected virtual void InitDrawer(Rect position, SerializedProperty property, GUIContent label)
+        {
+            _maxPropertyHeight = 0;
+        }
+        
         public override void OnGUI(Rect position, SerializedProperty property,
             GUIContent label)
         {
@@ -36,24 +42,25 @@ namespace RacTools.Editor
         {
             return DrawLabel(position, content, EditorStyles.label);
         }
+        
+        protected Rect DrawLabel(Rect position, string text, GUIStyle style)
+        {
+            return DrawLabel(position, new GUIContent(text), style);
+        }
+        
         protected Rect DrawLabel(Rect position, GUIContent content, GUIStyle style)
         {
             var labelPos = new Rect(position);
             labelPos.y += _maxPropertyHeight;
             
-            var height = style.CalcHeight(content, position.width);
+            var height = style.CalcHeight(content, position.width) + 2.0f;
             labelPos.height = height;
             _maxPropertyHeight += height;
             
             EditorGUI.LabelField(labelPos, content, style);
             return labelPos;
         }
-
-        protected virtual void InitDrawer(Rect position, SerializedProperty property, GUIContent label)
-        {
-            _maxPropertyHeight = 0;
-        }
-
+        
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             return _maxPropertyHeight + MaxPropertyHeight;

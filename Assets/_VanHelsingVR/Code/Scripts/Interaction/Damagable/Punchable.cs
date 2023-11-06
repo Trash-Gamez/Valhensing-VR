@@ -3,7 +3,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace _VanHelsingVR.Interaction
 {
-    public abstract class Hittable : Damagable
+    public abstract class Punchable : XRSimpleInteractable
     {
         [SerializeField] protected float speedToBeHit = 5;
 
@@ -21,7 +21,7 @@ namespace _VanHelsingVR.Interaction
 
             if (speed.Velocity.sqrMagnitude >= speedToBeHit - Mathf.Epsilon)
             {
-                OnDamage();
+                //OnDamage();
             }
 
             base.OnHoverEntered(args);

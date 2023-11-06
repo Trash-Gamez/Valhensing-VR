@@ -5,6 +5,7 @@ using RacTools.Editor;
 
 namespace RacTools.Variables.Editor
 {
+    //Esta clase solo es para dibujar las referencias 
     [CustomPropertyDrawer(typeof(VariableReference<>))]
     public class VariableReferenceDrawer : RacPropertyDrawer
     {
@@ -12,11 +13,13 @@ namespace RacTools.Variables.Editor
         {
             base.OnGUI(position, property, label);
             
-            //PROPERTIES
+            //Obtenemos la propiedad del tipo de variable en la clase "VariableReference"
             var variableTypeProp = property.FindPropertyRelative("variableType");
-
+            
+            //La tranformamos a el enumarador que define el tipo de variable
             var variableType =  (VariableReference.VariableType)variableTypeProp.enumValueIndex;
-
+            
+            //Se obtiene la propiedad dependiendo el tipo de variable que sea el actual
             var serializedPropertyVariable = variableType switch
             {
                 VariableReference.VariableType.Constant => property.FindPropertyRelative("constant"),
@@ -24,23 +27,21 @@ namespace RacTools.Variables.Editor
                 VariableReference.VariableType.Instance => property.FindPropertyRelative("reference"),
                 _ => throw new ArgumentOutOfRangeException()
             };
-
+            
+            //Se define un estado
             var headerStyle = new GUIStyle(EditorStyles.label)
             {
-                fontSize = 18,
+                fontSize = 16,
                 fontStyle = FontStyle.Bold,
                 alignment = TextAnchor.UpperCenter
             };
-
-
-            //headerStyle.font.material.color = Color.green;
+            
             //DRAWER
             EditorGUI.BeginProperty(position, label, property);
-            DrawLabel(position, label, headerStyle);
+            DrawLabel(position, label.text + " Reference", headerStyle);
             DrawProperty(position, variableTypeProp);
             DrawProperty(position, serializedPropertyVariable);
-            EditorGUI.EndProperty(); 
-            
+            EditorGUI.EndProperty();
         }
     }
 }
