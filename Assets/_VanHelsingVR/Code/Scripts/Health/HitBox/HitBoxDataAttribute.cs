@@ -11,7 +11,7 @@ namespace _VanHelsingVR.Health
     }
     
     [System.Serializable]
-    public struct HitBoxData
+    public struct HitBoxDataAttribute
     {
         public Vector4 Vector4Value { get; set; }
         public Vector3 Vector3Value { get; set; } 

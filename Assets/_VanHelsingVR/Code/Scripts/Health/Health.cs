@@ -16,36 +16,32 @@ namespace _VanHelsingVR.Health
         [Title("Health Config")] [field: SerializeField]
         private VariableReference<int> maxHealth;
 
-        [Space] [SerializeField] private ConditionPool canBeDamaged;
+        public int CurrentHealth => currentHealth.Value;
+        [SerializeField] private VariableReference<int> currentHealth;
+
+        public int OverHealValue => overHealValue.Value;
+        [SerializeField] private VariableReference<int> overHealValue;
+        
+
+        [Space] 
+        [SerializeField] private ConditionPool canBeDamaged;
         [SerializeField] private ConditionPool canBeHealed;
+        [SerializeField] private ConditionPool canOverHeal;
         
         [SerializeField] private UnityEvent onDamage;
         [SerializeField] private UnityEvent onRecoverHealth;
         [SerializeField] private UnityEvent onDead;
-        [ShowInInspector]public int health{get; private set;}
+
 
         private void Start()
         {
             SetInitialHealth();
+            
         }
 
         protected virtual void SetInitialHealth()
         {
-            health = maxHealth.Value;
-        }
-        
-        /// <summary>
-        /// Metodo usado para añadir vida, dependiendo "addedLife".
-        /// Si "addedLife" es menor o igual a 0, no se curará nada
-        /// </summary>
-        /// <param name="addedLife">La vida que se añadira a este sistema de vida</param>
-        public void Heal(int addedLife)
-        {
-            if (addedLife <= 0) return;
-            
-            OnHeal(addedLife);
-            
-            health = Mathf.Clamp(addedLife + health,0, maxHealth.Value);
+            currentHealth.Value = maxHealth.Value;
         }
         
         /// <summary>
@@ -55,11 +51,30 @@ namespace _VanHelsingVR.Health
         /// <param name="removedLife">La vida que se removerá de este sistema de vida</param>
         public void Damage(int removedLife)
         {
-            if (removedLife <= 0) return;
+            if (removedLife == 0) return;
+            if (!canBeDamaged) return;
+            
+            removedLife = Mathf.Abs(removedLife);
             
             OnDamage(removedLife);
             
-            health = Mathf.Clamp(removedLife - health,0, maxHealth.Value);
+            currentHealth.Value = Mathf.Clamp(currentHealth.Value - removedLife,0, maxHealth.Value);
+        }
+        
+        /// <summary>
+        /// Metodo usado para añadir vida, dependiendo "addedLife".
+        /// Si "addedLife" es menor o igual a 0, no se curará nada
+        /// </summary>
+        /// <param name="addedLife">La vida que se añadira a este sistema de vida</param>
+        public void Heal(int addedLife)
+        {
+            if (addedLife == 0) return;
+            if (!canBeHealed) return;
+            
+            addedLife = Mathf.Abs(addedLife);
+            
+            OnHeal(addedLife);
+            currentHealth.Value = Mathf.Clamp( currentHealth.Value + addedLife ,0, maxHealth.Value);
         }
         
         /// <summary>
@@ -69,9 +84,11 @@ namespace _VanHelsingVR.Health
         /// <param name="damagedValue">El valor de daño que recibe el jugador</param>
         protected virtual void OnDamage(int damagedValue)
         {
-            if (damagedValue <= 0) return;
+            if (damagedValue == 0) return;
             
-            var damaged = health - damagedValue;
+            damagedValue = Mathf.Abs(damagedValue);
+            
+            var damaged = currentHealth.Value - damagedValue;
 
             if (damaged <= 0)
             {
@@ -79,7 +96,7 @@ namespace _VanHelsingVR.Health
                 return;
             }
 
-            health = damaged;
+            currentHealth.Value = damaged;
         }
         
         /// <summary>
@@ -89,10 +106,17 @@ namespace _VanHelsingVR.Health
         /// <param name="damagedValue">El valor de daño que recibe el jugador</param>
         protected virtual void OnHeal(int healValue)
         {
-            if (healValue <= 0) return;
+            if (healValue == 0) return;
+
+            healValue = Mathf.Abs(healValue);
             
-            health += healValue;
+            currentHealth.Value += healValue;
             onRecoverHealth.Invoke();
+        }
+
+        protected virtual void OnOverHeal()
+        {
+            
         }
         
         /// <summary>
@@ -101,7 +125,7 @@ namespace _VanHelsingVR.Health
         /// </summary>
         protected virtual void OnDead()
         {
-            health = 0;
+            currentHealth.Value = 0;
             onDead.Invoke();
         }
 
@@ -145,5 +169,6 @@ namespace _VanHelsingVR.Health
         #endif
 
         #endregion
+
     }
 }

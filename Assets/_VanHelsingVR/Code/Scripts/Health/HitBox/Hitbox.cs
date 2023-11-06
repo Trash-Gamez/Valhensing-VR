@@ -9,16 +9,23 @@ namespace _VanHelsingVR.Health
     public class Hitbox : MonoBehaviour
     {
         [SerializeField] private Collider hitBoxCollider;
-
         [SerializeField] private Rigidbody rigidbody;
 
-        public HitBoxDataContainer Data => _data;
-        private HitBoxDataContainer _data = default;
+        [SerializeField] private DamageTeam damageTeam;
 
-        public void PopulateData(HitBoxDataContainer container)
+        public HitBoxData Data => _data;
+        private HitBoxData _data = default;
+
+        private void Awake()
         {
-            _data = container;
+            //Obtiene los componentes solo si son nulos, si no son exactamente iguales
+            hitBoxCollider ??= GetComponent<Collider>();
+            rigidbody ??= GetComponent<Rigidbody>();
         }
+        
+        public void PopulateData(HitBoxData container) => _data = container;
+        
+        
         
         #if UNITY_EDITOR
         private void OnValidate()
