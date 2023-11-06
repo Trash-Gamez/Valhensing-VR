@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace _VanHelsingVR.Health
@@ -13,12 +14,12 @@ namespace _VanHelsingVR.Health
     [System.Serializable]
     public struct HitBoxDataAttribute
     {
-        public Vector4 Vector4Value { get; set; }
-        public Vector3 Vector3Value { get; set; } 
-        public Vector2 Vector2Value { get; set; } 
-        public float FloatValue { get; set; } 
-        public int IntValue { get; set; }
-        public bool BoolValue { get; set; }
+        [field: SerializeField] public Vector4 Vector4Value { get; set; }
+        [field: SerializeField] public Vector3 Vector3Value { get; set; } 
+        [field: SerializeField] public Vector2 Vector2Value { get; set; } 
+        [field: SerializeField] public float FloatValue { get; set; } 
+        [field: SerializeField] public int IntValue { get; set; }
+        [field: SerializeField] public bool BoolValue { get; set; }
         
     }
 }

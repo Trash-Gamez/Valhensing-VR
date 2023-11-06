@@ -13,10 +13,10 @@ namespace _VanHelsingVR.Health
         [SerializeField] protected Collider hurtBoxCollider;
 
         [SerializeField] protected LayerMask hurtLayer;
-        [SerializeField] protected DamagableHealthReference healthReference;
-        
         [field: SerializeField] public DamageTeam DamageTeam { get; private set; }
         [SerializeField] protected ConditionPool friendlyFire;
+        
+        [SerializeField] protected DamagableHealthReference healthReference;
 
         [Title("Inmunity")] 
         [SerializeField] private InmunityType inmunityType;
@@ -53,7 +53,7 @@ namespace _VanHelsingVR.Health
             if (!OnBeforeHit(hitbox)) return;
             
             //Se obtiene el valor Damage y su tipo de dato entero, para saber cuanto daño se realizó
-            var damageDealed = hitbox.Data.GetHitBoxData(HitBoxDataType.Damage).IntValue;
+            var damageDealed = hitbox.DataContainer.GetHitBoxData(HitBoxDataType.Damage).IntValue;
             
             if(healthReference != null)
                 healthReference.HealthSystem.Damage(damageDealed);
@@ -132,7 +132,7 @@ namespace _VanHelsingVR.Health
             if (hurtLayer != (hurtLayer | 1 << otherLayer)) return;
             
             //Success!!!
-            Debug.Log(string.Format("La layer *{0}* del objeto *{1}* es compatible con la layer *{2}* del objeto *{3}*",  hurtLayer, name, otherLayer, other.gameObject.name));
+            Debug.Log(string.Format("La layer *{0}* del objeto *{1}* es compatible con la layer *{2}* del objeto *{3}*",  hurtLayer.ToString(), name, otherLayer, other.gameObject.name));
 
             if (!other.TryGetComponent(out Hitbox hitBox)) return;
             

@@ -21,6 +21,7 @@ namespace _VanHelsingVR.Conditions
         [SerializeField]
         private ConditionType conditionType;
 
+        [HideIf(nameof(conditionType), ConditionType.Constant)]
         [SerializeField] private bool reversed;
         
         [ShowIf(nameof(conditionType), ConditionType.Constant)]
@@ -47,6 +48,9 @@ namespace _VanHelsingVR.Conditions
                     _ => false
                 };
 
+                //Si la condición es constante, no se hace el reversed
+                if (conditionType == ConditionType.Constant) return value;
+                
                 return reversed ? !value : value;
             }
         }

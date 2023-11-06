@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace _VanHelsingVR.Health
 {
@@ -9,23 +10,33 @@ namespace _VanHelsingVR.Health
     public class Hitbox : MonoBehaviour
     {
         [SerializeField] private Collider hitBoxCollider;
-        [SerializeField] private Rigidbody rigidbody;
+        [SerializeField] private Rigidbody rb;
 
         [field: SerializeField] public DamageTeam DamageTeam { get; private set; }
 
         [SerializeField] private UnityEvent onHit;
 
-        public HitBoxData Data => _data;
-        private HitBoxData _data = default;
+        public HitBoxData DataContainer => _dataContainer;
+        private HitBoxData _dataContainer = default;
 
         private void Awake()
         {
-            //Obtiene los componentes solo si son nulos, si no son exactamente iguales
-            hitBoxCollider ??= GetComponent<Collider>();
-            rigidbody ??= GetComponent<Rigidbody>();
+            GetComponents();
         }
-        
-        public void PopulateData(HitBoxData container) => _data = container;
+
+        //Obtiene los componentes solo si son nulos, si no son exactamente iguales
+        private void GetComponents()
+        {
+            hitBoxCollider ??= GetComponent<Collider>();
+            rb ??= GetComponent<Rigidbody>();
+        }
+
+        public void PopulateData(HitBoxData container) => _dataContainer = container;
+
+        public void AddHitBoxData(HitBoxDataType dataType, HitBoxDataAttribute attribute)
+        {
+            _dataContainer.SetHitBoxData(dataType, attribute);
+        }
 
         public void OnHit(Hurtbox hittedHurtBox)
         {
@@ -37,8 +48,7 @@ namespace _VanHelsingVR.Health
         #if UNITY_EDITOR
         private void OnValidate()
         {
-            // Si no existe el componente collider, lo obtiene cada vez que se validen las propiedades del gameobject
-            hitBoxCollider ??= GetComponent<Collider>();
+            GetComponents();
         }
         #endif
     }

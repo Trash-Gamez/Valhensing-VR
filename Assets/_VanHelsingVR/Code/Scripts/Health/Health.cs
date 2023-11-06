@@ -28,6 +28,7 @@ namespace _VanHelsingVR.Health
         [SerializeField] private ConditionPool canBeHealed;
         [SerializeField] private ConditionPool canOverHeal;
         
+        [Space]
         [SerializeField] private UnityEvent onDamage;
         [SerializeField] private UnityEvent onRecoverHealth;
         [SerializeField] private UnityEvent onDead;
@@ -58,7 +59,7 @@ namespace _VanHelsingVR.Health
             
             OnDamage(removedLife);
             
-            currentHealth.Value = Mathf.Clamp(currentHealth.Value - removedLife,0, maxHealth.Value);
+            currentHealth.Value = Mathf.Clamp(currentHealth.Value,0, maxHealth.Value);
         }
         
         /// <summary>
@@ -74,7 +75,7 @@ namespace _VanHelsingVR.Health
             addedLife = Mathf.Abs(addedLife);
             
             OnHeal(addedLife);
-            currentHealth.Value = Mathf.Clamp( currentHealth.Value + addedLife ,0, maxHealth.Value);
+            currentHealth.Value = Mathf.Clamp( currentHealth.Value ,0, maxHealth.Value);
         }
         
         /// <summary>
