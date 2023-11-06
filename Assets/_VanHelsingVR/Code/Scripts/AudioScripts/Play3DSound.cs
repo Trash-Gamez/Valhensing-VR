@@ -8,4 +8,10 @@ public class Play3DSound : MonoBehaviour
     {
         AudioManager.Instance.PlaySound3D(soundName, transform.position);
     }
+
+    public void PlayMusic(string soundName)
+    {
+
+        StartCoroutine(AudioManager.Instance.CrossFadeMusic(soundName, 1));
+    }
 }

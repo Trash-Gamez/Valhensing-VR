@@ -71574,6 +71574,18 @@ MonoBehaviour:
           m_StringArgument: StartLaught
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1047071226}
+        m_TargetAssemblyTypeName: Play3DSound, Assembly-CSharp
+        m_MethodName: PlayMusic
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GameplayMusic03
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1047071225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153121,6 +153133,46 @@ PrefabInstance:
     - target: {fileID: 8957711085206680721, guid: 589ae15b7bd765c43bf09c5190e9cc76, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957711085206680725, guid: 589ae15b7bd765c43bf09c5190e9cc76, type: 3}
+      propertyPath: musicVolume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957711085206680727, guid: 589ae15b7bd765c43bf09c5190e9cc76, type: 3}
+      propertyPath: musicGroups.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957711085206680727, guid: 589ae15b7bd765c43bf09c5190e9cc76, type: 3}
+      propertyPath: musicGroups.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 135228d90a3a5b4458c61f66b6b4c532, type: 3}
+    - target: {fileID: 8957711085206680727, guid: 589ae15b7bd765c43bf09c5190e9cc76, type: 3}
+      propertyPath: musicGroups.Array.data[0].name
+      value: GameplayMusic01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957711085206680727, guid: 589ae15b7bd765c43bf09c5190e9cc76, type: 3}
+      propertyPath: musicGroups.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: adf6ce26136efca48bbab5d7c0428d5b, type: 3}
+    - target: {fileID: 8957711085206680727, guid: 589ae15b7bd765c43bf09c5190e9cc76, type: 3}
+      propertyPath: musicGroups.Array.data[1].name
+      value: GameplayMusic02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957711085206680727, guid: 589ae15b7bd765c43bf09c5190e9cc76, type: 3}
+      propertyPath: musicGroups.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 05a701f4e637db240b6f60d6de2af48f, type: 3}
+    - target: {fileID: 8957711085206680727, guid: 589ae15b7bd765c43bf09c5190e9cc76, type: 3}
+      propertyPath: musicGroups.Array.data[2].name
+      value: GameplayMusic03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957711085206680727, guid: 589ae15b7bd765c43bf09c5190e9cc76, type: 3}
+      propertyPath: musicGroups.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 00ec1bc3c605dcc42a64bc5b54f6f42d, type: 3}
+    - target: {fileID: 8957711085206680727, guid: 589ae15b7bd765c43bf09c5190e9cc76, type: 3}
+      propertyPath: musicGroups.Array.data[3].name
+      value: MainMenuMusic
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 589ae15b7bd765c43bf09c5190e9cc76, type: 3}
