@@ -17,7 +17,7 @@ namespace _VanHelsingVR.Health
         [SerializeField] private UnityEvent onHit;
 
         public HitBoxData DataContainer => _dataContainer;
-        private HitBoxData _dataContainer = default;
+        private HitBoxData _dataContainer;
 
         private void Awake()
         {

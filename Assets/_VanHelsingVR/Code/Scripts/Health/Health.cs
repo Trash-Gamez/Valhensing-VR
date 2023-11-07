@@ -1,12 +1,12 @@
-using _VanHelsingVR.Conditions;
 using UnityEngine;
-using RacTools.Variables;
-using Sirenix.OdinInspector;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
+using Sirenix.OdinInspector;
+
+using _VanHelsingVR.Instructions;
+using _VanHelsingVR.Conditions;
+using RacTools.Variables;
 
 #if UNITY_EDITOR
-using _VanHelsingVR.Instructions;
 using UnityEditor.Events;
 #endif
 
@@ -38,7 +38,6 @@ namespace _VanHelsingVR.Health
         [SerializeField] private UnityEvent onOverHeal;
         [SerializeField] private UnityEvent onDead;
 
-
         private void Start()
         {
             SetInitialHealth();
@@ -66,6 +65,9 @@ namespace _VanHelsingVR.Health
             
             currentHealth.Value -= removedLife;
             onDamage?.Invoke();
+            
+            if(currentHealth.Value <= 0) Dead();
+            
             currentHealth.Value = Mathf.Clamp(currentHealth.Value,0, maxHealth.Value);
         }
 
@@ -113,7 +115,7 @@ namespace _VanHelsingVR.Health
             if (!OnDead()) return;
             
             currentHealth.Value = 0;
-            onDead.Invoke();
+            onDead?.Invoke();
         }
         
         /// <summary>

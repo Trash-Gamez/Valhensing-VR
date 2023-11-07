@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using _VanHelsingVR.Conditions;
 using Sirenix.OdinInspector;
+
+using _VanHelsingVR.Conditions;
+using _VanHelsingVR.Events;
+using UnityEngine.Events;
 
 namespace _VanHelsingVR.Health
 {
@@ -13,9 +15,11 @@ namespace _VanHelsingVR.Health
         [SerializeField] protected Collider hurtBoxCollider;
 
         [SerializeField] protected LayerMask hurtLayer;
+        [Title("Team")] 
         [field: SerializeField] public DamageTeam DamageTeam { get; private set; }
         [SerializeField] protected ConditionPool friendlyFire;
         
+        [Title("Health")] 
         [SerializeField] protected DamagableHealthReference healthReference;
 
         [Title("Inmunity")] 
