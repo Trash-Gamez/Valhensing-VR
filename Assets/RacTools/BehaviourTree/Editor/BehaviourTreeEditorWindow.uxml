@@ -4,21 +4,21 @@
         <uie:ToolbarMenu display-tooltip-when-elided="true" text="Menu" />
         <uie:ToolbarButton text="Button" display-tooltip-when-elided="true" name="ToolbarButton" />
     </uie:Toolbar>
-    <RacTools.Views.SplitView name="SplitView" fixed-pane-initial-dimension="280" fixed-pane-index="0" style="flex-grow: 1; opacity: 1; visibility: visible; display: flex; max-height: none; max-width: none;">
-        <ui:VisualElement name="left" style="width: auto; height: auto; min-width: 250px; padding-left: 0; margin-left: 0;">
-            <RacTools.Views.SplitView orientation="Vertical" fixed-pane-initial-dimension="200">
-                <ui:VisualElement name="InspectorContainer">
-                    <ui:Label text="Inspector" display-tooltip-when-elided="true" style="background-color: rgb(25, 25, 25); margin-left: 0; word-spacing: 0;" />
-                    <RacTools.Views.InspectorView name="InspectorView" style="padding-left: 0;" />
-                </ui:VisualElement>
+    <RacTools.Editor.Views.SplitView fixed-pane-initial-dimension="275">
+        <ui:VisualElement name="left" style="width: auto; height: auto; min-width: 275px; padding-left: 0; margin-left: 0;">
+            <RacTools.Editor.Views.SplitView orientation="Vertical">
                 <ui:VisualElement name="BlackboardContainer">
                     <ui:Label text="BlackBoard" display-tooltip-when-elided="true" style="background-color: rgb(25, 25, 25);" />
                     <ui:IMGUIContainer name="Blackboard" />
                 </ui:VisualElement>
-            </RacTools.Views.SplitView>
+                <ui:VisualElement name="InspectorContainer">
+                    <ui:Label text="Inspector" display-tooltip-when-elided="true" style="background-color: rgb(25, 25, 25); margin-left: 0; word-spacing: 0;" />
+                    <RacTools.Editor.Views.InspectorView />
+                </ui:VisualElement>
+            </RacTools.Editor.Views.SplitView>
         </ui:VisualElement>
         <ui:VisualElement name="right" style="flex-direction: row;">
             <RacTools.BehaviourTree.BehaviourTreeView focusable="true" style="width: auto; flex-direction: row; height: auto; flex-wrap: nowrap; flex-grow: 1;" />
         </ui:VisualElement>
-    </RacTools.Views.SplitView>
+    </RacTools.Editor.Views.SplitView>
 </ui:UXML>

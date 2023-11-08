@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 69820796}
   - component: {fileID: 69820795}
   - component: {fileID: 69820794}
+  - component: {fileID: 69820799}
   m_Layer: 15
   m_Name: Hitbox
   m_TagString: Untagged
@@ -183,7 +184,20 @@ MonoBehaviour:
   <DamageTeam>k__BackingField: 0
   onHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 69820799}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
+          Assembly-CSharp
+        m_MethodName: DestroySelf
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &69820796
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -229,6 +243,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &69820799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69820793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ee736803124634580b24b37eb1e52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &729167362
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,11 +609,11 @@ MonoBehaviour:
   maxOverHeal:
     variableType: 0
     reference: {fileID: 0}
-    constant: 0
+    constant: 5
   currentOverHeal:
     variableType: 0
     reference: {fileID: 0}
-    constant: 0
+    constant: 5
   canBeDamaged:
     conditions: []
   canBeHealed:
