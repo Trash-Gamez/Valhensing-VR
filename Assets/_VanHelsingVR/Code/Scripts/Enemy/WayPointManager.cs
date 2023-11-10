@@ -23,6 +23,14 @@ namespace _VanHelsingVR.Enemy
 
             return wayPoints[_current];
         }
+
+        public Transform GetFirst()
+        {
+            if(wayPoints == null) throw new NullReferenceException();
+            if (!wayPoints.Any()) throw new ArgumentNullException();
+
+            return wayPoints[0];
+        }
         
         public void Restart()
         {

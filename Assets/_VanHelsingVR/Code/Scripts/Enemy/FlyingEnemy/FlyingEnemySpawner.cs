@@ -4,6 +4,7 @@ using System.Linq;
 using _VanHelsingVR.Utilities;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //using Random = UnityEngine.Random;
 
@@ -11,9 +12,9 @@ namespace _VanHelsingVR.Enemy
 {
     public class FlyingEnemySpawner : MonoBehaviour
     {
-        [SerializeField, AssetsOnly] private FlyingEnemyBehaviour enemyPrefab;
+        [SerializeField, AssetsOnly] private FlyingEnemyStateMachine enemyPrefab;
         [SerializeField] private List<WayPointManager> wayPointManagers;
-        [SerializeField] private List<Transform> spawners;
+        [SerializeField] private Transform spawnerYPos;
         [SerializeField] private Transform enemyContainer;
 
         [Title("Time Rates")] 
@@ -22,7 +23,7 @@ namespace _VanHelsingVR.Enemy
 
         private bool _isActive;
     
-        private static Dictionary<WayPointManager, FlyingEnemyBehaviour> _wayPointsInUse = new Dictionary<WayPointManager, FlyingEnemyBehaviour>();
+        private static Dictionary<WayPointManager, FlyingEnemyStateMachine> _wayPointsInUse = new Dictionary<WayPointManager, FlyingEnemyStateMachine>();
 
         private IEnumerator ActivateSpawnCor()
         {
@@ -37,9 +38,12 @@ namespace _VanHelsingVR.Enemy
             if (!possibleWayPoints.Any()) return;
             
             var wayPointManager = possibleWayPoints[Random.Range(0, possibleWayPoints.Count)];
-
-            var spawner = spawners[Random.Range(0, spawners.Count)];
-            var enemyBehaviour = Instantiate(enemyPrefab, spawner.position, Quaternion.identity, enemyContainer);
+            
+            //spawnea al enemigo en la zona de abajo del jugador, pero en la posicion del primer waypoint para que solo suba directamente arriba
+            var spawnPos = wayPointManager.GetFirst().position;
+            spawnPos.y = spawnerYPos.position.y;
+            
+            var enemyBehaviour = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, enemyContainer);
             enemyBehaviour.wayPointManager = wayPointManager;
         }
 

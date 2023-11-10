@@ -8,7 +8,7 @@ namespace _VanHelsingVR.Enemy
         private Vector3 target;
         private float speed;
         
-        public AppearState(EnemyStateMachine stateMachine, Transform appearPos, float speed) : base(stateMachine)
+        public AppearState(FlyingEnemyStateMachine stateMachine, Transform appearPos, float speed) : base(stateMachine)
         {
             _appearPos = appearPos;
         }

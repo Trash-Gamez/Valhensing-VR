@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
 using _VanHelsingVR.Conditions;
 using _VanHelsingVR.Events;
-using UnityEngine.Events;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace _VanHelsingVR.Health
 {
@@ -165,6 +169,12 @@ namespace _VanHelsingVR.Health
         public void ForceHandleDamage()
         {
             OnForcedHit();
+        }
+        
+        [ContextMenu("Force Hit", true)]
+        public bool ValidateForceHandleDamage()
+        {
+            return Application.isPlaying || EditorApplication.isPlaying;
         }
     
         #endif
