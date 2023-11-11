@@ -104,6 +104,13 @@ namespace _VanHelsingVR.Health
             healthReference.HealthSystem.Damage(damageDealed);
         }
 
+        //Fuerzxa la muerte del que contenga esto
+        public void ForceDeath()
+        {
+            if (healthReference == null) return;
+            healthReference.HealthSystem.Damage(999999999);
+        }
+
         private Coroutine _invulneravilityCor;
         protected IEnumerator InvulnerabilityCor()
         {
@@ -139,8 +146,6 @@ namespace _VanHelsingVR.Health
             */
             if (hurtLayer != (hurtLayer | 1 << otherLayer)) return;
             
-            //Success!!!
-            Debug.Log(string.Format("La layer *{0}* del objeto *{1}* es compatible con la layer *{2}* del objeto *{3}*",  hurtLayer.ToString(), name, otherLayer, other.gameObject.name));
 
             if (!other.TryGetComponent(out Hitbox hitBox)) return;
             

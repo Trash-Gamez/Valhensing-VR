@@ -24142,7 +24142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370769410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.55, y: 13.05, z: 170.95}
+  m_LocalPosition: {x: -27.8, y: 13.05, z: 170.95}
   m_LocalScale: {x: 4.68, y: 4.68, z: 4.68}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -35188,7 +35188,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 2452098108433256229, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
-  wayPointManagers: []
+  wayPointManagers:
+  - {fileID: 1138340644}
+  - {fileID: 2067892890}
+  - {fileID: 1475992375}
   spawnerYPos: {fileID: 945807185}
   enemyContainer: {fileID: 1573924443}
   initialSpawnTime:
@@ -71626,6 +71629,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 572934879, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572934879, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6151344892983106703, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
@@ -177875,7 +177882,7 @@ GameObject:
   - component: {fileID: 8830689112380992619}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

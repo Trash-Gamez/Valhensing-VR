@@ -32,7 +32,7 @@ namespace _VanHelsingVR.Economy
         [ContextMenu("Set Skins")]
         private void SetSkins()
         {
-            //SO BETTER SKINS SYSTEM
+            //TODO: SO BETTER SKINS SYSTEM
             return;
             var previewSkin = gameObject.GetNamedChild("Skin");
             if (previewSkin != null)

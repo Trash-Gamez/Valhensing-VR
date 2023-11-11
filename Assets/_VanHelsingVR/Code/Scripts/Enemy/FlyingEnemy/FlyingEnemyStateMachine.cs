@@ -1,9 +1,10 @@
+using System;
 using _VanHelsingVR.Proyectile;
-using _VanHelsingVR.Utilities;
 using RacTools.Variables;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Range = _VanHelsingVR.Utilities.Range;
 
 namespace _VanHelsingVR.Enemy
 {
@@ -21,7 +22,7 @@ namespace _VanHelsingVR.Enemy
         [Title("Gun params")]
         [SerializeField] private SimpleProyectile bulletPrefab;
         [SerializeField] private Transform tipPos;
-        [SerializeField] private Transform bulletContainer;
+        public Transform bulletContainer;
 
         [Title("Proyectile Paramas")] 
         [SerializeField] private float proyectileSpeed;
@@ -29,7 +30,9 @@ namespace _VanHelsingVR.Enemy
         
         public static readonly int DeadAnimationID = Animator.StringToHash("IsDead");  
         public static readonly int AttackAnimationID = Animator.StringToHash("IsAtacking");
-        public static readonly int FlyAnimationID = Animator.StringToHash("");
+        public static readonly int FlyAnimationID = Animator.StringToHash("IsFlying");
+
+        public static event Action<FlyingEnemyStateMachine> OnEnemyDead;
         
         public AppearState AppearState { get; private set; }
         public FlyAroundState FlyAroundState {get; private set;}
@@ -39,7 +42,7 @@ namespace _VanHelsingVR.Enemy
         {
             base.Start();
             AppearState = new AppearState(this, wayPointManager.GetNext(), appearSpeed);
-            FlyAroundState = new FlyAroundState(this, attackTimeRange, moveSpeed);
+            FlyAroundState = new FlyAroundState(this, attackTimeRange, moveSpeed, playerPosition.Value);
             FlyingAttackState = new FlyingAttackState(this);
             
             ChangeState(AppearState);
@@ -63,6 +66,12 @@ namespace _VanHelsingVR.Enemy
             var simpleProyectile = Instantiate(bulletPrefab,tipPos.position, Quaternion.identity, bulletContainer);
             simpleProyectile.speed = proyectileSpeed;
             simpleProyectile.target = playerPosition.Value;
+        }
+        
+        //Llamar desde el healthsystem de unity de este objeto
+        public void OnDead()
+        {
+            OnEnemyDead?.Invoke(this);
         }
     }
 }

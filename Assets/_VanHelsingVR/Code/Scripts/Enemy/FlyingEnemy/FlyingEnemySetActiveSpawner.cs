@@ -18,7 +18,6 @@ public class FlyingEnemySetActiveSpawner : MonoBehaviour
 
     private void Logic()
     {
-        Debug.Log("Logica de activar o desactivar spawner");
         if(isActive)
             _spawner.ActivateSpawn();
         else
@@ -29,13 +28,13 @@ public class FlyingEnemySetActiveSpawner : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (!other.gameObject.CompareTag("Player")) return;
+        if (!other.gameObject.CompareTag("Platform")) return;
         Logic();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag("Player")) return;
+        if (!other.gameObject.CompareTag("Platform")) return;
         Logic();
     }
 }

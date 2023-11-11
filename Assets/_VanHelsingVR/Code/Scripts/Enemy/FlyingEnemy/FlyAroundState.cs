@@ -9,14 +9,16 @@ namespace _VanHelsingVR.Enemy
     {
         private FlyingEnemyStateMachine _flyingEnemyStateMachine;
         private Transform _target;
+        private Transform _playerTransform;
         private Range _attackRange;
         private float _flySpeed;
         
-        public FlyAroundState(FlyingEnemyStateMachine stateMachine, Range attackRange, float flySpeed) : base(stateMachine)
+        public FlyAroundState(FlyingEnemyStateMachine stateMachine, Range attackRange, float flySpeed, Transform playerTransform) : base(stateMachine)
         {
             _flyingEnemyStateMachine = stateMachine;
             _attackRange = attackRange;
             _flySpeed = flySpeed;
+            _playerTransform = playerTransform;
         }
 
         private void SelectNewTarget()
@@ -35,6 +37,7 @@ namespace _VanHelsingVR.Enemy
             _flyingEnemyStateMachine.RestartAnimatorParams();
             _flyingEnemyStateMachine.Animator.SetBool(FlyingEnemyStateMachine.FlyAnimationID, true);
             stateMachine.StartCoroutine(AttackWaitCor());
+            
             SelectNewTarget();
         }
 
@@ -44,7 +47,10 @@ namespace _VanHelsingVR.Enemy
             var enemyPos = stateMachine.transform.position;
 
             stateMachine.transform.position = Vector3.MoveTowards(enemyPos, targetPos, Time.deltaTime * _flySpeed);
-            stateMachine.transform.LookAt(_target);
+            
+            stateMachine.transform.LookAt(_playerTransform.position);
+
+            stateMachine.transform.rotation = Quaternion.LookRotation((_playerTransform.position - stateMachine.transform.position).normalized);
             
             if((targetPos - enemyPos).sqrMagnitude < 0.005f)
                 SelectNewTarget();

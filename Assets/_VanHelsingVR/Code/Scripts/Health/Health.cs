@@ -184,6 +184,19 @@ namespace _VanHelsingVR.Health
         #region Codigo Editor
 
         #if UNITY_EDITOR
+
+        [ContextMenu("Health/Hurt")]
+        public void EditorHurt()
+        {
+            Damage(1);
+        }
+        
+        [ContextMenu("Health/Kill")]
+        public void EditorKill()
+        {
+            Damage(999999);
+        }
+        
         [ContextMenu("DestroySelf/On Dead")]
         public void AddDestroyInstructionOnDead()
         {
