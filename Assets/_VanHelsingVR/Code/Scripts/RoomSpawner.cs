@@ -28,6 +28,7 @@ public class RoomSpawner : MonoBehaviour
         if(enemies <= 0){
             foreach(Animator doors in shortDoor){
                 doors.Play("Open");
+               
             }
             foreach(Collider doors in door){
                 doors.isTrigger = true;
@@ -39,6 +40,7 @@ public class RoomSpawner : MonoBehaviour
         if (other.CompareTag("Player")){
             foreach(Animator doors in shortDoor){
                 doors.Play("Close");
+                AudioManager.Instance.PlayMusic("GameplayMusic02", 0);
             }
             
             foreach(Collider doors in door){

@@ -5,7 +5,6 @@ namespace _VanHelsingVR.Events.GameEvent
 {
     [CreateAssetMenu(order = 1, fileName = "GameEvent", menuName = "Events/Game Event")]
     public sealed class GameEvent : ScriptableObject 
-    
     {
         private List<GameEventListener> _listeners = new();
 

@@ -4,18 +4,17 @@ using UnityEngine;
 
 namespace _VanHelsingVR.Events
 {
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
     public interface IEditorReactiveEvent
     {
         void RaiseDefaultEvent();
     }
-#endif
+    #endif
 
     public abstract class ReactiveEvent<T> : ScriptableObject
-
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
     , IEditorReactiveEvent
-#endif
+    #endif
 
     {
         protected Subject<T> subject;
@@ -32,12 +31,12 @@ namespace _VanHelsingVR.Events
             subject = new Subject<T>();
         }
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         public void RaiseDefaultEvent()
         {
             Raise(default);
         }
-#endif
+        #endif
     }
 
     public abstract class ReactiveEvent<T1, T2> : ScriptableObject

@@ -1,14 +1,12 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor;
-
-namespace RacTools.Views
+namespace RacTools.Editor.Views
 {
     public class InspectorView : VisualElement
     {
         public new class UxmlFactory : UxmlFactory<InspectorView, VisualElement.UxmlTraits> {}
 
-        private Editor _editor;
+        private UnityEditor.Editor _editor;
         
         public InspectorView()
         {
@@ -20,7 +18,7 @@ namespace RacTools.Views
             Clear();
             
             Object.DestroyImmediate(_editor);
-            _editor = Editor.CreateEditor(selectedObject);
+            _editor = UnityEditor.Editor.CreateEditor(selectedObject);
             // This container is created because this clas inherits from VisualElement, so it needs IMGUIContainer to show up
             var container = new IMGUIContainer(() => _editor.OnInspectorGUI());
             Add(container);

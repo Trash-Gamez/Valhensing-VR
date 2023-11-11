@@ -6,6 +6,10 @@ using UnityEngine;
 namespace _VanHelsingVR.Conditions
 {
     [Serializable]
+    /*
+     * Esta clase se usa para hacer una concatenacion de condiciones, es decir una lista de condiciones
+     * las cuales se deberan cumplir para poder realizar una accion, en pocas palabras es un bo
+     */
     public class ConditionPool
     {
         [SerializeField] private List<Condition> conditions = new();
@@ -14,12 +18,21 @@ namespace _VanHelsingVR.Conditions
         {
             get
             {
-                if (!conditions.Any())
+                if (conditions == null || conditions.Count <= 0)
                 {
                     return true;
                 }
-            
-                var canDo = conditions.All(variable => variable.Value);
+
+                var canDo = true;
+                
+                //Solo si todas las condiciones se cumplen
+                foreach (var condition in conditions)
+                {
+                    if(condition.Value) continue;
+                    canDo = false;
+                    break;
+                }
+                
                 return canDo;
             }
         }

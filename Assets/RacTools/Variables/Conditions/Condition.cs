@@ -4,6 +4,7 @@ using UnityEngine;
 using Zenject;
 using RacTools.Variables;
 using _VanHelsingVR.Utilities;
+using UnityEngine.Serialization;
 
 namespace _VanHelsingVR.Conditions
 {
@@ -13,30 +14,25 @@ namespace _VanHelsingVR.Conditions
         private enum ConditionType
         {
             Variable,
-            Literal,
+            Constant,
             TimeCondition
         }
 
         [SerializeField]
         private ConditionType conditionType;
 
+        [HideIf(nameof(conditionType), ConditionType.Constant)]
         [SerializeField] private bool reversed;
-    
-#if UNITY_EDITOR
-        [ShowIf(nameof(conditionType), ConditionType.Literal)]
-#endif
+        
+        [ShowIf(nameof(conditionType), ConditionType.Constant)]
         [SerializeField]
-        private bool literal;
+        private bool constant;
 
-#if UNITY_EDITOR
         [ShowIf(nameof(conditionType), ConditionType.Variable)]
-#endif
         [SerializeField]
         private Variable<bool> variable;
-    
-#if UNITY_EDITOR
+        
         [ShowIf(nameof(conditionType), ConditionType.TimeCondition)]
-#endif
         [SerializeField]
         private TimeCondition timeCondition;
 
@@ -47,11 +43,14 @@ namespace _VanHelsingVR.Conditions
                 bool value = conditionType switch
                 {
                     ConditionType.Variable => variable.Value,
-                    ConditionType.Literal => literal,
+                    ConditionType.Constant => constant,
                     ConditionType.TimeCondition => timeCondition.IsTimerEnded,
                     _ => false
                 };
 
+                //Si la condición es constante, no se hace el reversed
+                if (conditionType == ConditionType.Constant) return value;
+                
                 return reversed ? !value : value;
             }
         }
@@ -61,7 +60,7 @@ namespace _VanHelsingVR.Conditions
             var condition = this.conditionType switch
             {
                 ConditionType.Variable => $"Variable '{variable.name}'",
-                ConditionType.Literal => "Literal",
+                ConditionType.Constant => "Literal",
                 ConditionType.TimeCondition => "Time Condition",
                 _ => throw new ArgumentOutOfRangeException()
             };

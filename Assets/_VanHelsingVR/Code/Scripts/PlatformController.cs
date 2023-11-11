@@ -15,6 +15,10 @@ namespace _VanHelsingVR
         [SerializeField] private WayPoint[] wayPoints;
         private int actualIndex = 0;
 
+        private void Start()
+        {
+            AudioManager.Instance.PlayMusic("MainMenuMusic", 0);
+        }
         public void StartNextPoint()
         {
             AudioManager.Instance.PlayAmbient("Carrito_01",0);

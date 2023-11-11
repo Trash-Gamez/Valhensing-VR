@@ -8,6 +8,6 @@ public class Spawn : MonoBehaviour
     [SerializeField] private FlyingEnemySpawner batSpawner;
     private void OnTriggerEnter(Collider other)
     {
-        batSpawner.Spawn();
+        //batSpawner.Spawn();
     }
 }
