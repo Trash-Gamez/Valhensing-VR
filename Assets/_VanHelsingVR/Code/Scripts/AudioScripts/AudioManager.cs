@@ -134,7 +134,42 @@ public class AudioManager : MonoBehaviour
 		yield break;
 	}
 
-	
+	public IEnumerator CrossFadeMusic(string musicName, float duration)
+    {
+		
+		
+		float currentStopVolume = musicSource.volume;
+		float startStopVolume = musicSource.volume;
+		float targetStopVolume = 0;
+		float currentStopTime = 0;
+
+		while (currentStopTime < duration)
+		{
+			currentStopTime += Time.deltaTime;
+			musicSource.volume = Mathf.Lerp(startStopVolume, targetStopVolume, currentStopTime / duration);
+			yield return null;
+		}
+		musicSource.Stop();
+		musicSource.volume = currentStopVolume;
+
+
+		float startVolume = 0;
+		float targetVolume = musicSource.volume;
+		float currentTime = 0;
+
+		musicSource.clip = musicLibrary.GetClipFromName(musicName);
+		musicSource.Play();
+
+		while (currentTime < duration)
+		{
+			currentTime += Time.deltaTime;
+			musicSource.volume = Mathf.Lerp(startVolume, targetVolume, currentTime / duration);
+			yield return null;
+		}
+
+
+
+	}
 	// Stop music
 	
 	public void StopMusic()
