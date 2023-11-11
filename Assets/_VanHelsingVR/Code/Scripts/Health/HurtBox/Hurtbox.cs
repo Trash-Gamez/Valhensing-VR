@@ -20,7 +20,7 @@ namespace _VanHelsingVR.Health
 
         [SerializeField] protected LayerMask hurtLayer;
         [Title("Team")] 
-        [field: SerializeField] public DamageTeam DamageTeam { get; private set; }
+        [field: SerializeField] public DamageTeam HurtboxTeam { get; private set; }
         [SerializeField] protected ConditionPool friendlyFire;
         
         [Title("Health")] 
@@ -56,7 +56,7 @@ namespace _VanHelsingVR.Health
         {
             if(_invulneravilityCor != null || _hurtBoxesInmune.Contains(transform.parent)) return;
             if (hitbox == null) return;
-            if (hitbox.DamageTeam == DamageTeam && !friendlyFire) return;
+            if (hitbox.DamageTeam == HurtboxTeam && !friendlyFire) return;
             
             if (!OnBeforeHit(hitbox)) return;
             

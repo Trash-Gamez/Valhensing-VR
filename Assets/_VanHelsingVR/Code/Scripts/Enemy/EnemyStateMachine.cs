@@ -5,10 +5,12 @@ namespace _VanHelsingVR.Enemy
 {
     public abstract class EnemyStateMachine : MonoBehaviour
     {
-        public BaseEnemyState CurrentState { get; private set; }
-        public event Action<BaseEnemyState> OnChangeState = delegate(BaseEnemyState state) {  };
+        [field: SerializeField] public Animator Animator { get; private set; }
         
+        public BaseEnemyState CurrentState { get; private set; }
         public NoneState NoneState { get; private set; }
+        
+        public event Action<BaseEnemyState> OnChangeState = delegate {  };
 
         protected virtual void Start()
         {
@@ -17,7 +19,9 @@ namespace _VanHelsingVR.Enemy
 
         public void ChangeState(BaseEnemyState newEnemyState)
         {
-            CurrentState.OnStateExit();
+            if(CurrentState != null)
+                CurrentState.OnStateExit();
+            
             CurrentState = newEnemyState;
             CurrentState.OnStateEnter();
             OnChangeState?.Invoke(CurrentState);

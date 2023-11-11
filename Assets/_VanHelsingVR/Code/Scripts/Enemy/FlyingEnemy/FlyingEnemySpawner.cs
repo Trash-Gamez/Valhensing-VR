@@ -45,11 +45,14 @@ namespace _VanHelsingVR.Enemy
             
             var enemyBehaviour = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, enemyContainer);
             enemyBehaviour.wayPointManager = wayPointManager;
+            
+            _wayPointsInUse.Add(wayPointManager, enemyBehaviour);
         }
 
         private IEnumerator RecurrentEnemySpawn()
         {
-            yield return null;
+            if(_isActive)
+                yield return new WaitForSeconds(spawnRate.Value);
         }
         
         public void ActivateSpawn()
