@@ -3,7 +3,29 @@ using UnityEngine;
 
 namespace _VanHelsingVR.Utilities
 {
+    [System.Serializable]
+    public struct FloatRangeReference
+    {
+        [SerializeField] private bool useRange;
 
+        [SerializeField, HideIf(nameof(useRange))]
+        private float constant;
+        
+        [SerializeField, ShowIf(nameof(useRange))]
+        private Range range;
+        
+        public float Value
+        {
+            get
+            {
+                var value = constant;
+                if (useRange)
+                    value = UnityEngine.Random.Range(range.Min, range.Max);
+                return value;
+            }
+        }
+    }   
+    
     [System.Serializable]
     public struct Range
     {
@@ -11,16 +33,16 @@ namespace _VanHelsingVR.Utilities
         public static readonly Range ZeroToOne = new Range(0f, 1f);
     
     
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         [VerticalGroup("Vars")]
-#endif
+        #endif
     
         [field: SerializeField]
         public float Min { get; private set; }
     
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         [VerticalGroup("Vars")]
-#endif
+        #endif
     
         [field: SerializeField]
         public float Max { get; private set; }
@@ -40,15 +62,15 @@ namespace _VanHelsingVR.Utilities
     
     
         [field: SerializeField]
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         [VerticalGroup("Vars")]
-#endif 
+        #endif 
         public int Min { get; private set; }
     
         [field: SerializeField]
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         [VerticalGroup("Vars")]
-#endif 
+        #endif
         public int Max { get; private set; }
 
         public IntRange(int max, int min)

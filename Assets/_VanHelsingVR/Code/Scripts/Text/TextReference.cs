@@ -15,15 +15,15 @@ namespace _VanHelsingVR.Text
     
         [SerializeField] private TextType textType;
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         [ShowIf(nameof(textType), TextType.Legacy)]
-#endif 
+        #endif 
         [SerializeField]
         private UnityEngine.UI.Text legacyText;
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         [ShowIf(nameof(textType), TextType.TMPro)]
-#endif 
+        #endif 
         [SerializeField]
         private TMPro.TMP_Text tmpText;
 

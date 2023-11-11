@@ -16,6 +16,8 @@ MonoBehaviour:
   state: 0
   started: 0
   pos: {x: 277, y: 255}
+  blackboard:
+    playerTransform: {fileID: 0}
   message: 
 --- !u!114 &-1373947210314491145
 MonoBehaviour:
@@ -33,6 +35,8 @@ MonoBehaviour:
   state: 0
   started: 0
   pos: {x: 423, y: -1.9199982}
+  blackboard:
+    playerTransform: {fileID: 0}
   Child: {fileID: 4101886283114560325}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -52,6 +56,8 @@ MonoBehaviour:
   - {fileID: 4101886283114560325}
   - {fileID: -2378617359855876569}
   - {fileID: 2098860655834665822}
+  blackboard:
+    playerTransform: {fileID: 11400000, guid: 26bba2d3c8c17dc4da3c414cdda05861, type: 2}
 --- !u!114 &2098860655834665822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +73,9 @@ MonoBehaviour:
   guid: e8048175bbb64e64ca412fbce4051429
   state: 0
   started: 0
-  pos: {x: 0, y: 0}
+  pos: {x: 550, y: 249}
+  blackboard:
+    playerTransform: {fileID: 0}
   waitTime: 0
 --- !u!114 &4101886283114560325
 MonoBehaviour:
@@ -85,5 +93,7 @@ MonoBehaviour:
   state: 0
   started: 0
   pos: {x: 407, y: 112}
+  blackboard:
+    playerTransform: {fileID: 0}
   Children:
   - {fileID: -2378617359855876569}

@@ -1,6 +1,6 @@
 using UnityEngine.UIElements;
 
-namespace RacTools.Views
+namespace RacTools.Editor.Views
 {
     public class SplitView : TwoPaneSplitView
     {
