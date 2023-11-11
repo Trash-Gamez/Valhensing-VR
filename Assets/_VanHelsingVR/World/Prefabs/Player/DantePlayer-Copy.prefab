@@ -537,7 +537,6 @@ GameObject:
   - component: {fileID: 6151344893115263567}
   - component: {fileID: 8890347636953715026}
   - component: {fileID: 572934878}
-  - component: {fileID: 859075811}
   - component: {fileID: 1557009610}
   - component: {fileID: 1557009611}
   - component: {fileID: 1557009612}
@@ -545,7 +544,7 @@ GameObject:
   - component: {fileID: 1893552859059495524}
   - component: {fileID: 6160390305826999085}
   - component: {fileID: 6738452356735903841}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: DantePlayer-Copy
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -742,7 +741,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8957711085206680725, guid: 589ae15b7bd765c43bf09c5190e9cc76, type: 3}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlaySound2D
         m_Mode: 5
@@ -752,36 +751,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: GameOverLaught
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &859075811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6151344893115263565}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dce7bb7fac4b2845bd45fdb3c654a85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventReference:
-    reactiveEvent: {fileID: 11400000, guid: 8c05c3f917b840f40b0695ab14a86e79, type: 2}
-  UnityEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 572934878}
-        m_TargetAssemblyTypeName: _VanHelsingVR.Health.Health, Assembly-CSharp
-        m_MethodName: AddHealth
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!143 &1557009610
 CharacterController:
