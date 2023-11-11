@@ -37,7 +37,7 @@ namespace _VanHelsingVR.Enemy
             _recurrentEnemySpawn = StartCoroutine(RecurrentEnemySpawn());
         }
 
-        private void SpawnEnemy()
+        private bool SpawnEnemy()
         {
             Debug.Log("Se spawnea el enemigo");
             var possibleWayPoints = wayPointManagers.Where(manager => !_wayPointsInUse.ContainsKey(manager)).ToList();
@@ -45,7 +45,7 @@ namespace _VanHelsingVR.Enemy
             {
                 Debug.Log("No hay nada");
                 _isRoom = false;
-                return;
+                return false;
             }
 
             var wayPointManager = possibleWayPoints[Random.Range(0, possibleWayPoints.Count)];
@@ -62,6 +62,9 @@ namespace _VanHelsingVR.Enemy
             enemyBehaviour.bulletContainer = enemyContainer;
             
             _wayPointsInUse.Add(wayPointManager, enemyBehaviour);
+            
+            possibleWayPoints = wayPointManagers.Where(manager => !_wayPointsInUse.ContainsKey(manager)).ToList();
+            return possibleWayPoints.Any();
         }
 
         private void OnEnemyDead(FlyingEnemyStateMachine flyingEnemy)
@@ -69,9 +72,9 @@ namespace _VanHelsingVR.Enemy
             if(!_wayPointsInUse.ContainsKey(flyingEnemy.wayPointManager)) return;
             _wayPointsInUse.Remove(flyingEnemy.wayPointManager);
             
+            _isRoom = true;
             if(_recurrentEnemySpawn == null)
                 _recurrentEnemySpawn = StartCoroutine(RecurrentEnemySpawn());
-            _isRoom = true;
         }
 
         private Coroutine _recurrentEnemySpawn = null;
@@ -84,7 +87,11 @@ namespace _VanHelsingVR.Enemy
             while (_isActive && _isRoom)
             {
                 yield return new WaitForSeconds(rate);
-                SpawnEnemy();
+                if (!SpawnEnemy())
+                {
+                    _isRoom = false;
+                    break;
+                }
             }
 
             _recurrentEnemySpawn = null;
@@ -99,6 +106,11 @@ namespace _VanHelsingVR.Enemy
         public void DeactivateSpawn()
         {
             _isActive = false;
+            if (_recurrentEnemySpawn != null)
+            {
+                StopCoroutine(_recurrentEnemySpawn);
+                _recurrentEnemySpawn = null;
+            }
             if (!destroyEnemiesWithDeactivate) return;
             
             foreach (var hurtbox in enemyContainer.GetComponents<Hurtbox>())
