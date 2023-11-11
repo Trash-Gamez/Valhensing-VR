@@ -10461,6 +10461,7 @@ MonoBehaviour:
     m_Bits: 32832
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
+    defaultValue: 1
     conditions: []
   healthReference:
     <HealthSystem>k__BackingField: {fileID: 802911991}
@@ -12468,6 +12469,7 @@ MonoBehaviour:
     m_Bits: 32832
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
+    defaultValue: 1
     conditions: []
   healthReference:
     <HealthSystem>k__BackingField: {fileID: 802911991}
@@ -17609,7 +17611,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5558342855592764364}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &278901182
 MeshRenderer:
@@ -29574,7 +29576,7 @@ Transform:
   - {fileID: 2067892889}
   - {fileID: 1475992374}
   m_Father: {fileID: 5558342855592764364}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &445661185
 GameObject:
@@ -34742,7 +34744,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5558342855592764364}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &513257919
 BoxCollider:
@@ -35142,71 +35144,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517795295}
   m_Mesh: {fileID: -7220904918501403576, guid: f6b0f971ded05b14888a48ae85381e86, type: 3}
---- !u!1 &518181195
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 518181196}
-  - component: {fileID: 518181197}
-  m_Layer: 0
-  m_Name: Spawners
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &518181196
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518181195}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 945807185}
-  m_Father: {fileID: 5558342855592764364}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &518181197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518181195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6313904e3a134f989a7d40c28949a9a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 2452098108433256229, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
-  wayPointManagers:
-  - {fileID: 1138340644}
-  - {fileID: 2067892890}
-  - {fileID: 1475992375}
-  spawnerYPos: {fileID: 945807185}
-  enemyContainer: {fileID: 1573924443}
-  initialSpawnTime:
-    useRange: 0
-    constant: 3
-    range:
-      <Min>k__BackingField: 0
-      <Max>k__BackingField: 0
-  spawnRate:
-    useRange: 1
-    constant: 10
-    range:
-      <Min>k__BackingField: 8
-      <Max>k__BackingField: 10
-  destroyEnemiesWithDeactivate: 0
 --- !u!1 &518794808
 GameObject:
   m_ObjectHideFlags: 0
@@ -56095,6 +56032,7 @@ MonoBehaviour:
     m_Bits: 32832
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
+    defaultValue: 1
     conditions: []
   healthReference:
     <HealthSystem>k__BackingField: {fileID: 802911991}
@@ -65449,37 +65387,6 @@ Transform:
   m_Father: {fileID: 1401168206}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &945807184
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 945807185}
-  m_Layer: 0
-  m_Name: SpawnerYPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &945807185
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 945807184}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 518181196}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &945919042
 GameObject:
   m_ObjectHideFlags: 0
@@ -71279,10 +71186,13 @@ MonoBehaviour:
     reference: {fileID: 0}
     constant: 0
   canBeDamaged:
+    defaultValue: 1
     conditions: []
   canBeHealed:
+    defaultValue: 1
     conditions: []
   canOverHeal:
+    defaultValue: 1
     conditions: []
   onDamage:
     m_PersistentCalls:
@@ -71375,6 +71285,7 @@ MonoBehaviour:
     m_Bits: 32832
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
+    defaultValue: 1
     conditions: []
   healthReference:
     <HealthSystem>k__BackingField: {fileID: 1047071224}
@@ -71650,7 +71561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6151344893115263566, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6151344893115263566, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
       propertyPath: m_LocalPosition.x
@@ -80356,6 +80267,7 @@ MonoBehaviour:
     m_Bits: 32832
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
+    defaultValue: 1
     conditions: []
   healthReference:
     <HealthSystem>k__BackingField: {fileID: 1750580296}
@@ -90878,6 +90790,7 @@ MonoBehaviour:
     m_Bits: 32832
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
+    defaultValue: 1
     conditions: []
   healthReference:
     <HealthSystem>k__BackingField: {fileID: 1402885084}
@@ -96357,6 +96270,7 @@ MonoBehaviour:
     m_Bits: 32832
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
+    defaultValue: 1
     conditions: []
   healthReference:
     <HealthSystem>k__BackingField: {fileID: 1750580296}
@@ -101688,7 +101602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2945217784104213409, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2945217784104213409, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -127247,6 +127161,71 @@ Transform:
   m_Father: {fileID: 1088916438}
   m_RootOrder: 131
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1754736656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1754736657}
+  - component: {fileID: 1754736658}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1754736657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754736656}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2031040169}
+  m_Father: {fileID: 5558342855592764364}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1754736658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754736656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313904e3a134f989a7d40c28949a9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 2452098108433256229, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+  wayPointManagers:
+  - {fileID: 1138340644}
+  - {fileID: 2067892890}
+  - {fileID: 1475992375}
+  spawnerYPos: {fileID: 2031040169}
+  enemyContainer: {fileID: 1573924443}
+  initialSpawnTime:
+    useRange: 0
+    constant: 5
+    range:
+      <Min>k__BackingField: 0
+      <Max>k__BackingField: 0
+  spawnRate:
+    useRange: 1
+    constant: 0
+    range:
+      <Min>k__BackingField: 8
+      <Max>k__BackingField: 9
+  destroyEnemiesWithDeactivate: 0
 --- !u!1 &1755603922
 GameObject:
   m_ObjectHideFlags: 0
@@ -146180,7 +146159,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Name: 
-    GameObject: {fileID: 518181195}
+    GameObject: {fileID: 0}
     Ordinal: 434
     Priority: 0
     IconType: 165000
@@ -146192,7 +146171,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Name: 
-    GameObject: {fileID: 945807184}
+    GameObject: {fileID: 0}
     Ordinal: 435
     Priority: 0
     IconType: 7000
@@ -146211,6 +146190,54 @@ MonoBehaviour:
     IconTexture: {fileID: 0}
     IsIconRecursive: 0
     BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 0}
+    Ordinal: 437
+    Priority: 0
+    IconType: 231000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 7000
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1754736656}
+    Ordinal: 438
+    Priority: 0
+    IconType: 139180
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 2031040168}
+    Ordinal: 439
+    Priority: 0
+    IconType: 8000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 2029734748}
+    Ordinal: 440
+    Priority: 0
+    IconType: 231000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 7000
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
@@ -150926,6 +150953,79 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029327434}
   m_Mesh: {fileID: -6493215524407686324, guid: bf0429ab6e6f77c41a200500d47273ad, type: 3}
+--- !u!1 &2029734748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2029734749}
+  - component: {fileID: 2029734751}
+  - component: {fileID: 2029734750}
+  m_Layer: 14
+  m_Name: PlatformCollider
+  m_TagString: Platform
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2029734749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029734748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5558342855592764364}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2029734750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029734748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14859a4c1eee0c341a0897be884183ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtBoxCollider: {fileID: 8830689112380992619}
+  hurtLayer:
+    serializedVersion: 2
+    m_Bits: 32768
+  <HurtboxTeam>k__BackingField: 2
+  friendlyFire:
+    defaultValue: 0
+    conditions: []
+  healthReference:
+    <HealthSystem>k__BackingField: {fileID: 0}
+  inmunityType: 0
+  inmunityFrames: 0
+  onHit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &2029734751
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029734748}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 0.3125, z: 3.4375}
+  m_Center: {x: 0, y: 0.15625, z: 0}
 --- !u!1 &2030241350
 GameObject:
   m_ObjectHideFlags: 0
@@ -151073,6 +151173,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030870407}
   m_Mesh: {fileID: -6460678582960305921, guid: 1bd9c0ca1f8ab59419eb817a4c7608a8, type: 3}
+--- !u!1 &2031040168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2031040169}
+  m_Layer: 0
+  m_Name: SpawnerYPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2031040169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031040168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1754736657}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2033843378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -151689,6 +151820,7 @@ MonoBehaviour:
     m_Bits: 32832
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
+    defaultValue: 1
     conditions: []
   healthReference:
     <HealthSystem>k__BackingField: {fileID: 1091614608}
@@ -159802,6 +159934,7 @@ MonoBehaviour:
     m_Bits: 32832
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
+    defaultValue: 1
     conditions: []
   healthReference:
     <HealthSystem>k__BackingField: {fileID: 1091614608}
@@ -178389,13 +178522,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2029734749}
   - {fileID: 278901181}
   - {fileID: 8098439341108578256}
   - {fileID: 1051176872}
   - {fileID: 513257918}
   - {fileID: 444452562}
-  - {fileID: 518181196}
   - {fileID: 1573924443}
+  - {fileID: 1754736657}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -182471,7 +182605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 621264030998076143, guid: 729af865a43f5274381fd661b18667f2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 621264030998076143, guid: 729af865a43f5274381fd661b18667f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -182695,7 +182829,7 @@ BoxCollider:
   m_GameObject: {fileID: 5073555446315334006}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 3, y: 0.3125, z: 3.4375}
   m_Center: {x: 0, y: 0.15625, z: 0}

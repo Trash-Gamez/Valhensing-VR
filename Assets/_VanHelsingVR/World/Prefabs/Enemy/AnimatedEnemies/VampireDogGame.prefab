@@ -65,6 +65,7 @@ MonoBehaviour:
     m_Bits: 32832
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
+    defaultValue: 1
     conditions: []
   healthReference:
     <HealthSystem>k__BackingField: {fileID: 6807716496099638611}
@@ -73,6 +74,37 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &619581971409666476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6827472463257889079}
+  m_Layer: 0
+  m_Name: AimRig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6827472463257889079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619581971409666476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7644736380417259757}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6517946035057239042
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +448,22 @@ MonoBehaviour:
   bulletContainer: {fileID: 1693237011356920198}
   proyectileSpeed: 1.2
   playerPosition: {fileID: 11400000, guid: 881fc8074c8273e49bb5fa9d29d420ea, type: 2}
+--- !u!114 &3043324157945995113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015587394283299415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb621d1306cf334d81cd6a04015aff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAtTransform:
+    variableType: 1
+    reference: {fileID: 11400000, guid: 881fc8074c8273e49bb5fa9d29d420ea, type: 2}
+    constant: {fileID: 0}
 --- !u!114 &6807716496099638611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,10 +493,13 @@ MonoBehaviour:
     reference: {fileID: 0}
     constant: 0
   canBeDamaged:
+    defaultValue: 1
     conditions: []
   canBeHealed:
+    defaultValue: 1
     conditions: []
   canOverHeal:
+    defaultValue: 1
     conditions: []
   onDamage:
     m_PersistentCalls:
@@ -533,6 +584,7 @@ MonoBehaviour:
     m_Bits: 32832
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
+    defaultValue: 1
     conditions: []
   healthReference:
     <HealthSystem>k__BackingField: {fileID: 6807716496099638611}
@@ -564,6 +616,7 @@ MonoBehaviour:
     m_Bits: 32832
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
+    defaultValue: 1
     conditions: []
   healthReference:
     <HealthSystem>k__BackingField: {fileID: 6807716496099638611}

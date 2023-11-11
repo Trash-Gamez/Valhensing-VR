@@ -4,6 +4,7 @@ namespace _VanHelsingVR.Health
     public enum DamageTeam
     {   
         Enemy,
-        Player
+        Player,
+        Props
     }
 }

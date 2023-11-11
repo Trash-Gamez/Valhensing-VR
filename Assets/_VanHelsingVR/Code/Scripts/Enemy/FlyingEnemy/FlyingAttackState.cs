@@ -29,7 +29,7 @@ namespace _VanHelsingVR.Enemy
 
         public override void OnStateExit()
         {
-            Debug.Log("Termine ataque de volador");
+            return;
         }
     }
 }

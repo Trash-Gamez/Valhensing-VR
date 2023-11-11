@@ -71,6 +71,7 @@ namespace _VanHelsingVR.Enemy
         //Llamar desde el healthsystem de unity de este objeto
         public void OnDead()
         {
+            wayPointManager.Restart();
             OnEnemyDead?.Invoke(this);
         }
     }

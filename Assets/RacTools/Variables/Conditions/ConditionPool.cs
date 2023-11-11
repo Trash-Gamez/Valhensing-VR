@@ -12,6 +12,8 @@ namespace _VanHelsingVR.Conditions
      */
     public class ConditionPool
     {
+        
+        [SerializeField] private bool defaultValue = true;
         [SerializeField] private List<Condition> conditions = new();
 
         public bool CanDo
@@ -20,7 +22,7 @@ namespace _VanHelsingVR.Conditions
             {
                 if (conditions == null || conditions.Count <= 0)
                 {
-                    return true;
+                    return defaultValue;
                 }
 
                 var canDo = true;

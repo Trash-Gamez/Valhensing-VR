@@ -15,6 +15,7 @@ namespace _VanHelsingVR.Enemy
     public class FlyingEnemySpawner : MonoBehaviour
     {
         [SerializeField, AssetsOnly] private FlyingEnemyStateMachine enemyPrefab;
+        [Title("WayPoint Config")]
         [SerializeField] private List<WayPointManager> wayPointManagers;
         [SerializeField] private Transform spawnerYPos;
         [SerializeField] private Transform enemyContainer;
@@ -39,7 +40,6 @@ namespace _VanHelsingVR.Enemy
 
         private bool SpawnEnemy()
         {
-            Debug.Log("Se spawnea el enemigo");
             var possibleWayPoints = wayPointManagers.Where(manager => !_wayPointsInUse.ContainsKey(manager)).ToList();
             if (!possibleWayPoints.Any())
             {

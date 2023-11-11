@@ -19,6 +19,8 @@ namespace _VanHelsingVR.Enemy
             _attackRange = attackRange;
             _flySpeed = flySpeed;
             _playerTransform = playerTransform;
+            
+            SelectNewTarget();
         }
 
         private void SelectNewTarget()
@@ -38,7 +40,7 @@ namespace _VanHelsingVR.Enemy
             _flyingEnemyStateMachine.Animator.SetBool(FlyingEnemyStateMachine.FlyAnimationID, true);
             stateMachine.StartCoroutine(AttackWaitCor());
             
-            SelectNewTarget();
+            //SelectNewTarget();
         }
 
         public override void OnStateUpdate()
@@ -63,7 +65,7 @@ namespace _VanHelsingVR.Enemy
 
         public override void OnStateExit()
         {
-            _flyingEnemyStateMachine.wayPointManager.Restart();
+            return;
         }
     }
 }

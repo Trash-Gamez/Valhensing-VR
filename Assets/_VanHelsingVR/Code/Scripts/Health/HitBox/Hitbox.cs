@@ -14,6 +14,7 @@ namespace _VanHelsingVR.Health
 
         [field: SerializeField] public DamageTeam DamageTeam { get; private set; }
 
+        [SerializeField] private UnityEvent onTouchedHurtBox;
         [SerializeField] private UnityEvent onHit;
 
         public HitBoxData DataContainer => _dataContainer;
@@ -43,6 +44,13 @@ namespace _VanHelsingVR.Health
             if (hittedHurtBox == null) return;
             
             onHit?.Invoke();
+        }
+
+        public void OnHurtBoxTouched(Hurtbox touchedHurtBox)
+        {
+            if (touchedHurtBox == null) return;
+            
+            onTouchedHurtBox?.Invoke();
         }
         
         #if UNITY_EDITOR

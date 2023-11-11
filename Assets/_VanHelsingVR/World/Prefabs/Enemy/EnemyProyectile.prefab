@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 818836985036654092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6319355601532634181}
@@ -160,7 +160,7 @@ Transform:
   m_GameObject: {fileID: 2736246887830516325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6319355601532634181}
@@ -208,10 +208,13 @@ MonoBehaviour:
     reference: {fileID: 0}
     constant: 0
   canBeDamaged:
+    defaultValue: 1
     conditions: []
   canBeHealed:
+    defaultValue: 1
     conditions: []
   canOverHeal:
+    defaultValue: 1
     conditions: []
   onDamage:
     m_PersistentCalls:
@@ -243,6 +246,7 @@ MonoBehaviour:
     m_Bits: 32768
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
+    defaultValue: 1
     conditions:
     - conditionType: 1
       reversed: 0
@@ -267,6 +271,7 @@ GameObject:
   - component: {fileID: 4844738706558991713}
   - component: {fileID: 9002689234510576081}
   - component: {fileID: 6867867759945401522}
+  - component: {fileID: 9118894386016517685}
   m_Layer: 15
   m_Name: HitBox
   m_TagString: Untagged
@@ -283,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 5871572139834378587}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6319355601532634181}
@@ -333,6 +338,35 @@ MonoBehaviour:
   hitBoxCollider: {fileID: 4844738706558991713}
   rb: {fileID: 9002689234510576081}
   <DamageTeam>k__BackingField: 0
+  onTouchedHurtBox:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9118894386016517685}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
+          Assembly-CSharp
+        m_MethodName: DestroyObject
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1732038352931111062}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onHit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9118894386016517685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5871572139834378587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ee736803124634580b24b37eb1e52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: {fileID: 0}

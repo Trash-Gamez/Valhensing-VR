@@ -54,11 +54,13 @@ namespace _VanHelsingVR.Health
 
         protected void OnHit(Hitbox hitbox)
         {
-            if(_invulneravilityCor != null || _hurtBoxesInmune.Contains(transform.parent)) return;
+            if(_invulneravilityCor != null || _hurtBoxesInmune.Contains(transform.root)) return;
             if (hitbox == null) return;
             if (hitbox.DamageTeam == HurtboxTeam && !friendlyFire) return;
             
+            hitbox.OnHurtBoxTouched(this);
             if (!OnBeforeHit(hitbox)) return;
+            hitbox.OnHit(this);
             
             //Se obtiene el valor Damage y su tipo de dato entero, para saber cuanto daño se realizó
             var damageDealed = hitbox.DataContainer.GetHitBoxData(HitBoxDataType.Damage).IntValue;
@@ -122,7 +124,7 @@ namespace _VanHelsingVR.Health
 
             if (inmunityType == InmunityType.All)
             {
-                _hurtBoxesInmune.Add(transform.parent);
+                _hurtBoxesInmune.Add(transform.root);
             }
             else
             {
@@ -132,7 +134,7 @@ namespace _VanHelsingVR.Health
                 }
             }
 
-            _hurtBoxesInmune.Remove(transform.parent);
+            _hurtBoxesInmune.Remove(transform.root);
             _invulneravilityCor = null;
         }
         
