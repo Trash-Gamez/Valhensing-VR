@@ -34,10 +34,7 @@ public class AudioManager : MonoBehaviour
 		if (Instance == null) Instance = this;
 		else if (Instance != this) Destroy(gameObject);
 
-	   DontDestroyOnLoad(gameObject); 
-
-	
-		
+	   DontDestroyOnLoad(gameObject);
 		
 		soundLibrary = GetComponent<SoundLibrary>();
 		musicLibrary = GetComponent<MusicLibrary>();
