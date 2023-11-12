@@ -16,14 +16,16 @@ public class AudioManager : MonoBehaviour
 
 	public bool MusicIsLooping = true;
 	public bool AmbientIsLooping = true;
-	public bool CoroutineRun; 
-
 	
-	AudioSource musicSource;
+	
+	AudioSource track01;
+	AudioSource track02;
 	AudioSource ambientSource;
 	AudioSource fxSource;
 
-	
+	private bool _isPlayingTrack01;
+	[SerializeField] private float timeToFade = 1.25f;
+
 	SoundLibrary soundLibrary;
 	MusicLibrary musicLibrary;
 	AmbientLibrary ambientLibrary;
@@ -49,156 +51,82 @@ public class AudioManager : MonoBehaviour
 		fxSource.playOnAwake = false;
 
 		GameObject newMusicSource = new GameObject("Music source");
-		musicSource = newMusicSource.AddComponent<AudioSource>();
+		track01 = newMusicSource.AddComponent<AudioSource>();
+		track02 = newMusicSource.AddComponent<AudioSource>();
 		newMusicSource.transform.parent = transform;
-		musicSource.loop = MusicIsLooping; // Music is looping
-		musicSource.playOnAwake = false;
+		track01.loop = MusicIsLooping; // Music is looping
+		track01.playOnAwake = false;
+		track02.loop = MusicIsLooping; // Music is looping
+		track02.playOnAwake = false;
+
+
 
 		GameObject newAmbientsource = new GameObject("Ambient source");
 		ambientSource = newAmbientsource.AddComponent<AudioSource>();
 		newAmbientsource.transform.parent = transform;
 		ambientSource.loop = AmbientIsLooping; // Ambient sound is looping
 		ambientSource.playOnAwake = false;
-
+		_isPlayingTrack01 = true;
 		
 		// Set volume on all the channels
 		
-		SetVolume(masterVolume, AudioChannel.Master);
-		SetVolume(fxVolume, AudioChannel.fx);
-		SetVolume(musicVolume, AudioChannel.Music);
-		SetVolume(ambientVolume, AudioChannel.Ambient);
+		SetVolume();
+		
 	}
 
 	
 	// Set volume on all the channels
 	
-	public void SetVolume(float volumePercent, AudioChannel channel)
+	public void SetVolume()
 	{
-		switch (channel)
-		{
-			case AudioChannel.Master:
-				masterVolume = volumePercent;
-				break;
-			case AudioChannel.fx:
-				fxVolume = volumePercent;
-				break;
-			case AudioChannel.Music:
-				musicVolume = volumePercent;
-				break;
-			case AudioChannel.Ambient:
-				ambientVolume = volumePercent;
-				break;
-		}
-
-		// Set the audiosource volume
+		
 		fxSource.volume = fxVolume * masterVolume;
-		musicSource.volume = musicVolume * masterVolume;
+		track01.volume = musicVolume * masterVolume;
+		track02.volume = musicVolume * masterVolume;
 		ambientSource.volume = ambientVolume * masterVolume;
 	}
 
 	
 	// Play music with delay. 0 = No delay
-	
-	public void PlayMusic(string musicName, float delay)
-	{
-		musicSource.clip = musicLibrary.GetClipFromName(musicName);
-		musicSource.PlayDelayed(delay);
-	}
 
-	
-	// Play music fade in
-	
-	public IEnumerator PlayMusicFade(string musicName, float duration)
-	{
-		CoroutineRun = true; 
-
-		float startVolume = 0;
-		float targetVolume = musicSource.volume;
-		float currentTime = 0;
-
-		musicSource.clip = musicLibrary.GetClipFromName(musicName);
-		musicSource.Play();
-
-		while (currentTime < duration)
-		{
-			currentTime += Time.deltaTime;
-			musicSource.volume = Mathf.Lerp(startVolume, targetVolume, currentTime / duration);
-			yield return null;
-		}
-
-		CoroutineRun = false; 
-
-		yield break;
-	}
-
-	public IEnumerator CrossFadeMusic(string musicName, float duration)
+	public void SwampMusic(string Clip)
     {
-		
-		
-		float currentStopVolume = musicSource.volume;
-		float startStopVolume = musicSource.volume;
-		float targetStopVolume = 0;
-		float currentStopTime = 0;
+		StopAllCoroutines();
+		StartCoroutine(FadeTrack(Clip));
+		_isPlayingTrack01 = !_isPlayingTrack01;
+    }
 
-		while (currentStopTime < duration)
+	private IEnumerator FadeTrack(string Clip)
+    {
+		float timeElapsed = 0;
+		if (_isPlayingTrack01)
 		{
-			currentStopTime += Time.deltaTime;
-			musicSource.volume = Mathf.Lerp(startStopVolume, targetStopVolume, currentStopTime / duration);
-			yield return null;
+			track02.clip = musicLibrary.GetClipFromName(Clip);
+			track02.Play();
+            while (timeElapsed < timeToFade)
+            {
+				track02.volume = Mathf.Lerp(0, 1, timeElapsed / timeToFade) * musicVolume * masterVolume;
+				track01.volume = Mathf.Lerp(1, 0, timeElapsed / timeToFade) * musicVolume * masterVolume;
+				timeElapsed += Time.deltaTime;
+				yield return null;
+			}
+			track01.Stop();
 		}
-		musicSource.Stop();
-		musicSource.volume = currentStopVolume;
-
-
-		float startVolume = 0;
-		float targetVolume = musicSource.volume;
-		float currentTime = 0;
-
-		musicSource.clip = musicLibrary.GetClipFromName(musicName);
-		musicSource.Play();
-
-		while (currentTime < duration)
+		else
 		{
-			currentTime += Time.deltaTime;
-			musicSource.volume = Mathf.Lerp(startVolume, targetVolume, currentTime / duration);
-			yield return null;
+			track01.clip = musicLibrary.GetClipFromName(Clip);
+			track01.Play();
+			while (timeElapsed < timeToFade)
+			{
+				track01.volume = Mathf.Lerp(0, 1, timeElapsed / timeToFade)*musicVolume*masterVolume;
+				track02.volume = Mathf.Lerp(1, 0, timeElapsed / timeToFade) * musicVolume * masterVolume;
+				timeElapsed += Time.deltaTime;
+				yield return null;
+			}
+			track02.Stop();
 		}
-
-
-
 	}
-	// Stop music
-	
-	public void StopMusic()
-	{
-		musicSource.Stop();
-	}
-
-	// Stop music fade out
-	
-	public IEnumerator StopMusicFade(float duration)
-	{
-		CoroutineRun = true; 
-
-		float currentVolume = musicSource.volume;
-		float startVolume = musicSource.volume;
-		float targetVolume = 0;
-		float currentTime = 0;
-
-		while (currentTime < duration)
-		{
-			currentTime += Time.deltaTime;
-			musicSource.volume = Mathf.Lerp(startVolume, targetVolume, currentTime / duration);
-			yield return null;
-		}
-		musicSource.Stop();
-		musicSource.volume = currentVolume;
-
-		CoroutineRun = false; 
-
-		yield break;
-	}
-
+	 
 	
 	// Play ambient sound with delay 0 = No delay
 	
@@ -228,4 +156,17 @@ public class AudioManager : MonoBehaviour
 	{
 		AudioSource.PlayClipAtPoint(soundLibrary.GetClipFromName(soundName), soundPosition, fxVolume * masterVolume);
 	}
+
+	public bool IsAmbientPlaying(string clipId)
+    {
+        UnityEngine.AudioClip clip = ambientLibrary.GetClipFromName(clipId);
+		if (clip == ambientSource.clip)
+		{
+			return ambientSource.isPlaying;
+        }
+        else
+        {
+			return false;
+        }
+    }
 }

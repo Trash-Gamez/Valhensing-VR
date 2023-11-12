@@ -6,7 +6,7 @@ public class SoundLibrary : MonoBehaviour
 {
 	public SoundGroup[] soundGroups;
 
-	Dictionary<string, AudioClip[]> groupDictionary = new Dictionary<string, AudioClip[]>();
+	Dictionary<string, UnityEngine.AudioClip[]> groupDictionary = new Dictionary<string, UnityEngine.AudioClip[]>();
 
 	void Awake()
 	{
@@ -16,11 +16,11 @@ public class SoundLibrary : MonoBehaviour
 		}
 	}
 
-	public AudioClip GetClipFromName(string name)
+	public UnityEngine.AudioClip GetClipFromName(string name)
 	{
 		if (groupDictionary.ContainsKey(name))
 		{
-			AudioClip[] sounds = groupDictionary[name];
+            UnityEngine.AudioClip[] sounds = groupDictionary[name];
 			return sounds[Random.Range(0, sounds.Length)];
 		}
 		return null;
@@ -30,6 +30,6 @@ public class SoundLibrary : MonoBehaviour
 	public class SoundGroup
 	{
 		public string name;
-		public AudioClip[] clip;
+		public UnityEngine.AudioClip[] clip;
 	}
 }
