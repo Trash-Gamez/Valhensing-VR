@@ -50,10 +50,6 @@ namespace _VanHelsingVR.Enemy
 
             stateMachine.transform.position = Vector3.MoveTowards(enemyPos, targetPos, Time.deltaTime * _flySpeed);
             
-            stateMachine.transform.LookAt(_playerTransform.position);
-
-            stateMachine.transform.rotation = Quaternion.LookRotation((_playerTransform.position - stateMachine.transform.position).normalized);
-            
             if((targetPos - enemyPos).sqrMagnitude < 0.005f)
                 SelectNewTarget();
         }
