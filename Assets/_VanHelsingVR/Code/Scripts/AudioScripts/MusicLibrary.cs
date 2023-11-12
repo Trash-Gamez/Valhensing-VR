@@ -6,7 +6,7 @@ public class MusicLibrary : MonoBehaviour
 {
 	public MusicGroup[] musicGroups;
 
-	Dictionary<string, AudioClip> groupDictionary = new Dictionary<string, AudioClip>();
+	Dictionary<string, AudioClip> groupDictionary = new Dictionary<string,AudioClip>();
 
 	void Awake()
 	{
@@ -20,12 +20,17 @@ public class MusicLibrary : MonoBehaviour
 	{
 		if (groupDictionary.ContainsKey(name))
 		{
-			AudioClip music = groupDictionary[name];
+            AudioClip music = groupDictionary[name];
 			return music;
+        }
+        else
+        {
+			return null;
 		}
-		return null;
+		
 	}
 
+	
 	[System.Serializable]
 	public class MusicGroup
 	{

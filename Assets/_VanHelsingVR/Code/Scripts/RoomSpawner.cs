@@ -40,7 +40,7 @@ public class RoomSpawner : MonoBehaviour
         if (other.CompareTag("Player")){
             foreach(Animator doors in shortDoor){
                 doors.Play("Close");
-                AudioManager.Instance.PlayMusic("GameplayMusic02", 0);
+                AudioManager.Instance.SwampMusic("GameplayMusic02");
             }
             
             foreach(Collider doors in door){

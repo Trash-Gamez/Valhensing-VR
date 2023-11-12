@@ -17,16 +17,19 @@ namespace _VanHelsingVR
 
         private void Start()
         {
-            AudioManager.Instance.PlayMusic("MainMenuMusic", 0);
+            AudioManager.Instance.SwampMusic("MainMenuMusic");
+            StartNextPoint();
         }
         public void StartNextPoint()
         {
-            AudioManager.Instance.PlayAmbient("Carrito_01",0);
-            StartCoroutine(MoveToNextPoint(wayPoints[actualIndex].transform.position));
+            
+            StartCoroutine(MoveToNextPoint(wayPoints[actualIndex].transform.position,0));
         }
 
-        IEnumerator MoveToNextPoint(Vector3 nextPosition)
+        IEnumerator MoveToNextPoint(Vector3 nextPosition,float delay)
         {
+            yield return new WaitForSeconds(delay);
+            PlayAudio(wayPoints[actualIndex].canRotate);
             while (canMove)
             {
                 if (wayPoints[actualIndex].canRotate)
@@ -44,7 +47,13 @@ namespace _VanHelsingVR
 
                 yield return null;
             }
+            if (wayPoints[actualIndex].Time > 0)
+            {
+                AudioManager.Instance.PlaySound3D("CarritoStop", transform.position);
+                AudioManager.Instance.StopAmbient();
+            }
             yield return new WaitForSeconds(wayPoints[actualIndex].Time);
+            
 
             NextPoint(wayPoints[actualIndex].canContinue);
         }
@@ -79,18 +88,29 @@ namespace _VanHelsingVR
                 return;
             }
             canMove = true;
-            StartCoroutine("MoveToNextPoint", wayPoints[actualIndex].transform.position);
+            StartCoroutine(MoveToNextPoint(wayPoints[actualIndex].transform.position, 0));
         }
 
-        public void RestartMovement()
-        {
-            AudioManager.Instance.PlayAmbient("Carrito_01", 0);
+        public void RestartMovement(float delay)
+        { 
             if (canMove) return;
             canMove = true;
-            StartCoroutine("MoveToNextPoint", wayPoints[actualIndex].transform.position);
+            StartCoroutine(MoveToNextPoint(wayPoints[actualIndex].transform.position, delay));
         }
 
-    
+        private void PlayAudio(bool canRotate)
+        {
+            if (canRotate)
+            {
+                if (AudioManager.Instance.IsAmbientPlaying("Carrito_01")) return;
+                AudioManager.Instance.PlayAmbient("Carrito_01", 0);
+            }
+            else
+            {
+                if (AudioManager.Instance.IsAmbientPlaying("Carrito_02")) return;
+                AudioManager.Instance.PlayAmbient("Carrito_02", 0);
+            }
+        }
        
     
     }
