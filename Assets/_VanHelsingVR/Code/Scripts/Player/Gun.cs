@@ -9,9 +9,7 @@ using UnityEngine.InputSystem;
 using RacTools.Variables;
 using TMPro;
 
-#if UNITY_EDITOR
 using Sirenix.OdinInspector;
-#endif
 
 public class Gun : MonoBehaviour
 {
@@ -134,14 +132,17 @@ public class Gun : MonoBehaviour
             RaycastHit hit;
 
             Vector3 direction = GetDirection();
-            if (Physics.Raycast(shootPoint.position, direction, out hit, fireRange, hittableLayer))
+            if (Physics.SphereCast(shootPoint.position, 0.5f, direction, out hit, fireRange, hittableLayer))
             {
-                try
+                Debug.Log("Pego el rayo con: " + hit.transform.name);
+                var hurtbox = hit.transform.GetComponent<Hurtbox>();
+                if(hurtbox != null)
                 {
-                    hit.transform.GetComponent<Hurtbox>().OnHitScan();
-                } catch(System.Exception)
+                    hurtbox.OnHitScan();
+                }
+                else
                 {
-                    Debug.Log("This Object does not have Damagable Script");
+                    Debug.LogWarning("This Object does not have HurtBox Script");
                 }
             }
             

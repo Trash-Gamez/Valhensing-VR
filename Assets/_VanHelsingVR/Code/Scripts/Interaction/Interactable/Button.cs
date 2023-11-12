@@ -2,7 +2,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
+#if UNITY_EDITOR
 using UnityEditor.Events;
+#endif
 
 namespace _VanHelsingVR.Interaction
 {
@@ -15,12 +17,14 @@ namespace _VanHelsingVR.Interaction
         {
             OnClickButton?.Invoke();
         }
-        
+
+        #if UNITY_EDITOR
         [ContextMenu("Add to Simpleinteractable")]
         public void AddToEvent()
         {
             var simpleInteractable = GetComponent<XRSimpleInteractable>();
             UnityEventTools.AddPersistentListener(simpleInteractable.selectEntered, OnClick);
         }
+        #endif
     }
 }

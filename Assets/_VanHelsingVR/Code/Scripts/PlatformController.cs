@@ -17,8 +17,7 @@ namespace _VanHelsingVR
 
         private void Start()
         {
-            AudioManager.Instance.SwampMusic("MainMenuMusic");
-            StartNextPoint();
+            AudioManager.Instance.SwampMusic("MainMenuMusic");          
         }
         public void StartNextPoint()
         {
@@ -79,7 +78,7 @@ namespace _VanHelsingVR
         void NextPoint(bool canContinue)
         {
             actualIndex++;
-            UnityEngine.Debug.Log("Next Index: " + actualIndex);
+            
             if (!canContinue)
             {
                 AudioManager.Instance.PlaySound3D("CarritoStop", transform.position);
