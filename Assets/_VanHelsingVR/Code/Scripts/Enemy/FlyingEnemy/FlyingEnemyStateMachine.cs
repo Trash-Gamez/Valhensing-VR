@@ -28,7 +28,7 @@ namespace _VanHelsingVR.Enemy
         [SerializeField] private float proyectileSpeed;
         [SerializeField] private Variable<Transform> playerPosition;
         
-        public static readonly int DeadAnimationID = Animator.StringToHash("IsDead");
+        public static readonly int DeadAnimationID = Animator.StringToHash("IsDead");  
         public static readonly int AttackAnimationID = Animator.StringToHash("IsAtacking");
         public static readonly int FlyAnimationID = Animator.StringToHash("IsFlying");
 
@@ -49,7 +49,7 @@ namespace _VanHelsingVR.Enemy
         }
 
         public void RestartAnimatorParams()
-        { 
+        {
             Animator.SetBool(DeadAnimationID, false);
             Animator.SetBool(AttackAnimationID, false);
             Animator.SetBool(FlyAnimationID, false);
