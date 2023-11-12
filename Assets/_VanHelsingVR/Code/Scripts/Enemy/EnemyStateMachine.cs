@@ -12,6 +12,8 @@ namespace _VanHelsingVR.Enemy
         
         public event Action<BaseEnemyState> OnChangeState = delegate {  };
 
+        public abstract void RestartAnimatorParams();
+
         protected virtual void Start()
         {
             NoneState = new NoneState(this);

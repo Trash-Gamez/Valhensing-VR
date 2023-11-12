@@ -50,6 +50,11 @@ namespace _VanHelsingVR.Enemy
             ChangeState(RunawayState);
         }
         
+        public override void RestartAnimatorParams()
+        {
+            throw new NotImplementedException();
+        }
+        
         #if UNITY_EDITOR
         private void OnValidate()
         {

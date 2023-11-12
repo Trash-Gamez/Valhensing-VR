@@ -1,8 +1,8 @@
 using UnityEngine;
-using _VanHelsingVR.IA;
 using RacTools.Miscelaneous;
 using RacTools.RuntimeSet;
 using RacTools.Utilities;
+using _VanHelsingVR.IA;
 
 namespace _VanHelsingVR.Enemy
 {
@@ -48,7 +48,7 @@ namespace _VanHelsingVR.Enemy
 
         public override void OnStateEnter()
         {
-            
+            return;
         }
 
         public override void OnStateUpdate()
@@ -117,11 +117,11 @@ namespace _VanHelsingVR.Enemy
             _ahead = _position + _velocity.normalized * _maxSeeAhead;
             _ahead2 = _position + _velocity.normalized * (_maxSeeAhead * 0.5f);
             
-            _leftAhead = Quaternion.AngleAxis(-15, stateMachine.transform.up) * _ahead;
-            _leftAhead2 = Quaternion.AngleAxis(-15, stateMachine.transform.up) * _ahead;
+            _leftAhead = Quaternion.AngleAxis(-15, stateMachine.transform.up).normalized * _ahead;
+            _leftAhead2 = Quaternion.AngleAxis(-15, stateMachine.transform.up).normalized * _ahead;
 
-            _rightAhead = Quaternion.AngleAxis(15, stateMachine.transform.up) * _ahead;
-            _rightAhead2 = Quaternion.AngleAxis(15, stateMachine.transform.up) * _ahead2;
+            _rightAhead = Quaternion.AngleAxis(15, stateMachine.transform.up).normalized * _ahead;
+            _rightAhead2 = Quaternion.AngleAxis(15, stateMachine.transform.up).normalized * _ahead2;
         }
 
         private void DrawAheads()
