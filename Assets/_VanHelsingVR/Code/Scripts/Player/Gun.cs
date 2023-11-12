@@ -3,6 +3,7 @@ using System.Collections;
 using _VanHelsingVR.Health;
 using _VanHelsingVR.Interaction;
 using _VanHelsingVR.Utilities;
+using RacTools.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using RacTools.Variables;

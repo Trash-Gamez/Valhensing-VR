@@ -1,6 +1,6 @@
 using System;
 
-namespace _VanHelsingVR.Utilities
+namespace RacTools.Utilities
 {
     [Serializable]
     public class Rangereference

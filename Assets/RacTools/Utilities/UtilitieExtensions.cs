@@ -1,3 +1,5 @@
+using RacTools.Utilities;
+
 namespace _VanHelsingVR.Utilities
 {
     public static class UtilitieExtensions

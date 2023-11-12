@@ -4,7 +4,7 @@ using RacTools.Variables;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Range = _VanHelsingVR.Utilities.Range;
+using Range = RacTools.Utilities.Range;
 
 namespace _VanHelsingVR.Enemy
 {
