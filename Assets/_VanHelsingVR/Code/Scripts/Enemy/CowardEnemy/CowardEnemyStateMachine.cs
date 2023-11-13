@@ -12,6 +12,7 @@ namespace _VanHelsingVR.Enemy
     public class CowardEnemyStateMachine : EnemyStateMachine
     {
         [SerializeField] private RuntimeSet<IAObstacle> obstacles;
+        [field: SerializeField] public Rigidbody rb { get; private set; }
 
         [Title("Avoid Params")] 
         [SerializeField, Min(0.5f)] private float maxSeeAhead = 0.5f;

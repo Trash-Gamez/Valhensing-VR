@@ -97,7 +97,7 @@ namespace _VanHelsingVR.Enemy
             _velocity = Vector3.ClampMagnitude(_velocity + totalForce, _maxForce);
             _velocity.y = 0;
 
-            stateMachine.transform.position += _velocity * Time.deltaTime;
+            _cowardEnemyStateMachine.rb.velocity = _velocity;
             
             if (_velocity != Vector3.zero) 
                 stateMachine.Animator.SetFloat(_SpeedMultiplierAnim,-_velocity.magnitude);
