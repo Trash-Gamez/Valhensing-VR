@@ -15,5 +15,10 @@ namespace _VanHelsingVR.Enemy
         {
             stateMachine.AttackEnd();
         }
+
+        public void OnDeadAnimationEnd()
+        {
+            stateMachine.OnDeadAnimationEnd();
+        }
     }
 }

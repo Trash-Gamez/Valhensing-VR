@@ -1,12 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 namespace _VanHelsingVR.Instructions
 {
-    [DefaultExecutionOrder(1)]
+    [DefaultExecutionOrder(2)]
     public class DestroyInstruction : MonoBehaviour
     {
-        [SerializeField] RoomSpawner element;
-
         public void DestroyObject(GameObject objectToDestroy)
         {
             Destroy(objectToDestroy);
@@ -14,14 +13,13 @@ namespace _VanHelsingVR.Instructions
         
         public void DestroySelf(float timeToDestroy)
         {
-            //?????????????
-            if(element!=null) element.enemy.Remove(this.gameObject);
-            Destroy(gameObject, timeToDestroy);
+            StartCoroutine(DestroySelfCor(timeToDestroy));
         }
 
-        public void DestroyGameObject(GameObject gameObjectToDestroy)
+        private IEnumerator DestroySelfCor(float timeToDestroy)
         {
-            Destroy(gameObjectToDestroy);
+            yield return null;
+            Destroy(gameObject, timeToDestroy);
         }
     }
 }

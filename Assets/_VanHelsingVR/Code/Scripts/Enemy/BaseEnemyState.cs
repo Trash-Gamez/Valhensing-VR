@@ -2,6 +2,7 @@ namespace _VanHelsingVR.Enemy
 {
     public abstract class BaseEnemyState
     {
+        public EnemyStateMachine StateMachine => stateMachine;
         protected EnemyStateMachine stateMachine;
 
         public BaseEnemyState(EnemyStateMachine stateMachine)

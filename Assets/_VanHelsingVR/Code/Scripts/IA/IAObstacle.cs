@@ -13,12 +13,6 @@ namespace _VanHelsingVR.IA
         public Vector3 Center => centerTransform.position;
         [SerializeField] private Transform centerTransform;
 
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(Center, obstacleRadius);
-        }
-
         private void OnEnable()
         {
             foreach (var runtimeSet in runtimeSets)
@@ -34,5 +28,13 @@ namespace _VanHelsingVR.IA
                 runtimeSet.RemoveFromSet(this);
             }
         }
+
+#if UNITY_EDITOR
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(Center, obstacleRadius);
+        }
+#endif
     }
 }
