@@ -20,12 +20,12 @@ public class FlyingEnemySetActiveSpawner : MonoBehaviour
     {
         if (isActive)
         {
-            
+            AudioManager.Instance.SwampMusic("GameplayMusic01");
             _spawner.ActivateSpawn();
         }
         else
         {
-           
+            AudioManager.Instance.SwampMusic("GameplayMusic03");
             _spawner.DeactivateSpawn();
         }
 

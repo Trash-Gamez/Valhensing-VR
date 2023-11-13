@@ -19,10 +19,10 @@ namespace _VanHelsingVR
         {
             AudioManager.Instance.SwampMusic("MainMenuMusic");          
         }
-        public void StartNextPoint()
+        public void StartNextPoint(float delay)
         {
             
-            StartCoroutine(MoveToNextPoint(wayPoints[actualIndex].transform.position,0));
+            StartCoroutine(MoveToNextPoint(wayPoints[actualIndex].transform.position,delay));
         }
 
         IEnumerator MoveToNextPoint(Vector3 nextPosition,float delay)
