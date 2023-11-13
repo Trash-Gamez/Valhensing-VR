@@ -73,6 +73,7 @@ namespace _VanHelsingVR.Enemy
         public void OnDead()
         {
             OnEnemyDead?.Invoke(this);
+            Debug.Log("Se murio, empezando animación");
             ChangeState(FlyingDeadState);
         }
         

@@ -754,6 +754,7 @@ GameObject:
   - component: {fileID: 4177307836226677440}
   - component: {fileID: 3409680959416358673}
   - component: {fileID: 400685868}
+  - component: {fileID: 2439943472885949609}
   m_Layer: 0
   m_Name: VampireMelee
   m_TagString: Untagged
@@ -829,7 +830,7 @@ MonoBehaviour:
     reference: {fileID: 0}
     constant: 0
   canBeDamaged:
-    defaultValue: 0
+    defaultValue: 1
     conditions: []
   canBeHealed:
     defaultValue: 0
@@ -848,7 +849,20 @@ MonoBehaviour:
       m_Calls: []
   onDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2439943472885949609}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
+          Assembly-CSharp
+        m_MethodName: DestroySelf
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7206818619809146512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,6 +1008,18 @@ MonoBehaviour:
     reference: {fileID: 11400000, guid: 881fc8074c8273e49bb5fa9d29d420ea, type: 2}
     constant: {fileID: 0}
   usePosAndDamp: 1
+--- !u!114 &2439943472885949609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563765711428223259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ee736803124634580b24b37eb1e52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2576318135847409017
 GameObject:
   m_ObjectHideFlags: 0

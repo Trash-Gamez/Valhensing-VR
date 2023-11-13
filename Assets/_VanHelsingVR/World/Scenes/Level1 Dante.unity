@@ -10458,7 +10458,31 @@ MonoBehaviour:
   inmunityFrames: 0
   onHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 168979029}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
+          Assembly-CSharp
+        m_MethodName: DestroySelf
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &168979029 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1999026224, guid: acf6ca83973141942ace2c369ec41f8e, type: 3}
+  m_PrefabInstance: {fileID: 802911990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168979014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ee736803124634580b24b37eb1e52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &169072651
 GameObject:
   m_ObjectHideFlags: 0
@@ -12466,7 +12490,31 @@ MonoBehaviour:
   inmunityFrames: 0
   onHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 205826395}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
+          Assembly-CSharp
+        m_MethodName: DestroySelf
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &205826395 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4278190462862618072, guid: acf6ca83973141942ace2c369ec41f8e, type: 3}
+  m_PrefabInstance: {fileID: 802911990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205826381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ee736803124634580b24b37eb1e52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &205859073
 GameObject:
   m_ObjectHideFlags: 0
@@ -30648,20 +30696,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1182998952}
+    - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 8830689112380992618}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
@@ -30675,24 +30731,40 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Continue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: RestartMovement
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
       value: RestartMovement
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: _VanHelsingVR.WayPoint, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: _VanHelsingVR.PlatformController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: _VanHelsingVR.PlatformController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_FloatArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_FloatArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -35611,10 +35683,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 356494795}
     m_Modifications:
-    - target: {fileID: 578528700385599529, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: element
-      value: 
-      objectReference: {fileID: 4055734682756366240}
     - target: {fileID: 2563765711428223259, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_Name
       value: VampireMelee (6)
@@ -35662,62 +35730,6 @@ PrefabInstance:
     - target: {fileID: 2945217784104213409, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7295952498964562546, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: list
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DestroySelf
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GetOff
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Instructions.DestroyInstruction, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Enemy.EnemyGrounded, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
@@ -39598,10 +39610,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 356494795}
     m_Modifications:
-    - target: {fileID: 578528700385599529, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: element
-      value: 
-      objectReference: {fileID: 4055734682756366240}
     - target: {fileID: 2563765711428223259, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_Name
       value: VampireMelee (5)
@@ -39649,62 +39657,6 @@ PrefabInstance:
     - target: {fileID: 2945217784104213409, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7295952498964562546, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: list
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DestroySelf
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GetOff
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Instructions.DestroyInstruction, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Enemy.EnemyGrounded, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
@@ -54050,7 +54002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6664150272390601209, guid: acf6ca83973141942ace2c369ec41f8e, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6664150272390601209, guid: acf6ca83973141942ace2c369ec41f8e, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -55848,7 +55800,31 @@ MonoBehaviour:
   inmunityFrames: 0
   onHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 828579980}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
+          Assembly-CSharp
+        m_MethodName: DestroySelf
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &828579980 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 754198060, guid: acf6ca83973141942ace2c369ec41f8e, type: 3}
+  m_PrefabInstance: {fileID: 802911990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828579966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ee736803124634580b24b37eb1e52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &828936446
 GameObject:
   m_ObjectHideFlags: 0
@@ -60929,28 +60905,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 814384214}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 8830689112380992618}
+    - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1402885085}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
@@ -60968,32 +60952,52 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Continue
       objectReference: {fileID: 0}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: RestartMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwampMusic
       objectReference: {fileID: 0}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
       value: SwampMusic
       objectReference: {fileID: 0}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: _VanHelsingVR.WayPoint, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: _VanHelsingVR.PlatformController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: AudioPlayer, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
       value: AudioPlayer, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_FloatArgument
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_FloatArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_FloatArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
+      value: GameplayMusic01
       objectReference: {fileID: 0}
     - target: {fileID: 1805787806795562609, guid: 6ddb3f04db126a946bbdfb78cd62d930, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_StringArgument
@@ -71466,7 +71470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6151344893410716521, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
       propertyPath: hittableLayer.m_Bits
-      value: 24577
+      value: 24576
       objectReference: {fileID: 0}
     - target: {fileID: 8096009772210068735, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
       propertyPath: m_Enabled
@@ -87351,10 +87355,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 356494795}
     m_Modifications:
-    - target: {fileID: 578528700385599529, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: element
-      value: 
-      objectReference: {fileID: 4055734682756366240}
     - target: {fileID: 2563765711428223259, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_Name
       value: VampireMelee (3)
@@ -87402,62 +87402,6 @@ PrefabInstance:
     - target: {fileID: 2945217784104213409, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7295952498964562546, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: list
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DestroySelf
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GetOff
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Instructions.DestroyInstruction, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Enemy.EnemyGrounded, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
@@ -126441,20 +126385,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1440623572}
+    - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 8830689112380992618}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
@@ -126468,24 +126420,40 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Continue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: RestartMovement
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
       value: RestartMovement
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: _VanHelsingVR.WayPoint, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: _VanHelsingVR.PlatformController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: _VanHelsingVR.PlatformController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_FloatArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_FloatArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7012625857986204539, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -132551,10 +132519,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 356494795}
     m_Modifications:
-    - target: {fileID: 578528700385599529, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: element
-      value: 
-      objectReference: {fileID: 4055734682756366240}
     - target: {fileID: 2563765711428223259, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_Name
       value: VampireMelee (1)
@@ -132602,62 +132566,6 @@ PrefabInstance:
     - target: {fileID: 2945217784104213409, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7295952498964562546, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: list
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DestroySelf
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GetOff
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Instructions.DestroyInstruction, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Enemy.EnemyGrounded, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
@@ -139271,10 +139179,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 356494795}
     m_Modifications:
-    - target: {fileID: 578528700385599529, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: element
-      value: 
-      objectReference: {fileID: 4055734682756366240}
     - target: {fileID: 2563765711428223259, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_Name
       value: VampireMelee
@@ -139322,62 +139226,6 @@ PrefabInstance:
     - target: {fileID: 2945217784104213409, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7295952498964562546, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: list
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 11400000, guid: 7fbb0f99a3216ae458745784af6a7fd4, type: 2}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DestroySelf
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Instructions.DestroyInstruction, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Instructions.DestroyInstruction, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
@@ -146958,10 +146806,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 356494795}
     m_Modifications:
-    - target: {fileID: 578528700385599529, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: element
-      value: 
-      objectReference: {fileID: 4055734682756366240}
     - target: {fileID: 2563765711428223259, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_Name
       value: VampireMelee (2)
@@ -147009,62 +146853,6 @@ PrefabInstance:
     - target: {fileID: 2945217784104213409, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7295952498964562546, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: list
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DestroySelf
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GetOff
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Instructions.DestroyInstruction, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Enemy.EnemyGrounded, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
@@ -151578,7 +151366,31 @@ MonoBehaviour:
   inmunityFrames: 0
   onHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2042316100}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
+          Assembly-CSharp
+        m_MethodName: DestroySelf
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2042316100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4407347611894459566, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+  m_PrefabInstance: {fileID: 465494590}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042316085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ee736803124634580b24b37eb1e52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2044487420
 GameObject:
   m_ObjectHideFlags: 0
@@ -153310,10 +153122,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 356494795}
     m_Modifications:
-    - target: {fileID: 578528700385599529, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: element
-      value: 
-      objectReference: {fileID: 4055734682756366240}
     - target: {fileID: 2563765711428223259, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_Name
       value: VampireMelee (4)
@@ -153361,62 +153169,6 @@ PrefabInstance:
     - target: {fileID: 2945217784104213409, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7295952498964562546, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: list
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DestroySelf
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GetOff
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Instructions.DestroyInstruction, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: _VanHelsingVR.Enemy.EnemyGrounded, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
-      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
@@ -159653,7 +159405,31 @@ MonoBehaviour:
   inmunityFrames: 0
   onHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2144520958}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
+          Assembly-CSharp
+        m_MethodName: DestroySelf
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2144520958 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 465318553222211418, guid: 0146d4fef5016214bb916e412f8a82d9, type: 3}
+  m_PrefabInstance: {fileID: 465494590}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144520943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ee736803124634580b24b37eb1e52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2145256390
 GameObject:
   m_ObjectHideFlags: 0

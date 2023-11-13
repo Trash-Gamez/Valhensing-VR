@@ -87,8 +87,11 @@ namespace _VanHelsingVR.Health
         {
             if (!OnBeforeHitScan()) return;
             
-            if (healthReference != null)
+            if (healthReference != null) {
                 healthReference.HealthSystem.Damage(damaged);
+                Debug.Log("Si Hay Health Reference");
+            }
+                
             
             onHit?.Invoke(damaged);
         }
@@ -173,9 +176,7 @@ namespace _VanHelsingVR.Health
         {
             // Si no existe el componente collider, lo obtiene cada vez que se validen las propiedades del gameobject
             hurtBoxCollider ??= GetComponent<Collider>();
-            if(hurtBoxCollider == null)
-                Debug.LogError("There is no colider on: " + gameObject.name, gameObject);
-            else
+            if(hurtBoxCollider != null)
                 hurtBoxCollider.isTrigger = true;
         }
         

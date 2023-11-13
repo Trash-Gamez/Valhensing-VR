@@ -13,6 +13,7 @@ namespace _VanHelsingVR.Enemy
             _flyingEnemyStateMachine.wayPointManager.Restart();
             _flyingEnemyStateMachine.RestartAnimatorParams();
             stateMachine.Animator.SetBool(FlyingEnemyStateMachine.DeadAnimationID, true);
+            UnityEngine.Debug.Log("Iniciar Estado de muerte");
         }
 
         public override void OnStateUpdate()
