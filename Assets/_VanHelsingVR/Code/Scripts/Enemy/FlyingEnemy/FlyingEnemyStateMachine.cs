@@ -3,7 +3,6 @@ using _VanHelsingVR.Proyectile;
 using RacTools.Variables;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Range = RacTools.Utilities.Range;
 
 namespace _VanHelsingVR.Enemy
@@ -37,6 +36,7 @@ namespace _VanHelsingVR.Enemy
         public AppearState AppearState { get; private set; }
         public FlyAroundState FlyAroundState {get; private set;}
         public FlyingAttackState FlyingAttackState { get; private set; }
+        public FlyingDeadState FlyingDeadState { get; private set; }
         
         protected override void Start()
         {
@@ -44,11 +44,12 @@ namespace _VanHelsingVR.Enemy
             AppearState = new AppearState(this, wayPointManager.GetNext(), appearSpeed);
             FlyAroundState = new FlyAroundState(this, attackTimeRange, moveSpeed, playerPosition.Value);
             FlyingAttackState = new FlyingAttackState(this);
+            FlyingDeadState = new FlyingDeadState(this);
             
             ChangeState(AppearState);
         }
 
-        public void RestartAnimatorParams()
+        public override void RestartAnimatorParams()
         { 
             Animator.SetBool(DeadAnimationID, false);
             Animator.SetBool(AttackAnimationID, false);
@@ -71,8 +72,14 @@ namespace _VanHelsingVR.Enemy
         //Llamar desde el healthsystem de unity de este objeto
         public void OnDead()
         {
-            wayPointManager.Restart();
             OnEnemyDead?.Invoke(this);
+            ChangeState(FlyingDeadState);
+        }
+        
+        //Cuando termina la animacion se destruye
+        public void OnDeadAnimationEnd()
+        {
+            Destroy(gameObject);
         }
     }
 }

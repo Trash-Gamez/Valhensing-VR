@@ -7,13 +7,20 @@ namespace _VanHelsingVR.Instructions
     public class LookAtInstructionFlyingEnemy : MonoBehaviour
     {
         [SerializeField] private VariableReference<Transform> target;
+        [SerializeField] private bool usePosAndDamp;
         
         private void Update()
         {
-            var targetPos = target.Value.position;
-            targetPos.y = transform.position.y;
-            
-            transform.LookAt(target.Value);
+            if (usePosAndDamp)
+            {
+                var targetPos = target.Value.position;
+                targetPos.y = transform.position.y;
+                transform.LookAt(targetPos);
+            }
+            else
+            {
+                transform.LookAt(target.Value);
+            }
         }
     }
 }

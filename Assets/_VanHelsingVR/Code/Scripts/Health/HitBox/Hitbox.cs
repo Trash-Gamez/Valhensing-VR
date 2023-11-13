@@ -29,7 +29,11 @@ namespace _VanHelsingVR.Health
         private void GetComponents()
         {
             hitBoxCollider ??= GetComponent<Collider>();
+            hitBoxCollider.isTrigger = true;
+            
             rb ??= GetComponent<Rigidbody>();
+            rb.useGravity = false;
+            rb.isKinematic = true;
         }
 
         public void PopulateData(HitBoxData container) => _dataContainer = container;
