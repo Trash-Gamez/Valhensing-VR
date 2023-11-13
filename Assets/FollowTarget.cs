@@ -7,6 +7,6 @@ public class FollowTarget : MonoBehaviour
 
     private void Update()
     {
-        transform.position = target.Value.position;
+        transform.position = target.Value.position; 
     }
 }

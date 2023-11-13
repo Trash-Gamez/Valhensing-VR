@@ -10,6 +10,8 @@ namespace _VanHelsingVR.Enemy
 {
     public class RunawayState : BaseEnemyState
     {
+        public Vector3 DesiredVelocity => _desiredVelocity;
+        
         private Quaternion _leftRot, _rightRot;
         
         private CowardEnemyStateMachine _cowardEnemyStateMachine;
@@ -57,7 +59,7 @@ namespace _VanHelsingVR.Enemy
         public override void OnStateEnter()
         {
             stateMachine.RestartAnimatorParams();
-            stateMachine.Animator.SetLayerWeight(1, 0.8f);
+            stateMachine.Animator.SetLayerWeight(1, 0.75f);
             stateMachine.Animator.SetBool(CowardEnemyStateMachine.IsWalkingAnimID, true);
             stateMachine.StartCoroutine(AttackCor());
         }
@@ -98,7 +100,7 @@ namespace _VanHelsingVR.Enemy
             stateMachine.transform.position += _velocity * Time.deltaTime;
             
             if (_velocity != Vector3.zero) 
-                stateMachine.Animator.SetFloat(_SpeedMultiplierAnim, _velocity.magnitude);
+                stateMachine.Animator.SetFloat(_SpeedMultiplierAnim,-_velocity.magnitude);
             else
                 stateMachine.Animator.SetFloat(_SpeedMultiplierAnim, 0);
         }
@@ -153,11 +155,11 @@ namespace _VanHelsingVR.Enemy
             _ahead = _position + _velocity.normalized * _maxSeeAhead;
             _ahead2 = _position + _velocity.normalized * (_maxSeeAhead * 0.5f);
             
-            _leftAhead = Quaternion.AngleAxis(-15, stateMachine.transform.up).normalized * _ahead;
-            _leftAhead2 = Quaternion.AngleAxis(-15, stateMachine.transform.up).normalized * _ahead;
+            _leftAhead = _position + (Quaternion.AngleAxis(-15, stateMachine.transform.up) * _ahead).normalized;
+            _leftAhead2 = _position + (Quaternion.AngleAxis(-15, stateMachine.transform.up) * _ahead).normalized;
 
-            _rightAhead = Quaternion.AngleAxis(15, stateMachine.transform.up).normalized * _ahead;
-            _rightAhead2 = Quaternion.AngleAxis(15, stateMachine.transform.up).normalized * _ahead2;
+            _rightAhead = _position + (Quaternion.AngleAxis(15, stateMachine.transform.up) * _ahead).normalized;
+            _rightAhead2 = _position + (Quaternion.AngleAxis(15, stateMachine.transform.up) * _ahead2).normalized;
         }
 
         private void DrawAheads()

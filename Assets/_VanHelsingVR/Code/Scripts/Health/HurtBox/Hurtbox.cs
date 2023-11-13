@@ -64,9 +64,12 @@ namespace _VanHelsingVR.Health
             
             //Se obtiene el valor Damage y su tipo de dato entero, para saber cuanto daño se realizó
             var damageDealed = hitbox.DataContainer.GetHitBoxData(HitBoxDataType.Damage).IntValue;
+
+            if (healthReference.HealthSystem != null)
+            {
+                healthReference.HealthSystem.Damage(damageDealed);                
+            }
             
-            if(healthReference != null)
-                healthReference.HealthSystem.Damage(damageDealed);
 
             onHit?.Invoke(damageDealed);
             _invulneravilityCor = StartCoroutine(InvulnerabilityCor());
@@ -170,6 +173,7 @@ namespace _VanHelsingVR.Health
         {
             // Si no existe el componente collider, lo obtiene cada vez que se validen las propiedades del gameobject
             hurtBoxCollider ??= GetComponent<Collider>();
+            hurtBoxCollider.isTrigger = true;
         }
         
         [ContextMenu("Force Hit")]

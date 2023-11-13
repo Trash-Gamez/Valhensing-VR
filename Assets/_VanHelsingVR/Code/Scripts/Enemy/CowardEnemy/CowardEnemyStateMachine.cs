@@ -1,9 +1,11 @@
 using System;
 using _VanHelsingVR.IA;
+using _VanHelsingVR.Proyectile;
 using RacTools.RuntimeSet;
 using RacTools.Variables;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _VanHelsingVR.Enemy
 {
@@ -23,6 +25,12 @@ namespace _VanHelsingVR.Enemy
 
         [Title("Move Params")] 
         [SerializeField, Min(0.25f)] private float maxMoveForce = 0.25f;
+
+        [Title("Proyectile")] 
+        [SerializeField] private VariableReference<Transform> proyectileTip;
+        [SerializeField] private ThrowingProyectile proyectilePrefab;
+        [SerializeField, Min(0.25f)] private float proyectileSpeed = 2f;
+        
 
         public static readonly int IsAttackingAnimID = Animator.StringToHash("IsAtacking");
         public static readonly int IsWalkingAnimID = Animator.StringToHash("IsWalking");
@@ -61,6 +69,20 @@ namespace _VanHelsingVR.Enemy
             Animator.SetBool(IsWalkingAnimID, false);
             Animator.SetBool(IsDeadAnimID, false);
         }
+
+        private ThrowingProyectile _currentProyectile = null; 
+        public void AppearProyectile()
+        {
+            _currentProyectile = Instantiate(proyectilePrefab, proyectileTip.Value.position, Quaternion.identity);
+            _currentProyectile.Init(target.Value, proyectileSpeed);
+        }
+
+        public void ThrowProyectile()
+        {
+            if (_currentProyectile == null) return;
+            _currentProyectile.Throw();
+            _currentProyectile = null;
+        }
         
         #if UNITY_EDITOR
         private void OnValidate()
@@ -79,6 +101,6 @@ namespace _VanHelsingVR.Enemy
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(target.Value.position, safeRadius);
         }
-#endif
+        #endif
     }
 }
