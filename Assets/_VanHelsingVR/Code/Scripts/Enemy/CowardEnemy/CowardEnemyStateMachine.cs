@@ -23,6 +23,10 @@ namespace _VanHelsingVR.Enemy
 
         [Title("Move Params")] 
         [SerializeField, Min(0.25f)] private float maxMoveForce = 0.25f;
+
+        public static readonly int IsAttackingAnimID = Animator.StringToHash("IsAtacking");
+        public static readonly int IsWalkingAnimID = Animator.StringToHash("IsWalking");
+        public static readonly int IsDeadAnimID = Animator.StringToHash("IsDead");
         
         public RunawayState RunawayState { get; private set; }
 
@@ -52,7 +56,10 @@ namespace _VanHelsingVR.Enemy
         
         public override void RestartAnimatorParams()
         {
-            throw new NotImplementedException();
+            Animator.SetLayerWeight(1, 0f);
+            Animator.SetBool(IsAttackingAnimID, false);
+            Animator.SetBool(IsWalkingAnimID, false);
+            Animator.SetBool(IsDeadAnimID, false);
         }
         
         #if UNITY_EDITOR
@@ -66,6 +73,7 @@ namespace _VanHelsingVR.Enemy
 
         private void OnDrawGizmosSelected()
         {
+            if (target.Value == null) return;
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(target.Value.position, runAwayCircle);
             Gizmos.color = Color.cyan;
