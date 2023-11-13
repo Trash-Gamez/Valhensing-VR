@@ -15,7 +15,7 @@ namespace _VanHelsingVR.Enemy
 {
     public class FlyingEnemySpawner : MonoBehaviour
     {
-        [SerializeField, AssetsOnly] private FlyingEnemyStateMachine enemyPrefab;
+        [SerializeField] private FlyingEnemyStateMachine enemyPrefab;
         [Title("WayPoint Config")]
         [SerializeField] private List<WayPointManager> wayPointManagers;
         [SerializeField] private Transform spawnerYPos;
@@ -56,6 +56,7 @@ namespace _VanHelsingVR.Enemy
             spawnPos.y = spawnerYPos.position.y;
             
             var enemyBehaviour = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, enemyContainer);
+            Debug.Log(enemyBehaviour == null ? "No Hay script enemigo" : "Hay script Enemigo");
             
             enemyBehaviour.wayPointManager = wayPointManager;
             

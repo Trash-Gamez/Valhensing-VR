@@ -168,12 +168,15 @@ namespace _VanHelsingVR.Health
 
         #region Editor Methods
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         private void OnValidate()
         {
             // Si no existe el componente collider, lo obtiene cada vez que se validen las propiedades del gameobject
             hurtBoxCollider ??= GetComponent<Collider>();
-            hurtBoxCollider.isTrigger = true;
+            if(hurtBoxCollider == null)
+                Debug.LogError("There is no colider on: " + gameObject.name, gameObject);
+            else
+                hurtBoxCollider.isTrigger = true;
         }
         
         [ContextMenu("Force Hit")]
@@ -188,7 +191,7 @@ namespace _VanHelsingVR.Health
             return Application.isPlaying || EditorApplication.isPlaying;
         }
     
-        #endif
+#endif
 
         #endregion
     }
