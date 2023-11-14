@@ -26,7 +26,8 @@ namespace _VanHelsingVR.Enemy
         [SerializeField] private FloatRangeReference spawnRate;
 
         [Title("Config")] [SerializeField] private bool destroyEnemiesWithDeactivate;
-
+        
+        private int _numbersOfEnemies = 3;
         private bool _isActive;
         private bool _isRoom = true;
     
@@ -41,10 +42,15 @@ namespace _VanHelsingVR.Enemy
 
         private bool SpawnEnemy()
         {
+            if (_numbersOfEnemies >= _wayPointsInUse.Count)
+            {
+                _isRoom = false;
+                return false;
+            }
+            
             var possibleWayPoints = wayPointManagers.Where(manager => !_wayPointsInUse.ContainsKey(manager)).ToList();
             if (!possibleWayPoints.Any())
             {
-                Debug.Log("No hay nada");
                 _isRoom = false;
                 return false;
             }
@@ -56,13 +62,12 @@ namespace _VanHelsingVR.Enemy
             spawnPos.y = spawnerYPos.position.y;
             
             var enemyBehaviour = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, enemyContainer);
-            Debug.Log(enemyBehaviour == null ? "No Hay script enemigo" : "Hay script Enemigo");
             
             enemyBehaviour.wayPointManager = wayPointManager;
             
             //Esto se podria cambiar a que solo hay aun diferente tipo de contenedor
             enemyBehaviour.bulletContainer = enemyContainer;
-            
+
             _wayPointsInUse.Add(wayPointManager, enemyBehaviour);
             
             possibleWayPoints = wayPointManagers.Where(manager => !_wayPointsInUse.ContainsKey(manager)).ToList();
@@ -97,6 +102,13 @@ namespace _VanHelsingVR.Enemy
             }
 
             _recurrentEnemySpawn = null;
+        }
+        
+        public void ActivateSpawn(int numberOfenemies)
+        {
+            numberOfenemies = Mathf.Clamp(numberOfenemies, 0, wayPointManagers.Count);
+            _numbersOfEnemies = numberOfenemies;
+            ActivateSpawn();
         }
         
         public void ActivateSpawn()

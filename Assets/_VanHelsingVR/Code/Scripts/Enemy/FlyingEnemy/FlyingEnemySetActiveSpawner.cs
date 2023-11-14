@@ -11,6 +11,8 @@ public class FlyingEnemySetActiveSpawner : MonoBehaviour
     private static FlyingEnemySpawner _spawner;
     [SerializeField] private bool isActive = false;
 
+    [SerializeField, Range(1,3)] private int numberEnemies;
+
     private void Start()
     {
         _spawner ??= FindObjectOfType<FlyingEnemySpawner>();
