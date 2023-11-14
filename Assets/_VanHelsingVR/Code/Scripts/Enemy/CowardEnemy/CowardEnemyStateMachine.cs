@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using _VanHelsingVR.IA;
 using _VanHelsingVR.Proyectile;
 using RacTools.RuntimeSet;
@@ -32,12 +33,24 @@ namespace _VanHelsingVR.Enemy
         [SerializeField] private ThrowingProyectile proyectilePrefab;
         [SerializeField, Min(0.25f)] private float proyectileSpeed = 2f;
         
+        [Title("Attack")]
+        [SerializeField, Min(0.25f)] private float attackRadius;
+        [SerializeField, Min(0.1f)] private float timeToAttack;
+        private float _attackCooldown = 0;
+        private bool _isAttacking = false;
+
+        private Transform _transform;
 
         public static readonly int IsAttackingAnimID = Animator.StringToHash("IsAtacking");
         public static readonly int IsWalkingAnimID = Animator.StringToHash("IsWalking");
         public static readonly int IsDeadAnimID = Animator.StringToHash("IsDead");
         
         public RunawayState RunawayState { get; private set; }
+
+        private void Awake()
+        {
+            _transform = transform;
+        }
 
         protected override void Start()
         {
@@ -71,6 +84,46 @@ namespace _VanHelsingVR.Enemy
             Animator.SetBool(IsDeadAnimID, false);
         }
 
+        protected override void Update()
+        {
+            base.Update();
+            
+            if (_isAttacking) return;
+            if ((target.Value.position - _transform.position).magnitude > attackRadius)
+            {
+                _attackCooldown = 0;
+                return;
+            }
+
+            Debug.Log("Esta adentro");
+            _attackCooldown += Time.deltaTime;
+            if (_attackCooldown >= timeToAttack)
+            {
+                Attack();
+            }
+        }
+
+        private void Attack()
+        {
+            _isAttacking = true;
+            StartCoroutine(AttackCor());
+        }
+        
+        private IEnumerator AttackCor()
+        {
+            Animator.SetBool(IsWalkingAnimID, false);
+            Animator.SetBool(IsAttackingAnimID, true);
+
+            yield return new WaitForSeconds(Animator.GetAnimatorTransitionInfo(0).duration);
+            yield return new WaitForSeconds(Animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
+            
+            Animator.SetBool(IsWalkingAnimID, true);
+            Animator.SetBool(IsAttackingAnimID, false);
+
+            _isAttacking = false;
+            _attackCooldown = 0;
+        }
+
         private ThrowingProyectile _currentProyectile = null; 
         public void AppearProyectile()
         {
@@ -101,6 +154,8 @@ namespace _VanHelsingVR.Enemy
             Gizmos.DrawWireSphere(target.Value.position, runAwayCircle);
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(target.Value.position, safeRadius);
+            Gizmos.color = Color.black;
+            Gizmos.DrawWireSphere(transform.position, attackRadius);
         }
         #endif
     }

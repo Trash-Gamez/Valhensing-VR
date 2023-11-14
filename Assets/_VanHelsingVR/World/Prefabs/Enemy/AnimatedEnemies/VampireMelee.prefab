@@ -837,10 +837,10 @@ MonoBehaviour:
     defaultValue: 1
     conditions: []
   canBeHealed:
-    defaultValue: 0
+    defaultValue: 1
     conditions: []
   canOverHeal:
-    defaultValue: 0
+    defaultValue: 1
     conditions: []
   onDamage:
     m_PersistentCalls:
@@ -884,20 +884,22 @@ MonoBehaviour:
   <rb>k__BackingField: {fileID: 4412317610759520965}
   maxSeeAhead: 2
   maxAvoidForce: 2.25
-  runAwayCircle: 6
-  safeRadius: 10
+  runAwayCircle: 5.5
+  safeRadius: 8.8
   target:
     variableType: 1
     reference: {fileID: 11400000, guid: 881fc8074c8273e49bb5fa9d29d420ea, type: 2}
     constant: {fileID: 0}
-  runAwaySpeed: 4.1
+  runAwaySpeed: 4
   maxMoveForce: 30
   proyectileTip:
     variableType: 0
     reference: {fileID: 0}
     constant: {fileID: 284185540483493981}
   proyectilePrefab: {fileID: 5183927388043926617, guid: 48eb4a028100e9b45a5e5b2f8e25e1c3, type: 3}
-  proyectileSpeed: 3
+  proyectileSpeed: 5
+  attackRadius: 14
+  timeToAttack: 7
 --- !u!114 &4177307836226677440
 MonoBehaviour:
   m_ObjectHideFlags: 0

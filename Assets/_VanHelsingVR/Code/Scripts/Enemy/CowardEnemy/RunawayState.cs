@@ -61,29 +61,8 @@ namespace _VanHelsingVR.Enemy
             stateMachine.RestartAnimatorParams();
             stateMachine.Animator.SetLayerWeight(1, 0.75f);
             stateMachine.Animator.SetBool(CowardEnemyStateMachine.IsWalkingAnimID, true);
-            stateMachine.StartCoroutine(AttackCor());
         }
-
-        private IEnumerator AttackCor()
-        {
-            Debug.Log("Inicio la espera de ataque");
-            yield return new WaitForSeconds(10f);
-            Debug.Log("Inicio el ataque");
-            
-            stateMachine.Animator.SetBool(CowardEnemyStateMachine.IsWalkingAnimID, false);
-            stateMachine.Animator.SetBool(CowardEnemyStateMachine.IsAttackingAnimID, true);
-
-            yield return new WaitForSeconds(stateMachine.Animator.GetAnimatorTransitionInfo(0).duration);
-            Debug.Log("Termino la transicion");
-            yield return new WaitForSeconds(stateMachine.Animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
-            Debug.Log("Termino el clip");
-            
-            stateMachine.Animator.SetBool(CowardEnemyStateMachine.IsWalkingAnimID, true);
-            stateMachine.Animator.SetBool(CowardEnemyStateMachine.IsAttackingAnimID, false);
-            
-            stateMachine.StartCoroutine(AttackCor());
-        }
-
+        
         public override void OnStateUpdate()
         {
             _position = stateMachine.transform.position;

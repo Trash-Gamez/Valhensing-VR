@@ -41,6 +41,15 @@ namespace _VanHelsingVR.Proyectile
                 transform.position = Vector3.Lerp(finalPos, endPos, t);
                 yield return null;
             }
+            
+            Destroy(gameObject);
+            _throwCoroutine = null;
+        }
+
+        private void OnDestroy()
+        {
+            if(_throwCoroutine != null)
+                StopCoroutine(_throwCoroutine);
         }
     }
 }
