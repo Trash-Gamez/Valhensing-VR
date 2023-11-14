@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using _VanHelsingVR.Enemy;
 using ModestTree;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -11,7 +12,8 @@ public class FlyingEnemySetActiveSpawner : MonoBehaviour
     private static FlyingEnemySpawner _spawner;
     [SerializeField] private bool isActive = false;
 
-    [SerializeField, Range(1,3)] private int numberEnemies;
+    [SerializeField, Range(1,3)] 
+    [ShowIf(nameof(isActive))]private int numberEnemies;
 
     private void Start()
     {
@@ -23,7 +25,7 @@ public class FlyingEnemySetActiveSpawner : MonoBehaviour
         if (isActive)
         {
             AudioManager.Instance.SwampMusic("GameplayMusic01");
-            _spawner.ActivateSpawn();
+            _spawner.ActivateSpawn(numberEnemies);
         }
         else
         {

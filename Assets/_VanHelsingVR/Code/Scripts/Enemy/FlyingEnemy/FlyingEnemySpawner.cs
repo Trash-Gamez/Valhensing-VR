@@ -42,8 +42,10 @@ namespace _VanHelsingVR.Enemy
 
         private bool SpawnEnemy()
         {
-            if (_numbersOfEnemies >= _wayPointsInUse.Count)
+            Debug.Log("Waypoins count: " + _wayPointsInUse.Count);
+            if (_wayPointsInUse.Count >= _numbersOfEnemies)
             {
+                Debug.Log("Hay más enemigos que waypoints activos");
                 _isRoom = false;
                 return false;
             }
