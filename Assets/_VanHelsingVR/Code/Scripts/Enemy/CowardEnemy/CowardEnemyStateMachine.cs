@@ -95,7 +95,6 @@ namespace _VanHelsingVR.Enemy
                 return;
             }
 
-            Debug.Log("Esta adentro");
             _attackCooldown += Time.deltaTime;
             if (_attackCooldown >= timeToAttack)
             {
