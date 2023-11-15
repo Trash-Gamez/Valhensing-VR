@@ -83,13 +83,37 @@ PrefabInstance:
     m_TransformParent: {fileID: 6624868156560265613}
     m_Modifications:
     - target: {fileID: 1077772442993033583, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+      propertyPath: hurtBoxCollider
+      value: 
+      objectReference: {fileID: 7344312630362472915}
+    - target: {fileID: 1077772442993033583, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
       propertyPath: hurtLayer.m_Bits
       value: 33088
       objectReference: {fileID: 0}
+    - target: {fileID: 1077772442993033583, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+      propertyPath: friendlyFire.defaultValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077772442993033583, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+      propertyPath: <HealthReference>k__BackingField.<HealthSystem>k__BackingField
+      value: 
+      objectReference: {fileID: 399022015100682049}
+    - target: {fileID: 4645182778856407140, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+      propertyPath: hurtBoxCollider
+      value: 
+      objectReference: {fileID: 5938992375142495605}
     - target: {fileID: 4645182778856407140, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
       propertyPath: hurtLayer.m_Bits
       value: 33088
       objectReference: {fileID: 0}
+    - target: {fileID: 4645182778856407140, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+      propertyPath: friendlyFire.defaultValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645182778856407140, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+      propertyPath: <HealthReference>k__BackingField.<HealthSystem>k__BackingField
+      value: 
+      objectReference: {fileID: 399022015100682049}
     - target: {fileID: 6807716496099638611, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -143,9 +167,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7786375090306212723, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+      propertyPath: hurtBoxCollider
+      value: 
+      objectReference: {fileID: 3602399614289860472}
+    - target: {fileID: 7786375090306212723, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
       propertyPath: hurtLayer.m_Bits
       value: 33088
       objectReference: {fileID: 0}
+    - target: {fileID: 7786375090306212723, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+      propertyPath: friendlyFire.defaultValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786375090306212723, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+      propertyPath: <HealthReference>k__BackingField.<HealthSystem>k__BackingField
+      value: 
+      objectReference: {fileID: 399022015100682049}
     - target: {fileID: 8160551443190716991, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
       propertyPath: stateMachine
       value: 
@@ -153,6 +189,17 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6103782329567314976, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+--- !u!114 &399022015100682049 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6807716496099638611, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+  m_PrefabInstance: {fileID: 6624868156537504274}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3096686dd3cedb9448543a1ce24a03ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1917510405005871397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4714178029046893367, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
@@ -163,6 +210,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7644736380417259757, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
   m_PrefabInstance: {fileID: 6624868156537504274}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &3602399614289860472 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 7642055658907850090, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+  m_PrefabInstance: {fileID: 6624868156537504274}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &3921918652657208184 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7898528975413807466, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
@@ -171,5 +223,15 @@ Animator:
 --- !u!4 &5516861621161307028 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1693237011356920198, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+  m_PrefabInstance: {fileID: 6624868156537504274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &5938992375142495605 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 692367301133481831, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+  m_PrefabInstance: {fileID: 6624868156537504274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &7344312630362472915 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 4475591844685448129, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
   m_PrefabInstance: {fileID: 6624868156537504274}
   m_PrefabAsset: {fileID: 0}
