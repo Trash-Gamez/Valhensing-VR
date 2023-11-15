@@ -12,6 +12,7 @@ public class OpenBigDoor : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             animator.SetBool("Open", true);
+            AudioManager.Instance.PlaySound2D("BigDoor");
         }
     }
 }
