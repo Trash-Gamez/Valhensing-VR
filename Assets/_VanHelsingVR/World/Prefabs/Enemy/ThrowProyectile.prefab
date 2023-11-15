@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 5183927387796278316}
   - component: {fileID: 5183927387796278317}
   m_Layer: 14
-  m_Name: Hurtbox
+  m_Name: PunchableHurtbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,7 +178,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.88
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5183927387796278317
 MonoBehaviour:
@@ -195,7 +195,7 @@ MonoBehaviour:
   hurtBoxCollider: {fileID: 5183927387796278316}
   hurtLayer:
     serializedVersion: 2
-    m_Bits: 32832
+    m_Bits: 64
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
     defaultValue: 0
@@ -238,7 +238,7 @@ Transform:
   m_GameObject: {fileID: 5183927388043926618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.8369293, y: 1.099932, z: 23.521814}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5183927387796278318}

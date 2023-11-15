@@ -1,3 +1,4 @@
+using System;
 using _VanHelsingVR.Player;
 using RacTools.Variables;
 using Sirenix.OdinInspector;
@@ -12,6 +13,7 @@ namespace _VanHelsingVR.Interaction
     {
         [SerializeField] private HandInputReference handInput;
         [SerializeField, Required] private Variable<bool> isGrabbing;
+        [SerializeField] private Collider punchCollider;
 
         protected override void Start()
         {
@@ -19,13 +21,9 @@ namespace _VanHelsingVR.Interaction
             base.Start();
         }
 
-        public bool CanPunch
+        private void FixedUpdate()
         {
-            get
-            {
-                if (isGrabbing.Value) return false;
-                return handInput.Hand.IsClosed;
-            }
+            punchCollider.enabled = handInput.Hand.IsClosed;
         }
 
         public void Grab(Grabbable grabbable)

@@ -2,6 +2,7 @@ using System;
 using RacTools.Variables;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace _VanHelsingVR.Player
 {
@@ -23,12 +24,13 @@ namespace _VanHelsingVR.Player
         [SerializeField] private InputActionProperty selectAction;
         [SerializeField] private InputActionProperty activateAction;
     
-        [SerializeField] private FloatReference closedValue;
+        [FormerlySerializedAs("closedValue")] [SerializeField] private FloatReference actionValueToClosed;
+        [SerializeField] private FloatReference triggerValueToClosed;
 
         public float SelectionInput { get; private set; }
         public float ActiveInput { get; private set; }
 
-        public bool IsClosed => ActiveInput >= closedValue.Value;
+        public bool IsClosed => ActiveInput >= actionValueToClosed.Value && SelectionInput >= triggerValueToClosed.Value;
     
         public void HandleInput()
         {

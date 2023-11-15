@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _VanHelsingVR.Enemy
 {
@@ -30,6 +31,14 @@ namespace _VanHelsingVR.Enemy
             if (!wayPoints.Any()) throw new ArgumentNullException();
 
             return wayPoints[0];
+        }
+        
+        public Transform GetFirstOrSecond()
+        {
+            if(wayPoints == null) throw new NullReferenceException();
+            if (!wayPoints.Any()) throw new ArgumentNullException();
+
+            return wayPoints[Random.Range(0,1)];
         }
         
         public void Restart()

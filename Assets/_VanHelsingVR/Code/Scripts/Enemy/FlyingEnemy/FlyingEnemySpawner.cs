@@ -36,21 +36,30 @@ namespace _VanHelsingVR.Enemy
         private IEnumerator ActivateSpawnCor()
         {
             yield return new WaitForSeconds(initialSpawnTime.Value);
-            SpawnEnemy();
-            _recurrentEnemySpawn = StartCoroutine(RecurrentEnemySpawn());
+            TrySpawnEnemy();
+            
+            if(CanSpawnOther())
+                _recurrentEnemySpawn = StartCoroutine(RecurrentEnemySpawn());
         }
 
-        private bool SpawnEnemy()
+        private bool CanSpawnOther()
         {
-            Debug.Log("Waypoins count: " + _wayPointsInUse.Count);
+            var possibleWayPoints = wayPointManagers
+                .Where(manager => !_wayPointsInUse.ContainsKey(manager)).ToList();
+            return possibleWayPoints.Any();
+        }
+
+        private bool TrySpawnEnemy()
+        {
             if (_wayPointsInUse.Count >= _numbersOfEnemies)
             {
-                Debug.Log("Hay más enemigos que waypoints activos");
                 _isRoom = false;
                 return false;
             }
             
-            var possibleWayPoints = wayPointManagers.Where(manager => !_wayPointsInUse.ContainsKey(manager)).ToList();
+            var possibleWayPoints = wayPointManagers
+                .Where(manager => !_wayPointsInUse.ContainsKey(manager)).ToList();
+            
             if (!possibleWayPoints.Any())
             {
                 _isRoom = false;
@@ -60,7 +69,7 @@ namespace _VanHelsingVR.Enemy
             var wayPointManager = possibleWayPoints[Random.Range(0, possibleWayPoints.Count)];
             
             //spawnea al enemigo en la zona de abajo del jugador, pero en la posicion del primer waypoint para que solo suba directamente arriba
-            var spawnPos = wayPointManager.GetFirst().position;
+            var spawnPos = wayPointManager.GetFirstOrSecond().position;
             spawnPos.y = spawnerYPos.position.y;
             
             var enemyBehaviour = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, enemyContainer);
@@ -72,18 +81,20 @@ namespace _VanHelsingVR.Enemy
 
             _wayPointsInUse.Add(wayPointManager, enemyBehaviour);
             
-            possibleWayPoints = wayPointManagers.Where(manager => !_wayPointsInUse.ContainsKey(manager)).ToList();
-            return possibleWayPoints.Any();
+            return true;
         }
 
         private void OnEnemyDead(FlyingEnemyStateMachine flyingEnemy)
         {
             if(!_wayPointsInUse.ContainsKey(flyingEnemy.wayPointManager)) return;
             _wayPointsInUse.Remove(flyingEnemy.wayPointManager);
-            
-            _isRoom = true;
-            if(_recurrentEnemySpawn == null)
+
+
+            if (_recurrentEnemySpawn == null)
+            {
                 _recurrentEnemySpawn = StartCoroutine(RecurrentEnemySpawn());
+                _isRoom = true;
+            }
         }
 
         private Coroutine _recurrentEnemySpawn = null;
@@ -91,12 +102,10 @@ namespace _VanHelsingVR.Enemy
         {
             var rate = spawnRate.Value;
             
-            Debug.Log("Recurrente en: " + rate);
-            
             while (_isActive && _isRoom)
             {
                 yield return new WaitForSeconds(rate);
-                if (!SpawnEnemy())
+                if (!TrySpawnEnemy())
                 {
                     _isRoom = false;
                     break;

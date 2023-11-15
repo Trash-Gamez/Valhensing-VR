@@ -89,9 +89,7 @@ namespace _VanHelsingVR.Health
             
             if (healthReference != null) {
                 healthReference.HealthSystem.Damage(damaged);
-                Debug.Log("Si Hay Health Reference");
             }
-                
             
             onHit?.Invoke(damaged);
         }
