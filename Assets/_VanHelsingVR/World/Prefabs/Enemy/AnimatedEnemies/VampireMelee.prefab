@@ -898,7 +898,9 @@ MonoBehaviour:
   proyectilePrefab: {fileID: 5183927388043926617, guid: 48eb4a028100e9b45a5e5b2f8e25e1c3, type: 3}
   proyectileSpeed: 5
   attackRadius: 14
-  timeToAttack: 7
+  timeToAttack:
+    <Min>k__BackingField: 3.5
+    <Max>k__BackingField: 5
 --- !u!114 &4177307836226677440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1060,8 +1062,8 @@ MonoBehaviour:
   friendlyFire:
     defaultValue: 0
     conditions: []
-  healthReference:
-    <HealthSystem>k__BackingField: {fileID: 8164462684546284137}
+  <HealthReference>k__BackingField:
+    <HealthSystem>k__BackingField: {fileID: 0}
   inmunityType: 0
   inmunityFrames: 0
   onHit:
