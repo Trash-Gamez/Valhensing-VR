@@ -4,52 +4,70 @@ using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
 {
-    public Collider[] door;
-    public List <GameObject> enemy;
-    
-    public Animator[] shortDoor;
-    public int enemies;
-    
+    [SerializeField] private List <GameObject> enemy;   
+    [SerializeField] private Animator[] DoorAnim;
+    private bool _onCombat;
+    private BoxCollider[] MyColliders;
+
+    private void Awake()
+    {
+        MyColliders = GetComponents<BoxCollider>();   
+    }
     void Start()
     {
-        foreach(Collider doors in door){
-                doors.isTrigger = true;
-            }
-        foreach(GameObject prefab in enemy){
+        foreach(GameObject prefab in enemy)
+        {
                 prefab.SetActive(false);
-            }
+        }      
     }
 
-    
-    void Update()
-    {
-        enemies = enemy.Count;
-
-        if(enemies <= 0){
-            foreach(Animator doors in shortDoor){
-                doors.Play("Open");
-               
-            }
-            foreach(Collider doors in door){
-                doors.isTrigger = true;
-            }
-        }
-    }
 
     public void OnTriggerExit(Collider other) {
         if (other.CompareTag("Player")){
-            foreach(Animator doors in shortDoor){
-                doors.Play("Close");
-                AudioManager.Instance.SwampMusic("GameplayMusic02");
+
+            foreach(Animator doors in DoorAnim)
+            {
+                doors.Play("Close");               
             }
-            
-            foreach(Collider doors in door){
-                doors.isTrigger = false;
-            }
-            foreach(GameObject prefab in enemy){
+            foreach(GameObject prefab in enemy)
+            {
                 prefab.SetActive(true);
             }
-
+            foreach(BoxCollider collider in MyColliders)
+            {
+                collider.enabled = false;
+            }
+            AudioManager.Instance.SwampMusic("GameplayMusic02");
+            StartCoroutine(OnCombat());
         }
+    }
+
+    IEnumerator OnCombat()
+    {
+        _onCombat = true;
+        while (_onCombat)
+        {
+            if (enemy.Count <= 0)
+            {
+                _onCombat = false;
+            }
+            yield return null;
+        }
+        OpenGates();
+    }
+
+    private void OpenGates()
+    {
+        foreach (Animator doors in DoorAnim)
+        {
+            doors.Play("Open");
+        }
+
+        AudioManager.Instance.SwampMusic("GameplayMusic03");
+    }
+
+    public void DeleteEnemy(GameObject temporalEnemy)
+    {
+        enemy.Remove(temporalEnemy);
     }
 }

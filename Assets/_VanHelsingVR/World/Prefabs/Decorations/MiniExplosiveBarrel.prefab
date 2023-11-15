@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8462493729956610689}
   - component: {fileID: 4818581822949018916}
   - component: {fileID: 7294703206076463598}
-  m_Layer: 0
+  - component: {fileID: 1207378001592405304}
+  m_Layer: 13
   m_Name: MiniExplosiveBarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +84,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1207378001592405304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9095865635668793403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ebf826799f94ed4abb12b2af8816fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runtimeSets: []
+  obstacleRadius: 0.8
+  centerTransform: {fileID: 8462493729956610689}
