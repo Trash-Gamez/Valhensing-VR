@@ -7,7 +7,12 @@ public class RoomSpawner : MonoBehaviour
     [SerializeField] private List <GameObject> enemy;   
     [SerializeField] private Animator[] DoorAnim;
     private bool _onCombat;
+    private BoxCollider[] MyColliders;
 
+    private void Awake()
+    {
+        MyColliders = GetComponents<BoxCollider>();   
+    }
     void Start()
     {
         foreach(GameObject prefab in enemy)
@@ -28,6 +33,10 @@ public class RoomSpawner : MonoBehaviour
             {
                 prefab.SetActive(true);
             }
+            foreach(BoxCollider collider in MyColliders)
+            {
+                collider.enabled = false;
+            }
             AudioManager.Instance.SwampMusic("GameplayMusic02");
             StartCoroutine(OnCombat());
         }
@@ -42,8 +51,8 @@ public class RoomSpawner : MonoBehaviour
             {
                 _onCombat = false;
             }
+            yield return null;
         }
-        yield return null;
         OpenGates();
     }
 
@@ -53,6 +62,12 @@ public class RoomSpawner : MonoBehaviour
         {
             doors.Play("Open");
         }
+
         AudioManager.Instance.SwampMusic("GameplayMusic03");
+    }
+
+    public void DeleteEnemy(GameObject temporalEnemy)
+    {
+        enemy.Remove(temporalEnemy);
     }
 }
