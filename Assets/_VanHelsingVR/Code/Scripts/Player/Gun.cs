@@ -132,13 +132,12 @@ public class Gun : MonoBehaviour
             RaycastHit hit;
 
             Vector3 direction = GetDirection();
-            if (Physics.SphereCast(shootPoint.position, 0.5f, direction, out hit, fireRange, hittableLayer))
+            if (Physics.SphereCast(shootPoint.position, 0.25f, direction, out hit, fireRange, hittableLayer))
             {
-                Debug.Log("Pego el rayo con: " + hit.transform.name);
                 var hurtbox = hit.transform.GetComponent<Hurtbox>();
                 if(hurtbox != null)
                 {
-                    hurtbox.OnHitScan();
+                    hurtbox.OnHitScan(gameObject.layer);
                 }
                 else
                 {

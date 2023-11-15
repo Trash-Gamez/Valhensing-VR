@@ -70,7 +70,6 @@ namespace _VanHelsingVR.Health
                 healthReference.HealthSystem.Damage(damageDealed);                
             }
             
-
             onHit?.Invoke(damageDealed);
             _invulneravilityCor = StartCoroutine(InvulnerabilityCor());
         }
@@ -83,11 +82,14 @@ namespace _VanHelsingVR.Health
         /// <returns>Si procede el rayo o no</returns>
         protected virtual bool OnBeforeHitScan() => true;
 
-        public void OnHitScan(int damaged = 1)
+        public void OnHitScan(int layerMask ,int damaged = 1)
         {
+            if (hurtLayer != (hurtLayer | 1 << layerMask)) return;
+            Debug.Log("Se dio el hitscan");
+            
             if (!OnBeforeHitScan()) return;
             
-            if (healthReference != null) {
+            if (healthReference.HealthSystem != null) {
                 healthReference.HealthSystem.Damage(damaged);
             }
             
@@ -105,15 +107,16 @@ namespace _VanHelsingVR.Health
 
         protected void OnForcedHit(int damageDealed = 1)
         {
-            if (healthReference == null) return;
+            if (healthReference.HealthSystem == null) return;
             
             healthReference.HealthSystem.Damage(damageDealed);
+            onHit?.Invoke(damageDealed);
         }
 
         //Fuerzxa la muerte del que contenga esto
         public void ForceDeath()
         {
-            if (healthReference == null) return;
+            if (healthReference.HealthSystem == null) return;
             healthReference.HealthSystem.Damage(999999999);
         }
 

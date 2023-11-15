@@ -74,7 +74,7 @@ MonoBehaviour:
   tipPos: {fileID: 1917510405005871397}
   bulletContainer: {fileID: 5516861621161307028}
   proyectileSpeed: 1.2
-  playerPosition: {fileID: 11400000, guid: 881fc8074c8273e49bb5fa9d29d420ea, type: 2}
+  playerPosition: {fileID: 11400000, guid: 835164af00adc1348b20d6ab21b64c37, type: 2}
 --- !u!1001 &6624868156537504274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82,6 +82,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6624868156560265613}
     m_Modifications:
+    - target: {fileID: 1077772442993033583, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+      propertyPath: hurtLayer.m_Bits
+      value: 33088
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645182778856407140, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+      propertyPath: hurtLayer.m_Bits
+      value: 33088
+      objectReference: {fileID: 0}
     - target: {fileID: 6807716496099638611, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -133,6 +141,10 @@ PrefabInstance:
     - target: {fileID: 7644736380417259757, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7786375090306212723, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
+      propertyPath: hurtLayer.m_Bits
+      value: 33088
       objectReference: {fileID: 0}
     - target: {fileID: 8160551443190716991, guid: 0e1164797ed9f9041ae7a7ad9a02f005, type: 3}
       propertyPath: stateMachine
