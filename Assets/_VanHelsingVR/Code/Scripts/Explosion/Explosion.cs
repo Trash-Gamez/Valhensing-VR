@@ -18,6 +18,7 @@ namespace _VanHelsingVR.Explosion
         [SerializeField] private float maxRadius;
         [SerializeField] private LayerMask explosionLayer;
         [SerializeField, Min(0.25f)] private float explosionSeconds;
+        //[SerializeField] private List<Collider> 
         
         [Title("Events")]
         [SerializeField] private UnityEvent onExplosionStarted;
