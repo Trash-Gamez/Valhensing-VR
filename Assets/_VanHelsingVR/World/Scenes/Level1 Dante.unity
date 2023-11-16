@@ -26576,6 +26576,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 839526001}
     m_Modifications:
+    - target: {fileID: 1480397774195737229, guid: b417525ff94406748993e484af992f73, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2405365337263952701, guid: b417525ff94406748993e484af992f73, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -26623,6 +26627,10 @@ PrefabInstance:
     - target: {fileID: 3038315301005920647, guid: b417525ff94406748993e484af992f73, type: 3}
       propertyPath: m_Name
       value: Explosivebarrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450441249462841370, guid: b417525ff94406748993e484af992f73, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9030414180079402869, guid: b417525ff94406748993e484af992f73, type: 3}
       propertyPath: runtimeSets.Array.size
@@ -45707,15 +45715,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6151344893115263566, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 214.91
       objectReference: {fileID: 0}
     - target: {fileID: 6151344893115263566, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.266
+      value: -17.961
       objectReference: {fileID: 0}
     - target: {fileID: 6151344893115263566, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 179.4
       objectReference: {fileID: 0}
     - target: {fileID: 6151344893115263566, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
       propertyPath: m_LocalRotation.w
@@ -45745,6 +45753,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6151344893410716521, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
+      propertyPath: bulletParent
+      value: 
+      objectReference: {fileID: 5558342855592764364}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
 --- !u!1 &1051176871 stripped

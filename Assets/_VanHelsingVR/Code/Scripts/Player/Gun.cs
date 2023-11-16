@@ -1,7 +1,7 @@
 
 using System.Collections;
 using _VanHelsingVR.Health;
-using _VanHelsingVR.Interaction;
+using _VanHelsingVR;
 using _VanHelsingVR.Utilities;
 using RacTools.Utilities;
 using UnityEngine;
@@ -36,6 +36,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Animator gunAnimator;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform bulletParent;
 
     #if UNITY_EDITOR
     [Title("Gun Input")]
@@ -142,12 +143,12 @@ public class Gun : MonoBehaviour
                 else
                 {
                     Debug.LogWarning("This Object does not have HurtBox Script");
-                }
+                }                
             }
             
             magazineText.color = Color.white;
-            InstantiateVisual(direction);
-            
+            InstantiateVisualNormal(direction);
+
             Debug.DrawRay(shootPoint.position, direction, Color.green);
             AudioManager.Instance.PlaySound3D("Shoot_0"+Random.Range(1,8), transform.position);
             
@@ -182,9 +183,17 @@ public class Gun : MonoBehaviour
         return newDirection;
     }
 
-    private void InstantiateVisual(Vector3 direction)
+    private void InstantiateVisualNormal(Vector3 direction)
     {
-        Instantiate(bulletPrefab, shootPoint.position, Quaternion.LookRotation(direction));
+        Instantiate(bulletPrefab, shootPoint.position, Quaternion.LookRotation(direction),bulletParent);
         muzzle.Play();
+       
+    }
+
+    private void InstantiateVisualTele(Vector3 direction, Vector3 target)
+    {
+        Bullet actualBullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.LookRotation(direction),bulletParent).GetComponent<Bullet>();
+        muzzle.Play();
+        actualBullet.direction = (target - shootPoint.position).normalized;
     }
 }
