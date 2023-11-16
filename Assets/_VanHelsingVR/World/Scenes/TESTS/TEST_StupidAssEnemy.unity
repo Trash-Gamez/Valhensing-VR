@@ -1931,6 +1931,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 156.6298
       objectReference: {fileID: 0}
+    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4965473026854996053}
+    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.Collider, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164462684546284137, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
+      propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8529823164873978641, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 61.46776
@@ -1981,3 +2009,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
+--- !u!136 &4965473026854996053 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 1778042784958589170, guid: 9aae72d0386cfc54cbe029730079e7dd, type: 3}
+  m_PrefabInstance: {fileID: 4965473026854996052}
+  m_PrefabAsset: {fileID: 0}
