@@ -152,7 +152,6 @@ namespace _VanHelsingVR.Enemy
         //Llamar desde el healthsystem de unity de este objeto
         public void OnDead()
         {
-            Debug.Log("Se murio, empezando animaci�n");
             ChangeState(DeadState);
         }
         
