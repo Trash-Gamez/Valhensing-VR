@@ -16,8 +16,8 @@ namespace _VanHelsingVR.Explosion
         [Title("Params")]
         [SerializeField] private float initialRadius;
         [SerializeField] private float maxRadius;
-        [SerializeField, Min(0.25f)] private float explosionSeconds;
         [SerializeField] private LayerMask explosionLayer;
+        [SerializeField, Min(0.25f)] private float explosionSeconds;
         
         [Title("Events")]
         [SerializeField] private UnityEvent onExplosionStarted;
@@ -29,6 +29,11 @@ namespace _VanHelsingVR.Explosion
         #endif
 
         private float _currentRadius;
+
+        public void DoExplosion(float seconds)
+        {
+            DoExplosionAsync(seconds);
+        }
 
         public async UniTask<List<Health.Health>> DoExplosionAsync(float seconds)
         {
