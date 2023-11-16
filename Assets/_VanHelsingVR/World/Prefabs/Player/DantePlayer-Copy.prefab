@@ -164,10 +164,10 @@ MonoBehaviour:
     m_Bits: 32832
   <HurtboxTeam>k__BackingField: 1
   friendlyFire:
-    defaultValue: 1
+    defaultValue: 0
     conditions: []
-  healthReference:
-    <HealthSystem>k__BackingField: {fileID: 572934878}
+  <HealthReference>k__BackingField:
+    <HealthSystem>k__BackingField: {fileID: 0}
   inmunityType: 0
   inmunityFrames: 10
   onHit:
@@ -516,7 +516,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -692,6 +692,7 @@ GameObject:
   - component: {fileID: 1893552859059495524}
   - component: {fileID: 6160390305826999085}
   - component: {fileID: 6738452356735903841}
+  - component: {fileID: 1051176883}
   m_Layer: 0
   m_Name: DantePlayer-Copy
   m_TagString: Player
@@ -1070,6 +1071,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: {fileID: 6151344893115263566}
   variable: {fileID: 11400000, guid: 881fc8074c8273e49bb5fa9d29d420ea, type: 2}
+--- !u!114 &1051176883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6151344893115263565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7395b6be7ed29d0438f579f49766979c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t: {fileID: 640954191613215257}
+  variable: {fileID: 11400000, guid: 835164af00adc1348b20d6ab21b64c37, type: 2}
 --- !u!1 &6151344893321132016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,7 +1127,7 @@ GameObject:
   - component: {fileID: 6151344893410716520}
   - component: {fileID: 6151344893410716522}
   - component: {fileID: 6151344893410716521}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1978,6 +1993,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Watch
       objectReference: {fileID: 0}
+    - target: {fileID: 4294157505737858698, guid: 423f1029371eacf459922765e2fadbc9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00027
+      objectReference: {fileID: 0}
     - target: {fileID: 4294157505737858699, guid: 423f1029371eacf459922765e2fadbc9, type: 3}
       propertyPath: m_text
       value: 0
@@ -2201,6 +2220,10 @@ PrefabInstance:
     - target: {fileID: 1604018861466821069, guid: 1ff1091f102fc24439be2dfd71f16348, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604018861466821069, guid: 1ff1091f102fc24439be2dfd71f16348, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0118
       objectReference: {fileID: 0}
     - target: {fileID: 1604018861466821069, guid: 1ff1091f102fc24439be2dfd71f16348, type: 3}
       propertyPath: m_LocalPosition.z
