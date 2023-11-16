@@ -6,16 +6,27 @@ using Cysharp.Threading.Tasks;
 using RacTools.Miscelaneous;
 using Sirenix.OdinInspector;
 using UnityEditor;
+using UnityEngine.Events;
 using Range = RacTools.Utilities.Range;
 
 namespace _VanHelsingVR.Explosion
 {
     public class Explosion : MonoBehaviour
     {
+        [Title("Params")]
         [SerializeField] private float initialRadius;
         [SerializeField] private float maxRadius;
         [SerializeField, Min(0.25f)] private float explosionSeconds;
         [SerializeField] private LayerMask explosionLayer;
+        
+        [Title("Events")]
+        [SerializeField] private UnityEvent onExplosionStarted;
+        [SerializeField] private UnityEvent onExplosion;
+        
+        #if UNITY_EDITOR
+        public bool DrawSphereExplosionGizmos;
+        public bool DrawSphereRadiusGizmos;
+        #endif
 
         private float _currentRadius;
 
@@ -29,9 +40,11 @@ namespace _VanHelsingVR.Explosion
             
             var task = UniTask.WaitUntil(() =>
             {
-                transcurredTime += Time.deltaTime;
+                transcurredTime += Time.fixedDeltaTime;
                 return transcurredTime >= seconds;
             });
+            
+            onExplosionStarted?.Invoke();
 
             while (task.Status == UniTaskStatus.Pending)
             {
@@ -42,6 +55,8 @@ namespace _VanHelsingVR.Explosion
             }
             
             Debug.Log("Termino la explosion");
+            onExplosion?.Invoke();
+            
             _currentRadius = 0f;
             return healthTouched;
         }
@@ -81,6 +96,7 @@ namespace _VanHelsingVR.Explosion
 
         private void OnDrawGizmosSelected()
         {
+            if (!DrawSphereRadiusGizmos) return;
             Gizmos.color = Color.magenta;
             Gizmos.DrawWireSphere(transform.position, initialRadius);
             Gizmos.color = Color.red;
@@ -89,6 +105,7 @@ namespace _VanHelsingVR.Explosion
 
         private void OnDrawGizmos()
         {
+            if (!DrawSphereExplosionGizmos) return;
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(transform.position, _currentRadius);
         }
