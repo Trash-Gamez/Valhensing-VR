@@ -70,10 +70,11 @@ namespace _VanHelsingVR.Explosion
         private void SphereCastHealth(List<Health.Health> healthTouched)
         {
             var results = new Collider[5];
-            var size = Physics.OverlapSphereNonAlloc(transform.position, _currentRadius, results, explosionLayer);
+            var size = Physics.OverlapSphereNonAlloc(transform.position, _currentRadius, results, explosionLayer, QueryTriggerInteraction.Collide);
             for (int i = 0; i < size; i++)
             {
                 var collider = results[i];
+                if(!collider.isTrigger) continue;
                 if (!collider.TryGetComponent<Hurtbox>(out var hurtbox)) continue;
                 var health = hurtbox.HealthReference.HealthSystem;
                 if (health == null) continue;
