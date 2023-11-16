@@ -853,11 +853,10 @@ MonoBehaviour:
   onDead:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2439943472885949609}
-        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
-          Assembly-CSharp
-        m_MethodName: DestroySelf
-        m_Mode: 4
+      - m_Target: {fileID: 7206818619809146512}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Enemy.CowardEnemyStateMachine, Assembly-CSharp
+        m_MethodName: OnDead
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

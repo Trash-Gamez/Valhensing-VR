@@ -47,6 +47,7 @@ namespace _VanHelsingVR.Enemy
         public static readonly int IsDeadAnimID = Animator.StringToHash("IsDead");
         
         public RunawayState RunawayState { get; private set; }
+        public DeadState DeadState { get; private set; }
 
         private void Awake()
         {
@@ -75,6 +76,7 @@ namespace _VanHelsingVR.Enemy
             };
 
             RunawayState = new RunawayState(this, avoidParams, runAwayParams, maxMoveForce);
+            DeadState = new DeadState(this);
             
             ChangeState(RunawayState);
         }
@@ -145,6 +147,19 @@ namespace _VanHelsingVR.Enemy
             if (_currentProyectile == null) return;
             _currentProyectile.Throw();
             _currentProyectile = null;
+        }
+        
+        //Llamar desde el healthsystem de unity de este objeto
+        public void OnDead()
+        {
+            Debug.Log("Se murio, empezando animaci�n");
+            ChangeState(DeadState);
+        }
+        
+        //Cuando termina la animacion se destruye
+        public void OnDeadAnimationEnd()
+        {
+            Destroy(gameObject);
         }
         
         #if UNITY_EDITOR
