@@ -14,21 +14,21 @@ namespace _VanHelsingVR.Enemy
         
         private Quaternion _leftRot, _rightRot;
         
-        private CowardEnemyStateMachine _cowardEnemyStateMachine;
+        private readonly CowardEnemyStateMachine _cowardEnemyStateMachine;
         private Vector3 _velocity = Vector3.zero;
         private Vector3 _desiredVelocity = Vector3.zero;
-        private float _maxForce;
+        private readonly float _maxForce;
         
         //RunAway Params
-        private float _runAwayCircle;
-        private float _safeRadius;
-        private Transform _target;
-        private float _speed;
+        private readonly float _runAwayCircle;
+        private readonly float _safeRadius;
+        private readonly Transform _target;
+        private readonly float _speed;
         
         //Avoid Params
-        private RuntimeSet<IAObstacle> _obstacles;
-        private float _maxSeeAhead;
-        private float _maxAvoidForce;
+        private readonly RuntimeSet<IAObstacle> _obstacles;
+        private readonly float _maxSeeAhead;
+        private readonly float _maxAvoidForce;
         
         //Avoid Vars
         private Vector3 _ahead, _ahead2, _leftAhead, _leftAhead2, _rightAhead, _rightAhead2;
