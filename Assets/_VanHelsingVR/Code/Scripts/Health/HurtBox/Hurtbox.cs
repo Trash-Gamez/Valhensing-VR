@@ -24,7 +24,8 @@ namespace _VanHelsingVR.Health
         [SerializeField] protected ConditionPool friendlyFire;
         
         [Title("Health")] 
-        [SerializeField] protected DamagableHealthReference healthReference;
+        [field: SerializeField] public DamagableHealthReference HealthReference { get; private set; }
+        
 
         [Title("Inmunity")] 
         [SerializeField] private InmunityType inmunityType;
@@ -65,9 +66,9 @@ namespace _VanHelsingVR.Health
             //Se obtiene el valor Damage y su tipo de dato entero, para saber cuanto daño se realizó
             var damageDealed = hitbox.DataContainer.GetHitBoxData(HitBoxDataType.Damage).IntValue;
 
-            if (healthReference.HealthSystem != null)
+            if (HealthReference.HealthSystem != null)
             {
-                healthReference.HealthSystem.Damage(damageDealed);                
+                HealthReference.HealthSystem.Damage(damageDealed);                
             }
             
             onHit?.Invoke(damageDealed);
@@ -89,8 +90,8 @@ namespace _VanHelsingVR.Health
             
             if (!OnBeforeHitScan()) return;
             
-            if (healthReference.HealthSystem != null) {
-                healthReference.HealthSystem.Damage(damaged);
+            if (HealthReference.HealthSystem != null) {
+                HealthReference.HealthSystem.Damage(damaged);
             }
             
             onHit?.Invoke(damaged);
@@ -107,17 +108,17 @@ namespace _VanHelsingVR.Health
 
         protected void OnForcedHit(int damageDealed = 1)
         {
-            if (healthReference.HealthSystem == null) return;
+            if (HealthReference.HealthSystem == null) return;
             
-            healthReference.HealthSystem.Damage(damageDealed);
+            HealthReference.HealthSystem.Damage(damageDealed);
             onHit?.Invoke(damageDealed);
         }
 
         //Fuerzxa la muerte del que contenga esto
         public void ForceDeath()
         {
-            if (healthReference.HealthSystem == null) return;
-            healthReference.HealthSystem.Damage(999999999);
+            if (HealthReference.HealthSystem == null) return;
+            HealthReference.HealthSystem.Damage(999999999);
         }
 
         private Coroutine _invulneravilityCor;

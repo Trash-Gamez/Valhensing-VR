@@ -6,7 +6,6 @@ using RacTools.RuntimeSet;
 using RacTools.Variables;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _VanHelsingVR.Enemy
 {
@@ -35,11 +34,13 @@ namespace _VanHelsingVR.Enemy
         
         [Title("Attack")]
         [SerializeField, Min(0.25f)] private float attackRadius;
-        [SerializeField, Min(0.1f)] private float timeToAttack;
+        [SerializeField] private RacTools.Utilities.Range timeToAttack;
         private float _attackCooldown = 0;
         private bool _isAttacking = false;
 
         private Transform _transform;
+        private bool _firstAttack = false;
+        private float _attackingTime;
 
         public static readonly int IsAttackingAnimID = Animator.StringToHash("IsAtacking");
         public static readonly int IsWalkingAnimID = Animator.StringToHash("IsWalking");
@@ -55,6 +56,8 @@ namespace _VanHelsingVR.Enemy
         protected override void Start()
         {
             base.Start();
+
+            _attackingTime = UnityEngine.Random.Range(timeToAttack.Min, timeToAttack.Max);
 
             var avoidParams = new AvoidParams()
             {
@@ -95,8 +98,15 @@ namespace _VanHelsingVR.Enemy
                 return;
             }
 
+            if (!_firstAttack)
+            {
+                Attack();
+                _firstAttack = true;
+                return;
+            }
+            
             _attackCooldown += Time.deltaTime;
-            if (_attackCooldown >= timeToAttack)
+            if (_attackCooldown >= _attackingTime)
             {
                 Attack();
             }
