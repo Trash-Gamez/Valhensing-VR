@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2440042815319288165}
   - component: {fileID: 346342570878280071}
   - component: {fileID: 5660805353422549466}
+  - component: {fileID: 2023234554850477372}
   m_Layer: 14
   m_Name: MiniExplosiveBarrel
   m_TagString: Untagged
@@ -216,6 +217,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1, y: 1.2, z: 1.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &2023234554850477372
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9095865635668793403}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0625, y: 1, z: 1.0625}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4230667712117454407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -269,7 +283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6184215314893899505, guid: 4fae41231aef28047b2f9c292c64897a, type: 3}
       propertyPath: maxRadius
-      value: 1.25
+      value: 3.07
       objectReference: {fileID: 0}
     - target: {fileID: 6184215314893899505, guid: 4fae41231aef28047b2f9c292c64897a, type: 3}
       propertyPath: initialRadius
