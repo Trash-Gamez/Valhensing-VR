@@ -31,7 +31,6 @@ namespace _VanHelsingVR.Enemy
         private Vector3 _position;
         
         private static readonly int _SpeedMultiplierAnim = Animator.StringToHash("SpeedMultiplier");
-        private static readonly Range _SpeedMultiplierRange = new Range(1, 0.2f);
 
         public FollowingState(GiantEnemyStateMachine stateMachine, AvoidParams avoidParams, RunAwayParams runAwayParams, float maxForce) : base(stateMachine)
         {
@@ -52,6 +51,7 @@ namespace _VanHelsingVR.Enemy
             stateMachine.RestartAnimatorParams();
             stateMachine.Animator.SetBool(CowardEnemyStateMachine.IsWalkingAnimID, true);
             Debug.Log("Siguiendo");
+            
         }
         
         public override void OnStateUpdate()
@@ -67,19 +67,19 @@ namespace _VanHelsingVR.Enemy
             _velocity = Vector3.ClampMagnitude(_velocity + totalForce, _maxForce);
             _velocity.y = 0;
 
-            _giantEnemyStateMachine.rb.velocity = _velocity;
+            _giantEnemyStateMachine.rb.velocity = _velocity * _giantEnemyStateMachine.speedMultiplier;
 
             var targetPosition = _target.position;
             targetPosition.y = stateMachine.transform.position.y;
             stateMachine.transform.LookAt(targetPosition);
             
-            //SpeedMultiplier
-            /*
-            if (_velocity != Vector3.zero) 
-                stateMachine.Animator.SetFloat(_SpeedMultiplierAnim,-_velocity.magnitude);
-            else
-                stateMachine.Animator.SetFloat(_SpeedMultiplierAnim, 0);
-                */
+            stateMachine.Animator.SetFloat(_SpeedMultiplierAnim,_giantEnemyStateMachine.speedMultiplier);
+
+            var distance = (targetPosition - stateMachine.transform.position).magnitude;
+            if (distance <= _giantEnemyStateMachine.attackRadius)
+            {
+                stateMachine.ChangeState(_giantEnemyStateMachine.GiantAttackingEnemyState);
+            }
         }
 
         private Vector3 FollowForce()
@@ -194,7 +194,7 @@ namespace _VanHelsingVR.Enemy
 
         public override void OnStateExit()
         {
-            
+            _giantEnemyStateMachine.rb.velocity = Vector3.zero;
         }
     }
 }

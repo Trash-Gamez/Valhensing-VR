@@ -45,6 +45,17 @@ namespace _VanHelsingVR.Health
             hurtBoxCollider ??= GetComponent<Collider>();
         }
 
+        public void Hit(int damageDealed)
+        {
+            if (HealthReference.HealthSystem != null)
+            {
+                HealthReference.HealthSystem.Damage(damageDealed);                
+            }
+            
+            onHit?.Invoke(damageDealed);
+            _invulneravilityCor = StartCoroutine(InvulnerabilityCor());
+        }
+
         /// <summary>
         /// Este metodo sucede justo antes de Sucede un Hit
         /// Sobreescribe este metodo si deseas hacer tu propia validacion para acertar el golpe
@@ -65,13 +76,7 @@ namespace _VanHelsingVR.Health
             //Se obtiene el valor Damage y su tipo de dato entero, para saber cuanto daño se realizó
             var damageDealed = hitbox.DataContainer.GetHitBoxData(HitBoxDataType.Damage).IntValue;
 
-            if (HealthReference.HealthSystem != null)
-            {
-                HealthReference.HealthSystem.Damage(damageDealed);                
-            }
-            
-            onHit?.Invoke(damageDealed);
-            _invulneravilityCor = StartCoroutine(InvulnerabilityCor());
+            Hit(damageDealed);
         }
 
         
@@ -89,11 +94,7 @@ namespace _VanHelsingVR.Health
             
             if (!OnBeforeHitScan()) return;
             
-            if (HealthReference.HealthSystem != null) {
-                HealthReference.HealthSystem.Damage(damaged);
-            }
-            
-            onHit?.Invoke(damaged);
+            Hit(damaged);
         }
 
         protected virtual bool OnBeforePunch(PunchableHitbox _) => true;

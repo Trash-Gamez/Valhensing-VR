@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Sirenix.OdinInspector;
@@ -24,11 +25,12 @@ namespace _VanHelsingVR.Enemy
 
         [Title("Move Params")] 
         [SerializeField, Min(0.25f)] private float maxMoveForce = 0.25f;
-
         [SerializeField, Min(0.25f)] private float detectPlayerRadius = 0.25f;
+        [field: SerializeField, Range(1f,3f)] public float speedMultiplier { get; private set; } = 1;
         
         [Title("Attack")]
-        [SerializeField, Min(0.25f)] private float attackRadius;
+        [field: SerializeField, Min(0.25f)] public float attackRadius { get; private set; }
+        [SerializeField] private Explosion.Explosion explosionAttack;
         
         private float _attackCooldown = 0;
         private bool _isAttacking = false;
@@ -61,8 +63,36 @@ namespace _VanHelsingVR.Enemy
             
             GiantIdleState = new GiantIdleState(this, target.Value, detectPlayerRadius);
             FollowingState = new FollowingState(this, avoidParams, runAwayParams, maxMoveForce);
+            GiantAttackingEnemyState = new GiantAttackingEnemyState(this);
+            GiantDeadState = new GiantDeadState(this);
             
             ChangeState(GiantIdleState);
+        }
+
+        public void OnAttack()
+        {
+            explosionAttack.DoExplosion(1.5f);
+        }
+
+        public void OnAttackEnd()
+        {
+            StartCoroutine(ReturnToFollowing());
+        }
+
+        private IEnumerator ReturnToFollowing()
+        {
+            yield return new WaitForSeconds(0.5f);
+            ChangeState(FollowingState);    
+        }
+
+        public void OnDead()
+        {
+            ChangeState(GiantDeadState);
+        }
+        
+        public void OnDeadAnimationEnd()
+        {
+            Destroy(gameObject);
         }
 
         public override void RestartAnimatorParams()
