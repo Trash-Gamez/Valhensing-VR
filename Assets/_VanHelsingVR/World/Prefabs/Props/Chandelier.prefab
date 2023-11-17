@@ -40913,6 +40913,7 @@ GameObject:
   - component: {fileID: 7414880425861195831}
   - component: {fileID: 696788121802872257}
   - component: {fileID: 5402895665901242380}
+  - component: {fileID: 7175175844710366966}
   m_Layer: 11
   m_Name: Chandelier
   m_TagString: Untagged
@@ -41055,6 +41056,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7175175844710366966}
+        m_TargetAssemblyTypeName: AudioPlayer, Assembly-CSharp
+        m_MethodName: Play2DSound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Wood
+          m_BoolArgument: 0
+        m_CallState: 2
   DrawSphereExplosionGizmos: 0
   DrawSphereRadiusGizmos: 1
 --- !u!114 &5402895665901242380
@@ -41067,6 +41080,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5ee736803124634580b24b37eb1e52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7175175844710366966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6553035164346897617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7137695250dfd44aa988f0906046e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7652509064982924678
