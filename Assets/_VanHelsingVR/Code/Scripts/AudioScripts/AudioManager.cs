@@ -154,7 +154,7 @@ public class AudioManager : MonoBehaviour
 
 	public void PlaySound3D(string soundName, Vector3 soundPosition)
 	{
-		AudioSource.PlayClipAtPoint(soundLibrary.GetClipFromName(soundName), soundPosition, fxVolume * masterVolume);
+		AudioSource.PlayClipAtPoint(soundLibrary.GetClipFromName(soundName), soundPosition, fxVolume * masterVolume*100);
 	}
 
 	public bool IsAmbientPlaying(string clipId)

@@ -8,6 +8,7 @@ public class DecalManager : MonoBehaviour
     
     [SerializeField] private float decalLife;
     [SerializeField] private float fadeOutTime;
+    
 
     public IEnumerator DecalCoroutine(GameObject decal)
     {

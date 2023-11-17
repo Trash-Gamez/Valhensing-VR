@@ -37,7 +37,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform shootPoint;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletParent;
-
+    [SerializeField] private GameObject bloodEffect;
+ 
     #if UNITY_EDITOR
     [Title("Gun Input")]
     #endif
@@ -105,7 +106,7 @@ public class Gun : MonoBehaviour
     {
         canReload = false;
         gunAnimator.Play("Reload");
-        AudioManager.Instance.PlaySound3D("Reload", transform.position);
+        AudioManager.Instance.PlaySound2D("Reload");
         yield return new WaitForSeconds(reloadTime);
         Reload();
         canReload = true;
@@ -117,7 +118,7 @@ public class Gun : MonoBehaviour
         magazineText.color = Color.white;
         if (magazine.Value >= magazineSize)
         {
-            AudioManager.Instance.PlaySound3D("FullReload", transform.position);
+            AudioManager.Instance.PlaySound2D("FullReload");
             magazine.Value = magazineSize;
             magazineText.color = Color.green;
         }
@@ -150,7 +151,7 @@ public class Gun : MonoBehaviour
             InstantiateVisualNormal(direction);
 
             Debug.DrawRay(shootPoint.position, direction, Color.green);
-            AudioManager.Instance.PlaySound3D("Shoot_0"+Random.Range(1,8), transform.position);
+            AudioManager.Instance.PlaySound2D("Shoot_0"+Random.Range(1,8));
             
             magazine.Value--;
             if (magazine.Value <= 0)

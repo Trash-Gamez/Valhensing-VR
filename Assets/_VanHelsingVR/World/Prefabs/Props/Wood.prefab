@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 3786402479748278401}
   - component: {fileID: 3446562418114530079}
   - component: {fileID: 2941130151417938477}
+  - component: {fileID: 7186637758045458789}
+  - component: {fileID: 2526372548372382009}
   m_Layer: 14
   m_Name: Wood
   m_TagString: Untagged
@@ -135,7 +137,32 @@ MonoBehaviour:
       m_Calls: []
   onDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7186637758045458789}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
+          Assembly-CSharp
+        m_MethodName: DestroySelf
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2526372548372382009}
+        m_TargetAssemblyTypeName: AudioPlayer, Assembly-CSharp
+        m_MethodName: Play3DSound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Wood
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3786402479748278401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,3 +216,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.4375, y: 0.5, z: 0.0625}
   m_Center: {x: 0, y: 0.0000009536743, z: 0}
+--- !u!114 &7186637758045458789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501069489016803805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ee736803124634580b24b37eb1e52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2526372548372382009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501069489016803805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7137695250dfd44aa988f0906046e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

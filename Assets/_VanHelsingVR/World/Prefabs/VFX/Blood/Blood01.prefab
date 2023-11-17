@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7974277105815942767}
   - component: {fileID: 7974277105815942766}
   - component: {fileID: 7974277105815942765}
+  - component: {fileID: 2672038710821014456}
   m_Layer: 0
   m_Name: Blood01
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7974277105815942764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.82, y: 2.1783447, z: -1.61}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -668,7 +669,7 @@ ParticleSystem:
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: -90, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 0.05}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -4871,3 +4872,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &2672038710821014456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7974277105815942764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 852a452906b455242b91d73ce24b5f91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps: {fileID: 7974277105815942766}
+  Decal: {fileID: 4410185417430257672, guid: 0194d097ff2403742a7395b2f731dffe, type: 3}
+  decalManager: {fileID: 0}

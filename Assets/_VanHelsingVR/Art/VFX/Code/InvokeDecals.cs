@@ -10,7 +10,7 @@ public class InvokeDecals : MonoBehaviour
     public List<ParticleCollisionEvent> collisionEvents;
     private void Start()
     {
-        decalManager = GameObject.Find("DecalManager").GetComponent<DecalManager>();
+        Destroy(gameObject, 3);
         ps = GetComponent<ParticleSystem>();
         collisionEvents = new List<ParticleCollisionEvent>();
     }
@@ -22,11 +22,10 @@ public class InvokeDecals : MonoBehaviour
 
         while (i < numCollisionEvents)
         {
-            GameObject actualObject = Instantiate(Decal, collisionEvents[i].intersection, Quaternion.LookRotation(-collisionEvents[i].normal));
-
-           actualObject.transform.Rotate(Vector3.forward*(Random.Range(-180,180)));
+            GameObject actualObject = Instantiate(Decal, collisionEvents[i].intersection, Quaternion.LookRotation(-collisionEvents[i].normal),other.transform);
+            
+            actualObject.transform.Rotate(Vector3.forward*(Random.Range(-180,180)));
             Debug.Log(collisionEvents[i].normal);
-            StartCoroutine(decalManager.DecalCoroutine(actualObject));
             i++;
         }
        

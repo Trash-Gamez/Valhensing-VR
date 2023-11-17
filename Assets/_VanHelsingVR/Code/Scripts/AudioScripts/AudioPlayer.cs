@@ -8,4 +8,9 @@ public class AudioPlayer : MonoBehaviour
     {
         AudioManager.Instance.PlaySound3D(soundName, transform.position);
     }
+
+    public void Play2DSound(string soundName)
+    {
+        AudioManager.Instance.PlaySound2D(soundName);
+    }
 }
