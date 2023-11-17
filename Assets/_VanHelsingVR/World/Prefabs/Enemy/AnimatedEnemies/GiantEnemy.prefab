@@ -1193,25 +1193,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 5269330836908533606}
-  <rb>k__BackingField: {fileID: 0}
+  obstacles: {fileID: 11400000, guid: 1b56d525c3c35f24ab3c9ad2551e8f97, type: 2}
+  <rb>k__BackingField: {fileID: 521255466636715320}
   maxSeeAhead: 0.5
   maxAvoidForce: 0.2
   target:
     variableType: 0
     reference: {fileID: 0}
     constant: {fileID: 0}
-  FollowSpeed: 0.1
+  FollowSpeed: 0.3
   maxMoveForce: 0.25
-  proyectileTip:
-    variableType: 0
-    reference: {fileID: 0}
-    constant: {fileID: 0}
-  proyectilePrefab: {fileID: 0}
-  proyectileSpeed: 2
-  attackRadius: 0
-  timeToAttack:
-    <Min>k__BackingField: 0
-    <Max>k__BackingField: 0
+  detectPlayerRadius: 4.82
+  attackRadius: 2.54
 --- !u!114 &5037200189827080682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,13 +1220,13 @@ MonoBehaviour:
   hurtBoxCollider: {fileID: 8821035309312785108}
   hurtLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 33088
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
-    defaultValue: 1
+    defaultValue: 0
     conditions: []
   <HealthReference>k__BackingField:
-    <HealthSystem>k__BackingField: {fileID: 0}
+    <HealthSystem>k__BackingField: {fileID: 6116576556734820626}
   inmunityType: 0
   inmunityFrames: 0
   onHit:
@@ -1254,7 +1247,7 @@ MonoBehaviour:
   maxHealth:
     variableType: 0
     reference: {fileID: 0}
-    constant: 0
+    constant: 30
   currentHealth:
     variableType: 0
     reference: {fileID: 0}
@@ -1314,7 +1307,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.4
+  m_Radius: 0.36
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}

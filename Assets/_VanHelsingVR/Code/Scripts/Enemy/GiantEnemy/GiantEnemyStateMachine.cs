@@ -1,14 +1,17 @@
-using _VanHelsingVR.Proyectile;
-using RacTools.Variables;
-using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Sirenix.OdinInspector;
+using _VanHelsingVR.IA;
+using RacTools.Variables;
+using RacTools.RuntimeSet;
 
 namespace _VanHelsingVR.Enemy
 {
     public class GiantEnemyStateMachine : EnemyStateMachine
     {
         [Title("State Machine Params")]
+        [SerializeField] private RuntimeSet<IAObstacle> obstacles;
         [field: SerializeField] public Rigidbody rb { get; private set; }
         
         [Title("Avoid Params")] 
@@ -22,26 +25,59 @@ namespace _VanHelsingVR.Enemy
         [Title("Move Params")] 
         [SerializeField, Min(0.25f)] private float maxMoveForce = 0.25f;
 
-        [Title("Proyectile")] 
-        [SerializeField] private VariableReference<Transform> proyectileTip;
-        [SerializeField] private ThrowingProyectile proyectilePrefab;
-        [SerializeField, Min(0.25f)] private float proyectileSpeed = 2f;
+        [SerializeField, Min(0.25f)] private float detectPlayerRadius = 0.25f;
         
         [Title("Attack")]
         [SerializeField, Min(0.25f)] private float attackRadius;
-        [SerializeField] private RacTools.Utilities.Range timeToAttack;
+        
         private float _attackCooldown = 0;
         private bool _isAttacking = false;
         
-        public static readonly int IsAttackingAnimID = Animator.StringToHash("IsAtacking");
+        public static readonly int IsAttackingAnimID = Animator.StringToHash("IsAttacking");
         public static readonly int IsWalkingAnimID = Animator.StringToHash("IsWalking");
         public static readonly int IsDeadAnimID = Animator.StringToHash("IsDead");
         
+        public GiantIdleState GiantIdleState { get; private set; }
+        public FollowingState FollowingState { get; private set; }
+        public GiantAttackingEnemyState GiantAttackingEnemyState { get; private set; }
+        public GiantDeadState GiantDeadState { get; private set; }
+
+        protected override void Start()
+        {
+            base.Start();
+
+            var avoidParams = new AvoidParams()
+            {
+                Obstacles = obstacles,
+                MaxAvoidForce = maxAvoidForce,
+                MaxSeeAhead = maxSeeAhead
+            };
+
+            var runAwayParams = new RunAwayParams()
+            {
+                Target = target.Value,
+                Speed = FollowSpeed
+            };
+            
+            GiantIdleState = new GiantIdleState(this, target.Value, detectPlayerRadius);
+            FollowingState = new FollowingState(this, avoidParams, runAwayParams, maxMoveForce);
+            
+            ChangeState(GiantIdleState);
+        }
+
         public override void RestartAnimatorParams()
         {
             Animator.SetBool(IsAttackingAnimID, false);
             Animator.SetBool(IsWalkingAnimID, false);
             Animator.SetBool(IsDeadAnimID, false);
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.black;
+            Gizmos.DrawWireSphere(transform.position, detectPlayerRadius);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackRadius);
         }
     }
 }

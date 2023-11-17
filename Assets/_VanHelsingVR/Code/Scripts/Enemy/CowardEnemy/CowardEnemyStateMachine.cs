@@ -42,7 +42,7 @@ namespace _VanHelsingVR.Enemy
         private bool _firstAttack = false;
         private float _attackingTime;
 
-        public static readonly int IsAttackingAnimID = Animator.StringToHash("IsAttacking");
+        public static readonly int IsAttackingAnimID = Animator.StringToHash("IsAtacking");
         public static readonly int IsWalkingAnimID = Animator.StringToHash("IsWalking");
         public static readonly int IsDeadAnimID = Animator.StringToHash("IsDead");
         

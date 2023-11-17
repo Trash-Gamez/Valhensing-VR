@@ -51,6 +51,7 @@ namespace _VanHelsingVR.Enemy
         {
             stateMachine.RestartAnimatorParams();
             stateMachine.Animator.SetBool(CowardEnemyStateMachine.IsWalkingAnimID, true);
+            Debug.Log("Siguiendo");
         }
         
         public override void OnStateUpdate()
@@ -67,12 +68,18 @@ namespace _VanHelsingVR.Enemy
             _velocity.y = 0;
 
             _giantEnemyStateMachine.rb.velocity = _velocity;
+
+            var targetPosition = _target.position;
+            targetPosition.y = stateMachine.transform.position.y;
+            stateMachine.transform.LookAt(targetPosition);
             
             //SpeedMultiplier
+            /*
             if (_velocity != Vector3.zero) 
                 stateMachine.Animator.SetFloat(_SpeedMultiplierAnim,-_velocity.magnitude);
             else
                 stateMachine.Animator.SetFloat(_SpeedMultiplierAnim, 0);
+                */
         }
 
         private Vector3 FollowForce()

@@ -25,7 +25,6 @@ namespace _VanHelsingVR.Health
         
         [Title("Health")] 
         [field: SerializeField] public DamagableHealthReference HealthReference { get; private set; }
-        
 
         [Title("Inmunity")] 
         [SerializeField] private InmunityType inmunityType;
