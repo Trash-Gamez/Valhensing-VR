@@ -1,28 +1,24 @@
-using System.Collections;
-using System.Runtime.CompilerServices;
-using UnityEngine;
-using RacTools.Miscelaneous;
-using RacTools.RuntimeSet;
-using RacTools.Utilities;
 using _VanHelsingVR.IA;
+using RacTools.Miscelaneous;
+using RacTools.Utilities;
+using RacTools.RuntimeSet;
+using UnityEngine;
 
 namespace _VanHelsingVR.Enemy
 {
-    public class RunawayState : BaseEnemyState
+    public class FollowingState : BaseEnemyState
     {
         public Vector3 DesiredVelocity => _desiredVelocity;
         
         private Quaternion _leftRot, _rightRot;
         
-        private readonly CowardEnemyStateMachine _cowardEnemyStateMachine;
+        private readonly GiantEnemyStateMachine _giantEnemyStateMachine;
         private Vector3 _velocity = Vector3.zero;
         private Vector3 _desiredVelocity = Vector3.zero;
-        private readonly float _maxForce;
+        private readonly float  _maxForce;
         
-        //RunAway Params
-        private readonly float _runAwayCircle;
-        private readonly float _safeRadius;
-        private readonly Transform _target;
+        //Follow Params
+        private Transform _target;
         private readonly float _speed;
         
         //Avoid Params
@@ -36,14 +32,11 @@ namespace _VanHelsingVR.Enemy
         
         private static readonly int _SpeedMultiplierAnim = Animator.StringToHash("SpeedMultiplier");
         private static readonly Range _SpeedMultiplierRange = new Range(1, 0.2f);
-        private static Range _runAwayEnemyRadiusRange;
 
-        public RunawayState(CowardEnemyStateMachine stateMachine, AvoidParams avoidParams, RunAwayParams runAwayParams, float maxForce) : base(stateMachine)
+        public FollowingState(GiantEnemyStateMachine stateMachine, AvoidParams avoidParams, RunAwayParams runAwayParams, float maxForce) : base(stateMachine)
         {
-            _cowardEnemyStateMachine = stateMachine;
-
-            _runAwayCircle = runAwayParams.RunAwayCircle;
-            _safeRadius = runAwayParams.SafeRadius;
+            _giantEnemyStateMachine = stateMachine;
+            
             _target = runAwayParams.Target;
             _speed = runAwayParams.Speed;
             
@@ -52,15 +45,13 @@ namespace _VanHelsingVR.Enemy
             _maxAvoidForce = avoidParams.MaxAvoidForce;
 
             _maxForce = maxForce;
-
-            _runAwayEnemyRadiusRange = new Range(_runAwayCircle, _safeRadius);
         }
 
         public override void OnStateEnter()
         {
             stateMachine.RestartAnimatorParams();
-            stateMachine.Animator.SetLayerWeight(1, 0.75f);
             stateMachine.Animator.SetBool(CowardEnemyStateMachine.IsWalkingAnimID, true);
+            Debug.Log("Siguiendo");
         }
         
         public override void OnStateUpdate()
@@ -68,39 +59,37 @@ namespace _VanHelsingVR.Enemy
             _position = stateMachine.transform.position;
             var totalForce = Vector3.zero;
             
-            var runAwayForce = RunAwayForce();
+            var followForce = FollowForce();
             var avoidForce = AvoidForce();
 
-            totalForce = runAwayForce + avoidForce;
+            totalForce = followForce + avoidForce;
             
             _velocity = Vector3.ClampMagnitude(_velocity + totalForce, _maxForce);
             _velocity.y = 0;
 
-            _cowardEnemyStateMachine.rb.velocity = _velocity;
+            _giantEnemyStateMachine.rb.velocity = _velocity;
+
+            var targetPosition = _target.position;
+            targetPosition.y = stateMachine.transform.position.y;
+            stateMachine.transform.LookAt(targetPosition);
             
+            //SpeedMultiplier
+            /*
             if (_velocity != Vector3.zero) 
                 stateMachine.Animator.SetFloat(_SpeedMultiplierAnim,-_velocity.magnitude);
             else
                 stateMachine.Animator.SetFloat(_SpeedMultiplierAnim, 0);
+                */
         }
 
-        private Vector3 RunAwayForce()
+        private Vector3 FollowForce()
         {
-            _desiredVelocity = (_position - _target.position).normalized * _speed;
-            
-            var distance = (_target.position - _position).magnitude;
-            
-            if (distance > _safeRadius)
-            {
-                _desiredVelocity = Vector3.zero;
-            }
-            else if (distance > _runAwayCircle)
-            {
-                var speedMultiplier = Map.MapFloatRange(distance, _runAwayEnemyRadiusRange, _SpeedMultiplierRange, true);
-                _desiredVelocity = _desiredVelocity.normalized * (_speed * speedMultiplier);
-            }
+            Vector3 steering = Vector3.zero;
+            _desiredVelocity = (_target.position - _position);
 
-            var steering = _desiredVelocity - _velocity;
+            _desiredVelocity = DesiredVelocity.normalized * _speed;
+            
+            steering = _desiredVelocity - _velocity;
 
             return steering;
         }

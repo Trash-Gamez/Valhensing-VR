@@ -139,7 +139,7 @@ namespace _VanHelsingVR.Enemy
         public void AppearProyectile()
         {
             _currentProyectile = Instantiate(proyectilePrefab, proyectileTip.Value.position, Quaternion.identity);
-            _currentProyectile.Init(target.Value, proyectileSpeed);
+            _currentProyectile.Init(target.Value, proyectileSpeed, this);
         }
 
         public void ThrowProyectile()
@@ -152,7 +152,6 @@ namespace _VanHelsingVR.Enemy
         //Llamar desde el healthsystem de unity de este objeto
         public void OnDead()
         {
-            Debug.Log("Se murio, empezando animaci�n");
             ChangeState(DeadState);
         }
         
