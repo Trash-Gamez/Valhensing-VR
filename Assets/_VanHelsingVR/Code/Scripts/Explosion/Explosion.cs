@@ -18,7 +18,11 @@ namespace _VanHelsingVR.Explosion
         [SerializeField] private float maxRadius;
         [SerializeField] private LayerMask explosionLayer;
         [SerializeField, Min(0.25f)] private float explosionSeconds;
-        //[SerializeField] private List<Collider> 
+        [SerializeField] private List<Collider> ignoreColliders;
+
+        [Title("Damage")] 
+        [SerializeField] private bool instantDeath = true;
+        [SerializeField, HideIf(nameof(instantDeath))] private int damageValue;
         
         [Title("Events")]
         [SerializeField] private UnityEvent onExplosionStarted;
@@ -74,13 +78,17 @@ namespace _VanHelsingVR.Explosion
             for (int i = 0; i < size; i++)
             {
                 var collider = results[i];
+                if(ignoreColliders.Contains(collider)) continue;
                 if(!collider.isTrigger) continue;
                 if (!collider.TryGetComponent<Hurtbox>(out var hurtbox)) continue;
                 var health = hurtbox.HealthReference.HealthSystem;
                 if (health == null) continue;
                 if (healthTouched.Contains(health)) continue;
                 
-                hurtbox.ForceDeath();
+                if(instantDeath)
+                    hurtbox.ForceDeath();
+                else
+                    hurtbox.Hit(damageValue);
                 healthTouched.Add(health);
             }
         }
