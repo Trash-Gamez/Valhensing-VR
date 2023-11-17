@@ -1130,7 +1130,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4786126660535696861}
   - component: {fileID: 5269330836908533606}
-  m_Layer: 0
+  - component: {fileID: 6490896882704509417}
+  - component: {fileID: 5037200189827080682}
+  - component: {fileID: 6116576556734820626}
+  - component: {fileID: 521255466636715320}
+  - component: {fileID: 8821035309312785108}
+  - component: {fileID: 1550776026259927209}
+  m_Layer: 14
   m_Name: GiantEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1174,6 +1180,158 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6490896882704509417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269330836908533607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c3d6e89ccc4b5cae64b4833187917a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Animator>k__BackingField: {fileID: 5269330836908533606}
+  <rb>k__BackingField: {fileID: 0}
+  maxSeeAhead: 0.5
+  maxAvoidForce: 0.2
+  target:
+    variableType: 0
+    reference: {fileID: 0}
+    constant: {fileID: 0}
+  FollowSpeed: 0.1
+  maxMoveForce: 0.25
+  proyectileTip:
+    variableType: 0
+    reference: {fileID: 0}
+    constant: {fileID: 0}
+  proyectilePrefab: {fileID: 0}
+  proyectileSpeed: 2
+  attackRadius: 0
+  timeToAttack:
+    <Min>k__BackingField: 0
+    <Max>k__BackingField: 0
+--- !u!114 &5037200189827080682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269330836908533607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6778c95c53895b42a153266c7639a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtBoxCollider: {fileID: 8821035309312785108}
+  hurtLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  <HurtboxTeam>k__BackingField: 0
+  friendlyFire:
+    defaultValue: 1
+    conditions: []
+  <HealthReference>k__BackingField:
+    <HealthSystem>k__BackingField: {fileID: 0}
+  inmunityType: 0
+  inmunityFrames: 0
+  onHit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6116576556734820626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269330836908533607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3096686dd3cedb9448543a1ce24a03ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth:
+    variableType: 0
+    reference: {fileID: 0}
+    constant: 0
+  currentHealth:
+    variableType: 0
+    reference: {fileID: 0}
+    constant: 0
+  maxOverHeal:
+    variableType: 0
+    reference: {fileID: 0}
+    constant: 0
+  currentOverHeal:
+    variableType: 0
+    reference: {fileID: 0}
+    constant: 0
+  canBeDamaged:
+    defaultValue: 1
+    conditions: []
+  canBeHealed:
+    defaultValue: 1
+    conditions: []
+  canOverHeal:
+    defaultValue: 1
+    conditions: []
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  onOverHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!54 &521255466636715320
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269330836908533607}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
+--- !u!136 &8821035309312785108
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269330836908533607}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!136 &1550776026259927209
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269330836908533607}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.34
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &5312174128407870652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,7 +1451,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5768695540334312404}
-  m_LocalRotation: {x: 0.045859996, y: -0.05093706, z: 0.7127268, w: 0.6980851}
+  m_LocalRotation: {x: 0.04585083, y: -0.05092688, z: 0.71286464, w: 0.6979456}
   m_LocalPosition: {x: -0.00046462246, y: 0.00040086836, z: -0.000047596157}
   m_LocalScale: {x: 1, y: 1, z: 0.9999999}
   m_ConstrainProportionsScale: 0

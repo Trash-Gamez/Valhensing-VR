@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace _VanHelsingVR.Proyectile
 {
@@ -9,10 +12,16 @@ namespace _VanHelsingVR.Proyectile
         private Transform _target;
         private float _speed;
 
-        public void Init(Transform target, float speed)
+        public void Init(Transform target, float speed, MonoBehaviour onDestroyListener)
         {
             _target = target;
             _speed = speed;
+            onDestroyListener.OnDestroyAsObservable()
+                .Subscribe(_ =>
+                {
+                    Destroy(gameObject);
+                })
+                .AddTo(this);
         }
         
         public void Throw()
