@@ -6,7 +6,6 @@ public class InvokeDecals : MonoBehaviour
 {
     public ParticleSystem ps;
     public GameObject Decal;
-    public DecalManager decalManager;
     public List<ParticleCollisionEvent> collisionEvents;
     private void Start()
     {

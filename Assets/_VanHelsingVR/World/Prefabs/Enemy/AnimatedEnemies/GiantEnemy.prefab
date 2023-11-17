@@ -1135,6 +1135,8 @@ GameObject:
   - component: {fileID: 6116576556734820626}
   - component: {fileID: 521255466636715320}
   - component: {fileID: 8821035309312785108}
+  - component: {fileID: 974216323086391376}
+  - component: {fileID: 9145784282997192420}
   m_Layer: 14
   m_Name: GiantEnemy
   m_TagString: Untagged
@@ -1151,7 +1153,7 @@ Transform:
   m_GameObject: {fileID: 5269330836908533607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.6034672, y: 0, z: 21.741814}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3598851143829865475}
@@ -1199,8 +1201,8 @@ MonoBehaviour:
   maxSeeAhead: 0.5
   maxAvoidForce: 0.2
   target:
-    variableType: 0
-    reference: {fileID: 0}
+    variableType: 1
+    reference: {fileID: 11400000, guid: 881fc8074c8273e49bb5fa9d29d420ea, type: 2}
     constant: {fileID: 0}
   FollowSpeed: 1.5
   maxMoveForce: 5
@@ -1274,7 +1276,31 @@ MonoBehaviour:
     conditions: []
   onDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 974216323086391376}
+        m_TargetAssemblyTypeName: AudioPlayer, Assembly-CSharp
+        m_MethodName: Play2DSound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: FleshImpact_1
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9145784282997192420}
+        m_TargetAssemblyTypeName: SpawnEffects, Assembly-CSharp
+        m_MethodName: Effect01
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onHeal:
     m_PersistentCalls:
       m_Calls: []
@@ -1299,6 +1325,30 @@ MonoBehaviour:
       - m_Target: {fileID: 6490896882704509417}
         m_TargetAssemblyTypeName: _VanHelsingVR.Enemy.GiantEnemyStateMachine, Assembly-CSharp
         m_MethodName: OnDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 974216323086391376}
+        m_TargetAssemblyTypeName: AudioPlayer, Assembly-CSharp
+        m_MethodName: Play2DSound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: HeartExplotion
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9145784282997192420}
+        m_TargetAssemblyTypeName: SpawnEffects, Assembly-CSharp
+        m_MethodName: Effect01
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1338,6 +1388,32 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &974216323086391376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269330836908533607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7137695250dfd44aa988f0906046e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9145784282997192420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269330836908533607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad7284f562bd45439a4074ae4207eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect01: {fileID: 7875634403809466083, guid: e114b207c228d10468eccd50bae1e0e1, type: 3}
+  effect02: {fileID: 0}
 --- !u!1 &5312174128407870652
 GameObject:
   m_ObjectHideFlags: 0
