@@ -31,9 +31,9 @@ public class Watch : MonoBehaviour
     {
 
         _bloodAmount = ((float)health.Value / (float)_maxHealth.Value);
-        Debug.Log(_bloodAmount);
+       
         _bloodAmount = Map.MapFloatRange(_bloodAmount, RacTools.Utilities.Range.ZeroToOne, HealthRange);
-        Debug.Log(_bloodAmount);
+        
         _bloodMaterial.SetFloat("_LiquidAmount",_bloodAmount);
 
        /* _soulAmount = (souls.Value / _maxMoney) * 0.018f;

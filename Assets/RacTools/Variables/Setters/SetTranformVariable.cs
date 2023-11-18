@@ -5,12 +5,14 @@ using RacTools.Variables;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+[DefaultExecutionOrder(-1)]
+
 public class SetTranformVariable : MonoBehaviour
 {
-    [FormerlySerializedAs("transform")] [SerializeField] private Transform t;
+    [SerializeField] private Transform transformToSet;
     [SerializeField] private Variable<Transform> variable;
     private void Start()
     {
-        variable.Value = t;
+        variable.Value = transformToSet;
     }
 }

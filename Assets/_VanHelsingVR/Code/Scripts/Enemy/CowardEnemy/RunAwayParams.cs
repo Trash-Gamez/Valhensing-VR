@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace _VanHelsingVR.Enemy
 {
-    public class RunAwayParams
+    public struct RunAwayParams
     {
         public float RunAwayCircle { get; set; }
         public float SafeRadius { get; set; }

@@ -39,9 +39,11 @@ namespace _VanHelsingVR.Explosion
         private CancellationTokenSource _cancellationTokenSource = null;
 
         public async void DoExplosion(float seconds)
-        {
-            if(!_cancellationTokenSource.IsCancellationRequested)
+        {   
+            if(_cancellationTokenSource!=null&&!_cancellationTokenSource.IsCancellationRequested)
                 _cancellationTokenSource.Cancel();
+
+            _cancellationTokenSource = new();
             try
             {
                 await DoExplosionAsync(seconds);
@@ -105,8 +107,9 @@ namespace _VanHelsingVR.Explosion
             }
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
+            if (_cancellationTokenSource == null) return;
             if(!_cancellationTokenSource.IsCancellationRequested)
                 _cancellationTokenSource.Cancel();
         }

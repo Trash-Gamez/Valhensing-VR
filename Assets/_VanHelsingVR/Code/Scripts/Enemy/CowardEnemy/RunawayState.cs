@@ -22,7 +22,7 @@ namespace _VanHelsingVR.Enemy
         //RunAway Params
         private readonly float _runAwayCircle;
         private readonly float _safeRadius;
-        private readonly Transform _target;
+        private Transform _target;
         private readonly float _speed;
         
         //Avoid Params
@@ -66,6 +66,7 @@ namespace _VanHelsingVR.Enemy
         public override void OnStateUpdate()
         {
             _position = stateMachine.transform.position;
+            
             var totalForce = Vector3.zero;
             
             var runAwayForce = RunAwayForce();

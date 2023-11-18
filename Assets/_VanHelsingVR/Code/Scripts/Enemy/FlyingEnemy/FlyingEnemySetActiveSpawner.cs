@@ -9,7 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class FlyingEnemySetActiveSpawner : MonoBehaviour
 {
-    private static FlyingEnemySpawner _spawner;
+    private FlyingEnemySpawner _spawner;
     [SerializeField] private bool isActive = false;
 
     [SerializeField, Range(1,3)] 
@@ -17,7 +17,7 @@ public class FlyingEnemySetActiveSpawner : MonoBehaviour
 
     private void Start()
     {
-        _spawner ??= FindObjectOfType<FlyingEnemySpawner>();
+        _spawner = FindObjectOfType<FlyingEnemySpawner>();
     }
 
     private void Logic()

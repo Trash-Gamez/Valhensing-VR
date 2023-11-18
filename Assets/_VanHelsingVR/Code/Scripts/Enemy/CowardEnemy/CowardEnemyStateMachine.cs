@@ -38,7 +38,7 @@ namespace _VanHelsingVR.Enemy
         private float _attackCooldown = 0;
         private bool _isAttacking = false;
 
-        private Transform _transform;
+        
         private bool _firstAttack = false;
         private float _attackingTime;
 
@@ -49,10 +49,7 @@ namespace _VanHelsingVR.Enemy
         public RunawayState RunawayState { get; private set; }
         public DeadState DeadState { get; private set; }
 
-        private void Awake()
-        {
-            _transform = transform;
-        }
+       
 
         protected override void Start()
         {
@@ -94,7 +91,7 @@ namespace _VanHelsingVR.Enemy
             base.Update();
             
             if (_isAttacking) return;
-            if ((target.Value.position - _transform.position).magnitude > attackRadius)
+            if ((target.Value.position - transform.position).magnitude > attackRadius)
             {
                 _attackCooldown = 0;
                 return;
