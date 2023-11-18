@@ -7,7 +7,7 @@ public class InstantiateInstruction : MonoBehaviour
     [SerializeField] private Transform pointToSpawn;
     public void Instantiate(GameObject gameObject)
     {
-        var pos = pointToSpawn != null ? pointToSpawn.position : transform.position; 
-        Instantiate(gameObject, pos, Quaternion.identity);
+        var pos = pointToSpawn != null ? pointToSpawn.position : transform.position;
+        Instantiate(gameObject, pos, transform.rotation);
     }
 }
