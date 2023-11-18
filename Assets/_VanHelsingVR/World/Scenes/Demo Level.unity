@@ -30156,6 +30156,10 @@ PrefabInstance:
       propertyPath: obstacles
       value: 
       objectReference: {fileID: 11400000, guid: 7ef2aecbb2d29654f87050ea58161b93, type: 2}
+    - target: {fileID: 6490896882704509417, guid: 156fedf49db5efa4f91533af836d623a, type: 3}
+      propertyPath: detectPlayerRadius
+      value: 12.15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 156fedf49db5efa4f91533af836d623a, type: 3}
 --- !u!4 &712641327 stripped
@@ -45852,6 +45856,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5558342855592764364}
     m_Modifications:
+    - target: {fileID: 572934878, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
+      propertyPath: maxHealth.constant
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 572934878, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
+      propertyPath: maxHealth.variableType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572934878, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
+      propertyPath: currentHealth.reference
+      value: 
+      objectReference: {fileID: 11400000, guid: 413617df8ed72a441923d838cf2b0e28, type: 2}
+    - target: {fileID: 572934878, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
+      propertyPath: currentHealth.variableType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 572934878, guid: 13d924b5db79bf444ba6c710bf168201, type: 3}
       propertyPath: onDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -82068,6 +82088,10 @@ PrefabInstance:
       propertyPath: obstacles
       value: 
       objectReference: {fileID: 11400000, guid: 7ef2aecbb2d29654f87050ea58161b93, type: 2}
+    - target: {fileID: 6490896882704509417, guid: 156fedf49db5efa4f91533af836d623a, type: 3}
+      propertyPath: detectPlayerRadius
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 156fedf49db5efa4f91533af836d623a, type: 3}
 --- !u!4 &1798955262 stripped
