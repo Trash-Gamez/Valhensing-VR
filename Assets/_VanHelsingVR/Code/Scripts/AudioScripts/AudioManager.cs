@@ -144,6 +144,12 @@ public class AudioManager : MonoBehaviour
 		ambientSource.Stop();
 	}
 
+	public void StopMusic()
+    {
+		track01.Stop();
+		track02.Stop();
+    }
+
 	
 	// FX Audio
 	

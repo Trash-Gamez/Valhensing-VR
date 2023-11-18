@@ -169,6 +169,7 @@ MonoBehaviour:
     <HealthSystem>k__BackingField: {fileID: 2950528345085593164}
   inmunityType: 0
   inmunityFrames: 0
+  speedToBeAttacked: 0.25
   onHit:
     m_PersistentCalls:
       m_Calls: []
@@ -198,6 +199,7 @@ GameObject:
   - component: {fileID: 6867867759945401522}
   - component: {fileID: 9118894386016517685}
   - component: {fileID: 1402291096109964161}
+  - component: {fileID: 4528865626355356072}
   m_Layer: 15
   m_Name: HitBox
   m_TagString: Untagged
@@ -295,6 +297,29 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4528865626355356072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5871572139834378587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994575a06e18442791b4d09f6e81f855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitboxToPopulate: {fileID: 6867867759945401522}
+  dataPopulators:
+  - dataType: 0
+    attribute:
+      <Vector4Value>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
+      <Vector3Value>k__BackingField: {x: 0, y: 0, z: 0}
+      <Vector2Value>k__BackingField: {x: 0, y: 0}
+      <FloatValue>k__BackingField: 0
+      <IntValue>k__BackingField: 5
+      <BoolValue>k__BackingField: 0
+  destroyAfterPopulate: 1
 --- !u!1001 &1714342717047584256
 PrefabInstance:
   m_ObjectHideFlags: 0

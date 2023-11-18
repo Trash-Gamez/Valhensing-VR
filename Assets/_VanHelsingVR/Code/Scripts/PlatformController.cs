@@ -110,7 +110,12 @@ namespace _VanHelsingVR
                 AudioManager.Instance.PlayAmbient("Carrito_02", 0);
             }
         }
-       
+       public void OnPlayerDead()
+        {
+            StopAllCoroutines();
+            AudioManager.Instance.PlaySound3D("CarritoStop", transform.position);
+            AudioManager.Instance.StopAmbient();
+        }
     
     }
 }
