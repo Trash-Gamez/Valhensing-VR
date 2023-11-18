@@ -10,7 +10,8 @@ namespace RacTools.Variables
         private Subject<T> _subject = new();
     
         public IObservable<T> OnValueChanged => _subject;
-    
+        
+        [SerializeField, HideInInspector]
         private T _value = default;
         
         [ShowInInspector]
