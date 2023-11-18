@@ -1198,8 +1198,8 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 5269330836908533606}
   obstacles: {fileID: 11400000, guid: 1b56d525c3c35f24ab3c9ad2551e8f97, type: 2}
   <rb>k__BackingField: {fileID: 521255466636715320}
-  maxSeeAhead: 0.5
-  maxAvoidForce: 0.2
+  maxSeeAhead: 0.65
+  maxAvoidForce: 5
   target:
     variableType: 1
     reference: {fileID: 11400000, guid: 881fc8074c8273e49bb5fa9d29d420ea, type: 2}
@@ -1292,6 +1292,18 @@ MonoBehaviour:
       - m_Target: {fileID: 9145784282997192420}
         m_TargetAssemblyTypeName: SpawnEffects, Assembly-CSharp
         m_MethodName: Effect01
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6490896882704509417}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Enemy.GiantEnemyStateMachine, Assembly-CSharp
+        m_MethodName: OnDamage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1922,8 +1934,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24365b00e6846944a7b08c506018884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialRadius: 0.6
-  maxRadius: 1.2
+  initialRadius: 0.9
+  maxRadius: 1.5
   explosionLayer:
     serializedVersion: 2
     m_Bits: 16384

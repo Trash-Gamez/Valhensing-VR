@@ -6,7 +6,7 @@ namespace _VanHelsingVR
 {
     public class SpeedoMeter : MonoBehaviour
     {
-        public Vector3 Velocity => velocityVar.Value;
+        
     
         private enum VarType
         {
@@ -18,16 +18,16 @@ namespace _VanHelsingVR
 
         [SerializeField] private VarType varType = VarType.X;
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         [HideIf(nameof(varType), VarType.Vector)]
-#endif
+        #endif
         [SerializeField]
         private Variable<float> speedVar;
     
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         [ShowIf(nameof(varType), VarType.Vector)]
-#endif 
+        #endif 
         [SerializeField]
         private Variable<Vector3> velocityVar;
     
@@ -35,6 +35,7 @@ namespace _VanHelsingVR
         private Transform _transform;
         private Vector3 _oldPosition = Vector3.zero;
 
+        public Vector3 Velocity => _velocity;
         private Vector3 _velocity;
 
         private void Awake() => _transform = transform;

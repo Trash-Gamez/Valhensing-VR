@@ -31,6 +31,10 @@ namespace _VanHelsingVR.Health
         [SerializeField, Min(0)] private int inmunityFrames;
         private static readonly HashSet<Transform> _hurtBoxesInmune = new HashSet<Transform>();
         
+        [EnableIf("@this.hurtLayer == (this.hurtLayer | 1 << 6)")]
+        [Title("Punch")] 
+        [SerializeField, Min(0.25f)] private float speedToBeAttacked = 0.25f;
+        
         [Space]
         [SerializeField] protected UnityEvent<int> onHit;
 
@@ -42,6 +46,7 @@ namespace _VanHelsingVR.Health
         
         protected virtual void Awake()
         {
+            LayerMask.GetMask(new string[] {"HitboxPunch"});
             hurtBoxCollider ??= GetComponent<Collider>();
         }
 
@@ -97,7 +102,13 @@ namespace _VanHelsingVR.Health
             Hit(damaged);
         }
 
-        protected virtual bool OnBeforePunch(PunchableHitbox _) => true;
+        protected virtual bool OnBeforePunch(PunchableHitbox punchableHitbox)
+        {
+            var speed = punchableHitbox.SpeedoMeter.Velocity.magnitude;
+            Debug.Log($"Speed: {speed}");
+            Debug.Log($"To be attacked: {speedToBeAttacked}");
+            return speed >= speedToBeAttacked;
+        }
 
         protected virtual void OnPunch(PunchableHitbox punchable)
         {

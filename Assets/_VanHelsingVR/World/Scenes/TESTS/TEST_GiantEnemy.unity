@@ -247,6 +247,7 @@ MonoBehaviour:
     <HealthSystem>k__BackingField: {fileID: 66931803}
   inmunityType: 0
   inmunityFrames: 0
+  speedToBeAttacked: 0.25
   onHit:
     m_PersistentCalls:
       m_Calls: []
@@ -1819,6 +1820,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5037200189827080682, guid: 156fedf49db5efa4f91533af836d623a, type: 3}
+      propertyPath: hurtLayer.m_Bits
+      value: 33088
+      objectReference: {fileID: 0}
     - target: {fileID: 5269330836908533607, guid: 156fedf49db5efa4f91533af836d623a, type: 3}
       propertyPath: m_Name
       value: GiantEnemy
@@ -1827,5 +1832,9 @@ PrefabInstance:
       propertyPath: target.constant
       value: 
       objectReference: {fileID: 66931800}
+    - target: {fileID: 6490896882704509417, guid: 156fedf49db5efa4f91533af836d623a, type: 3}
+      propertyPath: target.variableType
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 156fedf49db5efa4f91533af836d623a, type: 3}

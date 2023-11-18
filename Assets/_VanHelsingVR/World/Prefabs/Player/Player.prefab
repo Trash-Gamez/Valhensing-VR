@@ -1377,6 +1377,8 @@ MonoBehaviour:
   gunAnimator: {fileID: 6151344891850419175}
   shootPoint: {fileID: 2442776135125154280}
   bulletPrefab: {fileID: 3410750424015373943, guid: d317d4b0c02251c4ba3b3ddfc4e79a1b, type: 3}
+  bulletParent: {fileID: 0}
+  bloodEffect: {fileID: 0}
   triggerAction:
     m_UseReference: 1
     m_Action:
@@ -2322,7 +2324,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.13
   m_Center: {x: 0, y: 0.02, z: 0}
 --- !u!114 &1225404598
 MonoBehaviour:
@@ -2344,7 +2346,7 @@ MonoBehaviour:
       <Vector3Value>k__BackingField: {x: 0, y: 0, z: 0}
       <Vector2Value>k__BackingField: {x: 0, y: 0}
       <FloatValue>k__BackingField: 0
-      <IntValue>k__BackingField: 2
+      <IntValue>k__BackingField: 5
       <BoolValue>k__BackingField: 0
   destroyAfterPopulate: 1
 --- !u!114 &1225404599

@@ -69,6 +69,11 @@ namespace _VanHelsingVR.Enemy
             ChangeState(GiantIdleState);
         }
 
+        public void OnDamage()
+        {
+            ChangeState(FollowingState);
+        }
+
         public void OnAttack()
         {
             explosionAttack.DoExplosion(1.5f);
