@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &302212530975647626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6801811824160353587}
+  m_Layer: 14
+  m_Name: HeartSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6801811824160353587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302212530975647626}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4786126660535696861}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &350640227867794138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,6 +1168,7 @@ GameObject:
   - component: {fileID: 8821035309312785108}
   - component: {fileID: 974216323086391376}
   - component: {fileID: 9145784282997192420}
+  - component: {fileID: 6476126287052076747}
   m_Layer: 14
   m_Name: GiantEnemy
   m_TagString: Untagged
@@ -1160,6 +1192,7 @@ Transform:
   - {fileID: 4107155888852401993}
   - {fileID: 487506083287552581}
   - {fileID: 3573397446309542961}
+  - {fileID: 6801811824160353587}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1234,6 +1267,7 @@ MonoBehaviour:
     <HealthSystem>k__BackingField: {fileID: 6116576556734820626}
   inmunityType: 0
   inmunityFrames: 0
+  speedToBeAttacked: 0.25
   onHit:
     m_PersistentCalls:
       m_Calls: []
@@ -1370,6 +1404,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6476126287052076747}
+        m_TargetAssemblyTypeName: InstantiateInstruction, Assembly-CSharp
+        m_MethodName: Instantiate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 3433200695170469119, guid: e768a65eaeaa63a4882545f587d6cc0c, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &521255466636715320
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1426,6 +1472,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect01: {fileID: 7875634403809466083, guid: e114b207c228d10468eccd50bae1e0e1, type: 3}
   effect02: {fileID: 0}
+--- !u!114 &6476126287052076747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269330836908533607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84439e51c11c10b48a871cea7fd745e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointToSpawn: {fileID: 6801811824160353587}
 --- !u!1 &5312174128407870652
 GameObject:
   m_ObjectHideFlags: 0

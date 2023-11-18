@@ -81,17 +81,29 @@ namespace _VanHelsingVR.Enemy
 
         public void OnAttackEnd()
         {
-            StartCoroutine(ReturnToFollowing());
+            if (_isDead) return;
+            
+            if(_returnToFollowing != null)
+                StopCoroutine(_returnToFollowing);
+            
+            _returnToFollowing = StartCoroutine(ReturnToFollowing());
         }
 
+        private Coroutine _returnToFollowing = null;
         private IEnumerator ReturnToFollowing()
         {
             yield return new WaitForSeconds(0.5f);
-            ChangeState(FollowingState);    
+            if (_isDead) yield break;
+            ChangeState(FollowingState);
+            _returnToFollowing = null;
         }
 
+        private bool _isDead = false;
         public void OnDead()
         {
+            _isDead = true;
+            if(_returnToFollowing != null)
+                StopCoroutine(_returnToFollowing);
             ChangeState(GiantDeadState);
         }
         
