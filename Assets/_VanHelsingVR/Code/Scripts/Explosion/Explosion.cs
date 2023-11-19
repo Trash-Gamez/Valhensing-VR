@@ -39,13 +39,14 @@ namespace _VanHelsingVR.Explosion
 
         //private CancellationTokenSource _cancellationTokenSource = null;
 
-        public async void DoExplosion(float seconds, CancellationToken token)
-        {   
-             (bool isCanceled, _) = await DoExplosionAsync(seconds, token).SuppressCancellationThrow();
-             if (isCanceled)
-             {
-                 _currentRadius = 0f;
-             }
+        public void DoExplosion(float seconds, CancellationToken token)
+        { 
+            DoExplosionAsync(seconds, token);
+        }
+
+        public void DoExplosion(float seconds)
+        {
+            DoExplosion(seconds, CancellationToken.None);
         }
 
         public async UniTask<List<Health.Health>> DoExplosionAsync(float seconds,CancellationToken token)
