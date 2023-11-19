@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Sirenix.OdinInspector;
@@ -74,9 +75,14 @@ namespace _VanHelsingVR.Enemy
             ChangeState(FollowingState);
         }
 
-        public void OnAttack()
+        private CancellationTokenSource _attackCancelTokenSource;
+        public async void OnAttack()
         {
-            explosionAttack.DoExplosion(1.5f);
+            if(_attackCancelTokenSource != null)
+                _attackCancelTokenSource.Dispose();
+
+            _attackCancelTokenSource = new CancellationTokenSource();
+            explosionAttack.DoExplosion(1.5f, _attackCancelTokenSource.Token);
         }
 
         public void OnAttackEnd()
@@ -101,6 +107,8 @@ namespace _VanHelsingVR.Enemy
         private bool _isDead = false;
         public void OnDead()
         {
+            _attackCancelTokenSource.Cancel();
+            
             _isDead = true;
             if(_returnToFollowing != null)
                 StopCoroutine(_returnToFollowing);

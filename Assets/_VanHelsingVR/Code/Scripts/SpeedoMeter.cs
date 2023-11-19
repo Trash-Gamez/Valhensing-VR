@@ -6,8 +6,6 @@ namespace _VanHelsingVR
 {
     public class SpeedoMeter : MonoBehaviour
     {
-        
-    
         private enum VarType
         {
             X ,
@@ -15,6 +13,8 @@ namespace _VanHelsingVR
             Z,
             Vector
         }
+
+        [SerializeField] private bool useLocalPos;
 
         [SerializeField] private VarType varType = VarType.X;
 
@@ -42,7 +42,7 @@ namespace _VanHelsingVR
 
         private void Update()
         {
-            var currentPos = _transform.position;
+            var currentPos = useLocalPos ? _transform.localPosition : _transform.position;
             var deltaPosition = currentPos - _oldPosition;
             _velocity = deltaPosition / Time.deltaTime;
             SetSpeedVar();

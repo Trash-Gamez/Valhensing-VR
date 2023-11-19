@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using _VanHelsingVR.Health;
 using Cysharp.Threading.Tasks;
@@ -36,25 +37,18 @@ namespace _VanHelsingVR.Explosion
 
         private float _currentRadius;
 
-        private CancellationTokenSource _cancellationTokenSource = null;
+        //private CancellationTokenSource _cancellationTokenSource = null;
 
-        public async void DoExplosion(float seconds)
+        public async void DoExplosion(float seconds, CancellationToken token)
         {   
-            if(_cancellationTokenSource!=null&&!_cancellationTokenSource.IsCancellationRequested)
-                _cancellationTokenSource.Cancel();
-
-            _cancellationTokenSource = new();
-            try
-            {
-                await DoExplosionAsync(seconds);
-            }
-            catch (OperationCanceledException exception)
-            {
-                Debug.Log("SE CANCELO LA OPERACION DE LA EXPLOSION");
-            }
+             (bool isCanceled, _) = await DoExplosionAsync(seconds, token).SuppressCancellationThrow();
+             if (isCanceled)
+             {
+                 _currentRadius = 0f;
+             }
         }
 
-        public async UniTask<List<Health.Health>> DoExplosionAsync(float seconds)
+        public async UniTask<List<Health.Health>> DoExplosionAsync(float seconds,CancellationToken token)
         {
             var healthTouched = new List<Health.Health>();
             
@@ -62,20 +56,22 @@ namespace _VanHelsingVR.Explosion
             var radiusRange = new Range(maxRadius, initialRadius);
             var transcurredTime = 0f;
             
+            onExplosionStarted?.Invoke();
+            
             var task = UniTask.WaitUntil(() =>
             {
                 transcurredTime += Time.fixedDeltaTime;
+                
                 return transcurredTime >= seconds;
-            }, cancellationToken: _cancellationTokenSource.Token);
+            }, cancellationToken: token);
             
-            onExplosionStarted?.Invoke();
 
             while (task.Status == UniTaskStatus.Pending)
             {
                 _currentRadius = Map.MapFloatRange(transcurredTime, waitSecondsRange, radiusRange);
                 SphereCastHealth(healthTouched);
 
-                await UniTask.WaitForFixedUpdate();
+                await UniTask.WaitForFixedUpdate(cancellationToken: token);
             }
             
             Debug.Log("Termino la explosion");
@@ -107,19 +103,12 @@ namespace _VanHelsingVR.Explosion
             }
         }
 
-        private void OnDestroy()
-        {
-            if (_cancellationTokenSource == null) return;
-            if(!_cancellationTokenSource.IsCancellationRequested)
-                _cancellationTokenSource.Cancel();
-        }
-
         #region Unity Editor
         #if UNITY_EDITOR
         [Button("Test Explosion", ButtonSizes.Medium)]
         private async void TestExplosion()
         {
-            await DoExplosionAsync(explosionSeconds);
+            await DoExplosionAsync(explosionSeconds, CancellationToken.None);
         }
 
         private void OnValidate()
