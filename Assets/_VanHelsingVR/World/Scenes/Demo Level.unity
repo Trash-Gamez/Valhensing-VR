@@ -47081,6 +47081,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bba539b34a04d5598f5204a3db8f480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1051176884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051176871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dce7bb7fac4b2845bd45fdb3c654a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventReference:
+    reactiveEvent: {fileID: 11400000, guid: 8c05c3f917b840f40b0695ab14a86e79, type: 2}
+  UnityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1051176883}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Health.Health, Assembly-CSharp
+        m_MethodName: Heal
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 30
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1055555074
 PrefabInstance:
   m_ObjectHideFlags: 0
