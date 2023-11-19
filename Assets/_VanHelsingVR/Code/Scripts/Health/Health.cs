@@ -110,9 +110,13 @@ namespace _VanHelsingVR.Health
             //TODO: Corutina para ir quitando el overheal
         }
 
+        private bool _isHealthDead;
         private void Dead()
         {
             if (!OnDead()) return;
+            if(_isHealthDead) return;
+            
+            _isHealthDead = true;
             
             currentHealth.Value = 0;
             onDead?.Invoke();
