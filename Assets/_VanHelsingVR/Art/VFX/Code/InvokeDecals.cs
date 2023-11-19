@@ -8,7 +8,7 @@ public class InvokeDecals : MonoBehaviour
     public GameObject Decal;
     public List<ParticleCollisionEvent> collisionEvents;
     private static Queue<GameObject> _decalQueue = new Queue<GameObject>();
-    private static int _maxAmount = 35;
+    private static int _maxAmount = 100;
     
     private void Start()
     {
