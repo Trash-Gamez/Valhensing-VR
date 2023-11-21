@@ -33,7 +33,7 @@ public class InvokeDecals : MonoBehaviour
             }
 
             actualObject.transform.Rotate(Vector3.forward*(Random.Range(-180,180)));
-            Debug.Log(collisionEvents[i].normal);
+            //Debug.Log(collisionEvents[i].normal);
             i++;
         }
        

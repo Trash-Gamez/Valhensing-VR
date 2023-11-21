@@ -17,6 +17,7 @@ namespace _VanHelsingVR.Enemy
         [SerializeField, Min(0.005f)] private float moveSpeed = 1;
 
         [SerializeField] private Range attackTimeRange;
+        [SerializeField] private Health.Health health;
         
         [Title("Gun params")]
         [SerializeField] private SimpleProyectile bulletPrefab;
@@ -56,6 +57,16 @@ namespace _VanHelsingVR.Enemy
             Animator.SetBool(FlyAnimationID, false);
         }
 
+        protected override void Update()
+        {
+            base.Update();
+            if (health.CurrentHealth < 0 && !_isDead)
+            {
+                Debug.Log("Muerte sucia");
+                OnDead();
+            }
+        }
+
         public void AttackEnd()
         {
             ChangeState(FlyAroundState);
@@ -70,10 +81,14 @@ namespace _VanHelsingVR.Enemy
         }
         
         //Llamar desde el healthsystem de unity de este objeto
+        private bool _isDead = false;
         public void OnDead()
         {
+            if (_isDead) return;
+            _isDead = true;
+            
             OnEnemyDead?.Invoke(this);
-            Debug.Log("Se murio, empezando animación");
+            Debug.Log("Se murio, legal");
             ChangeState(FlyingDeadState);
         }
         

@@ -5,7 +5,8 @@ namespace RacTools.RuntimeSet
 {
     public class RuntimeSet<T> : ScriptableObject where T : Object
     {
-        public List<T> Set { get; private set; }
+        [field: SerializeField]
+        public List<T> Set { get; private set; } = new List<T>();
 
         public void AddToSet(T objectToAdd)
         {
