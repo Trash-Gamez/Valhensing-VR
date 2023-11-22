@@ -28,7 +28,8 @@ namespace _VanHelsingVR.Enemy
         {
             _target = _flyingEnemyStateMachine.wayPointManager.GetNext();
         }
-
+        
+        private Coroutine _attackWaitCoroutine = null;
         private IEnumerator AttackWaitCor()
         {
             yield return new WaitForSeconds(Random.Range(_attackRange.Min, _attackRange.Max));
@@ -39,7 +40,7 @@ namespace _VanHelsingVR.Enemy
         {
             _flyingEnemyStateMachine.RestartAnimatorParams();
             _flyingEnemyStateMachine.Animator.SetBool(FlyingEnemyStateMachine.FlyAnimationID, true);
-            stateMachine.StartCoroutine(AttackWaitCor());
+            _attackWaitCoroutine = stateMachine.StartCoroutine(AttackWaitCor());
             
             //SelectNewTarget();
         }
@@ -62,6 +63,8 @@ namespace _VanHelsingVR.Enemy
 
         public override void OnStateExit()
         {
+            if(_attackWaitCoroutine != null)
+                stateMachine.StopCoroutine(_attackWaitCoroutine);
             return;
         }
     }

@@ -67,10 +67,11 @@ MonoBehaviour:
   friendlyFire:
     defaultValue: 1
     conditions: []
-  healthReference:
-    <HealthSystem>k__BackingField: {fileID: 6807716496099638611}
+  <HealthReference>k__BackingField:
+    <HealthSystem>k__BackingField: {fileID: 0}
   inmunityType: 1
   inmunityFrames: 0
+  speedToBeAttacked: 0.25
   onHit:
     m_PersistentCalls:
       m_Calls: []
@@ -581,6 +582,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioPlayer, Assembly-CSharp
+        m_MethodName: Play2DSound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: HeartExplotion
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SpawnEffects, Assembly-CSharp
+        m_MethodName: Effect01
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7656060732461922152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,10 +661,11 @@ MonoBehaviour:
   friendlyFire:
     defaultValue: 1
     conditions: []
-  healthReference:
-    <HealthSystem>k__BackingField: {fileID: 6807716496099638611}
+  <HealthReference>k__BackingField:
+    <HealthSystem>k__BackingField: {fileID: 0}
   inmunityType: 1
   inmunityFrames: 0
+  speedToBeAttacked: 0.25
   onHit:
     m_PersistentCalls:
       m_Calls: []
@@ -668,10 +694,11 @@ MonoBehaviour:
   friendlyFire:
     defaultValue: 1
     conditions: []
-  healthReference:
-    <HealthSystem>k__BackingField: {fileID: 6807716496099638611}
+  <HealthReference>k__BackingField:
+    <HealthSystem>k__BackingField: {fileID: 0}
   inmunityType: 1
   inmunityFrames: 0
+  speedToBeAttacked: 0.25
   onHit:
     m_PersistentCalls:
       m_Calls: []

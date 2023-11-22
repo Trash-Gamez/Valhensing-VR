@@ -38,7 +38,7 @@ namespace _VanHelsingVR.Enemy
             if(wayPoints == null) throw new NullReferenceException();
             if (!wayPoints.Any()) throw new ArgumentNullException();
 
-            return wayPoints[Random.Range(0,1)];
+            return wayPoints[Random.Range(0,2)];
         }
         
         public void Restart()

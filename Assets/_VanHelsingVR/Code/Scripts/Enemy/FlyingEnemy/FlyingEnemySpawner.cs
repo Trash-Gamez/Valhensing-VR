@@ -92,8 +92,8 @@ namespace _VanHelsingVR.Enemy
 
             if (_recurrentEnemySpawn == null)
             {
-                _recurrentEnemySpawn = StartCoroutine(RecurrentEnemySpawn());
                 _isRoom = true;
+                _recurrentEnemySpawn = StartCoroutine(RecurrentEnemySpawn());
             }
         }
 

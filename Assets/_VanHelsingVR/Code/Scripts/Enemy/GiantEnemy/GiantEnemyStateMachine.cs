@@ -107,7 +107,8 @@ namespace _VanHelsingVR.Enemy
         private bool _isDead = false;
         public void OnDead()
         {
-            _attackCancelTokenSource.Cancel();
+            if(_attackCancelTokenSource != null)
+                _attackCancelTokenSource.Cancel();
             
             _isDead = true;
             if(_returnToFollowing != null)

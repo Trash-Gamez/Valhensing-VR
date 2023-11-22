@@ -52,7 +52,7 @@ namespace _VanHelsingVR.Health
 
         public void Hit(int damageDealed)
         {
-            if (HealthReference.HealthSystem != null)
+            if (HealthReference.HealthSystem)
             {
                 HealthReference.HealthSystem.Damage(damageDealed);                
             }
@@ -105,8 +105,6 @@ namespace _VanHelsingVR.Health
         protected virtual bool OnBeforePunch(PunchableHitbox punchableHitbox)
         {
             var speed = punchableHitbox.SpeedoMeter.Velocity.magnitude;
-            Debug.Log($"Speed: {speed}");
-            Debug.Log($"To be attacked: {speedToBeAttacked}");
             return speed >= speedToBeAttacked;
         }
 
