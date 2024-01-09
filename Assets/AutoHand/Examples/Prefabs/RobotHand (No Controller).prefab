@@ -1316,7 +1316,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7348704315564051146}
-  m_LocalRotation: {x: -0.0000072037797, y: -0.0000022402965, z: -0.0000032116654, w: 1}
+  m_LocalRotation: {x: -0.0000072037797, y: -0.0000022402965, z: -0.0000032116654,
+    w: 1}
   m_LocalPosition: {x: -0.0177, y: -0.0016, z: 0.0013}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1509,7 +1510,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8149646956712602908}
-  m_LocalRotation: {x: -0.0000061402106, y: -0.0000049649398, z: 0.0000024675394, w: 1}
+  m_LocalRotation: {x: -0.0000061402106, y: -0.0000049649398, z: 0.0000024675394,
+    w: 1}
   m_LocalPosition: {x: -0.014, y: 0.0027, z: 0.0001}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
@@ -1699,13 +1701,10 @@ MonoBehaviour:
   follow: {fileID: 0}
   maxFollowDistance: 0.75
   throwPower: 1
-  enableInterpolation: 1
   advancedFollowSettings: 1
   enableIK: 1
   swayStrength: 0.4
   gripOffset: 0.14
-  startDrag: 12
-  startAngularDrag: 50
   usingPoseAreas: 1
   queryTriggerInteraction: 0
   usingHighlight: 1
@@ -1714,6 +1713,9 @@ MonoBehaviour:
     m_Bits: 0
   defaultHighlight: {fileID: 0}
   showAdvanced: 1
+  ignoreGrabCheckLayers:
+    serializedVersion: 2
+    m_Bits: 0
   grabType: 0
   minGrabTime: 0.15
   maxGrabTime: 0.3
@@ -1858,7 +1860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionTriggers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1015
   hapticAmp: 0.5
   velocityAmp: 0.25
   repeatDelay: 0.2
