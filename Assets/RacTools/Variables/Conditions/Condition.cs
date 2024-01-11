@@ -4,7 +4,6 @@ using UnityEngine;
 using Zenject;
 using RacTools.Variables;
 using _VanHelsingVR.Utilities;
-using UnityEngine.Serialization;
 
 namespace _VanHelsingVR.Conditions
 {
