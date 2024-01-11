@@ -221,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 8685472768745978638, guid: 386242486c5972145be957989b61c7df,
         type: 3}
       propertyPath: m_Name
-      value: RobotHand (No Controller) (1)
+      value: RobotHand L
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 386242486c5972145be957989b61c7df, type: 3}
@@ -231,6 +231,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 262176029}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &262176031 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9201711370266972039, guid: 386242486c5972145be957989b61c7df,
+    type: 3}
+  m_PrefabInstance: {fileID: 262176029}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9413d460e98076241a1f46c91201217d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &723400380
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +457,7 @@ PrefabInstance:
     - target: {fileID: 8685472768745978638, guid: 386242486c5972145be957989b61c7df,
         type: 3}
       propertyPath: m_Name
-      value: RobotHand (No Controller)
+      value: RobotHand R
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 386242486c5972145be957989b61c7df, type: 3}
@@ -455,6 +467,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1162242134}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1162242136 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9201711370266972039, guid: 386242486c5972145be957989b61c7df,
+    type: 3}
+  m_PrefabInstance: {fileID: 1162242134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9413d460e98076241a1f46c91201217d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1486025191
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,8 +505,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486025191}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.967415, y: -23.308472, z: -17.128437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -584,12 +608,12 @@ PrefabInstance:
         type: 3}
       propertyPath: handLeft
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 262176031}
     - target: {fileID: 8834320319295017360, guid: fdc3ba53f4e81a040b0471bbbafbb10a,
         type: 3}
       propertyPath: handRight
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1162242136}
     - target: {fileID: 8834320319295017360, guid: fdc3ba53f4e81a040b0471bbbafbb10a,
         type: 3}
       propertyPath: headCamera
