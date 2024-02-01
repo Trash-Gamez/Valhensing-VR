@@ -1,5 +1,6 @@
 using System;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UniRx;
 using UnityEngine;
 
@@ -27,5 +28,7 @@ namespace RacTools.Variables
                 _subject.OnNext(_value);
             }
         }
+
+        public static implicit operator T(Variable<T> var) => var.Value;
     }
 }

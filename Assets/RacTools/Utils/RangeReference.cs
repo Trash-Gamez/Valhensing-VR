@@ -1,6 +1,6 @@
 using System;
 
-namespace RacTools.Utilities
+namespace RacTools.Utils
 {
     [Serializable]
     public class Rangereference

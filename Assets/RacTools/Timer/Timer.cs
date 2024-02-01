@@ -2,17 +2,14 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace _VanHelsingVR.Utilities
+namespace RacTools.Timer
 {
-    public class Timer : MonoBehaviour
+    public class Timer
     {
-        [Min(0)]
-        [SerializeField] private float seconds = 2f;
-    
-        [Space]
-        [SerializeField] private bool initOnStart;
-
-        [SerializeField] private bool restartOnPause = false;
+        public bool InitOnStart => _initOnStart;
+        private bool _initOnStart;
+        
+        private float _seconds = 2f;
 
         #region Events
         public event Action OnTimerEnded;
@@ -23,22 +20,23 @@ namespace _VanHelsingVR.Utilities
     
         private float _transcurredTime = 0f;
 
-        public float TranscurredTime
-        {
-            get => _transcurredTime;
-        }
-    
+        public float TranscurredTime => _transcurredTime;
+
+        private MonoBehaviour _coroutineOwner;
         private Coroutine _timerCoroutine;
         private bool _isPaused;
-        private void Start()
+
+
+        public Timer(float seconds, MonoBehaviour coroutineOwner, bool initOnStart = false)
         {
-            if(initOnStart)
-                Initialize();
+            _seconds = seconds;
+            _coroutineOwner = coroutineOwner;
+            _initOnStart = initOnStart;
         }
 
         public void Initialize()
         {
-            _timerCoroutine = StartCoroutine(TimerCor());
+            _timerCoroutine = _coroutineOwner.StartCoroutine(TimerCor());
             OnTimerInitialized?.Invoke();
         }
 
@@ -54,21 +52,20 @@ namespace _VanHelsingVR.Utilities
 
         public void Restart()
         {
+            Pause();
             _transcurredTime = 0;
+            Resume();
         }
 
         public void Pause()
         {
             _isPaused = true;
             OnTimerPaused?.Invoke();
-        
-            if(restartOnPause)
-                Restart();
         }
     
         private IEnumerator TimerCor()
         {
-            while (_transcurredTime < seconds)
+            while (_transcurredTime < _seconds)
             {
                 if(!_isPaused)
                     _transcurredTime += Time.deltaTime;

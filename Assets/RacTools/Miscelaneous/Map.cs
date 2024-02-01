@@ -1,4 +1,4 @@
-using RacTools.Utilities;
+using RacTools.Utils;
 using UnityEngine;
 
 namespace RacTools.Miscelaneous

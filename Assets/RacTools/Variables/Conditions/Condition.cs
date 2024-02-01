@@ -1,9 +1,10 @@
 using System;
+using RacTools.Timer;
+using RacTools.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 using RacTools.Variables;
-using _VanHelsingVR.Utilities;
 
 namespace _VanHelsingVR.Conditions
 {
@@ -72,7 +73,7 @@ namespace _VanHelsingVR.Conditions
     [Serializable]
     public sealed class TimeCondition : IInitializable, IDisposable
     {
-        [Inject] private Timer timer;
+        private Timer timer;
 
         private bool _isTimerEnded = false;
         public bool IsTimerEnded => _isTimerEnded;

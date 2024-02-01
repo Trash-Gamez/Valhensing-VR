@@ -1,8 +1,9 @@
-using RacTools.Utilities;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace _VanHelsingVR.Utilities
+namespace RacTools.Utils
 {
-    public static class UtilitieExtensions
+    public static class UtilsExtensions
     {
         /// <summary>
         /// This Function return a mapped value between two ranges of value
@@ -28,6 +29,22 @@ namespace _VanHelsingVR.Utilities
         public static float Map(float inValue, Range inRange, Range outRange)
         {
             return Map(inValue, inRange.Min, inRange.Max, outRange.Min, outRange.Max);
+        }
+    
+        private static bool IsNullOrEmpty<T>(this List<T> list)
+        {
+            return list == null || list.Count <= 0;
+        }
+
+        private static T GetOrAdd<T>(this GameObject gameObject, bool warningIfAddingComponent = false) where T : MonoBehaviour
+        {
+            if (gameObject.TryGetComponent<T>(out var component)) return component;
+        
+            if(warningIfAddingComponent) 
+                Debug.LogWarning($"{gameObject.name} does not contains component of type '{typeof(T).Name}'", gameObject);
+            
+            component = gameObject.AddComponent<T>();
+            return component;
         }
     }
 }

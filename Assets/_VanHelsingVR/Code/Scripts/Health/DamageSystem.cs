@@ -17,6 +17,7 @@ namespace _VanHelsingVR.Health
             foreach (var hitbox in childrenHitBoxes)
             {
                 hitbox.Disable();
+                
             }
         }
         
