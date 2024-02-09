@@ -3,32 +3,32 @@ using UnityEngine;
 
 namespace _VanHelsingVR.Health
 {
-    [RequireComponent(typeof(BoxCollider))]
     [DisallowMultipleComponent]
     public class DamageSystem : MonoBehaviour
     {
-        [SerializeField] private HashSet<HitBox> childrenHitBoxes;
+        public delegate void OnHitDelegate(HitArgs args);
+        public event OnHitDelegate OnHit;
+        
+        [SerializeField] private List<BaseHitBox> childrenHitBoxes;
 
         private void Start()
         {
-            GetChildrenHitBoxes();
+            GetHitBoxesInChildren();
             
-            //Desactiva todas las hitboxes hijas
             foreach (var hitbox in childrenHitBoxes)
             {
                 hitbox.Disable();
-                
             }
         }
         
         [ContextMenu("Get Children HotBoxes")]
-        private void GetChildrenHitBoxes()
+        private void GetHitBoxesInChildren()
         {
-            HitBox[] newChildrenHitBox = GetComponentsInChildren<HitBox>();
+            BaseHitBox[] newChildrenHitBox = GetComponentsInChildren<BaseHitBox>();
             
             foreach (var childHitBox in newChildrenHitBox)
             {
-                if(childHitBox.transform.parent != transform) continue;
+                if(childrenHitBoxes.Contains(childHitBox)) continue;
                 childrenHitBoxes.Add(childHitBox);
             }
         }
