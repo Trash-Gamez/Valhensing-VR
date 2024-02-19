@@ -8,6 +8,6 @@ public class Bootstrapper
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Execute()
     {
-        
+        Debug.Log("Execute Bootstrapper");
     }
 }
