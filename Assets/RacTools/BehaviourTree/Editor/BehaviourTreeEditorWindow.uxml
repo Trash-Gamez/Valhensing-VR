@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/RacTools/BehaviourTree/Editor/BehaviourTreeEditorWindow.uss?fileID=7433441132597879392&amp;guid=71893b08bd5efb145bb7f08a22898acd&amp;type=3#BehaviourTreeEditorWindow" />
+    <uie:Toolbar name="Toolbar">
+        <uie:ToolbarMenu display-tooltip-when-elided="true" text="Menu" />
+        <uie:ToolbarButton text="Button" display-tooltip-when-elided="true" name="ToolbarButton" />
+    </uie:Toolbar>
+    <RacTools.Editor.Views.SplitView fixed-pane-initial-dimension="275">
+        <ui:VisualElement name="left" style="width: auto; height: auto; min-width: 275px; padding-left: 0; margin-left: 0;">
+            <RacTools.Editor.Views.SplitView orientation="Vertical">
+                <ui:VisualElement name="BlackboardContainer">
+                    <ui:Label text="BlackBoard" display-tooltip-when-elided="true" style="background-color: rgb(25, 25, 25);" />
+                    <ui:IMGUIContainer name="Blackboard" />
+                </ui:VisualElement>
+                <ui:VisualElement name="InspectorContainer">
+                    <ui:Label text="Inspector" display-tooltip-when-elided="true" style="background-color: rgb(25, 25, 25); margin-left: 0; word-spacing: 0;" />
+                    <RacTools.Editor.Views.InspectorView />
+                </ui:VisualElement>
+            </RacTools.Editor.Views.SplitView>
+        </ui:VisualElement>
+        <ui:VisualElement name="right" style="flex-direction: row;">
+            <RacTools.BehaviourTree.BehaviourTreeView focusable="true" style="width: auto; flex-direction: row; height: auto; flex-wrap: nowrap; flex-grow: 1;" />
+        </ui:VisualElement>
+    </RacTools.Editor.Views.SplitView>
+</ui:UXML>
