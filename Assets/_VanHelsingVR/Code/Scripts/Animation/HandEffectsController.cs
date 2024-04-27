@@ -12,9 +12,9 @@ namespace _VanHelsingVR.Animation
 
         [Title("Effects Reference")] 
         [SerializeField] private bool useEffects;
+        [SerializeField] Animator handAnimator;
         [SerializeField, ShowIf(nameof(useEffects))] private Renderer meshRenderer;
         [SerializeField, ShowIf(nameof(useEffects))] private new ParticleSystem particleSystem;
-        [SerializeField, ShowIf(nameof(useEffects))] Animator handAnimator;
         [SerializeField , ShowIf(nameof(useEffects))] private ConditionPool canActiveEffects;
     
         private MaterialPropertyBlock _mpb;
@@ -48,6 +48,7 @@ namespace _VanHelsingVR.Animation
         {
             handAnimator.SetFloat(_triggerHash, handInput.Hand.ActiveInput);
             handAnimator.SetFloat(_gripHash, handInput.Hand.SelectionInput);
+            Debug.Log("Selection " + handInput.Orientation.ToString() + ": " + handInput.Hand.SelectionInput);
         }
 
         private void HandleEffects()
@@ -64,17 +65,25 @@ namespace _VanHelsingVR.Animation
 
         private void DeactivateEffects()
         {
-            _mpb.SetFloat(_alphaID, 0);
-            meshRenderer.SetPropertyBlock(_mpb);
-            particleSystem.Stop();
+            if (meshRenderer)
+            {
+                _mpb.SetFloat(_alphaID, 0);
+                meshRenderer.SetPropertyBlock(_mpb);
+            }
+
+            if(particleSystem) particleSystem.Stop();
             _areEffectsActive = false;
         }
 
         private void ActivateEffects()
         {
-            _mpb.SetFloat(_alphaID, 1);
-            meshRenderer.SetPropertyBlock(_mpb);
-            particleSystem.Play();
+            if (meshRenderer)
+            {
+                _mpb.SetFloat(_alphaID, 1);
+                meshRenderer.SetPropertyBlock(_mpb);
+            }
+
+            if(particleSystem) particleSystem.Play();
             AudioManager.Instance.PlaySound3D("FireFist", transform.position);
             _areEffectsActive = true;
         }

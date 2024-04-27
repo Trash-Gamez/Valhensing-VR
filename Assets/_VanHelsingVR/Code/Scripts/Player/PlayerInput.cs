@@ -42,6 +42,7 @@ namespace _VanHelsingVR.Player
     [Serializable]
     public class HandInputReference
     {
+        public HandOrientation Orientation => handOrientation;
         [SerializeField] private HandOrientation handOrientation;
         [SerializeField] private PlayerInput playerInput;
     

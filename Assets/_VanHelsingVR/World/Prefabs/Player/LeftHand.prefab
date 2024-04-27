@@ -362,31 +362,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4888e5e7e78733c40a91236355ea1522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fistAnimationAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Fist Animation
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: f479ae2f-63dd-4301-8fb1-47d7cd61f2e0
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  pointAnimationAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Point Animation
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 4cfc3df2-f028-4dc2-ad62-d98eed835a14
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  handInput:
+    handOrientation: 0
+    playerInput: {fileID: 0}
+  useEffects: 1
+  meshRenderer: {fileID: 0}
+  particleSystem: {fileID: 0}
   handAnimator: {fileID: 1957811111}
+  canActiveEffects:
+    defaultValue: 1
+    conditions: []
 --- !u!1 &2507731118820810402
 GameObject:
   m_ObjectHideFlags: 0
