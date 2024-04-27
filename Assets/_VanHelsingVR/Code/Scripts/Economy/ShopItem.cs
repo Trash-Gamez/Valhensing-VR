@@ -45,7 +45,7 @@ namespace _VanHelsingVR.Economy
 
         private void BuyItem()
         {
-            _shop.BuyItem(this);
+            if(_shop) _shop.BuyItem(this);
         }
         
         //bUTTON gETS pRESSED

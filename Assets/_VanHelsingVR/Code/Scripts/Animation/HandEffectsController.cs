@@ -48,7 +48,7 @@ namespace _VanHelsingVR.Animation
         {
             handAnimator.SetFloat(_triggerHash, handInput.Hand.ActiveInput);
             handAnimator.SetFloat(_gripHash, handInput.Hand.SelectionInput);
-            Debug.Log("Selection " + handInput.Orientation.ToString() + ": " + handInput.Hand.SelectionInput);
+            //Debug.Log("Selection " + handInput.Orientation.ToString() + ": " + handInput.Hand.SelectionInput);
         }
 
         private void HandleEffects()
