@@ -1,0 +1,19 @@
+using UnityEngine;
+
+namespace _VanHelsingVR.Health
+{
+    public class PunchableProyectile : PunchableHurtBox
+    {
+        public Transform target;
+        [SerializeField] private float speed;
+    
+        private void Update()
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * speed);
+            var dir = target.position - transform.position;
+            dir.Normalize();
+            var rot = Quaternion.LookRotation(dir);
+            transform.rotation = rot;
+        }
+    }
+}
