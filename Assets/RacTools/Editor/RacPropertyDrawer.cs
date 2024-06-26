@@ -60,11 +60,6 @@ namespace RacTools.Editor
             EditorGUI.LabelField(labelPos, content, style);
             return labelPos;
         }
-
-        protected void Space(int spacePos = 10)
-        {
-            GUILayout.Space(spacePos);
-        }
         
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {

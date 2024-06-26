@@ -1,6 +1,5 @@
 using System;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 using UniRx;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ namespace RacTools.Variables
         public IObservable<T> OnValueChanged => _subject;
         
         [SerializeField, HideInInspector]
-        private T _value;
+        private T _value = default;
         
         [ShowInInspector]
         public virtual T Value
@@ -28,7 +27,5 @@ namespace RacTools.Variables
                 _subject.OnNext(_value);
             }
         }
-
-        public static implicit operator T(Variable<T> var) => var.Value;
     }
 }

@@ -41,7 +41,6 @@ namespace RacTools.Variables.Editor
             DrawLabel(position, label.text + " Reference", headerStyle);
             DrawProperty(position, variableTypeProp);
             DrawProperty(position, serializedPropertyVariable);
-            Space();
             EditorGUI.EndProperty();
         }
     }

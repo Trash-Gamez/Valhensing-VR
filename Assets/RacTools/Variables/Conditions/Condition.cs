@@ -1,10 +1,10 @@
 using System;
-using RacTools.Timer;
-using RacTools.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 using RacTools.Variables;
+using RacTools.Utilities;
+using UnityEngine.Serialization;
 
 namespace _VanHelsingVR.Conditions
 {
@@ -32,9 +32,10 @@ namespace _VanHelsingVR.Conditions
         [SerializeField]
         private Variable<bool> variable;
         
-        [ShowIf(nameof(conditionType), ConditionType.TimeCondition)]
+        /*[ShowIf(nameof(conditionType), ConditionType.TimeCondition)]
         [SerializeField]
         private TimeCondition timeCondition;
+        */
 
         public bool Value
         {
@@ -44,7 +45,7 @@ namespace _VanHelsingVR.Conditions
                 {
                     ConditionType.Variable => variable.Value,
                     ConditionType.Constant => constant,
-                    ConditionType.TimeCondition => timeCondition.IsTimerEnded,
+                    //ConditionType.TimeCondition => timeCondition.IsTimerEnded,
                     _ => false
                 };
 
@@ -70,10 +71,11 @@ namespace _VanHelsingVR.Conditions
     }
 
     #region CONDITIONS
+    /*
     [Serializable]
     public sealed class TimeCondition : IInitializable, IDisposable
     {
-        private Timer timer;
+        [Inject] private Timer timer;
 
         private bool _isTimerEnded = false;
         public bool IsTimerEnded => _isTimerEnded;
@@ -101,5 +103,6 @@ namespace _VanHelsingVR.Conditions
             timer.OnTimerEnded -= OnTimerEnds;
         }
     } 
+    */
     #endregion
 }

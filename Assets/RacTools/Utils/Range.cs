@@ -1,26 +1,17 @@
-#if UNITY_EDITOR && ODIN_INSPECTOR
 using Sirenix.OdinInspector;
-#endif
-
 using UnityEngine;
 
-namespace RacTools.Utils
+namespace RacTools.Utilities
 {
     [System.Serializable]
     public struct FloatRangeReference
     {
         [SerializeField] private bool useRange;
 
-        #if UNITY_EDITOR && ODIN_INSPECTOR
-        [HideIf(nameof(useRange))]
-        #endif
-        [SerializeField]
+        [SerializeField, HideIf(nameof(useRange))]
         private float constant;
         
-        #if UNITY_EDITOR && ODIN_INSPECTOR
-        [ShowIf(nameof(useRange))]
-        #endif
-        [SerializeField]
+        [SerializeField, ShowIf(nameof(useRange))]
         private Range range;
         
         public float Value
@@ -42,15 +33,17 @@ namespace RacTools.Utils
         public static readonly Range ZeroToOne = new Range(0f, 1f);
     
     
-        #if UNITY_EDITOR && ODIN_INSPECTOR
+        #if UNITY_EDITOR
         [VerticalGroup("Vars")]
         #endif
+    
         [field: SerializeField]
         public float Min { get; private set; }
     
-        #if UNITY_EDITOR && ODIN_INSPECTOR
+        #if UNITY_EDITOR
         [VerticalGroup("Vars")]
         #endif
+    
         [field: SerializeField]
         public float Max { get; private set; }
 
@@ -69,13 +62,13 @@ namespace RacTools.Utils
     
     
         [field: SerializeField]
-        #if UNITY_EDITOR && ODIN_INSPECTOR
+        #if UNITY_EDITOR
         [VerticalGroup("Vars")]
         #endif 
         public int Min { get; private set; }
     
         [field: SerializeField]
-        #if UNITY_EDITOR && ODIN_INSPECTOR
+        #if UNITY_EDITOR
         [VerticalGroup("Vars")]
         #endif
         public int Max { get; private set; }
