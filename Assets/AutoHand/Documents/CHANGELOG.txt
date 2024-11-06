@@ -1,4 +1,19 @@
-Auto Hand V4.0.0
+V4.0.1
+Bug Fixes
+- Updated Auto Hand to work with Unity 6
+- Fixed bug with gentle grabbing and grab return speeds not working as expected
+- Fixed bug with grabtype setting changing unexpectedly based on last item grabbed
+- Fixed bug with held animations not working as expected
+- Fixed bug with maintain grab offset not working as expected
+- Fixed NaN error with joint reader scripts
+- Fixed big hand not working in some demo scenes
+- Fixed UI Pointer not indicator not showing in right location under some conditions
+- Fixed Demo physics button settings
+- Changed some default hand follow settings to reduce stiff rotation feeling when using small movements and using UI
+- Adjusted some smooth movement settings for UI pointer and Distance Grabber. Also added a toggle to remove smooth movement completely from UI pointer and Distance Grabber
+
+
+V4.0.0
 Improvements:
 - Changes to Hand Component 
 - Hand logic is now split into additional scripts. None of these scripts need to be manually added. All these scripts and their recommended values will be automatically applied to each hand component.

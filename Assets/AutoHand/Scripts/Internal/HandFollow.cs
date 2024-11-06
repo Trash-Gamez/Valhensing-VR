@@ -45,9 +45,9 @@ namespace Autohand {
         public float followRotationStrength = 100;
         public float startAngularDrag = 20;
         [Tooltip("The angular drag multiplier the hand will lerp between the (start angular drag), and the (start angular drag * this) to when less than the angleDragDamperDistance from the follow target")]
-        public float angleDragDamper = 3f;
+        public float angleDragDamper = 5f;
         [Tooltip("The distance at which the angular drag damper starts to take effect, in degrees")]
-        public float angleDragDamperDistance = 4f;
+        public float angleDragDamperDistance = 3f;
 
         [Header("Mass Settings")]
         public float minMass = 0.25f;
@@ -196,37 +196,53 @@ namespace Autohand {
 
 
 
+        float timeOffset;
         protected virtual void UpdateHandOffset() {
             if(follow == null || !hand.enableMovement)
                 return;
 
             if(hand.enableMovement) {
-                    var deltaDist = Vector3.Distance(follow.position, lastFrameFollowPosition);
-                    var deltaRot = Quaternion.Angle(follow.rotation, lastFrameFollowRotation);
+                var deltaDist = Vector3.Distance(follow.position, lastFrameFollowPosition);
+                var deltaRot = Quaternion.Angle(follow.rotation, lastFrameFollowRotation);
 
-                if(hand.holdingObj && !hand.holdingObj.maintainGrabOffset && !hand.IsGrabbing()) {
+                if(hand.holdingObj && !hand.IsGrabbing() && !hand.holdingObj.maintainGrabOffset) {
 
                     //Returns the hand to the original position and rotation based on input movement
                     //A value of 1 gentle grab speed will return the hands position/rotation 1:1 with the controller movement
                     hand.grabPositionOffset = Vector3.MoveTowards(hand.grabPositionOffset, Vector3.zero, (deltaDist) * hand.gentleGrabSpeed * Time.deltaTime * 60f);
                     hand.grabRotationOffset = Quaternion.RotateTowards(hand.grabRotationOffset, Quaternion.identity, (deltaRot) * hand.gentleGrabSpeed * Time.deltaTime * 60f);
+                    
+                    if(!hand.holdingObj.useGentleGrab) {
+                        UpdateOffset(true);
+                    }
+                }
+                else if(!hand.holdingObj  && !hand.IsGrabbing()) {
+                    UpdateOffset(false);
                 }
 
-                if(!hand.IsGrabbing() && !(hand.holdingObj != null && hand.holdingObj.useGentleGrab && !hand.holdingObj.maintainGrabOffset)) {
-                    float grabReturnRotationDistance = Vector3.Angle(hand.grabRotationOffset.eulerAngles, Vector3.zero)/180f + 0.01f;
-                    float grabReturnPositionDistance = hand.grabPositionOffset.magnitude*3 + 0.001f;
+                void UpdateOffset(bool isGrab) {
 
-                    float maxDistanceDelta = grabReturnPositionDistance * (Time.deltaTime / hand.GetGrabTime())  + deltaDist * Time.deltaTime;
-                    float maxAngleDelta = grabReturnRotationDistance * (Time.deltaTime / hand.GetGrabTime()) + (deltaRot)/20f * Time.deltaTime;
+                    float grabTime = isGrab ? hand.lastGrabTime : hand.lastReleaseTime;
+                    float grabReturnRotationDistance = Vector3.Angle(hand.grabRotationOffset.eulerAngles, Vector3.zero);
+                    float grabReturnPositionDistance = hand.grabPositionOffset.magnitude;
 
-                    hand.grabPositionOffset = Vector3.Lerp(hand.grabPositionOffset, Vector3.zero, maxDistanceDelta);
-                    hand.grabRotationOffset = Quaternion.Lerp(hand.grabRotationOffset, Quaternion.identity, maxAngleDelta);
+                    var point = (Time.time - grabTime)/(hand.GetGrabTime()*2f);
+
+                    timeOffset = ((timeOffset - 1f) + deltaDist * Time.deltaTime * hand.velocityGrabHandAmplifier)/2f + 1f;
+
+
+                    var smoothTime = hand.GetGrabTime() * timeOffset;
+
+                    hand.grabPositionOffset = Vector3.MoveTowards(hand.grabPositionOffset, Vector3.zero, grabReturnRotationDistance * smoothTime * Time.deltaTime);
+                    hand.grabRotationOffset = Quaternion.RotateTowards(hand.grabRotationOffset, Quaternion.identity, grabReturnPositionDistance * smoothTime * Time.deltaTime);
+
+                    hand.grabPositionOffset = Vector3.Lerp(hand.grabPositionOffset, Vector3.zero, point);
+                    hand.grabRotationOffset = Quaternion.Lerp(hand.grabRotationOffset, Quaternion.identity, point);
                 }
             }
 
             lastFrameFollowPosition = follow.position;
             lastFrameFollowRotation = follow.rotation;
-
         }
 
 

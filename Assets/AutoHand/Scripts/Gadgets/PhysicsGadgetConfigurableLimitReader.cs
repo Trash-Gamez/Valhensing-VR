@@ -36,6 +36,9 @@ namespace Autohand{
 
             if(!positive) value *= -1;
 
+            if(float.IsNaN(value))
+                value = 0;
+
             if (Mathf.Abs(value) < playRange)
                 value = 0;
             return Mathf.Clamp(value, -1f, 1f);

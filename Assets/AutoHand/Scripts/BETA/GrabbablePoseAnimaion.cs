@@ -41,6 +41,8 @@ namespace Autohand {
         public ref HandPoseData currentAnimationPose { get { return ref _currentAnimationPose; } }
         int lastPosingHandsCount;
 
+        Dictionary<Hand, bool> trackWasIKEnabled = new Dictionary<Hand, bool>();
+
         private void OnEnable() {
             fingerWeights = new float[5];
             fingerWeights[(int)FingerEnum.index] = indexWeight;
@@ -53,10 +55,14 @@ namespace Autohand {
                 currentAnimationPose = new HandPoseData(ref fromPose.rightPose);
             else if(fromPose.leftPoseSet)
                 currentAnimationPose = new HandPoseData(ref fromPose.leftPose);
+
+            trackWasIKEnabled = new Dictionary<Hand, bool>();
+
         }
 
 
-        public void Update() {
+
+        public void LateUpdate() {
             var posingHandCount = fromPose.posingHands.Count + toPose.posingHands.Count;
             if(posingHandCount == 0)
                 return;
@@ -90,9 +96,10 @@ namespace Autohand {
                 if(fingerWeights[fingerIndex] == 0)
                     continue;
 
-                currentAnimationPose.fingerPoses[fingerIndex].LerpData(ref fromPoseData.fingerPoses[fingerIndex], ref toPoseData.fingerPoses[fingerIndex], fingerWeights[fingerIndex]);
+                currentAnimationPose.fingerPoses[fingerIndex].LerpData(ref fromPoseData.fingerPoses[fingerIndex], ref toPoseData.fingerPoses[fingerIndex], fingerWeights[fingerIndex] * animationValue);
                 currentAnimationPose.fingerPoses[fingerIndex].SetFingerPose(finger);
             }
+
 
             foreach(var autoAnim in additionalAnimations)
                 autoAnim.SetAnimation(animationCurve.Evaluate(animationValue));
