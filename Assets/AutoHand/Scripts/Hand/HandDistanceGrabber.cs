@@ -16,6 +16,7 @@ namespace Autohand {
 
         [Header("Pointing Options")]
         public Transform forwardPointer;
+        public bool useSmoothing = true;
         public float forwardSmoothingSpeed = 5f;
         public LineRenderer line;
         [Space]
@@ -169,7 +170,14 @@ namespace Autohand {
 
 
         void CheckDistanceGrabbable() {
-            currentSmoothForward = Vector3.Lerp(currentSmoothForward, forwardPointer.forward, Time.deltaTime * forwardSmoothingSpeed);
+
+            if(useSmoothing) {
+                var currentAngleDistance = Vector3.Angle(currentSmoothForward, forwardPointer.forward);
+                currentSmoothForward = Vector3.RotateTowards(currentSmoothForward, forwardPointer.forward, Time.deltaTime * forwardSmoothingSpeed + Time.deltaTime * forwardSmoothingSpeed * currentAngleDistance, 1000f);
+                currentSmoothForward.Normalize();
+            }
+            else
+                currentSmoothForward = forwardPointer.forward;
 
             if(!pulling && pointing && primaryHand.holdingObj == null) {
 

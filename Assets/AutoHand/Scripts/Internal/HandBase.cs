@@ -271,6 +271,9 @@ namespace Autohand {
         
         internal List<Collider> handColliders = new List<Collider>();
 
+        internal float lastGrabTime = 0;
+        internal float lastReleaseTime = 0;
+
 
         BoxCollider _handEncapsulationCollider;
         internal BoxCollider handEncapsulationBox {

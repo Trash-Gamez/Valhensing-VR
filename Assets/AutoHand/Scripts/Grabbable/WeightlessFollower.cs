@@ -144,11 +144,18 @@ namespace Autohand {
             if(heldMoveTo.ContainsKey(hand))
                 RemoveFollow(hand, heldMoveTo[hand]);
         }
-
         public virtual void FixedUpdate() {
             if(follow1 == null)
                 return;
-             
+
+            if(follow2 != null) {
+                pivot.position = Vector3.Lerp(hand1.handGrabPoint.position, hand2.handGrabPoint.position, 0.5f);
+                pivot.rotation = Quaternion.LookRotation(
+                    (hand1.handGrabPoint.position - hand2.handGrabPoint.position).normalized,
+                    Vector3.Lerp(hand1.handGrabPoint.up, hand2.handGrabPoint.up, 0.5f)
+                );
+            }
+
             MoveTo();
             TorqueTo();
 

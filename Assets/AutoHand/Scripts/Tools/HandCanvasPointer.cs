@@ -14,7 +14,8 @@ namespace Autohand
         [Header("References")]
         public GameObject hitPointMarker;
         private LineRenderer lineRenderer;
-        public float forwardPointerSmoothing = 5f;
+        public bool useSmoothing = true;
+        public float forwardPointerSmoothing = 25f;
 
 
         [Header("Ray settings")]
@@ -177,7 +178,14 @@ namespace Autohand
 
         protected virtual void LateUpdate()
         {
-            currentSmoothForward = Vector3.Lerp(currentSmoothForward, transform.forward, Time.deltaTime * forwardPointerSmoothing);
+            if(useSmoothing) {
+                var currentAngleDistance = Vector3.Angle(currentSmoothForward, transform.forward);
+                currentSmoothForward = Vector3.RotateTowards(currentSmoothForward, transform.forward, Time.deltaTime * forwardPointerSmoothing + Time.deltaTime * forwardPointerSmoothing * currentAngleDistance, 1000f);
+                currentSmoothForward.Normalize();
+            }
+            else
+                currentSmoothForward = transform.forward;
+
             UpdateLine();
         }
 
@@ -236,13 +244,12 @@ namespace Autohand
 
                 Vector3 endPosition = transform.position + (currentSmoothForward * targetLength);
 
-                if(lastHit.collider) endPosition = lastHit.point;
-
                 //Handle the hitmarker
                 hitPointMarker.transform.position = endPosition;
                 hitPointMarker.transform.forward = data.pointerCurrentRaycast.worldNormal;
 
                 if(lastHit.collider) {
+                    endPosition = lastHit.point;
                     hitPointMarker.transform.forward = lastHit.collider.transform.forward;
                     hitPointMarker.transform.position = endPosition + hitPointMarker.transform.forward * 0.002f;
                 }

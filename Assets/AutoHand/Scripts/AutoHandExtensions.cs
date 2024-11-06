@@ -252,7 +252,9 @@ namespace Autohand
         public static T[] CanFindObjectsOfType<T>(bool includeInactive = false) where T : Component {
 #if UNITY_2023
             return GameObject.FindObjectsByType<T>((includeInactive ? FindObjectsInactive.Include : FindObjectsInactive.Exclude), FindObjectsSortMode.None);
-#elif (UNITY_2020_3_OR_NEWER)
+#elif (UNITY_6000_0_OR_NEWER)
+            return GameObject.FindObjectsByType<T>((includeInactive ? FindObjectsInactive.Include : FindObjectsInactive.Exclude), FindObjectsSortMode.None);
+#elif (UNITY_2020_3_OR_NEWER)                        
             return GameObject.FindObjectsOfType<T>(includeInactive);
 #else
             return GameObject.FindObjectsOfType<T>();

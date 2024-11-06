@@ -164,6 +164,8 @@ namespace Autohand {
                 currentHandSmoothPose.SetFingerPose(hand);
         }
 
+
+
         /// <summary>Determines how the hand should look/move based on its flags</summary>
         protected virtual void UpdateInputPoseState() {
             var averageVel = Vector3.zero;
@@ -207,6 +209,7 @@ namespace Autohand {
             if(transitionTime == 0)
                 currentHandPose.CopyFromData(ref poseData);
         }
+
 
 
         /// <summary>Takes a new pose and an amount of time and poses the hand</summary>

@@ -48,7 +48,7 @@ MonoBehaviour:
   primaryHand: {fileID: 0}
   secondaryHand: {fileID: 0}
   forwardPointer: {fileID: 9006060476868069460}
-  forwardSmoothingSpeed: 12
+  forwardSmoothingSpeed: 500
   line: {fileID: 6880082675464219935}
   maxRange: 20
   layers:
@@ -128,6 +128,7 @@ LineRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
