@@ -452,7 +452,7 @@ ConfigurableJoint:
   m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 3
-    damper: 0.5
+    damper: 1
   m_LinearLimit:
     limit: 0.012
     bounciness: 0
@@ -489,8 +489,8 @@ ConfigurableJoint:
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 100
-    positionDamper: 0
+    positionSpring: 250
+    positionDamper: 20
     maximumForce: 3.4028233e+38
     useAcceleration: 0
   m_ZDrive:
@@ -593,6 +593,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -727,6 +728,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

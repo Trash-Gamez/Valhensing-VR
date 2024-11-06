@@ -94,7 +94,6 @@ namespace Autohand {
             }
         }
 
-        float currBendOffset = 0;
         float bend = 0;
 
 

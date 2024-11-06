@@ -282,6 +282,7 @@ namespace Autohand {
         }
 
         GrabType GetGrabType(Grabbable grabbable) {
+            GrabType grabType = this.grabType;
             if(grabbable.instantGrab)
                 grabType = GrabType.InstantGrab;
             else if(grabbable.grabType != HandGrabType.Default) {
@@ -407,6 +408,7 @@ namespace Autohand {
 
                 holdingObj.BreakHandConnection(this);
                 lastHoldingObj = holdingObj;
+                lastReleaseTime = Time.time;
                 holdingObj = null;
                 OnHeldConnectionBreak?.Invoke(this, lastHoldingObj);
                 OnReleased?.Invoke(this, lastHoldingObj);
@@ -949,15 +951,15 @@ namespace Autohand {
                         if(holdingObj != null) {
                             //Will move the hand faster if the controller or object is moving
                             var deltaDist = Vector3.Distance(follow.position, lastFollowPosition);
-                            float maxDeltaTimeOffset = minGrabTime/adjustedGrabTime * Time.deltaTime * 5;
+                            float maxDeltaTimeOffset = minGrabTime/adjustedGrabTime * Time.deltaTime * 5f;
 
                             float timeOffset = deltaDist * Time.deltaTime * velocityGrabHandAmplifier;
-                            timeOffset += holdingObj.GetVelocity().magnitude * Time.deltaTime * velocityGrabObjectAmplifier;
+                            timeOffset += holdingObj.GetVelocity().magnitude * Time.deltaTime * velocityGrabObjectAmplifier * 3f;
                             i += Mathf.Clamp(timeOffset, 0, maxDeltaTimeOffset);
 
                             if(i < adjustedGrabTime) {
                                 var point = Mathf.Clamp01(i / adjustedGrabTime);
-                                var handTargetTime = 1.5f;
+                                var handTargetTime = 1.25f;
 
                                 if(point < grabOpenHandPoint) {
                                     HandPoseData.LerpPose(ref handAnimator.handPoseDataNonAlloc, ref startGrabPose, ref targetOpenPose, grabCurve.Evaluate(point * 1f / grabOpenHandPoint));
@@ -978,6 +980,8 @@ namespace Autohand {
                                     holdingObj.body.angularVelocity *= 0.5f;
                                     if(point * handTargetTime >= 1f)
                                         holdingObj.body.linearVelocity *= 0.9f;
+                                    else
+                                        holdingObj.body.linearVelocity *= 0.98f;
                                 }
                                 yield return new WaitForEndOfFrame();
                             }
@@ -1113,6 +1117,8 @@ namespace Autohand {
 
             grabbing = false;
             startHoldingObj.beingGrabbed = false;
+            lastGrabTime = Time.time;
+
             grabRoutine = null;
 
             if(instantGrab && holdingObj.parentOnGrab) {
