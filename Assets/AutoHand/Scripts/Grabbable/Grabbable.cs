@@ -635,7 +635,7 @@ namespace Autohand {
                 hand.Release();
                 throwPower = throwMult;
                 if(body != null && !body.isKinematic)
-                    body.linearVelocity = body.linearVelocity.normalized * Mathf.Clamp(body.linearVelocity.magnitude, 0, 1);
+                    body.velocity = body.velocity.normalized * Mathf.Clamp(body.velocity.magnitude, 0, 1);
             }
             else if(beingGrabbedBy.Contains(hand))
                 hand.BreakGrabConnection();
@@ -647,7 +647,7 @@ namespace Autohand {
             if(heldBy.Contains(hand)) {
                 if (body != null){
                     body.WakeUp();
-                    body.linearVelocity *= 0;
+                    body.velocity *= 0;
                     body.angularVelocity *= 0;
                 }
 
@@ -774,7 +774,7 @@ namespace Autohand {
 
         protected internal void SetThrowVelocity(Vector3 throwVel, Vector3 throwAngularVel) {
             if(body != null && !body.isKinematic && heldBy.Count == 0) {
-                body.linearVelocity = throwVel * throwPower;
+                body.velocity = throwVel * throwPower;
                 if(!float.IsNaN(throwAngularVel.x) && !float.IsNaN(throwAngularVel.y) && !float.IsNaN(throwAngularVel.z))
                     body.angularVelocity = throwAngularVel;
             }
@@ -955,11 +955,11 @@ namespace Autohand {
                     body.solverIterations = 100;
                     body.solverVelocityIterations = 100;
 
-                    if(targetDrag == 0 && body.linearDamping < minHeldDrag) {
-                        body.linearDamping = minHeldDrag;
+                    if(targetDrag == 0 && body.drag < minHeldDrag) {
+                        body.drag = minHeldDrag;
                     }
-                    if(targetAngularDrag == 0 && body.angularDamping < minHeldAngleDrag) {
-                        body.angularDamping = minHeldAngleDrag;
+                    if(targetAngularDrag == 0 && body.angularDrag < minHeldAngleDrag) {
+                        body.angularDrag = minHeldAngleDrag;
                     }
 
                     if(targetMass == 0 && body.mass < minHeldMass) {
@@ -974,8 +974,8 @@ namespace Autohand {
                     }
 
                     if(heldNoFriction) {
-                        var colliderMat = Resources.Load<PhysicsMaterial>("NoFriction");
-                        SetPhysicsMaterial(colliderMat);
+                        var colliderMat = Resources.Load<PhysicMaterial>("NoFriction");
+                        SetPhysicMaterial(colliderMat);
                     }
 
                 }
@@ -991,8 +991,8 @@ namespace Autohand {
                     body.interpolation = startInterpolation;
                     body.solverIterations = Physics.defaultSolverIterations;
                     body.solverVelocityIterations = Physics.defaultSolverVelocityIterations;
-                    body.linearDamping = targetDrag;
-                    body.angularDamping = targetAngularDrag;
+                    body.drag = targetDrag;
+                    body.angularDrag = targetAngularDrag;
                     body.mass = targetMass;
 
                     if(heldNoFriction) {

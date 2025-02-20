@@ -17,8 +17,8 @@ namespace Autohand {
         public SaveRigidbodyData(Rigidbody from, bool removeBody = true) {
             origin = from.gameObject;
             mass = from.mass;
-            drag = from.linearDamping;
-            angularDrag = from.angularDamping;
+            drag = from.drag;
+            angularDrag = from.angularDrag;
             useGravity = from.useGravity;
             isKinematic = from.isKinematic;
             interpolation = from.interpolation;
@@ -54,8 +54,8 @@ namespace Autohand {
                 var from = origin.AddComponent<Rigidbody>();
                 if(from != null) {
                     from.mass = mass;
-                    from.linearDamping = drag;
-                    from.angularDamping = angularDrag;
+                    from.drag = drag;
+                    from.angularDrag = angularDrag;
                     from.useGravity = useGravity;
                     from.isKinematic = isKinematic;
                     from.interpolation = interpolation;

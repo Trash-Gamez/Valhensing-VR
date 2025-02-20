@@ -38,7 +38,7 @@ namespace Autohand{
             if(grab.body == null)
                 return;
 
-            if(grab.body.linearVelocity.magnitude >= breakVelocity) 
+            if(grab.body.velocity.magnitude >= breakVelocity) 
                 thrown = true;
 
         }
@@ -58,7 +58,7 @@ namespace Autohand{
             if(((1 << collision.collider.gameObject.layer) & collisionLayers) == 0)
                 return;
         
-            if(rb.linearVelocity.magnitude >= breakVelocity) {
+            if(rb.velocity.magnitude >= breakVelocity) {
                 Invoke("Break", Time.fixedDeltaTime);
             }
         }

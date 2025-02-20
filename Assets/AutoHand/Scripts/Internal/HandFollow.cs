@@ -58,6 +58,13 @@ namespace Autohand {
         public float angleMassDifference = 10f;
         public float angleMassMaxAngle = 45f;
 
+        [Header("Advanced Settings")]
+        [Tooltip("If the hand is holding an unparented grabbable (see gabbable.parentOnGrab) and hits its max distance it will drop the object if it cannot returm within the max distance after this many frames - this is a safety to prevent the hand from getting stuck of grabbing something it isnt supposed to")]
+        public int maxDistanceNoParentReleaseFrames = 1;
+
+        [Tooltip("If the hand is holding a parented grabbable (see gabbable.parentOnGrab) and hits its max distance it will drop the object if it cannot returm within the max distance after this many frames - this is a safety to prevent the hand from getting stuck of grabbing something it isnt supposed to")]
+        public int maxDistanceParentReleaseFrames = 5;
+
 
         public Vector3 lastAngularVelocity { get; protected set; }
         public Vector3 lastVelocity { get; protected set; }
@@ -139,8 +146,8 @@ namespace Autohand {
 
 
         protected virtual void Awake() {
-            hand.body.linearDamping = startDrag;
-            hand.body.angularDamping = startAngularDrag;
+            hand.body.drag = startDrag;
+            hand.body.angularDrag = startAngularDrag;
             hand.body.useGravity = false;
         }
 
@@ -180,7 +187,7 @@ namespace Autohand {
                 }
 
                 if(ignoreMoveFrame) {
-                    hand.body.linearVelocity = Vector3.zero;
+                    hand.body.velocity = Vector3.zero;
                     hand.body.angularVelocity = Vector3.zero;
                 }
                 ignoreMoveFrame = false;
@@ -282,14 +289,14 @@ namespace Autohand {
 
             float deltaOffset = Time.fixedDeltaTime / 0.011111f;
             float inverseDeltaOffset = 0.011111f / Time.fixedDeltaTime;
-            Vector3 currentVelocity = hand.body.linearVelocity;
+            Vector3 currentVelocity = hand.body.velocity;
             minVelocityChange *= deltaOffset;
             minVelocityChange *= 1 + (distance)*minVelocityDistanceMulti;
 
             if(currentHands == null)
-                hand.body.linearDamping = Mathf.Lerp((startDrag * dragDamper), startDrag, distance/dragDamperDistance) * inverseDeltaOffset;
+                hand.body.drag = Mathf.Lerp((startDrag * dragDamper), startDrag, distance/dragDamperDistance) * inverseDeltaOffset;
             else 
-                hand.body.linearDamping = startDrag * inverseDeltaOffset;
+                hand.body.drag = startDrag * inverseDeltaOffset;
 
             Vector3 towardsVel;
             if(currentHands != null) {
@@ -307,8 +314,8 @@ namespace Autohand {
                 );
             }
 
-            hand.body.linearVelocity = towardsVel;
-            lastVelocity = hand.body.linearVelocity;
+            hand.body.velocity = towardsVel;
+            lastVelocity = hand.body.velocity;
         }
 
 
@@ -349,9 +356,9 @@ namespace Autohand {
             float inverseDeltaOffset = 0.011111f / Time.fixedDeltaTime;
 
             if(currentHands == null)
-                hand.body.angularDamping = Mathf.Lerp((startAngularDrag * angleDragDamper), startAngularDrag, angle/angleDragDamperDistance) * inverseDeltaOffset;
+                hand.body.angularDrag = Mathf.Lerp((startAngularDrag * angleDragDamper), startAngularDrag, angle/angleDragDamperDistance) * inverseDeltaOffset;
             else
-                hand.body.angularDamping = startAngularDrag * inverseDeltaOffset;
+                hand.body.angularDrag = startAngularDrag * inverseDeltaOffset;
 
             hand.body.angularVelocity = angular;
             lastAngularVelocity = hand.body.angularVelocity;
@@ -428,12 +435,13 @@ namespace Autohand {
             //Returns if out of distance, if you aren't holding anything
             if(distance > maxFollowDistance) {
                 if(hand.holdingObj != null) {
-                    if(hand.holdingObj.parentOnGrab && tryMaxDistanceCount < 1) {
+                    if(((!hand.holdingObj.parentOnGrab && tryMaxDistanceCount < maxDistanceNoParentReleaseFrames) 
+                        || (hand.holdingObj.parentOnGrab && tryMaxDistanceCount < maxDistanceParentReleaseFrames))) {
                         SetHandLocation(targetMoveToPosition, hand.transform.rotation);
+                        //Adding two because we remove 1 at the end of the function
                         tryMaxDistanceCount += 2;
                     }
-                    //If the object is not parented and the hand cant teleport, release the it then teleport the hand
-                    else if(!hand.holdingObj.parentOnGrab || tryMaxDistanceCount >= 1) {
+                    else {
                         hand.holdingObj.ForceHandRelease(hand);
                         SetHandLocation(targetMoveToPosition, hand.transform.rotation);
                     }
@@ -490,7 +498,7 @@ namespace Autohand {
                     hand.holdingObj.body.position = grabRuler.position;
                     hand.holdingObj.body.rotation = grabRuler.rotation;
 
-                    hand.body.linearVelocity = deltaHandRot * hand.body.linearVelocity;
+                    hand.body.velocity = deltaHandRot * hand.body.velocity;
                     hand.body.angularVelocity = deltaHandRot * hand.body.angularVelocity;
                     
 
@@ -512,7 +520,7 @@ namespace Autohand {
                 hand.transform.rotation = targetRotation;
                 hand.body.position = targetPosition;
                 hand.body.rotation = targetRotation;
-                hand.body.linearVelocity = Vector3.zero;
+                hand.body.velocity = Vector3.zero;
                 hand.body.angularVelocity = Vector3.zero;
             }
 

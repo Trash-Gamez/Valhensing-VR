@@ -125,8 +125,8 @@ namespace Autohand {
             startHandAngleDrag = hand.handFollow.startAngularDrag;
 
             body.mass = startHandMass;
-            body.linearDamping = startHandDrag;
-            body.angularDamping = startHandAngleDrag;
+            body.drag = startHandDrag;
+            body.angularDrag = startHandAngleDrag;
             body.useGravity = false;
 
             followPositionStrength = hand.handFollow.followPositionStrength;
@@ -210,14 +210,14 @@ namespace Autohand {
 
                 var deltaOffset = Time.fixedDeltaTime / 0.011111f;
                 var inverseDeltaOffset = 0.011111f / Time.fixedDeltaTime;
-                body.linearDamping = startDrag * inverseDeltaOffset;
+                body.drag = startDrag * inverseDeltaOffset;
                 var maxDelta = deltaOffset;
                 minVelocityChange *= deltaOffset;
 
-                body.linearVelocity = new Vector3(
-                    Mathf.MoveTowards(body.linearVelocity.x, vel.x, minVelocityChange + Mathf.Abs(body.linearVelocity.x) * maxDelta),
-                    Mathf.MoveTowards(body.linearVelocity.y, vel.y, minVelocityChange + Mathf.Abs(body.linearVelocity.y) * maxDelta),
-                    Mathf.MoveTowards(body.linearVelocity.z, vel.z, minVelocityChange + Mathf.Abs(body.linearVelocity.z) * maxDelta)
+                body.velocity = new Vector3(
+                    Mathf.MoveTowards(body.velocity.x, vel.x, minVelocityChange + Mathf.Abs(body.velocity.x) * maxDelta),
+                    Mathf.MoveTowards(body.velocity.y, vel.y, minVelocityChange + Mathf.Abs(body.velocity.y) * maxDelta),
+                    Mathf.MoveTowards(body.velocity.z, vel.z, minVelocityChange + Mathf.Abs(body.velocity.z) * maxDelta)
                 );
             }
         }
@@ -242,7 +242,7 @@ namespace Autohand {
             var angleStrengthOffset = Mathf.Lerp(1f, 1.5f, angle/16f);
             var deltaOffset = Time.fixedDeltaTime / 0.011111f;
             var inverseDeltaOffset = 0.011111f / Time.fixedDeltaTime;
-            body.angularDamping = Mathf.Lerp((startAngleDrag * 1.2f), startAngleDrag, angle/4f) * inverseDeltaOffset;
+            body.angularDrag = Mathf.Lerp((startAngleDrag * 1.2f), startAngleDrag, angle/4f) * inverseDeltaOffset;
             var maxDelta = followRotationStrength * 50f * angleStrengthOffset;
 
 
@@ -281,8 +281,8 @@ namespace Autohand {
             if(this.follow1 == null && follow2 == null && !grab.beingGrabbed) {
                 if(body != null) {
                     body.mass = startMass;
-                    body.linearDamping = startDrag;
-                    body.angularDamping = startAngleDrag;
+                    body.drag = startDrag;
+                    body.angularDrag = startAngleDrag;
                     body.useGravity = useGravity;
                 }
                 Destroy(this);
@@ -302,8 +302,8 @@ namespace Autohand {
             if (body != null)
             {
                 body.mass = startMass;
-                body.linearDamping = startDrag;
-                body.angularDamping = startAngleDrag;
+                body.drag = startDrag;
+                body.angularDrag = startAngleDrag;
                 body.useGravity = useGravity;
             }
         }

@@ -246,6 +246,10 @@ namespace Autohand {
                 StopCoroutine(checkRoutine);
                 checkRoutine = null;
             }
+
+            if(!parentOnPlace)
+                Remove();
+
             StopHighlight();
         }
 
@@ -375,7 +379,7 @@ namespace Autohand {
                 placeObj.rootTransform.rotation = placedOffset.rotation;
 
             if (placeObj.body != null){
-                placeObj.body.linearVelocity = Vector3.zero;
+                placeObj.body.velocity = Vector3.zero;
                 placeObj.body.angularVelocity = Vector3.zero;
                 placedObjDetectionMode = placeObj.body.collisionDetectionMode;
 

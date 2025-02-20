@@ -49,7 +49,7 @@ namespace Autohand {
 
 
 
-        protected Dictionary<Collider, PhysicsMaterial> grabColliderMaterials = new Dictionary<Collider, PhysicsMaterial>();
+        protected Dictionary<Collider, PhysicMaterial> grabColliderMaterials = new Dictionary<Collider, PhysicMaterial>();
         protected Dictionary<Transform, int> originalLayers = new Dictionary<Transform, int>();
 
         private List<Hand> _heldBy = new List<Hand>();
@@ -170,7 +170,7 @@ namespace Autohand {
             detectionMode = body.collisionDetectionMode;
             startInterpolation = body.interpolation;
             UpdateGrabbableColliderSettings();
-            UpdateGrabbableRigidbodySettings(body.linearDamping, body.angularDamping, body.mass);
+            UpdateGrabbableRigidbodySettings(body.drag, body.angularDrag, body.mass);
         }
 
 
@@ -416,7 +416,7 @@ namespace Autohand {
 
 
         /// <summary>Resets the physics materials on all the colliders to the given physics material</summary>
-        public void SetPhysicsMaterial(PhysicsMaterial physMat) {
+        public void SetPhysicMaterial(PhysicMaterial physMat) {
             foreach(var collider in grabColliders) {
                 collider.material = physMat;
             }
@@ -462,8 +462,8 @@ namespace Autohand {
             targetMass = mass;
 
             if(body != null && (this as Grabbable).HeldCount() == 0) {
-                body.linearDamping = drag;
-                body.angularDamping = angularDrag;
+                body.drag = drag;
+                body.angularDrag = angularDrag;
                 body.mass = mass;
             }
     }

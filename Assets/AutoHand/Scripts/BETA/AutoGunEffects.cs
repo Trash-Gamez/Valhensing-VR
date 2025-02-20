@@ -116,8 +116,8 @@ namespace Autohand {
 
                 if(newBullet.CanGetComponent<Rigidbody>(out var body)) {
                     if(AutoHandPlayer.Instance.IsHolding(gun.grabbable))
-                        body.linearVelocity = AutoHandPlayer.Instance.body.linearVelocity;
-                    body.linearVelocity += gun.grabbable.body.linearVelocity;
+                        body.velocity = AutoHandPlayer.Instance.body.velocity;
+                    body.velocity += gun.grabbable.body.velocity;
                     body.AddForce(shellEjectionDirection.forward * shellEjectionForce, ForceMode.Force);
                 }
                 bulletLifetimeTracker.Add(newBullet, ejectedBulletLifetime);
@@ -140,8 +140,8 @@ namespace Autohand {
 
                 if(newShell.CanGetComponent<Rigidbody>(out var body)) {
                     if(AutoHandPlayer.Instance.IsHolding(gun.grabbable))
-                        body.linearVelocity = AutoHandPlayer.Instance.body.linearVelocity;
-                    body.linearVelocity += gun.grabbable.body.linearVelocity;
+                        body.velocity = AutoHandPlayer.Instance.body.velocity;
+                    body.velocity += gun.grabbable.body.velocity;
                     body.AddForce(shellEjectionDirection.forward * shellEjectionForce, ForceMode.Force);
 
                 }

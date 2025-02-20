@@ -125,7 +125,7 @@ namespace Autohand.Demo {
 
         IEnumerator EnableCollisionDelay(float delay, Grabbable grab, Hand hand, PlacePoint placePoint)
         {
-            var preDrag = grab.body.angularDamping;
+            var preDrag = grab.body.angularDrag;
             bowHandleGrabbable.IgnoreGrabbableCollisionUntilNone(grab);
             placePoint.dontAllows.Add(grab);
             yield return new WaitForSeconds(delay);

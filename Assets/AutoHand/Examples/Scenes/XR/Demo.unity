@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -195,8 +195,12 @@ Light:
   m_BoundingSphereOverride: {x: 4.08e-43, y: 1.16e-43, z: 0, w: 497.04468}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!4 &2097769182
 Transform:
   m_ObjectHideFlags: 0
@@ -80493,10 +80497,6 @@ PrefabInstance:
     - target: {fileID: 3113748362155559719, guid: a5226a72c9553294abfe172a458b5805, type: 3}
       propertyPath: closedPose.poseRelativeMatrix.Array.data[3].e33
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3241196393722627616, guid: a5226a72c9553294abfe172a458b5805, type: 3}
-      propertyPath: aimerSmoothingSpeed
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3272568544916271861, guid: a5226a72c9553294abfe172a458b5805, type: 3}
       propertyPath: m_IsActive
