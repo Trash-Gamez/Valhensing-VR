@@ -10,7 +10,7 @@ public class HealthSystem : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damageAmount)
+    public void Damage(int damageAmount)
     {
         currentHealth -= damageAmount;
         Debug.Log("Received damage: " + damageAmount);

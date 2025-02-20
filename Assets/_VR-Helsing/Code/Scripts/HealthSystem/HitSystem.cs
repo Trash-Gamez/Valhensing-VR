@@ -11,7 +11,7 @@ public class HitSystem : MonoBehaviour
         HealthSystem healthSystem = target.GetComponent<HealthSystem>();
         if (healthSystem != null)
         {
-            healthSystem.TakeDamage(hitDamage);
+            healthSystem.Damage(hitDamage);
             Debug.Log("Hurtbox: Damage applied with hitDamage: " + hitDamage);
         }
     }
