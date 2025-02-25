@@ -12,7 +12,7 @@ using UnityEditor.Events;
 
 namespace _VanHelsingVR.Health
 {
-    public class Health : MonoBehaviour
+    public class HealthSystem : MonoBehaviour
     {
         public int MaxHealth => maxHealth.Value;
         [Title("Health Config")] 

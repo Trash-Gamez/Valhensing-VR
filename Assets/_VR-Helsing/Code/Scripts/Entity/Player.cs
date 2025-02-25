@@ -1,4 +1,8 @@
-public class Player : Entity
+namespace _VanHelsingVR.Entities
 {
-    
+    public class Player : Entity
+    {
+
+    }
+
 }
