@@ -1,7 +1,6 @@
+using _VR_Helsing.HealthSystem;
 using UnityEngine;
 using Sirenix.OdinInspector;
-
-using _VanHelsingVR.Health;
 
 namespace _VanHelsingVR.Entities
 {

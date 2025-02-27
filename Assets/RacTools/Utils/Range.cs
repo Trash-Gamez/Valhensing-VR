@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace RacTools.Utilities
+namespace RacTools.Utils
 {
     [System.Serializable]
     public struct FloatRangeReference

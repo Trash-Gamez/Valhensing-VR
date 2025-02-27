@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace _VanHelsingVR.Utilities
+namespace RacTools.Utils
 {
     public class Timer : MonoBehaviour
     {

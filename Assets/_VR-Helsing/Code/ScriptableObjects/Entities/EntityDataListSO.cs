@@ -1,13 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EntityDataListSO", menuName = "Scriptable Objects/EntityDataListSO")]
-public class EntityDataListSO : ScriptableObject
+namespace _VanHelsingVR.Entities
 {
-    [field: SerializeField] public List<EntityData> EntitieDataList { get; private set; }
+    
+        [CreateAssetMenu(fileName = "EntityDataListSO", menuName = "Scriptable Objects/EntityDataListSO")]
 
-    public EntityData PickRandom()
+    public class EntityDataListSO : ScriptableObject
     {
-        return EntitieDataList.PickRandom();
+        [field: SerializeField] public List<EntityData> EntitieDataList { get; private set; }
+
+        public EntityData PickRandom()
+        {
+            return EntitieDataList.PickRandom();
+        }
     }
+
 }

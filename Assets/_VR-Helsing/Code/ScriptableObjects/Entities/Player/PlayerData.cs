@@ -1,7 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerData", menuName = "Trash Gamez/Entity/PlayerData")]
-public class PlayerData : EntityData
+namespace _VanHelsingVR.Entities
 {
-    
+    [CreateAssetMenu(fileName = "PlayerData", menuName = "Trash Gamez/Entity/PlayerData")]
+
+    public class PlayerData : EntityData
+    {
+
+    }
 }

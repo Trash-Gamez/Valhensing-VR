@@ -1,7 +1,12 @@
+using _VanHelsingVR.Entities;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyData", menuName = "Trash Gamez/Entity/EnemyData")]
-public class EnemyData : EntityData
+namespace _VR_Helsing.Entities
 {
-     
+    [CreateAssetMenu(fileName = "EnemyData", menuName = "Trash Gamez/Entity/EnemyData")]
+
+    public class EnemyData : EntityData
+    {
+
+    }
 }

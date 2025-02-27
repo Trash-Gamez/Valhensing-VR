@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _VanHelsingVR.Health
+namespace _VR_Helsing.HealthSystem
 {
     public class HitSystem : MonoBehaviour
     {
