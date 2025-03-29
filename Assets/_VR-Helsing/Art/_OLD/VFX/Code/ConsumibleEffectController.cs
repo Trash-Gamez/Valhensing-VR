@@ -8,7 +8,7 @@ public class ConsumibleEffectController : MonoBehaviour
 
     public void DestroyEffect(string sound)
     {
-        AudioManager.Instance.PlaySound3D(sound, transform.position);
+        //AudioManager.Instance.PlaySound3D(sound, transform.position);
         GameObject vfx = Instantiate(destroyVFX);
         vfx.transform.position = transform.position;
         Destroy(vfx, 5);

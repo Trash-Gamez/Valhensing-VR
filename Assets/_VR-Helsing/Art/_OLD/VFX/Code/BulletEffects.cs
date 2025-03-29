@@ -9,11 +9,11 @@ public class BulletEffects : MonoBehaviour
         
         if (collision.transform.CompareTag("Enemy"))
         {
-            AudioManager.Instance.PlaySound3D("FleshImpact_" + Random.Range(1, 10),collision.transform.position);
+            //AudioManager.Instance.PlaySound3D("FleshImpact_" + Random.Range(1, 10),collision.transform.position);
         }
         else
         {
-            AudioManager.Instance.PlaySound3D("ConcreteImpact_0" + Random.Range(1, 8), collision.transform.position);
+            //AudioManager.Instance.PlaySound3D("ConcreteImpact_0" + Random.Range(1, 8), collision.transform.position);
             Debug.Log("AudioConcreto");
         }
 
