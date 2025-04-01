@@ -1,15 +1,15 @@
-using System;
+
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 using _VanHelsingVR.Health;
+using _VanHelsingVR.Utilities;
+using _VR_Helsing.HealthSystem;
 using Cysharp.Threading.Tasks;
-using RacTools.Miscelaneous;
+
 using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine.Events;
-using Range = RacTools.Utilities.Range;
+using Range = RacTools.Utils.Range;
 
 namespace _VanHelsingVR.Explosion
 {
@@ -49,9 +49,9 @@ namespace _VanHelsingVR.Explosion
             DoExplosion(seconds, CancellationToken.None);
         }
 
-        public async UniTask<List<Health.Health>> DoExplosionAsync(float seconds,CancellationToken token)
+        public async UniTask<List<HealthSystem>> DoExplosionAsync(float seconds,CancellationToken token)
         {
-            var healthTouched = new List<Health.Health>();
+            var healthTouched = new List<HealthSystem>();
             
             var waitSecondsRange = new Range(seconds, 0);
             var radiusRange = new Range(maxRadius, initialRadius);
@@ -69,7 +69,7 @@ namespace _VanHelsingVR.Explosion
 
             while (task.Status == UniTaskStatus.Pending)
             {
-                _currentRadius = Map.MapFloatRange(transcurredTime, waitSecondsRange, radiusRange);
+                _currentRadius = UtilitieExtensions.Map(transcurredTime, waitSecondsRange, radiusRange);
                 SphereCastHealth(healthTouched);
 
                 await UniTask.WaitForFixedUpdate(cancellationToken: token);
@@ -82,7 +82,7 @@ namespace _VanHelsingVR.Explosion
             return healthTouched;
         }
 
-        private void SphereCastHealth(List<Health.Health> healthTouched)
+        private void SphereCastHealth(List<HealthSystem> healthTouched)
         {
             var results = new Collider[5];
             var size = Physics.OverlapSphereNonAlloc(transform.position, _currentRadius, results, explosionLayer, QueryTriggerInteraction.Collide);
