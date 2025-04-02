@@ -77,7 +77,7 @@ namespace Autohand {
         [SerializeField, HideInInspector]
         Transform[] fingerJoints;
 
-        [SerializeField, HideInInspector]
+        [SerializeField]
         public FingerPoseData[] poseData;
 
 
