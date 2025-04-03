@@ -227,7 +227,7 @@ MonoBehaviour:
   poseIndex: 0
   showEditorTools: 1
   editorHand: {fileID: 0}
-  poseScriptable: {fileID: 0}
+  poseScriptable: {fileID: 11400000, guid: 488089b155bbb2349af1b146c6aa5762, type: 2}
   poseEnabled: 1
   singleHanded: 1
   showAdvanced: 1
@@ -266,13 +266,13 @@ MonoBehaviour:
   fromGameObjectLayer: {fileID: 4785304885527533672}
   hittableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   gunRigidbody: {fileID: 4408114444832077499}
-  gunAnimator: {fileID: 0}
+  gunAnimator: {fileID: 4341893022116594020}
   shootPoint: {fileID: 1946561226}
   bulletPrefab: {fileID: 3410750424015373943, guid: 67e6181b0fc05424f98f127af0ffa857, type: 3}
   bulletParent: {fileID: 0}
-  bloodEffect: {fileID: 7974277105815942764, guid: 07b02fdea03d8f94f90d447ce30c0d81, type: 3}
+  bloodEffect: {fileID: 7974277105815942764, guid: eebe526d41f431e40a19798c60c0afcd, type: 3}
   leftTriggerAction:
     m_UseReference: 1
     m_Action:
@@ -429,5 +429,10 @@ PrefabInstance:
 --- !u!4 &638840860454358747 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2547356267246092791, guid: 6d2e43f2208f293408048ce05c86a5fe, type: 3}
+  m_PrefabInstance: {fileID: 3136644337089285932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4341893022116594020 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1713085110593736264, guid: 6d2e43f2208f293408048ce05c86a5fe, type: 3}
   m_PrefabInstance: {fileID: 3136644337089285932}
   m_PrefabAsset: {fileID: 0}
