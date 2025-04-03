@@ -257,15 +257,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunGrabbable: {fileID: 826575707690859978}
   magazine: {fileID: 11400000, guid: 811677921c028d743b3c76aab6a6888d, type: 2}
+  guns: []
   data: {fileID: 11400000, guid: 2f50234c3d3fa6b4aab378d4bf631326, type: 2}
   gunRenderers:
   - {fileID: 7146792420941167987}
   - {fileID: 4089428405629544439}
   - {fileID: 2751733272423842635}
+  changeGunSpeedLimit: 0
   fromGameObjectLayer: {fileID: 4785304885527533672}
   hittableLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 24576
   gunRigidbody: {fileID: 4408114444832077499}
   gunAnimator: {fileID: 4341893022116594020}
   shootPoint: {fileID: 1946561226}

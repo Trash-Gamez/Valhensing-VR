@@ -29,10 +29,10 @@ namespace _VR_Helsing.HealthSystem
         [SerializeField] private ConditionPool canOverHeal;
         
         [Space]
-        [SerializeField] private UnityEvent onDamage;
-        [SerializeField] private UnityEvent onHeal;
-        [SerializeField] private UnityEvent onOverHeal;
-        [SerializeField] private UnityEvent onDead;
+        [SerializeField] public UnityEvent onDamage;
+        [SerializeField] public UnityEvent onHeal;
+        [SerializeField] public UnityEvent onOverHeal;
+        [SerializeField] public UnityEvent onDead;
 
         private void Start()
         {

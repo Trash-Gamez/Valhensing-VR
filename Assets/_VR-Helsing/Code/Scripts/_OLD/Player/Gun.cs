@@ -89,8 +89,6 @@ public class Gun : MonoBehaviour
         gunAnimator.SetBool(_IsLoading, grip);
         speedY = gunRigidbody.angularVelocity.x + gunRigidbody.linearVelocity.y; //Hacer queel angular sea más importante
         speedZ = gunRigidbody.angularVelocity.z;
-        if(name.EndsWith("Main"))
-            Debug.Log($"Speed Y: {speedY} - Speed Z: {speedZ}");
         //Debug. Log("speed angula x: " + speedY);
       
         if (Mathf.Abs(speedY) > _config.ReloadSpeedLimit && canReload && grip)
@@ -124,7 +122,7 @@ public class Gun : MonoBehaviour
     {
         if (newData.indexMesh < 0 || newData.indexMesh >= gunRenderers.Length) return;
         
-        StopAllCoroutines();
+        //StopAllCoroutines();
         data = newData;
         _config = data.Config;
         
