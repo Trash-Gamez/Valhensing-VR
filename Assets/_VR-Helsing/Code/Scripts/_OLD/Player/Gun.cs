@@ -144,7 +144,7 @@ public class Gun : MonoBehaviour
         {
             if(AudioManager.Instance) AudioManager.Instance.PlaySound2D("FullReload");
             magazine.Value = magazineSize;
-            magazineText.color = Color.green;
+            if(magazineText) magazineText.color = Color.green;
         }
     }
 
