@@ -139,7 +139,7 @@ public class Gun : MonoBehaviour
     private void Reload()
     {
         magazine.Value += 5;
-        magazineText.color = Color.white;
+        if(magazineText) magazineText.color = Color.white;
         if (magazine.Value >= magazineSize)
         {
             if(AudioManager.Instance) AudioManager.Instance.PlaySound2D("FullReload");
@@ -171,7 +171,7 @@ public class Gun : MonoBehaviour
                 }                
             }
             
-            magazineText.color = Color.white;
+            if(magazineText) magazineText.color = Color.white;
             InstantiateVisualNormal(direction);
 
             Debug.DrawRay(shootPoint.position, direction, Color.green);
@@ -181,7 +181,7 @@ public class Gun : MonoBehaviour
             if (magazine.Value <= 0)
             {
                 magazine.Value = 0;
-                magazineText.color = Color.red;
+                if(magazineText) magazineText.color = Color.red;
             }
             
             yield return new WaitForSeconds(shootingSpeed);
