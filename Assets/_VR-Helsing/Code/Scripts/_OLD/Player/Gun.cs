@@ -27,16 +27,16 @@ public class Gun : MonoBehaviour
 
     #if UNITY_EDITOR
     [Title("Gun Settings")]
-    #endif
-    [SerializeField] private int magazineSize;
-    [SerializeField] private float reloadTime;
-    [SerializeField] private float speedLimit;
-    [SerializeField] private float shootingSpeed;
-    [SerializeField] private float spread;
-    [SerializeField] private float fireRange;
-    [SerializeField] private float recoilForce = 300;
+#endif
+    [SerializeField]
+    private GunData[] guns;
+    [SerializeField] private GunData data;
+    [SerializeField] private Renderer[] gunRenderers;
+    [SerializeField] private float changeGunSpeedLimit;
     [SerializeField] private GameObject fromGameObjectLayer;
     [SerializeField] private LayerMask hittableLayer;
+    private GunConfig _config;
+    private int _currentGun = 0;
 
     #if UNITY_EDITOR
     [Title("Gun Properties")]
@@ -60,7 +60,7 @@ public class Gun : MonoBehaviour
     private bool trigger;
     private bool grip;
 
-    private float speedY;
+    private float speedY, speedZ;
     private bool canReload=true;
     private bool canShoot = true;
 
@@ -80,6 +80,7 @@ public class Gun : MonoBehaviour
     private void Start()
     {
         magazine.Value = 0;
+        _config = data.Config;
     }
     
     void Update()
@@ -87,11 +88,19 @@ public class Gun : MonoBehaviour
         GetInput();
         gunAnimator.SetBool(_IsLoading, grip);
         speedY = gunRigidbody.angularVelocity.x + gunRigidbody.linearVelocity.y; //Hacer queel angular sea más importante
-        //Debug.Log("speed angula x: " + speedY);
+        speedZ = gunRigidbody.angularVelocity.z;
+        if(name.EndsWith("Main"))
+            Debug.Log($"Speed Y: {speedY} - Speed Z: {speedZ}");
+        //Debug. Log("speed angula x: " + speedY);
       
-        if (Mathf.Abs(speedY) > speedLimit && canReload && grip)
+        if (Mathf.Abs(speedY) > _config.ReloadSpeedLimit && canReload && grip)
         {
             StartCoroutine(nameof(ReloadCoroutine));
+        }
+        
+        if (Mathf.Abs(speedZ) > changeGunSpeedLimit && grip)
+        {
+            NextGun((int)Mathf.Sign(speedZ));
         }
 
         if (trigger && !grip)
@@ -101,10 +110,39 @@ public class Gun : MonoBehaviour
 
         //Vfx();
     }
+
+    private void NextGun(int moveIndex)
+    {
+        _currentGun += moveIndex;
+        if (_currentGun < 0) _currentGun = guns.Length - 1;
+        if (_currentGun >= guns.Length) _currentGun = 0;
+        
+        ChangeGunData(guns[_currentGun]);
+    }
+
+    public void ChangeGunData(GunData newData)
+    {
+        if (newData.indexMesh < 0 || newData.indexMesh >= gunRenderers.Length) return;
+        
+        StopAllCoroutines();
+        data = newData;
+        _config = data.Config;
+        
+        DisableAllRenderers();
+        gunRenderers[data.indexMesh].enabled = true;
+    }
+
+    private void DisableAllRenderers()
+    {
+        for (int i = 0; i < gunRenderers.Length; i++)
+        {
+            gunRenderers[i].enabled = false;
+        }
+    }
     
     private void Vfx()
     {
-        float alpha = UtilitieExtensions.Map(magazine.Value, new Range(magazineSize, 0), Range.OneToZero);
+        float alpha = UtilitieExtensions.Map(magazine.Value, new Range(_config.MagazineSize, 0), Range.OneToZero);
         lighting.material.SetFloat("_Alpha", alpha);
     }
 
@@ -132,7 +170,7 @@ public class Gun : MonoBehaviour
         canReload = false;
         gunAnimator.Play("Reload");
         if(AudioManager.Instance) AudioManager.Instance.PlaySound2D("Reload");
-        yield return new WaitForSeconds(reloadTime);
+        yield return new WaitForSeconds(_config.ReloadTime);
         Reload();
         canReload = true;
     }
@@ -141,10 +179,10 @@ public class Gun : MonoBehaviour
     {
         magazine.Value += 5;
         if(magazineText) magazineText.color = Color.white;
-        if (magazine.Value >= magazineSize)
+        if (magazine.Value >= _config.MagazineSize)
         {
             if(AudioManager.Instance) AudioManager.Instance.PlaySound2D("FullReload");
-            magazine.Value = magazineSize;
+            magazine.Value = _config.MagazineSize;
             if(magazineText) magazineText.color = Color.green;
         }
     }
@@ -155,13 +193,13 @@ public class Gun : MonoBehaviour
         
         if (magazine.Value > 0)
         {
-            gunRigidbody.AddForceAtPosition(-shootPoint.forward * (recoilForce * 0.1f), shootPoint.position);
-            gunRigidbody.AddForceAtPosition(shootPoint.up * recoilForce, shootPoint.position);
+            gunRigidbody.AddForceAtPosition(-shootPoint.forward * (_config.RecoilForce * 0.1f), shootPoint.position);
+            gunRigidbody.AddForceAtPosition(shootPoint.up * _config.RecoilForce, shootPoint.position);
             canShoot = false;
             RaycastHit hit;
 
             Vector3 direction = GetDirection();
-            if (Physics.SphereCast(shootPoint.position, 0.25f, direction, out hit, fireRange, hittableLayer))
+            if (Physics.SphereCast(shootPoint.position, 0.25f, direction, out hit, _config.FireRange, hittableLayer))
             {
                 var hurtbox = hit.transform.GetComponent<Hurtbox>();
                 if(hurtbox != null)
@@ -186,8 +224,15 @@ public class Gun : MonoBehaviour
                 magazine.Value = 0;
                 if(magazineText) magazineText.color = Color.red;
             }
-            
-            yield return new WaitForSeconds(shootingSpeed);
+
+            if (_config.SingleShot)
+            {
+                yield return new WaitUntil(() => !trigger);
+            }
+            else
+            {
+                yield return new WaitForSeconds(_config.ShootingSpeed);
+            }
             canShoot = true;
         }
         else
@@ -195,7 +240,14 @@ public class Gun : MonoBehaviour
             canShoot = false;
             if(AudioManager.Instance) AudioManager.Instance.PlaySound3D("DryShoot", transform.position);
             
-            yield return new WaitForSeconds(shootingSpeed);
+            if (_config.SingleShot)
+            {
+                yield return new WaitUntil(() => !trigger);
+            }
+            else
+            {
+                yield return new WaitForSeconds(_config.ShootingSpeed);
+            }
             
             Debug.Log("Sin Munici�n");
             canShoot = true;
@@ -206,7 +258,7 @@ public class Gun : MonoBehaviour
     private Vector3 GetDirection()
     {
         Vector3 newDirection = transform.forward;
-        newDirection += new Vector3(UnityEngine.Random.Range(-spread, spread), UnityEngine.Random.Range(-spread, spread), UnityEngine.Random.Range(-spread, spread));
+        newDirection += new Vector3(UnityEngine.Random.Range(-_config.Spread, _config.Spread), UnityEngine.Random.Range(-_config.Spread, _config.Spread), UnityEngine.Random.Range(-_config.Spread, _config.Spread));
         newDirection.Normalize();
         return newDirection;
     }
