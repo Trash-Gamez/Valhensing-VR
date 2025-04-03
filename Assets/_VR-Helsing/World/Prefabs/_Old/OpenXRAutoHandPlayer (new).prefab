@@ -403,18 +403,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280162769248290149}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b661ef26e3b3e0c4ba5d9ecd8097bf6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultDevice: Oculus
   rightOffsets:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3265211982079483575}
   leftOffsets:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6953868934139952355}
   devices:
   - deviceNames:
     - Oculus
@@ -442,11 +440,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultDevice: Oculus
   rightOffsets:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3265211982079483575}
   leftOffsets:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6953868934139952355}
   devices:
   - deviceNames:
     - Oculus
@@ -464,7 +460,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280162769248290149}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be0d1b15235da3647ae676669899705c, type: 3}
   m_Name: 
@@ -487,7 +483,7 @@ MonoBehaviour:
   gunGrabbable: {fileID: 313128745366075884}
   secondaryGunGrabbable: {fileID: 2461362716367891679}
   leftHand: {fileID: 8957762121821984812}
-  rightHand: {fileID: 0}
+  rightHand: {fileID: 3246749233292311009}
   changeGunLeft:
     m_UseReference: 0
     m_Action:
@@ -571,7 +567,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerUI, Assembly-CSharp
-        m_MethodName: StartDamageCoroutine
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -583,7 +579,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: PlaySound2D
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -604,7 +600,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerUI, Assembly-CSharp
-        m_MethodName: StartDeadCoroutine
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -616,7 +612,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: PlaySound2D
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -628,7 +624,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.SphereCollider, UnityEngine
-        m_MethodName: set_radius
+        m_MethodName: 
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -640,7 +636,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -652,7 +648,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -664,7 +660,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -676,7 +672,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: StopMusic
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -961,7 +957,7 @@ MonoBehaviour:
     textType: 1
     legacyText: {fileID: 0}
     tmpText: {fileID: 1783299457047444915}
-  variable: {fileID: 11400000, guid: 413617df8ed72a441923d838cf2b0e28, type: 2}
+  variable: {fileID: 11400000, guid: ee4053deef914f14ba1854fc779d8c4d, type: 2}
   useParamString: 0
   paramString: 'Mag: {0}'
   useSample: 0
@@ -1356,6 +1352,10 @@ PrefabInstance:
       propertyPath: stopSqueezeAction.m_Reference
       value: 
       objectReference: {fileID: -1398031799169746360, guid: ea9500ae32862c949b420c59682d02ed, type: 3}
+    - target: {fileID: 3154463712313349445, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
+      propertyPath: follow
+      value: 
+      objectReference: {fileID: 3265211982079483575}
     - target: {fileID: 6747989476405024228, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -1377,6 +1377,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
+--- !u!114 &3246749233292311009 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3154463712313349445, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
+  m_PrefabInstance: {fileID: 488690249126702244}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9413d460e98076241a1f46c91201217d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4773967100069907973 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4938378384816562849, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
@@ -4530,6 +4541,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8957762121821984812}
     - target: {fileID: 8834320319295017360, guid: fdc3ba53f4e81a040b0471bbbafbb10a, type: 3}
+      propertyPath: handRight
+      value: 
+      objectReference: {fileID: 3246749233292311009}
+    - target: {fileID: 8834320319295017360, guid: fdc3ba53f4e81a040b0471bbbafbb10a, type: 3}
       propertyPath: headCamera
       value: 
       objectReference: {fileID: 280162768469239663}
@@ -4620,8 +4635,80 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8834320319295017362, guid: fdc3ba53f4e81a040b0471bbbafbb10a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6045686281264631937}
   m_SourcePrefab: {fileID: 100100000, guid: fdc3ba53f4e81a040b0471bbbafbb10a, type: 3}
+--- !u!1 &7213465901146843157 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8834320319295017362, guid: fdc3ba53f4e81a040b0471bbbafbb10a, type: 3}
+  m_PrefabInstance: {fileID: 2198511443942865287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6045686281264631937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7213465901146843157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2299af165ef2148b128cb7c00383bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7213465901146843159}
+  moveAxis:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Move Axis
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c215f5c5-2918-4772-bb91-c3ec3ef9cdbb
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: c39c6a3c-0149-46ec-ac77-a346bb25bdf7
+        m_Path: <XRController>{LeftHand}/thumbstick
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Move Axis
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  turnAxis:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Turn Axis
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a1c56a92-2fe9-401d-b853-eccad03a9f7d
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 902f5c35-43df-4b52-ba59-d92d092a5bb5
+        m_Path: <XRController>{RightHand}/thumbstick
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Turn Axis
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+--- !u!114 &7213465901146843159 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8834320319295017360, guid: fdc3ba53f4e81a040b0471bbbafbb10a, type: 3}
+  m_PrefabInstance: {fileID: 2198511443942865287}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7213465901146843157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8a35128610d1b34892726ec96e587d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7213465901146843160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8834320319295017375, guid: fdc3ba53f4e81a040b0471bbbafbb10a, type: 3}
@@ -4698,7 +4785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6896502242285715134, guid: bd7afead320cf7149b53050b095861e6, type: 3}
       propertyPath: ignoreHandCollider.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7678983989284461000, guid: bd7afead320cf7149b53050b095861e6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
