@@ -4,6 +4,28 @@ using UnityEngine;
 namespace RacTools.Utils
 {
     [System.Serializable]
+    public struct FloatRangeReference
+    {
+        [SerializeField] private bool useRange;
+
+        [SerializeField, HideIf(nameof(useRange))]
+        private float constant;
+        
+        [SerializeField, ShowIf(nameof(useRange))]
+        private Range range;
+        
+        public float Value
+        {
+            get
+            {
+                var value = constant;
+                if (useRange)
+                    value = UnityEngine.Random.Range(range.Min, range.Max);
+                return value;
+            }
+        }
+    }   
+    [System.Serializable]
     public struct Range
     {
         public static readonly Range OneToZero = new Range(1f, 0f);

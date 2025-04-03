@@ -240,6 +240,75 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1001 &636550684
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2563765711428223259, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: m_Name
+      value: VampireMelee
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945217784104213409, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.601
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945217784104213409, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.022
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945217784104213409, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.242
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945217784104213409, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945217784104213409, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945217784104213409, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945217784104213409, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945217784104213409, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945217784104213409, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945217784104213409, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7206818619809146512, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: attackRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7206818619809146512, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: maxMoveForce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7206818619809146512, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
+      propertyPath: runAwaySpeed
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 95b6376a7c77a7146af2caaf38f3d57b, type: 3}
 --- !u!1 &1249617917
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,14 +508,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 187206978426394930, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 187206978426394930, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 280162769248290148, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -491,30 +552,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OpenXRAutoHandPlayer (new)
       objectReference: {fileID: 0}
-    - target: {fileID: 1090120515526105933, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
-      propertyPath: guns.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1090120515526105933, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
-      propertyPath: 'guns.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 1269527ecd702db42b792b7194f3815d, type: 2}
-    - target: {fileID: 1090120515526105933, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
-      propertyPath: 'guns.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 2f50234c3d3fa6b4aab378d4bf631326, type: 2}
-    - target: {fileID: 1090120515526105933, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
-      propertyPath: changeGunSpeedLimit
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6036951914805639423, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6036951914805639423, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -530,3 +567,4 @@ SceneRoots:
   - {fileID: 299639869}
   - {fileID: 1249617921}
   - {fileID: 1617279047}
+  - {fileID: 636550684}
