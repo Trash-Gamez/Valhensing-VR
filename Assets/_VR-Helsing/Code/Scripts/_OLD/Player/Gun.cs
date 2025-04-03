@@ -34,6 +34,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private float shootingSpeed;
     [SerializeField] private float spread;
     [SerializeField] private float fireRange;
+    [SerializeField] private float recoilForce = 300;
     [SerializeField] private GameObject fromGameObjectLayer;
     [SerializeField] private LayerMask hittableLayer;
 
@@ -154,6 +155,8 @@ public class Gun : MonoBehaviour
         
         if (magazine.Value > 0)
         {
+            gunRigidbody.AddForceAtPosition(-shootPoint.forward * (recoilForce * 0.1f), shootPoint.position);
+            gunRigidbody.AddForceAtPosition(shootPoint.up * recoilForce, shootPoint.position);
             canShoot = false;
             RaycastHit hit;
 
