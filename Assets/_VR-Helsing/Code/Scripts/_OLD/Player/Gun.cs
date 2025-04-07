@@ -202,7 +202,7 @@ public class Gun : MonoBehaviour
                 var hurtbox = hit.transform.GetComponent<Hurtbox>();
                 if(hurtbox != null)
                 {
-                    hurtbox.OnHitScan(fromGameObjectLayer.layer);
+                    hurtbox.OnHitScan(fromGameObjectLayer.layer, _config.Damage);
                 }
                 else
                 {

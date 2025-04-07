@@ -11,4 +11,7 @@ public class GunConfig : ScriptableObject
     [field: SerializeField] public float Spread { get; private set; } = 0;
     [field: SerializeField] public float FireRange { get; private set; } = 50;
     [field: SerializeField] public float RecoilForce {get; private set;} = 50;
+    [field: SerializeField] public int Damage { get; private set; } = 1;
+
+
 }
