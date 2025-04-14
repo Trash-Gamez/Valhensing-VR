@@ -137,12 +137,6 @@ public class Gun : MonoBehaviour
             gunRenderers[i].enabled = false;
         }
     }
-    
-    private void Vfx()
-    {
-        float alpha = UtilitieExtensions.Map(magazine.Value, new Range(_config.MagazineSize, 0), Range.OneToZero);
-        lighting.material.SetFloat("_Alpha", alpha);
-    }
 
     private void GetInput()
     {
