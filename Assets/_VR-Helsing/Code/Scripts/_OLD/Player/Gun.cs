@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using _VanHelsingVR;
 using _VanHelsingVR.Health;
 using _VanHelsingVR.Utilities;
@@ -15,6 +16,9 @@ using Range = RacTools.Utils.Range;
 
 public class Gun : MonoBehaviour
 {
+    private const int MOVE_BUFFER_SIZE = 5;
+    
+    
     #if UNITY_EDITOR
     [Title("Grabbable")] 
     #endif
@@ -61,18 +65,19 @@ public class Gun : MonoBehaviour
     private bool trigger;
     private bool grip;
 
-    private float speedY, speedZ;
+    //private float speedY, speedZ;
+    private int _bufferIterator = -1;
+    private readonly float[] _xAxisBuffer = new float[MOVE_BUFFER_SIZE];
+    private readonly float[] _zAxisBuffer = new float[MOVE_BUFFER_SIZE];
+    
     private bool canReload=true;
     private bool canShoot = true;
 
 #if UNITY_EDITOR
     [Title("Gun VFX")]
 #endif
-
     [SerializeField] private ParticleSystemRenderer lighting;
-    //[SerializeField] private ParticleSystem muzzle;
     [SerializeField] private TextMeshPro magazineText;
-    
     
 
     private Hand _holdingHand;
@@ -80,13 +85,8 @@ public class Gun : MonoBehaviour
     
     private static readonly int _IsLoading = Animator.StringToHash("IsLoading");
 
-    private float _lastXAngle, _newXAngle;
-    private float _lastZAngle, _newZAngle;
-
     private void Start()
     {
-        
-        
         magazine.Value = 0;
         _config = data.Config;
     }
@@ -111,12 +111,16 @@ public class Gun : MonoBehaviour
         //Hacemos lo mismo pero en el eje Z que nos dará la velocidad local para el cambio de arma
         
         var angularZVelocity = Vector3.Dot(angularGlobalGunVelocity, gunRigidbody.transform.forward) * Mathf.Rad2Deg;
+
+        //Si la suma de 1 en buffer es mayo o igual al tamanio se reinicia
+        if (++_bufferIterator >= MOVE_BUFFER_SIZE)
+        {
+            _bufferIterator = 0;
+        }
+
         
-        /* TODO: Estas velocidades, saca el delta por el frame de fisicas (Time.fixedDeltaTime)
-         * TODO: Después suma ese delta a un valor que nos hará saber si se llega o no a la velocidad deseada, luego ajusta los valores en los criptables
-         * Oportunidad de usar un buffer que tenga las ultimas 3 o 4 posiciones para calcular sumando todos los deltas la velocidad que se desea llegar
-         */
-        
+        _xAxisBuffer[_bufferIterator] = Mathf.Abs(angularXVelocity);
+        _zAxisBuffer[_bufferIterator] = Mathf.Abs(angularZVelocity);
     }
 
     void Update()
@@ -124,27 +128,21 @@ public class Gun : MonoBehaviour
         GetInput();
         gunAnimator.SetBool(_IsLoading, grip);
 
-        
-
-        _newXAngle = _holdingHand.transform.localRotation.eulerAngles.x;
-        _newZAngle = _holdingHand.transform.localRotation.eulerAngles.z;
-
-        speedY = _newXAngle - _lastXAngle;
-        speedZ = _newZAngle - _lastZAngle;
+        var speedX = _xAxisBuffer.Sum(num => num);
+        var speedZ = _zAxisBuffer.Sum(num => num);
         
         //speedY = gunRigidbody.angularVelocity.x + gunRigidbody.linearVelocity.y; //Hacer queel angular sea más importante
         //speedZ = gunRigidbody.angularVelocity.z;
         
-        Debug.Log("speed Y: " + speedY);
+        Debug.Log("speed Y: " + speedX);
         Debug.Log("speed Z: " + speedZ);
       
-        if (Mathf.Abs(speedY) + gunRigidbody.linearVelocity.y > _config.ReloadSpeedLimit && canReload && grip)
+        if (speedX > _config.ReloadSpeedLimit && canReload && grip)
         {
-                StartCoroutine(nameof(ReloadCoroutine));
-            
+            StartCoroutine(nameof(ReloadCoroutine));
         }
         
-        if (Mathf.Abs(speedZ) > changeGunSpeedLimit && grip)
+        if (speedZ > changeGunSpeedLimit && grip)
         {
             NextGun((int)Mathf.Sign(speedZ));
         }
@@ -153,16 +151,8 @@ public class Gun : MonoBehaviour
         {
             StartCoroutine(Shoot());
         }
-
-        //Vfx();
     }
-
-    private void LateUpdate()
-    {
-        _lastXAngle = _newXAngle;
-        _lastZAngle = _newZAngle;
-    }
-
+    
     private void NextGun(int moveIndex)
     {
         _currentGun += moveIndex;
