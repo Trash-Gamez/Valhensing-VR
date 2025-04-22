@@ -1,9 +1,7 @@
-using System;
 using Autohand;
-using Mono.CSharp;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class NEW_GunHolder : MonoBehaviour
 {
@@ -22,8 +20,16 @@ public class NEW_GunHolder : MonoBehaviour
     {
         HandleGunChange(rightHand);
     }
+    
+    [VerticalGroup("Editor")]
+    [Button("Equip Weapon", DisplayParameters = true)]
+    private void EquipMainWeapon(bool isLeft)
+    {
+        HandleGunChange(isLeft ? leftHand : rightHand);
+    }
 
-    [ContextMenu("DESBLOQUEA SEGUNDA ARMA")]
+    [VerticalGroup("Editor")]
+    [Button("DESBLOQUEA SEGUNDA ARMA")]
     public void UnlockSecondWeapon()
     {
         _hasSecondWeapon = true;
