@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using _VanHelsingVR;
 using _VanHelsingVR.Health;
@@ -71,29 +72,76 @@ public class Gun : MonoBehaviour
     [SerializeField] private ParticleSystemRenderer lighting;
     //[SerializeField] private ParticleSystem muzzle;
     [SerializeField] private TextMeshPro magazineText;
+    
+    
 
     private Hand _holdingHand;
     private bool _isHoldingHand;
     
     private static readonly int _IsLoading = Animator.StringToHash("IsLoading");
 
+    private float _lastXAngle, _newXAngle;
+    private float _lastZAngle, _newZAngle;
+
     private void Start()
     {
+        
+        
         magazine.Value = 0;
         _config = data.Config;
     }
-    
+
+    private void FixedUpdate()
+    {
+        GetLocalAngularVelocities();
+    }
+
+    private void GetLocalAngularVelocities()
+    {
+        var angularGlobalGunVelocity = gunRigidbody.angularVelocity; //Velocidad angular GLOBAL (esto ultimo no lo sabia xd)
+        /* PROYECTAMOS (mucho ojo que no sabia que el dot era proyeccion)
+         * Proyectamos, la velocidad angular del mundo, SOBRE la direccion local del eje
+         * Esto nos dará como resultado la velocidad angular local en x (es la que buscamos para la animacion de rotar)
+         */
+
+        //                                        Velocidad angular global       eje local de el arma en x      Conv a grados
+        //                                                  |                            |                           |
+        var angularXVelocity = Vector3.Dot(angularGlobalGunVelocity, gunRigidbody.transform.right) * Mathf.Rad2Deg;
+
+        //Hacemos lo mismo pero en el eje Z que nos dará la velocidad local para el cambio de arma
+        
+        var angularZVelocity = Vector3.Dot(angularGlobalGunVelocity, gunRigidbody.transform.forward) * Mathf.Rad2Deg;
+        
+        /* TODO: Estas velocidades, saca el delta por el frame de fisicas (Time.fixedDeltaTime)
+         * TODO: Después suma ese delta a un valor que nos hará saber si se llega o no a la velocidad deseada, luego ajusta los valores en los criptables
+         * Oportunidad de usar un buffer que tenga las ultimas 3 o 4 posiciones para calcular sumando todos los deltas la velocidad que se desea llegar
+         */
+        
+    }
+
     void Update()
     {
         GetInput();
         gunAnimator.SetBool(_IsLoading, grip);
-        speedY = gunRigidbody.angularVelocity.x + gunRigidbody.linearVelocity.y; //Hacer queel angular sea más importante
-        speedZ = gunRigidbody.angularVelocity.z;
-        //Debug. Log("speed angula x: " + speedY);
+
+        
+
+        _newXAngle = _holdingHand.transform.localRotation.eulerAngles.x;
+        _newZAngle = _holdingHand.transform.localRotation.eulerAngles.z;
+
+        speedY = _newXAngle - _lastXAngle;
+        speedZ = _newZAngle - _lastZAngle;
+        
+        //speedY = gunRigidbody.angularVelocity.x + gunRigidbody.linearVelocity.y; //Hacer queel angular sea más importante
+        //speedZ = gunRigidbody.angularVelocity.z;
+        
+        Debug.Log("speed Y: " + speedY);
+        Debug.Log("speed Z: " + speedZ);
       
-        if (Mathf.Abs(speedY) > _config.ReloadSpeedLimit && canReload && grip)
+        if (Mathf.Abs(speedY) + gunRigidbody.linearVelocity.y > _config.ReloadSpeedLimit && canReload && grip)
         {
-            StartCoroutine(nameof(ReloadCoroutine));
+                StartCoroutine(nameof(ReloadCoroutine));
+            
         }
         
         if (Mathf.Abs(speedZ) > changeGunSpeedLimit && grip)
@@ -107,6 +155,12 @@ public class Gun : MonoBehaviour
         }
 
         //Vfx();
+    }
+
+    private void LateUpdate()
+    {
+        _lastXAngle = _newXAngle;
+        _lastZAngle = _newZAngle;
     }
 
     private void NextGun(int moveIndex)
