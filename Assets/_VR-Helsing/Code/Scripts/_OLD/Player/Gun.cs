@@ -1,22 +1,20 @@
-using System;
 using System.Collections;
 using System.Linq;
-using _VanHelsingVR;
-using _VanHelsingVR.Health;
-using _VanHelsingVR.Utilities;
 using Autohand;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using RacTools.Variables;
 using TMPro;
+
+using _VanHelsingVR;
+using _VanHelsingVR.Health;
+using RacTools.Variables;
 
 using Sirenix.OdinInspector;
 using Random = UnityEngine.Random;
-using Range = RacTools.Utils.Range;
 
 public class Gun : MonoBehaviour
 {
-    private const int MOVE_BUFFER_SIZE = 5;
+    private const int MOVE_BUFFER_SIZE = 4;
     
     
     #if UNITY_EDITOR
@@ -119,8 +117,8 @@ public class Gun : MonoBehaviour
         }
 
         
-        _xAxisBuffer[_bufferIterator] = Mathf.Abs(angularXVelocity);
-        _zAxisBuffer[_bufferIterator] = Mathf.Abs(angularZVelocity);
+        _xAxisBuffer[_bufferIterator] = angularXVelocity;
+        _zAxisBuffer[_bufferIterator] = angularZVelocity;
     }
 
     void Update()
