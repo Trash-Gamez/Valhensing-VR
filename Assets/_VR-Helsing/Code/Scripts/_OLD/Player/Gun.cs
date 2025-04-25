@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 
 using _VanHelsingVR;
+using _VanHelsingVR.Animation.Gun;
 using _VanHelsingVR.Health;
 using RacTools.Variables;
 
@@ -15,7 +16,7 @@ using Random = UnityEngine.Random;
 public class Gun : MonoBehaviour
 {
     private const int MOVE_BUFFER_SIZE = 4;
-    
+    private readonly int[] _magazinesLoad = new int[3];
     
     #if UNITY_EDITOR
     [Title("Grabbable")] 
@@ -27,6 +28,7 @@ public class Gun : MonoBehaviour
     #endif
     [SerializeField]
     private Variable<int> magazine;
+    
 
     #if UNITY_EDITOR
     [Title("Gun Settings")]
@@ -36,6 +38,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private GunData data;
     [SerializeField] private Renderer[] gunRenderers;
     [SerializeField] private float changeGunSpeedLimit;
+    [SerializeField] private float secondsToChangeWeapon;
     [SerializeField] private GameObject fromGameObjectLayer;
     [SerializeField] private LayerMask hittableLayer;
     private GunConfig _config;
@@ -54,7 +57,8 @@ public class Gun : MonoBehaviour
     
     #if UNITY_EDITOR
     [Title("Gun Input")]
-    #endif
+#endif
+    [SerializeField] private GunInput gunInput;
     [SerializeField] private InputActionProperty leftTriggerAction;
     [SerializeField] private InputActionProperty leftGripAction;
     [SerializeField] private InputActionProperty rightTriggerAction;
@@ -96,6 +100,7 @@ public class Gun : MonoBehaviour
 
     private void GetLocalAngularVelocities()
     {
+        if (!grip) return;
         var angularGlobalGunVelocity = gunRigidbody.angularVelocity; //Velocidad angular GLOBAL (esto ultimo no lo sabia xd)
         /* PROYECTAMOS (mucho ojo que no sabia que el dot era proyeccion)
          * Proyectamos, la velocidad angular del mundo, SOBRE la direccion local del eje
@@ -129,20 +134,18 @@ public class Gun : MonoBehaviour
         var speedX = _xAxisBuffer.Sum(num => num);
         var speedZ = _zAxisBuffer.Sum(num => num);
         
-        //speedY = gunRigidbody.angularVelocity.x + gunRigidbody.linearVelocity.y; //Hacer queel angular sea más importante
-        //speedZ = gunRigidbody.angularVelocity.z;
-        
-        Debug.Log("speed Y: " + speedX);
-        Debug.Log("speed Z: " + speedZ);
+        //Debug.Log("speed Y: " + speedX);
+        //Debug.Log("speed Z: " + speedZ);
       
-        if (speedX > _config.ReloadSpeedLimit && canReload && grip)
+        if (Mathf.Abs(speedX) > _config.ReloadSpeedLimit && canReload && grip)
         {
             StartCoroutine(nameof(ReloadCoroutine));
         }
         
-        if (speedZ > changeGunSpeedLimit && grip)
+        if (Mathf.Abs(speedZ) > changeGunSpeedLimit && grip)
         {
-            NextGun((int)Mathf.Sign(speedZ));
+            StartCoroutine(NextGunCoroutine(speedZ, changeGunSpeedLimit));
+            //NextGun((int)Mathf.Sign(speedZ));
         }
 
         if (trigger && !grip)
@@ -150,14 +153,50 @@ public class Gun : MonoBehaviour
             StartCoroutine(Shoot());
         }
     }
-    
+
+
+    private IEnumerator NextGunCoroutine(float speedZ, float absSpeedLimit)
+    {
+        bool result = false;
+        float seconds = 0f;
+        float currentZSpeed = _zAxisBuffer.Sum(num => num);
+        var speedSign = (int)Mathf.Sign(speedZ);
+        canReload = false;
+
+        while (seconds < secondsToChangeWeapon)
+        {
+            seconds += Time.deltaTime;
+            //Si el signo de la veliciada actual es contrario a la velocidad inicial
+            // y la velocidad absoluta de la velocidad actual es mayor al ,limite absoluto de velocidad
+            // el resultado es posotivo
+            if (((int)Mathf.Sign(currentZSpeed)) != speedSign && Mathf.Abs(currentZSpeed) > absSpeedLimit)
+            {
+                result = true; break;
+            }
+            yield return null;
+
+            currentZSpeed = _zAxisBuffer.Sum(num => num);
+        }
+        
+        if(result)
+            NextGun(speedSign);
+        
+        canReload = true;
+    }
     private void NextGun(int moveIndex)
     {
+        _magazinesLoad[_currentGun] = magazine.Value;
         _currentGun += moveIndex;
         if (_currentGun < 0) _currentGun = guns.Length - 1;
         if (_currentGun >= guns.Length) _currentGun = 0;
         
+        magazine.Value = _magazinesLoad[_currentGun];
         ChangeGunData(guns[_currentGun]);
+
+        if (!magazineText)
+        {
+            magazineText.color = magazine.Value == 0 ? Color.red : magazine.Value >= _config.MagazineSize ? Color.green : Color.white;
+        }
     }
 
     public void ChangeGunData(GunData newData)
@@ -211,7 +250,7 @@ public class Gun : MonoBehaviour
    
     private void Reload()
     {
-        magazine.Value += 5;
+        magazine.Value += _config.ReloadBullets;
         if(magazineText) magazineText.color = Color.white;
         if (magazine.Value >= _config.MagazineSize)
         {
@@ -230,28 +269,25 @@ public class Gun : MonoBehaviour
             gunRigidbody.AddForceAtPosition(-shootPoint.forward * (_config.RecoilForce * 0.1f), shootPoint.position);
             gunRigidbody.AddForceAtPosition(shootPoint.up * _config.RecoilForce, shootPoint.position);
             canShoot = false;
-            RaycastHit hit;
 
-            Vector3 direction = GetDirection();
-            if (Physics.SphereCast(shootPoint.position, 0.25f, direction, out hit, _config.FireRange, hittableLayer))
+            if (_config.UseMultiBirdShot)
             {
-                var hurtbox = hit.transform.GetComponent<Hurtbox>();
-                if(hurtbox != null)
+                for (int i = 0; i < _config.MultiBirdShotTimes; i++)
                 {
-                    hurtbox.OnHitScan(fromGameObjectLayer.layer, _config.Damage);
+                    var direction = MakeShoot();
+                    InstantiateVisualNormal(direction);
                 }
-                else
-                {
-                    Debug.LogWarning("This Object does not have HurtBox Script");
-                }                
+            }
+            else
+            {
+                var direction = MakeShoot();
+                InstantiateVisualNormal(direction);
             }
             
-            if(magazineText) magazineText.color = Color.white;
-            InstantiateVisualNormal(direction);
 
-            Debug.DrawRay(shootPoint.position, direction, Color.green);
-            if(AudioManager.Instance) AudioManager.Instance.PlaySound2D("Shoot_0"+Random.Range(1,8));
             
+            if(AudioManager.Instance) AudioManager.Instance.PlaySound2D("Shoot_0"+Random.Range(1,8));
+            if(magazineText) magazineText.color = Color.white;
             magazine.Value--;
             if (magazine.Value <= 0)
             {
@@ -288,7 +324,28 @@ public class Gun : MonoBehaviour
         }
         
     }
-    
+
+    private Vector3 MakeShoot()
+    {
+        RaycastHit hit;
+
+        Vector3 direction = GetDirection();
+        if (Physics.SphereCast(shootPoint.position, 0.25f, direction, out hit, _config.FireRange, hittableLayer))
+        {
+            var hurtbox = hit.transform.GetComponent<Hurtbox>();
+            if(hurtbox != null)
+            {
+                hurtbox.OnHitScan(fromGameObjectLayer.layer, _config.Damage);
+            }
+            else
+            {
+                Debug.LogWarning("This Object does not have HurtBox Script");
+            }                
+        }
+
+        return direction;
+    }
+
     private Vector3 GetDirection()
     {
         Vector3 newDirection = transform.forward;

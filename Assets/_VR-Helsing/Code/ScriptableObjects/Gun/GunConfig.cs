@@ -6,6 +6,11 @@ public class GunConfig : ScriptableObject
     [field: Header("Magazine")]
     [field: SerializeField] public bool SingleShot { get; private set; }
     [field: SerializeField] public int MagazineSize { get; private set; } = 30;
+    [field:SerializeField] public int ReloadBullets { get; private set; } = 3;
+    
+    [field: Header("Multi bird shot")]
+    [field : SerializeField] public bool UseMultiBirdShot { get; private set; }
+    [field : SerializeField] public int MultiBirdShotTimes { get; private set; }
     
     [field: Header("Reload")]
     [field: SerializeField] public float ReloadTime { get; private set; } = 0.25f;
