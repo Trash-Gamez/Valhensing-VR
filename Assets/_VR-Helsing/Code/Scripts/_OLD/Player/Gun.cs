@@ -58,14 +58,7 @@ public class Gun : MonoBehaviour
     #if UNITY_EDITOR
     [Title("Gun Input")]
 #endif
-    [SerializeField] private GunInput gunInput;
-    [SerializeField] private InputActionProperty leftTriggerAction;
-    [SerializeField] private InputActionProperty leftGripAction;
-    [SerializeField] private InputActionProperty rightTriggerAction;
-    [SerializeField] private InputActionProperty rightGripAction;
-
-    private bool trigger;
-    private bool grip;
+    
 
     //private float speedY, speedZ;
     private int _bufferIterator = -1;
