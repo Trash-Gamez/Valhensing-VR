@@ -38,4 +38,9 @@ public static class UtilsClass
         return list[UnityEngine.Random.Range(0, list.Count)];
     }        
     #endregion
+
+    public static bool IsPassedThreshold(this float value, float threshold)
+    {
+        return Mathf.Abs(value) >= threshold;
+    }
 }
