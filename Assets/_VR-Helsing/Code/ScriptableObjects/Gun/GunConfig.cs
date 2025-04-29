@@ -14,7 +14,7 @@ public class GunConfig : ScriptableObject
     
     [field: Header("Reload")]
     [field: SerializeField] public float ReloadTime { get; private set; } = 0.25f;
-    [field: SerializeField] public float ReloadSpeedLimit { get; private set; } = 12;
+    [field: SerializeField] public float ReloadSpeedLimit { get; private set; } = 12; //DEPRECATED
     
     [field: Header("Shoot")]
     [field: SerializeField] public float ShootingSpeed { get; private set; } = 0.1f;

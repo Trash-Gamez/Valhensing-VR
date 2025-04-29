@@ -12,7 +12,12 @@ namespace _VR_Helsing.Gun
 
         public override void Update()
         {
-            
+            CheckState();
         }
+
+        public override void FixedUpdate(){}
+
+        public override void CheckState()
+        {}
     }
 }

@@ -6,7 +6,7 @@
         public int IDState { get; set; }
         
         
-        protected BaseStateMachine _machine;
+        protected BaseStateMachine _stateMachine;
 
         public BaseState(BaseStateMachine stateMachine)
         {
@@ -20,5 +20,6 @@
         public abstract void FixedUpdate();
 
         public abstract void Exit();
+        public abstract void CheckState();
     }
 }

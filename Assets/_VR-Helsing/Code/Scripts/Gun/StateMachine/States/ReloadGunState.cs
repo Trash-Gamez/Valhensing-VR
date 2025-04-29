@@ -1,31 +1,46 @@
-﻿using RacTools.StateMachine;
+﻿using System.Collections;
+using RacTools.StateMachine;
+using RacTools.Variables;
+using UnityEngine;
 
 namespace _VR_Helsing.Gun
 {
     public class ReloadGunState : BaseGunState
     {
-        public ReloadGunState(GunStateMachine stateMachine) : base(stateMachine)
+        private Variable<int> _magazine;
+        private Animator _gunAnimator;
+        
+        public ReloadGunState(GunStateMachine stateMachine, Variable<int> magazine) : base(stateMachine)
         {
+            _magazine = magazine;
         }
 
         public override void Enter()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public override void Update()
-        {
-            base.Update();
-        }
-
-        public override void FixedUpdate()
-        {
-            throw new System.NotImplementedException();
+            gunStateMachine.StartCoroutine(ReloadCoroutine());
         }
 
         public override void Exit()
         {
-            throw new System.NotImplementedException();
+            
+        }
+        
+        IEnumerator ReloadCoroutine()
+        {
+            _gunAnimator.Play("Reload");
+            if(AudioManager.Instance) AudioManager.Instance.PlaySound2D("Reload");
+            yield return new WaitForSeconds(gunStateMachine.Config.ReloadTime);
+            Reload();
+        }
+   
+        private void Reload()
+        {
+            _magazine.Value += gunStateMachine.Config.ReloadBullets;
+            if (_magazine.Value >= gunStateMachine.Config.MagazineSize)
+            {
+                if(AudioManager.Instance) AudioManager.Instance.PlaySound2D("FullReload");
+                _magazine.Value = gunStateMachine.Config.MagazineSize;
+            }
         }
     }
 }

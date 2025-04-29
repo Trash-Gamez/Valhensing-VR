@@ -1,26 +1,36 @@
-﻿using RacTools.StateMachine;
+﻿using _VanHelsingVR.Animation.Gun;
+using RacTools.StateMachine;
+using UnityEngine;
 
 namespace _VR_Helsing.Gun
 {
     public class IdleGunState : BaseGunState
     {
-        public IdleGunState(GunStateMachine stateMachine) : base(stateMachine)
+        private Animator _gunAnimator;
+        private GunInput _input;
+        
+        public IdleGunState(GunStateMachine stateMachine, GunInput input) : base(stateMachine)
         {
+            _gunAnimator = gunStateMachine.GunAnimator;
+            _input = input;
         }
 
         public override void Enter()
         {
-            
+            _gunAnimator.SetBool(GunStateMachine.IsLoading, false);
         }
 
-        public override void Update()
+        public override void CheckState()
         {
-            base.Update();
-        }
-
-        public override void FixedUpdate()
-        {
-            throw new System.NotImplementedException();
+            if (!_input.IsTriggering && _input.IsGripping) //ONLY GRIPPING
+            { 
+                gunStateMachine.ChangeState(gunStateMachine.ActiveGunState);
+            }
+            else if (_input.IsTriggering && !_input.IsGripping) //ONLY TRIGGERING
+            {
+                gunStateMachine.ChangeState(gunStateMachine.ShootGunState);
+                return;
+            }
         }
 
         public override void Exit()
