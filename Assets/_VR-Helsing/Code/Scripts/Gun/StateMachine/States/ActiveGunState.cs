@@ -57,6 +57,16 @@ namespace _VR_Helsing.Gun
                 return;
             }
 
+            //Primero checa si cambio de arma
+            var localZAngVel = GunStateMachine.ZLocalAngVelBuffer.Average();
+        
+            if (localZAngVel.IsPassedThreshold(_zAngularVelocityThreshold))
+            {
+                GunStateMachine.ChangeState(StateFactory.ChangeWeaponState);
+                return;
+            }
+            
+            //segundo checa la recarga
             var localYVelocity = GunStateMachine.YLocalVelBuffer.Average();
             var localXAngVel = GunStateMachine.XLocalAngVelBuffer.Average();
             
@@ -67,13 +77,6 @@ namespace _VR_Helsing.Gun
                 return;
             }
             
-            var localZAngVel = GunStateMachine.ZLocalAngVelBuffer.Average();
-        
-            if (localZAngVel.IsPassedThreshold(_zAngularVelocityThreshold))
-            {
-                GunStateMachine.ChangeState(StateFactory.ChangeWeaponState);
-                return;
-            }
         }
     }
 }

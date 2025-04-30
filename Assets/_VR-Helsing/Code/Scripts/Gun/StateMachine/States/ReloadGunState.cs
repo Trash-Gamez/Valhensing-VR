@@ -9,14 +9,18 @@ namespace _VR_Helsing.Gun
     {
         private Variable<int> _magazine;
         private Animator _gunAnimator;
+
+        private bool _ended;
         
         public ReloadGunState(GunStateMachine stateMachine, GunStateFactory factory) : base(stateMachine, factory)
         {
+            _gunAnimator = GunStateMachine.GunAnimator;
             _magazine = GunStateMachine.Magazine;
         }
 
         public override void Enter()
         {
+            _ended = false;
             GunStateMachine.StartCoroutine(ReloadCoroutine());
         }
 
@@ -24,13 +28,21 @@ namespace _VR_Helsing.Gun
         {
             
         }
-        
+
+        public override void CheckState()
+        {
+            if (!_ended) return;
+            
+            GunStateMachine.ChangeState(StateFactory.ActiveState);
+        }
+
         IEnumerator ReloadCoroutine()
         {
             _gunAnimator.Play("Reload");
             if(AudioManager.Instance) AudioManager.Instance.PlaySound2D("Reload");
             yield return new WaitForSeconds(GunStateMachine.Config.ReloadTime);
             Reload();
+            _ended = true;
         }
    
         private void Reload()

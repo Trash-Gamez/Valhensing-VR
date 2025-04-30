@@ -57,16 +57,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32183038076057042}
-  m_LocalRotation: {x: 0.2860971, y: -0, z: -0, w: 0.9582007}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0257}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalRotation: {x: 0.87985146, y: -0, z: -0, w: 0.47524893}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00057291996}
+  m_LocalScale: {x: 0.0025, y: 0.0024999997, z: 0.009999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 638840860454358747}
+  m_Father: {fileID: 7962791498574122488}
   m_LocalEulerAnglesHint: {x: 33.249, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0012, y: 0.0266}
+  m_AnchoredPosition: {x: 0.000012003235, y: 0.0002402626}
   m_SizeDelta: {x: 0.115, y: 0.0895}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &7687042517244336787
@@ -470,11 +470,10 @@ MonoBehaviour:
   - {fileID: 7146792420941167987}
   - {fileID: 4089428405629544439}
   - {fileID: 2751733272423842635}
-  zAngularVelocityThreshold: 0
-  yVelocityThreshold: 1.5
-  xAngularVelocityThreshold: 0
-  secondsToChangeWeapon: 1.5
-  localAngularVelocity: {fileID: 11400000, guid: e1c3ef4213244494caaa85429db7c0a6, type: 2}
+  zAngularVelocityThreshold: 85
+  yVelocityThreshold: 0.75
+  xAngularVelocityThreshold: 75
+  secondsToChangeWeapon: 1.25
   gunRigidbody: {fileID: 4408114444832077499}
   gunAnimator: {fileID: 4341893022116594020}
   shootPoint: {fileID: 1946561226}
@@ -495,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6d30dd05324c628ad224f2e7f20ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunGrabbable: {fileID: 0}
+  gunGrabbable: {fileID: 826575707690859978}
   leftTriggerAction:
     m_UseReference: 1
     m_Action:
@@ -645,7 +644,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2547356267246092791, guid: 6d2e43f2208f293408048ce05c86a5fe, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 4973695592165294804, guid: 6d2e43f2208f293408048ce05c86a5fe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1711380021622291725}
     m_AddedComponents: []
@@ -673,5 +672,10 @@ Animator:
 --- !u!137 &7146792420941167987 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5235743188258681439, guid: 6d2e43f2208f293408048ce05c86a5fe, type: 3}
+  m_PrefabInstance: {fileID: 3136644337089285932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7962791498574122488 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4973695592165294804, guid: 6d2e43f2208f293408048ce05c86a5fe, type: 3}
   m_PrefabInstance: {fileID: 3136644337089285932}
   m_PrefabAsset: {fileID: 0}

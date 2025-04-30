@@ -52,6 +52,7 @@ namespace _VR_Helsing.Gun
 
         public override void CheckState()
         {
+            //Esto hace que aunque presiones el grip, si no sueltas el de disparo antes, no se cambia el estado
             if (!_input.IsTriggering)
             {
                 _stateMachine.ChangeState(StateFactory.IdleState);

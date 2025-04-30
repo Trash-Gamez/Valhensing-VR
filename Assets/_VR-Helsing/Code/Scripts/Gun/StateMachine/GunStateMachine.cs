@@ -11,7 +11,6 @@ namespace _VR_Helsing.Gun
 {
     public class GunStateMachine : BaseStateMachine
     {
-        public const int MAX_BUFFER_SIZE = 4;
         public static readonly int IsLoading = Animator.StringToHash("IsLoading");
 
         public static readonly GunBuffer ZLocalAngVelBuffer = new GunBuffer();
@@ -94,13 +93,15 @@ namespace _VR_Helsing.Gun
         private bool canShoot = true;
 
         private GunStateFactory _stateFactory;
+        public BaseState CurrentState => currentState; 
 
         public bool CanReload = false; //TODO: hacer propiedad, medir cuando se dispara y esperar por aqui
 
         private void Awake()
         {
             _stateFactory = new GunStateFactory(this);
-            ChangeState(_stateFactory.IdleState);
+            currentState = _stateFactory.IdleState;
+            currentState.Enter();
         }
 
         private void Start()

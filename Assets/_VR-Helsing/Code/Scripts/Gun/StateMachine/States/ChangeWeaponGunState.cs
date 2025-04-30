@@ -48,6 +48,8 @@ namespace _VR_Helsing.Gun
             
             if(_result)
                 GunStateMachine.NextGun(_initialZVelSign);
+            
+            GunStateMachine.ChangeState(StateFactory.ActiveState);
         }
 
         private IEnumerator NextGunCoroutine(int initialZVelSign)

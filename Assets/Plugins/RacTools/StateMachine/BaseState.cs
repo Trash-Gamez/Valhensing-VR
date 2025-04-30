@@ -10,6 +10,7 @@
 
         public BaseState(BaseStateMachine stateMachine)
         {
+            _stateMachine = stateMachine;
             IDState = _lastID++;
         }
 
