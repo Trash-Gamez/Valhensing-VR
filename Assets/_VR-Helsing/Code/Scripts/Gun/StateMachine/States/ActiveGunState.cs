@@ -21,7 +21,6 @@ namespace _VR_Helsing.Gun
         private float _yVelocityThreshold;
         private float _xAngularVelocityThreshold;
 
-        private Variable<Vector3> _localAngularVel;
         
         public ActiveGunState(GunStateMachine stateMachine, GunStateFactory factory) : base(stateMachine, factory)
         {
@@ -32,8 +31,6 @@ namespace _VR_Helsing.Gun
             _zAngularVelocityThreshold = GunStateMachine.ZAngularVelocityThreshold;
             _yVelocityThreshold = GunStateMachine.YVelocityThreshold;
             _xAngularVelocityThreshold = GunStateMachine.XAngularVelocityThreshold;
-            
-            _localAngularVel = GunStateMachine.LocalAngularVelocity;
         }
 
         public override void Enter()

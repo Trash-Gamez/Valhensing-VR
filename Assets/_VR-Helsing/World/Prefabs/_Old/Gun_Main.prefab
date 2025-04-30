@@ -456,23 +456,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87588843c698f7344bb62699de1ce846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunGrabbable: {fileID: 826575707690859978}
   magazine: {fileID: 11400000, guid: 811677921c028d743b3c76aab6a6888d, type: 2}
   guns:
   - {fileID: 11400000, guid: 1269527ecd702db42b792b7194f3815d, type: 2}
   - {fileID: 11400000, guid: 2f50234c3d3fa6b4aab378d4bf631326, type: 2}
   - {fileID: 11400000, guid: cfe09ada2641f9e4ea04fd23632682c2, type: 2}
   data: {fileID: 11400000, guid: 2f50234c3d3fa6b4aab378d4bf631326, type: 2}
-  gunRenderers:
-  - {fileID: 7146792420941167987}
-  - {fileID: 4089428405629544439}
-  - {fileID: 2751733272423842635}
-  changeGunSpeedLimit: 50
-  secondsToChangeWeapon: 1.5
   fromGameObjectLayer: {fileID: 4785304885527533672}
   hittableLayer:
     serializedVersion: 2
     m_Bits: 24576
+  gunRenderers:
+  - {fileID: 7146792420941167987}
+  - {fileID: 4089428405629544439}
+  - {fileID: 2751733272423842635}
+  zAngularVelocityThreshold: 0
+  yVelocityThreshold: 1.5
+  xAngularVelocityThreshold: 0
+  secondsToChangeWeapon: 1.5
+  localAngularVelocity: {fileID: 11400000, guid: e1c3ef4213244494caaa85429db7c0a6, type: 2}
   gunRigidbody: {fileID: 4408114444832077499}
   gunAnimator: {fileID: 4341893022116594020}
   shootPoint: {fileID: 1946561226}
@@ -480,56 +482,7 @@ MonoBehaviour:
   bulletParent: {fileID: 0}
   bloodEffect: {fileID: 7974277105815942764, guid: eebe526d41f431e40a19798c60c0afcd, type: 3}
   gunInput: {fileID: 9192556635033564219}
-  leftTriggerAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Left Trigger
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: c8768826-0e1d-4975-b183-43cb48f06d8b
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  leftGripAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Left Grip
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: d7d659bf-3bfe-4134-b3df-0f2f874cb712
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  rightTriggerAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Right Trigger
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: d8e346bc-7942-4e56-b810-23b219ca668f
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  rightGripAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Right Grip
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: ab6c0715-b2ad-4f0c-8343-5d21e9b0f30b
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  lighting: {fileID: 0}
-  magazineText: {fileID: 154164011451380038}
+  CanReload: 0
 --- !u!114 &9192556635033564219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6d30dd05324c628ad224f2e7f20ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunGrabbable: {fileID: 0}
   leftTriggerAction:
     m_UseReference: 1
     m_Action:

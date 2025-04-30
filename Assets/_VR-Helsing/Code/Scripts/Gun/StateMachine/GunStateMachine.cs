@@ -44,8 +44,9 @@ namespace _VR_Helsing.Gun
         [SerializeField] private float yVelocityThreshold;
         [SerializeField] private float xAngularVelocityThreshold;
         [SerializeField] private float secondsToChangeWeapon;
-        [SerializeField] private Variable<Vector3> localAngularVelocity;
-        
+        private Vector3 _localAngularVelocity;
+
+        public float MaxSecondsToChangeWeapon => secondsToChangeWeapon;
         private GunConfig _config;
         private int _currentGun = 0;
 
@@ -60,7 +61,7 @@ namespace _VR_Helsing.Gun
         public float ZAngularVelocityThreshold => zAngularVelocityThreshold;
         public float YVelocityThreshold => yVelocityThreshold;
         public float XAngularVelocityThreshold => xAngularVelocityThreshold;
-        public Variable<Vector3> LocalAngularVelocity => localAngularVelocity;
+        public Vector3 LocalAngularVelocity => _localAngularVelocity;
         public GunData[] Guns => guns;
         public GunConfig Config => _config;
         public LayerMask HittableLayer => hittableLayer;
@@ -110,11 +111,11 @@ namespace _VR_Helsing.Gun
 
         protected override void FixedUpdate()
         {
-            localAngularVelocity.Value = gunRigidbody.GetLocalAngularVelocity();
+            _localAngularVelocity = gunRigidbody.GetLocalAngularVelocity();
             Vector3 localVelocity = gunRigidbody.transform.InverseTransformDirection(gunRigidbody.linearVelocity);
             
-            XLocalAngVelBuffer.Add(localAngularVelocity.Value.x);
-            ZLocalAngVelBuffer.Add(localAngularVelocity.Value.z);
+            XLocalAngVelBuffer.Add(_localAngularVelocity.x);
+            ZLocalAngVelBuffer.Add(_localAngularVelocity.z);
             YLocalVelBuffer.Add(localVelocity.y);
             
             base.FixedUpdate();
