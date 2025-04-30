@@ -1,6 +1,7 @@
 using System.Linq;
 using _VanHelsingVR.Animation.Gun;
 using _VR_Helsing.Utils;
+using RacTools.Variables;
 using UnityEngine;
 
 namespace _VR_Helsing.Gun
@@ -20,17 +21,16 @@ namespace _VR_Helsing.Gun
         private float _yVelocityThreshold;
         private float _xAngularVelocityThreshold;
 
-        private Vector3 _localAngularVel;
         
-        public ActiveGunState(GunStateMachine stateMachine, GunInput input) : base(stateMachine)
+        public ActiveGunState(GunStateMachine stateMachine, GunStateFactory factory) : base(stateMachine, factory)
         {
-            _input = input;
-            _gunAnimator = gunStateMachine.GunAnimator; 
-            _gunRigidBody = gunStateMachine.GunRigidbody;
+            _input = GunStateMachine.Input;
+            _gunAnimator = GunStateMachine.GunAnimator; 
+            _gunRigidBody = GunStateMachine.GunRigidbody;
 
-            _zAngularVelocityThreshold = gunStateMachine.ZAngularVelocityThreshold;
-            _yVelocityThreshold = gunStateMachine.YVelocityThreshold;
-            _xAngularVelocityThreshold = gunStateMachine.XAngularVelocityThreshold;
+            _zAngularVelocityThreshold = GunStateMachine.ZAngularVelocityThreshold;
+            _yVelocityThreshold = GunStateMachine.YVelocityThreshold;
+            _xAngularVelocityThreshold = GunStateMachine.XAngularVelocityThreshold;
         }
 
         public override void Enter()
@@ -38,13 +38,11 @@ namespace _VR_Helsing.Gun
             _gunAnimator.SetBool(GunStateMachine.IsLoading, true);
             
             #if UNITY_EDITOR //Si estas en editor, actualiza en cada entrada el valor, por temas de debugging
-            _zAngularVelocityThreshold = gunStateMachine.ZAngularVelocityThreshold;
-            _yVelocityThreshold = gunStateMachine.YVelocityThreshold;
-            _xAngularVelocityThreshold = gunStateMachine.XAngularVelocityThreshold;
+            _zAngularVelocityThreshold = GunStateMachine.ZAngularVelocityThreshold;
+            _yVelocityThreshold = GunStateMachine.YVelocityThreshold;
+            _xAngularVelocityThreshold = GunStateMachine.XAngularVelocityThreshold;
             #endif
         }
-
-        public override void FixedUpdate() => GetLocalAngularVelocities();
 
         public override void Exit()
         { 
@@ -53,25 +51,32 @@ namespace _VR_Helsing.Gun
 
         public override void CheckState()
         {
-         
-            Vector3 localVelocity = _gunRigidBody.transform.InverseTransformDirection(_gunRigidBody.linearVelocity);
-            if (Mathf.Abs(_gunRigidBody.veloci) > _yVelocityThreshold && _input.IsGripping)
+            if (!_input.IsGripping)
             {
-                gunStateMachine.ChangeState(gunStateMachine.ReloadGunState);
+                GunStateMachine.ChangeState(StateFactory.IdleState);
                 return;
             }
+
+            //Primero checa si cambio de arma
+            var localZAngVel = GunStateMachine.ZLocalAngVelBuffer.Average();
         
-            if (Mathf.Abs(_localAngularVel.z) > _zAngularVelocityThreshold && _input.IsGripping)
+            if (localZAngVel.IsPassedThreshold(_zAngularVelocityThreshold))
             {
-                gunStateMachine.ChangeState(gunStateMachine.ChangeWeaponGunState);
+                GunStateMachine.ChangeState(StateFactory.ChangeWeaponState);
                 return;
             }
-        }
-
-
-        private void GetLocalAngularVelocities()
-        {
-            _localAngularVel = _gunRigidBody.GetLocalAngularVelocity();
+            
+            //segundo checa la recarga
+            var localYVelocity = GunStateMachine.YLocalVelBuffer.Average();
+            var localXAngVel = GunStateMachine.XLocalAngVelBuffer.Average();
+            
+            if (localYVelocity.IsPassedThreshold(_yVelocityThreshold) 
+                && localXAngVel.IsPassedThreshold(_xAngularVelocityThreshold))
+            {
+                GunStateMachine.ChangeState(StateFactory.ReloadState);
+                return;
+            }
+            
         }
     }
 }

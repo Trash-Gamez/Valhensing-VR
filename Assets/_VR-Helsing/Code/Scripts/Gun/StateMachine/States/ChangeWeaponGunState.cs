@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using _VanHelsingVR.Animation.Gun;
 using RacTools.Variables;
 using UnityEngine;
 
@@ -7,48 +8,74 @@ namespace _VR_Helsing.Gun
     public class ChangeWeaponGunState : BaseGunState
     {
         private Variable<int> _magazine;
-        private float _secondsToChangeWeapon;
+        private GunInput _input; 
+        private float _maxSecondsToChangeWeapon;
 
-        public ChangeWeaponGunState(GunStateMachine stateMachine, Variable<int> magazine) : base(stateMachine)
+        private int _initialZVelSign;
+        private Coroutine _checkChangeGunCor = null;
+        private bool _result, _ended;
+
+        public ChangeWeaponGunState(GunStateMachine stateMachine, GunStateFactory factory) : base(stateMachine, factory)
         {
-            _magazine = magazine;
+            _magazine = GunStateMachine.Magazine;
+            _input = GunStateMachine.Input;
+            _maxSecondsToChangeWeapon = GunStateMachine.MaxSecondsToChangeWeapon;
         }
 
         public override void Enter()
         {
-            gunStateMachine.StartCoroutine(NextGunCoroutine());
+            _ended = false;
+            var speedz = GunStateMachine.ZLocalAngVelBuffer.Average();
+            _initialZVelSign = (int)Mathf.Sign(speedz);
+            GunStateMachine.StartCoroutine(NextGunCoroutine(_initialZVelSign));
         }
 
         public override void Exit()
         {
             
         }
-        
-        private IEnumerator NextGunCoroutine(float speedZ, float absSpeedLimit)
-        {
-            bool result = false;
-            float seconds = 0f;
-            float currentZSpeed = _zAxisBuffer.Sum(num => num);
-            var speedSign = (int)Mathf.Sign(speedZ);
 
-            while (seconds < secondsToChangeWeapon)
+        public override void CheckState()
+        {
+            if (!_input.IsGripping)
+            {
+                if(_checkChangeGunCor != null) GunStateMachine.StopCoroutine(_checkChangeGunCor);
+                GunStateMachine.ChangeState(StateFactory.IdleState);
+                return;
+            }
+
+            if (!_ended) return;
+            
+            if(_result)
+                GunStateMachine.NextGun(_initialZVelSign);
+            
+            GunStateMachine.ChangeState(StateFactory.ActiveState);
+        }
+
+        private IEnumerator NextGunCoroutine(int initialZVelSign)
+        {
+            float seconds = 0f;
+            float currentZSpeed = GunStateMachine.ZLocalAngVelBuffer.Average();
+
+            while (seconds < _maxSecondsToChangeWeapon)
             {
                 seconds += Time.deltaTime;
+                var currentVelSign = ((int)Mathf.Sign(currentZSpeed));
                 //Si el signo de la veliciada actual es contrario a la velocidad inicial
                 // y la velocidad absoluta de la velocidad actual es mayor al ,limite absoluto de velocidad
                 // el resultado es posotivo
-                if (((int)Mathf.Sign(currentZSpeed)) != speedSign && Mathf.Abs(currentZSpeed) > absSpeedLimit)
+                if (currentVelSign != initialZVelSign && Mathf.Abs(currentZSpeed) > GunStateMachine.ZAngularVelocityThreshold)
                 {
-                    result = true; break;
+                    _result = true;
+                    _ended = true;
+                    break;
                 }
                 yield return null;
 
-                currentZSpeed = _zAxisBuffer.Sum(num => num);
+                currentZSpeed = GunStateMachine.ZLocalAngVelBuffer.Average();
             }
-        
-            if(result)
-                gunStateMachine.NextGun(speedSign);
-        
+
+            _ended = true;
         }
     }
 }

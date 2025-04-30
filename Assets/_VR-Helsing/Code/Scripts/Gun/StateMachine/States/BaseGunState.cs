@@ -4,10 +4,13 @@ namespace _VR_Helsing.Gun
 {
     public abstract class BaseGunState : BaseState
     {
-        protected GunStateMachine gunStateMachine;
+        protected readonly GunStateMachine GunStateMachine;
+        protected readonly GunStateFactory StateFactory;
         
-        protected BaseGunState(GunStateMachine stateMachine) : base(stateMachine)
+        protected BaseGunState(GunStateMachine stateMachine, GunStateFactory stateFactory) : base(stateMachine)
         {
+            GunStateMachine = stateMachine;
+            StateFactory = stateFactory;
         }
 
         public override void Update()

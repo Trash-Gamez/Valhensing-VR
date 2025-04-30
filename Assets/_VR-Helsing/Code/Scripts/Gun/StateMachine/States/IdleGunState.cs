@@ -9,10 +9,10 @@ namespace _VR_Helsing.Gun
         private Animator _gunAnimator;
         private GunInput _input;
         
-        public IdleGunState(GunStateMachine stateMachine, GunInput input) : base(stateMachine)
+        public IdleGunState(GunStateMachine stateMachine, GunStateFactory factory) : base(stateMachine, factory)
         {
-            _gunAnimator = gunStateMachine.GunAnimator;
-            _input = input;
+            _gunAnimator = GunStateMachine.GunAnimator;
+            _input = GunStateMachine.Input;
         }
 
         public override void Enter()
@@ -24,11 +24,11 @@ namespace _VR_Helsing.Gun
         {
             if (!_input.IsTriggering && _input.IsGripping) //ONLY GRIPPING
             { 
-                gunStateMachine.ChangeState(gunStateMachine.ActiveGunState);
+                GunStateMachine.ChangeState(StateFactory.ActiveState);
             }
             else if (_input.IsTriggering && !_input.IsGripping) //ONLY TRIGGERING
             {
-                gunStateMachine.ChangeState(gunStateMachine.ShootGunState);
+                GunStateMachine.ChangeState(StateFactory.ShootState);
                 return;
             }
         }

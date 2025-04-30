@@ -9,37 +9,49 @@ namespace _VR_Helsing.Gun
     {
         private Variable<int> _magazine;
         private Animator _gunAnimator;
+
+        private bool _ended;
         
-        public ReloadGunState(GunStateMachine stateMachine, Variable<int> magazine) : base(stateMachine)
+        public ReloadGunState(GunStateMachine stateMachine, GunStateFactory factory) : base(stateMachine, factory)
         {
-            _magazine = magazine;
+            _gunAnimator = GunStateMachine.GunAnimator;
+            _magazine = GunStateMachine.Magazine;
         }
 
         public override void Enter()
         {
-            gunStateMachine.StartCoroutine(ReloadCoroutine());
+            _ended = false;
+            GunStateMachine.StartCoroutine(ReloadCoroutine());
         }
 
         public override void Exit()
         {
             
         }
-        
+
+        public override void CheckState()
+        {
+            if (!_ended) return;
+            
+            GunStateMachine.ChangeState(StateFactory.ActiveState);
+        }
+
         IEnumerator ReloadCoroutine()
         {
             _gunAnimator.Play("Reload");
             if(AudioManager.Instance) AudioManager.Instance.PlaySound2D("Reload");
-            yield return new WaitForSeconds(gunStateMachine.Config.ReloadTime);
+            yield return new WaitForSeconds(GunStateMachine.Config.ReloadTime);
             Reload();
+            _ended = true;
         }
    
         private void Reload()
         {
-            _magazine.Value += gunStateMachine.Config.ReloadBullets;
-            if (_magazine.Value >= gunStateMachine.Config.MagazineSize)
+            _magazine.Value += GunStateMachine.Config.ReloadBullets;
+            if (_magazine.Value >= GunStateMachine.Config.MagazineSize)
             {
                 if(AudioManager.Instance) AudioManager.Instance.PlaySound2D("FullReload");
-                _magazine.Value = gunStateMachine.Config.MagazineSize;
+                _magazine.Value = GunStateMachine.Config.MagazineSize;
             }
         }
     }
