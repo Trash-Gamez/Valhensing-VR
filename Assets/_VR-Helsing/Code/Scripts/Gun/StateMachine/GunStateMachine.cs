@@ -1,55 +1,56 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 using RacTools.Variables;
 using RacTools.StateMachine;
-using _VanHelsingVR.Animation.Gun;
-using _VR_Helsing.Utils;
 
 namespace _VR_Helsing.Gun
 {
     public class GunStateMachine : BaseStateMachine
     {
         public static readonly int IsLoading = Animator.StringToHash("IsLoading");
-
-        public static readonly GunBuffer ZLocalAngVelBuffer = new GunBuffer();
-        public static readonly GunBuffer XLocalAngVelBuffer = new GunBuffer();
-        public static readonly GunBuffer YLocalVelBuffer = new GunBuffer();
-        
         
         private readonly int[] _magazinesLoad = new int[3];
-        public int[] MagazinesLoad => _magazinesLoad;
-    
-#if UNITY_EDITOR
-        [Title("Gun Variables")]
-#endif
+
+        [Header("Gun Variables")]
         [SerializeField]
         private Variable<int> magazine;
-    
-        public Variable<int> Magazine => magazine;
-#if UNITY_EDITOR
-        [Title("Gun Settings")]
-#endif
+
+        [Header("Gun Settings")]
+
         [SerializeField] private GunData[] guns;
         [SerializeField] private GunData data;
         [SerializeField] private GameObject fromGameObjectLayer;
         [SerializeField] private LayerMask hittableLayer;
         [SerializeField] private Renderer[] gunRenderers;
-#if UNITY_EDITOR
-        [Title("Velocity")]
-#endif
-        [SerializeField] private float zAngularVelocityThreshold;
+
+        [Header("Velocity")]
         [SerializeField] private float yVelocityThreshold;
-        [SerializeField] private float xAngularVelocityThreshold;
-        [SerializeField] private float secondsToChangeWeapon;
-        private Vector3 _localAngularVelocity;
 
-        public float MaxSecondsToChangeWeapon => secondsToChangeWeapon;
-        private GunConfig _config;
-        private int _currentGun = 0;
+        [Header("Gun Properties")]
+        [SerializeField] private Rigidbody gunRigidbody;
+        [SerializeField] private Animator gunAnimator;
+        [SerializeField] private Transform shootPoint;
+        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private Transform bulletParent;
+        [SerializeField] private GameObject bloodEffect;
 
+        [Header("Gun Input")]
+        [SerializeField] private GunInput gunInput;
+        
+        [Header("Animation")] 
+        [SerializeField] private AnimationClip reloadClip;
+        
+        #region GETTERS & SETTERS
+        
+        //Magazines per gun
+        public int[] MagazinesLoad => _magazinesLoad;
+        
+        //Variables
+        public Variable<int> Magazine => magazine;
+
+        #region SETTINGS
+        //Settings
         public int CurrentGun
         {
             get => _currentGun;
@@ -58,53 +59,35 @@ namespace _VR_Helsing.Gun
                 _currentGun = value;
             }
         }
-        public float ZAngularVelocityThreshold => zAngularVelocityThreshold;
         public float YVelocityThreshold => yVelocityThreshold;
-        public float XAngularVelocityThreshold => xAngularVelocityThreshold;
-        public Vector3 LocalAngularVelocity => _localAngularVelocity;
         public GunData[] Guns => guns;
         public GunConfig Config => _config;
         public LayerMask HittableLayer => hittableLayer;
         public int FromLayer => fromGameObjectLayer.layer;
-
-#if UNITY_EDITOR
-        [Title("Gun Properties")]
-#endif
-        [SerializeField] private Rigidbody gunRigidbody;
-        [SerializeField] private Animator gunAnimator;
-        [SerializeField] private Transform shootPoint;
-        [SerializeField] private GameObject bulletPrefab;
-        [SerializeField] private Transform bulletParent;
-        [SerializeField] private GameObject bloodEffect;
- 
+        #endregion
+        
+        #region GUN PROPERTIES
+        //Gun Properties
         public Rigidbody GunRigidbody => gunRigidbody;
         public Animator GunAnimator => gunAnimator;
         public Transform ShootPoint => shootPoint;
         public GameObject BulletPrefab => bulletPrefab;
         public Transform BulletParent => bulletParent;
-    
-#if UNITY_EDITOR
-        [Title("Gun Input")]
-#endif
-        [SerializeField] private GunInput gunInput;
-
+        #endregion
+        
+        //Input
         public GunInput Input => gunInput;
-        
-        [Header("Animation")] 
-        [SerializeField] private AnimationClip reloadClip;
-        
+        //Animation
         public AnimationClip ReloadClip => reloadClip;
-        
-        
-        private bool canReload =true;
-        private bool canShoot = true;
 
+        //State Machine
         private GunStateFactory _stateFactory;
         public BaseState CurrentState => currentState;
+        #endregion
+
+        private GunConfig _config;
+        private int _currentGun = 0;
         
-
-        public bool CanReload = false; //TODO: hacer propiedad, medir cuando se dispara y esperar por aqui
-
         private void Awake()
         {
             _stateFactory = new GunStateFactory(this);
@@ -116,45 +99,6 @@ namespace _VR_Helsing.Gun
         {
             magazine.Value = 0;
             _config = data.Config;
-        }
-
-        private float lastZAngle, lastXAngle, lastYPos;
-
-        protected override void Update()
-        {
-            var xAngleVel = transform.localEulerAngles.x - lastXAngle;
-            var zAngleVel = transform.localEulerAngles.z - lastZAngle;
-            var yVel = transform.localPosition.y - lastYPos;
-            
-            XLocalAngVelBuffer.Add(xAngleVel);
-            ZLocalAngVelBuffer.Add(zAngleVel);
-            YLocalVelBuffer.Add(yVel);
-            
-            Debug.Log($"xAngle: {xAngleVel}, zAngle: {zAngleVel}, yVel: {yVel}");
-            
-            
-            base.Update();
-        }
-
-        private void LateUpdate()
-        {
-            lastXAngle = transform.localEulerAngles.x;
-            lastZAngle = transform.localEulerAngles.z;
-            lastYPos = transform.localPosition.y;
-        }
-
-        protected override void FixedUpdate()
-        {
-            /*
-            _localAngularVelocity = gunRigidbody.GetLocalAngularVelocity();
-            Vector3 localVelocity = gunRigidbody.transform.InverseTransformDirection(gunRigidbody.linearVelocity);
-            
-            XLocalAngVelBuffer.Add(_localAngularVelocity.x);
-            ZLocalAngVelBuffer.Add(_localAngularVelocity.z);
-            YLocalVelBuffer.Add(localVelocity.y);
-            */
-            
-            base.FixedUpdate();
         }
 
         private IEnumerator IWaitShootCor()
@@ -184,8 +128,6 @@ namespace _VR_Helsing.Gun
         {
             if (newData.indexMesh < 0 || newData.indexMesh >= gunRenderers.Length) return;
         
-            canShoot = true;
-            canReload = true;
             //StopAllCoroutines();
             
             data = newData;
