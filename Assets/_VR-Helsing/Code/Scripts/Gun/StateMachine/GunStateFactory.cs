@@ -6,7 +6,6 @@
         public readonly BaseGunState ActiveState;
         public readonly BaseGunState ReloadState;
         public readonly BaseGunState ShootState;
-        public readonly BaseGunState ChangeWeaponState;
         
         private GunStateMachine _ctx;
         public GunStateFactory(GunStateMachine context)
@@ -17,7 +16,6 @@
             ActiveState = new ActiveGunState(_ctx, this);
             ReloadState = new ReloadGunState(_ctx, this);
             ShootState = new ShootGunState(_ctx, this);
-            ChangeWeaponState = new ChangeWeaponGunState(_ctx, this);
         }
 
     }
