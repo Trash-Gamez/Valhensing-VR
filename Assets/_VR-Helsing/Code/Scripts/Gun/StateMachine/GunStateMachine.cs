@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Sirenix.OdinInspector;
@@ -89,11 +90,18 @@ namespace _VR_Helsing.Gun
 
         public GunInput Input => gunInput;
         
+        [Header("Animation")] 
+        [SerializeField] private AnimationClip reloadClip;
+        
+        public AnimationClip ReloadClip => reloadClip;
+        
+        
         private bool canReload =true;
         private bool canShoot = true;
 
         private GunStateFactory _stateFactory;
-        public BaseState CurrentState => currentState; 
+        public BaseState CurrentState => currentState;
+        
 
         public bool CanReload = false; //TODO: hacer propiedad, medir cuando se dispara y esperar por aqui
 
@@ -110,14 +118,41 @@ namespace _VR_Helsing.Gun
             _config = data.Config;
         }
 
+        private float lastZAngle, lastXAngle, lastYPos;
+
+        protected override void Update()
+        {
+            var xAngleVel = transform.localEulerAngles.x - lastXAngle;
+            var zAngleVel = transform.localEulerAngles.z - lastZAngle;
+            var yVel = transform.localPosition.y - lastYPos;
+            
+            XLocalAngVelBuffer.Add(xAngleVel);
+            ZLocalAngVelBuffer.Add(zAngleVel);
+            YLocalVelBuffer.Add(yVel);
+            
+            Debug.Log($"xAngle: {xAngleVel}, zAngle: {zAngleVel}, yVel: {yVel}");
+            
+            
+            base.Update();
+        }
+
+        private void LateUpdate()
+        {
+            lastXAngle = transform.localEulerAngles.x;
+            lastZAngle = transform.localEulerAngles.z;
+            lastYPos = transform.localPosition.y;
+        }
+
         protected override void FixedUpdate()
         {
+            /*
             _localAngularVelocity = gunRigidbody.GetLocalAngularVelocity();
             Vector3 localVelocity = gunRigidbody.transform.InverseTransformDirection(gunRigidbody.linearVelocity);
             
             XLocalAngVelBuffer.Add(_localAngularVelocity.x);
             ZLocalAngVelBuffer.Add(_localAngularVelocity.z);
             YLocalVelBuffer.Add(localVelocity.y);
+            */
             
             base.FixedUpdate();
         }

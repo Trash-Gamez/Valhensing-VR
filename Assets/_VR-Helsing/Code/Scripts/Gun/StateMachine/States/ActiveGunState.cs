@@ -1,7 +1,3 @@
-using System.Linq;
-using _VanHelsingVR.Animation.Gun;
-using _VR_Helsing.Utils;
-using RacTools.Variables;
 using UnityEngine;
 
 namespace _VR_Helsing.Gun

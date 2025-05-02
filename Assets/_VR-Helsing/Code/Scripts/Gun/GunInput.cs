@@ -1,13 +1,9 @@
-﻿using UnityEngine;
+﻿using Autohand;
+using Sirenix.OdinInspector;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
-using Autohand;
-
-#if UNITY_EDITOR
-using Sirenix.OdinInspector;
-#endif
-
-namespace _VanHelsingVR.Animation.Gun
+namespace _VR_Helsing.Gun
 {
     [DefaultExecutionOrder(-1)]
     public class GunInput : MonoBehaviour
