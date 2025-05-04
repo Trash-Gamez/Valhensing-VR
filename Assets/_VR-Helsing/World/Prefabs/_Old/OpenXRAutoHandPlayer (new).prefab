@@ -126,8 +126,8 @@ Transform:
   m_GameObject: {fileID: 252217771969292763}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 0, z: -0.184}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalPosition: {x: -0.22, y: 0, z: -0.0191}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 280162768469239659}
@@ -218,7 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9944cf1ea73fae4439aef28202136cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunTag: Gun
+  gunHolder: {fileID: 8177597570292726457}
+  handTag: Hand
 --- !u!1 &280162768469239656
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,46 +610,6 @@ MonoBehaviour:
   secondaryGunGrabbable: {fileID: 2461362716367891679}
   leftHand: {fileID: 8957762121821984812}
   rightHand: {fileID: 3246749233292311009}
-  changeGunLeft:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Change Gun Left
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 2d3be942-edb6-4fd3-9454-4dd218a39fdb
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: c1787b76-6960-4e64-bcf6-05f4a2c00a27
-        m_Path: <XRController>{LeftHand}/primaryButton
-        m_Interactions: Press
-        m_Processors: 
-        m_Groups: 
-        m_Action: Change Gun Left
-        m_Flags: 0
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  changeGunRight:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Change Gun Right
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 70701fd3-5079-4a6d-826a-de0ded3e8eff
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: c427c67d-39d3-4eae-bc97-b14d87257635
-        m_Path: <XRController>{RightHand}/primaryButton
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Change Gun Right
-        m_Flags: 0
-      m_Flags: 0
-    m_Reference: {fileID: 0}
   behindHeadPos: {fileID: 7872621842843827163}
 --- !u!114 &5803332032354738941
 MonoBehaviour:
@@ -949,8 +910,8 @@ Transform:
   m_GameObject: {fileID: 2938191563766182635}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalPosition: {x: 0.2, y: 0, z: -0.01909995}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 280162768469239659}
@@ -1041,7 +1002,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9944cf1ea73fae4439aef28202136cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunTag: Gun
+  gunHolder: {fileID: 8177597570292726457}
+  handTag: Hand
 --- !u!1 &3168725228883385729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,18 +1596,38 @@ PrefabInstance:
       propertyPath: follow
       value: 
       objectReference: {fileID: 3265211982079483575}
+    - target: {fileID: 3241778929082376652, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
+      propertyPath: m_TagString
+      value: Hand
+      objectReference: {fileID: 0}
     - target: {fileID: 3451472467219576537, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
       propertyPath: ignoreHandCollider.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3451472467219576537, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
       propertyPath: 'ignoreHandCollider.Array.data[0]'
       value: 
-      objectReference: {fileID: 8589940543846648488}
+      objectReference: {fileID: 2631791046091280325}
     - target: {fileID: 3451472467219576537, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
       propertyPath: 'ignoreHandCollider.Array.data[1]'
       value: 
       objectReference: {fileID: 2631791046091280325}
+    - target: {fileID: 6086020840903781117, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
+      propertyPath: bendAction.m_Reference
+      value: 
+      objectReference: {fileID: 8650556816782149517, guid: ea9500ae32862c949b420c59682d02ed, type: 3}
+    - target: {fileID: 6086020840903781117, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
+      propertyPath: unbendAction.m_Reference
+      value: 
+      objectReference: {fileID: -1398031799169746360, guid: ea9500ae32862c949b420c59682d02ed, type: 3}
+    - target: {fileID: 6086020840903781118, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
+      propertyPath: bendAction.m_Reference
+      value: 
+      objectReference: {fileID: -4456888692727725139, guid: ea9500ae32862c949b420c59682d02ed, type: 3}
+    - target: {fileID: 6086020840903781118, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
+      propertyPath: unbendAction.m_Reference
+      value: 
+      objectReference: {fileID: -3694457766066378137, guid: ea9500ae32862c949b420c59682d02ed, type: 3}
     - target: {fileID: 6129296809421329499, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
       propertyPath: m_UseGravity
       value: 1
@@ -1670,17 +1652,78 @@ PrefabInstance:
       propertyPath: follow
       value: 
       objectReference: {fileID: 3265211982079483575}
+    - target: {fileID: 8374647757447980550, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3241778929082376652, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 939393725676505104}
   m_SourcePrefab: {fileID: 100100000, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
+--- !u!1 &3041392046933396840 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3241778929082376652, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
+  m_PrefabInstance: {fileID: 488690249126702244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &939393725676505104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3041392046933396840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017227a631b2f5c41a5ac5eb798c5133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachedHand: {fileID: 3246749233292311009}
+  onDataChange:
+    m_UseReference: 1
+    m_Action:
+      m_Name: On Data Change
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: b57384c0-e63b-4ef2-a1c1-a1012fa1d2b2
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: Button Fallback
+        m_Id: 78acf14e-fb6a-497c-8edd-9fca74e82658
+        m_Path: ButtonFallback
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: On Data Change
+        m_Flags: 4
+      - m_Name: second
+        m_Id: 6459f586-38d0-4fae-b954-76bc2f117f15
+        m_Path: 
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: On Data Change
+        m_Flags: 8
+      - m_Name: third
+        m_Id: d73d5247-8b6b-479b-8cf4-f376a7c064f1
+        m_Path: 
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: On Data Change
+        m_Flags: 8
+      m_Flags: 0
+    m_Reference: {fileID: -8666952849799569744, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &3246749233292311009 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3154463712313349445, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
   m_PrefabInstance: {fileID: 488690249126702244}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3041392046933396840}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9413d460e98076241a1f46c91201217d, type: 3}
@@ -4779,6 +4822,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0fd7f9d51f023124c9e0eb93d0dcf094, type: 2}
+    - target: {fileID: 7146792420941167987, guid: 50fb660a549d946448cf3625c19af949, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7764216143577507415, guid: 50fb660a549d946448cf3625c19af949, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -5079,6 +5126,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 280162768521523284}
     m_Modifications:
+    - target: {fileID: 318597167931682401, guid: bd7afead320cf7149b53050b095861e6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1636735449653647011, guid: bd7afead320cf7149b53050b095861e6, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -5143,14 +5194,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: NEW_RobotHand (L)
       objectReference: {fileID: 0}
+    - target: {fileID: 6678353838245357995, guid: bd7afead320cf7149b53050b095861e6, type: 3}
+      propertyPath: m_TagString
+      value: Hand
+      objectReference: {fileID: 0}
     - target: {fileID: 6896502242285715134, guid: bd7afead320cf7149b53050b095861e6, type: 3}
       propertyPath: ignoreHandCollider.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6896502242285715134, guid: bd7afead320cf7149b53050b095861e6, type: 3}
       propertyPath: 'ignoreHandCollider.Array.data[0]'
       value: 
-      objectReference: {fileID: 8589940543846648488}
+      objectReference: {fileID: 2631791046091280325}
     - target: {fileID: 6896502242285715134, guid: bd7afead320cf7149b53050b095861e6, type: 3}
       propertyPath: 'ignoreHandCollider.Array.data[1]'
       value: 
@@ -5165,7 +5220,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2812064913843343100, guid: bd7afead320cf7149b53050b095861e6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3451830979486394436}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6678353838245357995, guid: bd7afead320cf7149b53050b095861e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4055649428736706748}
   m_SourcePrefab: {fileID: 100100000, guid: bd7afead320cf7149b53050b095861e6, type: 3}
 --- !u!4 &55055536275901426 stripped
 Transform:
@@ -5177,12 +5235,42 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3808918654196869830, guid: bd7afead320cf7149b53050b095861e6, type: 3}
   m_PrefabInstance: {fileID: 2865959057588225294}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8893388783142513829 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6678353838245357995, guid: bd7afead320cf7149b53050b095861e6, type: 3}
+  m_PrefabInstance: {fileID: 2865959057588225294}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4055649428736706748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893388783142513829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017227a631b2f5c41a5ac5eb798c5133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachedHand: {fileID: 8957762121821984812}
+  onDataChange:
+    m_UseReference: 1
+    m_Action:
+      m_Name: On Data Change
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c94ecaf8-27d2-4aa6-a050-d4f1d364b9b7
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -60998027439631388, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &8957762121821984812 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6599378348453535010, guid: bd7afead320cf7149b53050b095861e6, type: 3}
   m_PrefabInstance: {fileID: 2865959057588225294}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8893388783142513829}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9413d460e98076241a1f46c91201217d, type: 3}
