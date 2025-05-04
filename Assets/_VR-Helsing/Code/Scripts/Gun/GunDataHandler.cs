@@ -1,5 +1,6 @@
 using RacTools.Variables;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GunDataHandler : MonoBehaviour
 {
