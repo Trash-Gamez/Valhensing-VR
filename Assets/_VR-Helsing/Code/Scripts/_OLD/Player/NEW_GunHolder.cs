@@ -6,13 +6,14 @@ using UnityEngine.InputSystem;
 public class NEW_GunHolder : MonoBehaviour
 {
     private enum GunHolderType {Main, Secondary}
-    [SerializeField]
-    private Grabbable gunGrabbable, secondaryGunGrabbable;
+    
+    [SerializeField] private Grabbable gunGrabbable, secondaryGunGrabbable;
     [SerializeField] private Hand leftHand, rightHand;
     [SerializeField] private InputActionProperty changeGunLeft, changeGunRight;
 
-    [SerializeField]
-    private Transform behindHeadPos;
+    [SerializeField] private Transform behindHeadPos;
+    public Hand LeftHand => leftHand;
+    public Hand RightHand => rightHand;
 
     private bool _hasSecondWeapon;
 
@@ -36,6 +37,12 @@ public class NEW_GunHolder : MonoBehaviour
     }
 
     private Hand _currentHoldingHand, _secondaryHoldingHand;
+
+    public void AlterGun(Hand toHand)
+    {
+        
+    }
+    
     private void HandleGunChange(Hand handToChange)
     {
         if (_hasSecondWeapon)

@@ -23,9 +23,11 @@ namespace _VR_Helsing.Gun
         private Coroutine _shootCor;
         private float _waitTime;
         
+        private GunConfig Config => GunStateMachine.DataHandler.Config; //local Way To get config
+        
         public ShootGunState(GunStateMachine stateMachine, GunStateFactory factory) : base(stateMachine, factory)
         {
-            _magazine = GunStateMachine.Magazine;
+            _magazine = GunStateMachine.DataHandler.Magazine;
             _input = GunStateMachine.Input;
             
             _bulletPrefab = GunStateMachine.BulletPrefab;
@@ -38,7 +40,7 @@ namespace _VR_Helsing.Gun
         public override void Enter()
         {
             _waitTime = 0.0f;
-            _config = GunStateMachine.Config;
+            _config = Config;
             _shootCor = GunStateMachine.StartCoroutine(Shoot());
         }
 
