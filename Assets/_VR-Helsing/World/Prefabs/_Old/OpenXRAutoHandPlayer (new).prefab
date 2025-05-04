@@ -1717,7 +1717,7 @@ MonoBehaviour:
         m_Action: On Data Change
         m_Flags: 8
       m_Flags: 0
-    m_Reference: {fileID: -8666952849799569744, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: -4699452970422561708, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &3246749233292311009 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3154463712313349445, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
@@ -1766,6 +1766,10 @@ PrefabInstance:
       propertyPath: 'guns.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 2f50234c3d3fa6b4aab378d4bf631326, type: 2}
+    - target: {fileID: 305127275, guid: 50fb660a549d946448cf3625c19af949, type: 3}
+      propertyPath: yVelocityThreshold
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 305127275, guid: 50fb660a549d946448cf3625c19af949, type: 3}
       propertyPath: changeGunSpeedLimit
       value: 2100
@@ -5264,7 +5268,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -60998027439631388, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: -6447423634115032261, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &8957762121821984812 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6599378348453535010, guid: bd7afead320cf7149b53050b095861e6, type: 3}
@@ -5299,6 +5303,10 @@ PrefabInstance:
     - target: {fileID: 305127275, guid: 50fb660a549d946448cf3625c19af949, type: 3}
       propertyPath: speedLimit
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 305127275, guid: 50fb660a549d946448cf3625c19af949, type: 3}
+      propertyPath: yVelocityThreshold
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1874668586, guid: 50fb660a549d946448cf3625c19af949, type: 3}
       propertyPath: variable
