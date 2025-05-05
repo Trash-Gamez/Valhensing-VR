@@ -1,19 +1,16 @@
 using Autohand;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.InputSystem;
-
 public class NEW_GunHolder : MonoBehaviour
 {
     private enum GunHolderType {Main, Secondary}
-    [SerializeField]
-    private Grabbable gunGrabbable, secondaryGunGrabbable;
+    
+    [SerializeField] private Grabbable gunGrabbable, secondaryGunGrabbable;
     [SerializeField] private Hand leftHand, rightHand;
-    [SerializeField] private InputActionProperty changeGunLeft, changeGunRight;
 
-    [SerializeField]
-    private Transform behindHeadPos;
+    [SerializeField] private Transform behindHeadPos;
 
+    private Hand _currentHoldingHand, _secondaryHoldingHand;
     private bool _hasSecondWeapon;
 
     private void Start()
@@ -35,7 +32,12 @@ public class NEW_GunHolder : MonoBehaviour
         _hasSecondWeapon = true;
     }
 
-    private Hand _currentHoldingHand, _secondaryHoldingHand;
+
+    public void AlterGun(Hand toHand)
+    {
+        HandleGunChange(toHand);
+    }
+    
     private void HandleGunChange(Hand handToChange)
     {
         if (_hasSecondWeapon)
@@ -48,8 +50,9 @@ public class NEW_GunHolder : MonoBehaviour
         {
             if (handToChange == _currentHoldingHand)
                 HideWeapon(GunHolderType.Main);
-            else
-                SwitchWeapon(GunHolderType.Main, handToChange);
+            //else
+                //SwitchWeapon(GunHolderType.Main, handToChange);
+            // Si se requiere cambio de arma, descomentar esta seccion
         }
         else
         {
@@ -115,8 +118,6 @@ public class NEW_GunHolder : MonoBehaviour
                 _secondaryHoldingHand.ForceGrab(secondaryGunGrabbable);
                 break;
         }
-        
-        
     }
 
     private void HideWeapon(GunHolderType gunHolderType)
@@ -134,35 +135,5 @@ public class NEW_GunHolder : MonoBehaviour
                 secondaryGunGrabbable.transform.position = behindHeadPos.position;
                 break;
         }
-    }
-    
-    /*
-    private Hand GetHandFromHolderType(GunHolderType holderType) => holderType switch
-    {
-        GunHolderType.Main => _currentHoldingHand,
-        GunHolderType.Secondary => _secondaryHoldingHand,
-    };
-    
-    private void GetGunGrabbableFromHolderType(GunHolderType holderType, ref Grabbable grabbableRef)
-    {
-        switch (holderType)
-        {
-            case GunHolderType.Main:
-                grabbableRef = gunGrabbable;
-                break;
-            case GunHolderType.Secondary:
-                grabbableRef = secondaryGunGrabbable;
-                break;
-        }
-    }
-    */
-
-    private void OnEnable()
-    {
-        Debug.Log("Enable");
-        changeGunLeft.action.Enable();
-        changeGunRight.action.Enable();
-        changeGunLeft.action.performed += delegate { HandleGunChange(leftHand); };
-        changeGunRight.action.performed += delegate { HandleGunChange(rightHand); };
     }
 }

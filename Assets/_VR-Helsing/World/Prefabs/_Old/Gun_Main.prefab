@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 305127275}
   - component: {fileID: 9192556635033564219}
   - component: {fileID: 3747473631963196447}
+  - component: {fileID: 6208397625314377333}
   m_Layer: 9
   m_Name: Gun_Main
   m_TagString: Untagged
@@ -456,24 +457,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87588843c698f7344bb62699de1ce846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magazine: {fileID: 11400000, guid: 811677921c028d743b3c76aab6a6888d, type: 2}
-  guns:
-  - {fileID: 11400000, guid: 1269527ecd702db42b792b7194f3815d, type: 2}
-  - {fileID: 11400000, guid: 2f50234c3d3fa6b4aab378d4bf631326, type: 2}
-  - {fileID: 11400000, guid: cfe09ada2641f9e4ea04fd23632682c2, type: 2}
-  data: {fileID: 11400000, guid: 2f50234c3d3fa6b4aab378d4bf631326, type: 2}
+  dataHandler: {fileID: 6208397625314377333}
   fromGameObjectLayer: {fileID: 4785304885527533672}
   hittableLayer:
     serializedVersion: 2
     m_Bits: 24576
-  gunRenderers:
-  - {fileID: 7146792420941167987}
-  - {fileID: 4089428405629544439}
-  - {fileID: 2751733272423842635}
-  zAngularVelocityThreshold: 85
-  yVelocityThreshold: 0.75
-  xAngularVelocityThreshold: 75
-  secondsToChangeWeapon: 1.25
+  yVelocityThreshold: 12
   gunRigidbody: {fileID: 4408114444832077499}
   gunAnimator: {fileID: 4341893022116594020}
   shootPoint: {fileID: 1946561226}
@@ -481,7 +470,7 @@ MonoBehaviour:
   bulletParent: {fileID: 0}
   bloodEffect: {fileID: 7974277105815942764, guid: eebe526d41f431e40a19798c60c0afcd, type: 3}
   gunInput: {fileID: 9192556635033564219}
-  CanReload: 0
+  reloadClip: {fileID: 7400000, guid: b90433bc4b42dda4c960a58386b14d16, type: 2}
 --- !u!114 &9192556635033564219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +547,28 @@ MonoBehaviour:
   OnGrabPressed:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6208397625314377333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3970090029669616151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac7f3b6229da174d9d84d98cd0a75f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunRenderers:
+  - {fileID: 4089428405629544439}
+  - {fileID: 7146792420941167987}
+  - {fileID: 2751733272423842635}
+  guns:
+  - {fileID: 11400000, guid: 2f50234c3d3fa6b4aab378d4bf631326, type: 2}
+  - {fileID: 11400000, guid: 1269527ecd702db42b792b7194f3815d, type: 2}
+  - {fileID: 11400000, guid: cfe09ada2641f9e4ea04fd23632682c2, type: 2}
+  currentData: {fileID: 11400000, guid: 2f50234c3d3fa6b4aab378d4bf631326, type: 2}
+  magazine: {fileID: 11400000, guid: 811677921c028d743b3c76aab6a6888d, type: 2}
 --- !u!1 &4785304885527533672
 GameObject:
   m_ObjectHideFlags: 0

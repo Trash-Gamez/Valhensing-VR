@@ -1,7 +1,3 @@
-using System.Linq;
-using _VanHelsingVR.Animation.Gun;
-using _VR_Helsing.Utils;
-using RacTools.Variables;
 using UnityEngine;
 
 namespace _VR_Helsing.Gun
@@ -16,11 +12,8 @@ namespace _VR_Helsing.Gun
         
         private Rigidbody _gunRigidBody;
         private Animator _gunAnimator;
-        
-        private float _zAngularVelocityThreshold;
-        private float _yVelocityThreshold;
-        private float _xAngularVelocityThreshold;
 
+        private float _yVelocityThreshold;
         
         public ActiveGunState(GunStateMachine stateMachine, GunStateFactory factory) : base(stateMachine, factory)
         {
@@ -28,9 +21,7 @@ namespace _VR_Helsing.Gun
             _gunAnimator = GunStateMachine.GunAnimator; 
             _gunRigidBody = GunStateMachine.GunRigidbody;
 
-            _zAngularVelocityThreshold = GunStateMachine.ZAngularVelocityThreshold;
             _yVelocityThreshold = GunStateMachine.YVelocityThreshold;
-            _xAngularVelocityThreshold = GunStateMachine.XAngularVelocityThreshold;
         }
 
         public override void Enter()
@@ -38,9 +29,7 @@ namespace _VR_Helsing.Gun
             _gunAnimator.SetBool(GunStateMachine.IsLoading, true);
             
             #if UNITY_EDITOR //Si estas en editor, actualiza en cada entrada el valor, por temas de debugging
-            _zAngularVelocityThreshold = GunStateMachine.ZAngularVelocityThreshold;
             _yVelocityThreshold = GunStateMachine.YVelocityThreshold;
-            _xAngularVelocityThreshold = GunStateMachine.XAngularVelocityThreshold;
             #endif
         }
 
@@ -57,26 +46,14 @@ namespace _VR_Helsing.Gun
                 return;
             }
 
-            //Primero checa si cambio de arma
-            var localZAngVel = GunStateMachine.ZLocalAngVelBuffer.Average();
-        
-            if (localZAngVel.IsPassedThreshold(_zAngularVelocityThreshold))
-            {
-                GunStateMachine.ChangeState(StateFactory.ChangeWeaponState);
-                return;
-            }
             
-            //segundo checa la recarga
-            var localYVelocity = GunStateMachine.YLocalVelBuffer.Average();
-            var localXAngVel = GunStateMachine.XLocalAngVelBuffer.Average();
-            
-            if (localYVelocity.IsPassedThreshold(_yVelocityThreshold) 
-                && localXAngVel.IsPassedThreshold(_xAngularVelocityThreshold))
+            var speedY = _gunRigidBody.angularVelocity.x + _gunRigidBody.linearVelocity.y; //Hacer queel angular sea más importante
+      
+            if (Mathf.Abs(speedY) > _yVelocityThreshold)
             {
                 GunStateMachine.ChangeState(StateFactory.ReloadState);
                 return;
             }
-            
         }
     }
 }
