@@ -1,6 +1,6 @@
 {
     "_version": "4.2",
-    "_rootDirectory": "Assets/PluginMaster/DesignTools/Editor/PrefabWorldBuilder",
+    "_rootDirectory": "Assets/Plugins/PluginMaster/DesignTools/Editor/PrefabWorldBuilder",
     "_autoSavePeriodMinutes": 1,
     "_undoBrushProperties": true,
     "_undoPalette": true,
@@ -20,7 +20,7 @@
     "_tempCollidersAction": 1,
     "_paletteManager": {
         "_selectedPaletteIdx": 0,
-        "_selectedBrushIdx": 6,
+        "_selectedBrushIdx": 9,
         "_showBrushName": false,
         "_viewList": false,
         "_showTabsInMultipleRows": false,
@@ -2845,11 +2845,11 @@
     },
     "_snapManager": {
         "_settings": {
-            "_snappingEnabled": false,
+            "_snappingEnabled": true,
             "_snappingOn": {
                 "x": true,
-                "y": true,
-                "z": false
+                "y": false,
+                "z": true
             },
             "_visibleGrid": false,
             "_gridOn": {
@@ -2857,7 +2857,7 @@
                 "y": false,
                 "z": true
             },
-            "_lockedGrid": false,
+            "_lockedGrid": true,
             "_step": {
                 "x": 0.25,
                 "y": 0.25,
@@ -2865,14 +2865,14 @@
             },
             "_origin": {
                 "x": 0.0,
-                "y": -10.375,
-                "z": 468.5220947265625
+                "y": 0.0,
+                "z": 0.0
             },
             "_rotation": {
-                "x": 0.7071067690849304,
+                "x": 0.0,
                 "y": 0.0,
                 "z": 0.0,
-                "w": 0.7071067690849304
+                "w": 1.0
             },
             "_showPositionHandle": true,
             "_showRotationHandle": false,
