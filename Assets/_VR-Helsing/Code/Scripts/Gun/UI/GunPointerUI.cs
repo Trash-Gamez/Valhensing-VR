@@ -1,16 +1,31 @@
+using Autohand;
 using UnityEngine;
 
-public class GunPointerUI : MonoBehaviour
+namespace _VR_Helsing.Gun
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [RequireComponent(typeof(SphereCollider))]
+    public class GunPointerUI : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private Hand hand;
+        [SerializeField] private float radius = 1;
+    
+        [SerializeField] private SphereCollider pointerCollider;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public Hand AttachedHand => hand;
+    
+        private void Start()
+        {
+            pointerCollider.radius = radius;
+        }
+    
+    
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (!pointerCollider)
+                pointerCollider = GetComponent<SphereCollider>();
+            pointerCollider.radius = radius;
+        }
+#endif
     }
 }
