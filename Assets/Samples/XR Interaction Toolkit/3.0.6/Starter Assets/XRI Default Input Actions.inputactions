@@ -446,11 +446,20 @@
                 },
                 {
                     "name": "Thumbstick",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "c01850c4-700b-4ae6-a187-a894afef5bbd",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Hold  Thumbstick",
+                    "type": "Button",
+                    "id": "781ad30f-4509-4ada-a762-7652fa9d90d9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold",
                     "initialStateCheck": true
                 }
             ],
@@ -859,6 +868,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Thumbstick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e9c2bfb-5055-40f1-9e97-55e4c311fc46",
+                    "path": "<XRController>{LeftHand}/{Primary2DAxis}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold  Thumbstick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1537,11 +1557,20 @@
                 },
                 {
                     "name": "Thumbstick",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "b8c0ccd3-e1b6-4913-96b3-e0864c9ac6bd",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Hold Thumbstick",
+                    "type": "Button",
+                    "id": "40862f24-b334-4e27-ac90-31670fc8bcd0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold",
                     "initialStateCheck": true
                 }
             ],
@@ -1950,6 +1979,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Thumbstick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6cc5ca8-6e9c-4f81-bf4b-6a9efc8f42e6",
+                    "path": "<XRController>{RightHand}/{Primary2DAxis}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold Thumbstick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

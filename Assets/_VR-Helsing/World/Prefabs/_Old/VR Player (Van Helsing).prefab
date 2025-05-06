@@ -867,6 +867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176650dfa2598994d98d805db4515645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hand: {fileID: 0}
   radius: 0.03
   pointerCollider: {fileID: 3466274232979743589}
 --- !u!135 &3466274232979743589
@@ -1473,6 +1474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176650dfa2598994d98d805db4515645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hand: {fileID: 0}
   radius: 0.03
   pointerCollider: {fileID: 6167171745690889893}
 --- !u!135 &6167171745690889893
@@ -1848,7 +1850,7 @@ PrefabInstance:
       objectReference: {fileID: 3265211982079483575}
     - target: {fileID: 8374647757447980550, guid: 81dd7a26aadd2e44ca721eda9e5ae202, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5120,6 +5122,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 280162768469239659}
     - target: {fileID: 8834320319295017360, guid: fdc3ba53f4e81a040b0471bbbafbb10a, type: 3}
+      propertyPath: bodyFollowsHead
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834320319295017360, guid: fdc3ba53f4e81a040b0471bbbafbb10a, type: 3}
       propertyPath: smoothTurnSpeed
       value: 150
       objectReference: {fileID: 0}
@@ -5326,7 +5332,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 318597167931682401, guid: bd7afead320cf7149b53050b095861e6, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1636735449653647011, guid: bd7afead320cf7149b53050b095861e6, type: 3}
       propertyPath: m_IsActive
