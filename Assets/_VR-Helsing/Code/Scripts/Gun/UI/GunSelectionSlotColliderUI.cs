@@ -18,7 +18,6 @@ namespace _VR_Helsing.Gun
         {
             if (!other.TryGetComponent(out GunPointerUI gunPointer)) return;
             
-        
             slot.Deselect(gunPointer);
         }
     }

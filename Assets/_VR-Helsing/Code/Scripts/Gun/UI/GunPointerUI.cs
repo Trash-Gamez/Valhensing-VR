@@ -6,12 +6,9 @@ namespace _VR_Helsing.Gun
     [RequireComponent(typeof(SphereCollider))]
     public class GunPointerUI : MonoBehaviour
     {
-        [SerializeField] private Hand hand;
         [SerializeField] private float radius = 1;
     
         [SerializeField] private SphereCollider pointerCollider;
-
-        public Hand AttachedHand => hand;
     
         private void Start()
         {

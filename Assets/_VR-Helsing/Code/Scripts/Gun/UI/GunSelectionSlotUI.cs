@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _VR_Helsing.Gun
 {
@@ -7,6 +8,19 @@ namespace _VR_Helsing.Gun
     {
         public static event Action<GunSelectionSlotUI> OnSlotSelected;
         public static event Action<GunSelectionSlotUI> OnSlotUnselected;
+
+        [SerializeField] private Image highlightImage;
+        [SerializeField] private Image gunImage;
+        [SerializeField] private Sprite gunSprite;
+        [SerializeField] private int gunIndex;
+        public int GunIndex => gunIndex;
+
+        private void OnEnable()
+        {   
+            highlightImage.color = Color.clear;
+            gunImage.sprite = gunSprite;
+            _isTouching = false;
+        }
 
         public GunPointerUI Pointer => _gunPointer;
         
@@ -16,10 +30,12 @@ namespace _VR_Helsing.Gun
         public void Select(GunPointerUI gunPointer)
         {
             if (!enabled) return;
-            if (!_isTouching) return;
-
+            if (_isTouching) return;
+            
             _gunPointer = gunPointer;
             _isTouching = true;
+            
+            highlightImage.color = Color.white;
             
             OnSlotSelected?.Invoke(this);
         }
@@ -32,6 +48,8 @@ namespace _VR_Helsing.Gun
             if (gunPointer != _gunPointer) return;
             _isTouching = false;
             _gunPointer = null;
+            
+            highlightImage.color = Color.clear;
             
             OnSlotUnselected?.Invoke(this);
         }

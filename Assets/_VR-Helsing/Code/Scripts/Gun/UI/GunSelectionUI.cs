@@ -13,30 +13,69 @@ namespace _VR_Helsing.Gun
         
         [SerializeField] private List<GunSelectionSlotUI> slots;
         
+        [SerializeField] private float positionSmoothTime = 0.15f; // Puedes ajustar este valor en el Inspector
+        
+        [Tooltip("Velocidad máxima a la que el menú puede moverse. Mathf.Infinity para sin límite.")]
+        [SerializeField] private float maxMoveSpeed = Mathf.Infinity;
+        
+        private Vector3 _currentPositionVelocity = Vector3.zero;
+        
         private Transform _followPoint;
         private bool _isBeingUsed;
 
+        private Transform _fromOffset;
+        private Vector3 _neededOffset;
+        
+        private int _slotsSelected;
+
+        private GunSelectionSlotUI _currentSlot;
+        public int SlotGunIndex => _currentSlot.GunIndex;
+
         private void Start()
         {
-            Deactivate();
+            Hide();
         }
 
-        public void Activate(Transform followTransform)
+        private void LateUpdate()
         {
-            SetInitialConfig(followTransform);
+            if (!_isBeingUsed) return;
+            transform.position = Vector3.SmoothDamp(
+                transform.position,
+                _fromOffset.position + _neededOffset,
+                ref _currentPositionVelocity,
+                positionSmoothTime,
+                maxMoveSpeed,
+                Time.deltaTime);
+        }
 
+        public void Show(Vector3 initialPos, Transform offsetFrom, Transform initialRotation)
+        {
+            SetInitialConfig(initialPos,offsetFrom, initialRotation);
+
+            _slotsSelected = 0;
+            canvasGroup.alpha = 1;
+            
             for (int i = 0; i < slots.Count; i++)
             {
                 slots[i].gameObject.SetActive(true);
             }
         }
 
-        private void SetInitialConfig(Transform followTransform)
+        private void SetInitialConfig(Vector3 initialPos, Transform offsetFrom, Transform initialRotation)
         {
-            _followPoint = followTransform;
+            _fromOffset = offsetFrom;
+            transform.position = initialPos;
+
+            //var fromOffset = _fromOffset.position;
+            //fromOffset.y = initialPos.y;
+            _neededOffset = initialPos -  _fromOffset.position;
+            
+            
+            //transform.rotation = Quaternion.LookRotation(fromOffset.normalized, Vector3.up);
+            transform.rotation = initialRotation.rotation;
         }
 
-        public void Deactivate()
+        public void Hide()
         {
             canvasGroup.alpha = 0;
 
@@ -49,21 +88,21 @@ namespace _VR_Helsing.Gun
         private void OnSlotUnselected(GunSelectionSlotUI slot)
         {
             if (!slots.Contains(slot)) return;
+
+            _slotsSelected--;
+            if (_slotsSelected <= 0)
+            {
+                _slotsSelected = 0;
+                _currentSlot = null;
+            }
         }
 
         private void OnSlotSelected(GunSelectionSlotUI slot)
         {
             if (!slots.Contains(slot)) return;
-        }
-        
-        private void Update()
-        {
-        
-        }
 
-        private void LateUpdate()
-        {
-            //transform.position = pointToFollow.position;
+            _slotsSelected++;
+            _currentSlot = slot;
         }
 
         private void OnEnable()
@@ -86,10 +125,11 @@ namespace _VR_Helsing.Gun
 
             for (int i = 0; i < _SelectionMenus.Count; i++)
             {
-                if(_SelectionMenus[i]._isBeingUsed || !_SelectionMenus[i].enabled) continue;
+                if(_SelectionMenus[i]._isBeingUsed) continue;
 
                 selection = _SelectionMenus[i];
                 selection._isBeingUsed = true;
+                break;
             }
 
             return selection;

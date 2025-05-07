@@ -1,3 +1,4 @@
+using System;
 using RacTools.Variables;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,6 +28,19 @@ public class GunDataHandler : MonoBehaviour
     {
         magazine.Value = 0;
         _config = currentData.Config;
+    }
+
+    public void SetGun(int index)
+    {
+        if (index >= Guns.Length || index < 0)
+            throw new IndexOutOfRangeException("Theres no gun with index: " + index);
+        
+        MagazinesLoad[CurrentGun] = magazine.Value;
+        
+        CurrentGun = index;
+        
+        magazine.Value = MagazinesLoad[CurrentGun];
+        ChangeGunData(Guns[CurrentGun]);
     }
     
     public void NextGun(int moveIndex)

@@ -3,7 +3,6 @@ using _VR_Helsing.Gun;
 using Autohand;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;
 
 public class GunDataChanger : MonoBehaviour
 {
@@ -14,7 +13,11 @@ public class GunDataChanger : MonoBehaviour
     [SerializeField] private InputActionProperty onDataChange;
 
     [Header("Params")]
-    [SerializeField] private float longPressSeconds = 0.5f; 
+    [SerializeField] private float longPressSeconds = 0.5f;
+
+    [SerializeField] private Transform showMenuPos;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Transform cameraTransform;
 
     private float _seconds;
     private GunSelectionUI _selectionUI;
@@ -31,18 +34,23 @@ public class GunDataChanger : MonoBehaviour
         if(isActive)
         {
             GunSelectionUI.GetSelection(out _selectionUI);
+            _selectionUI.Show(showMenuPos.position, playerTransform, cameraTransform);
         }
         else
         {
             if(!_selectionUI) return;
+            
+            _gunDataHandler.SetGun(_selectionUI.SlotGunIndex);
+            
             GunSelectionUI.ReturnSelection(_selectionUI);
+            _selectionUI.Hide();
+            
         }
-        //Todo: UI ACTIVAR
     }
 
     private void Update()
     {
-        if(_inputPerformed) return;
+        if(!_inputPerformed) return;
         if(_uiActive) return;
 
         _seconds += Time.deltaTime;
