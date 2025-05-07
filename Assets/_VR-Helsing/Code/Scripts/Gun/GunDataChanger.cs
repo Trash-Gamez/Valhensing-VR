@@ -3,6 +3,7 @@ using _VR_Helsing.Gun;
 using Autohand;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 
 public class GunDataChanger : MonoBehaviour
 {
@@ -11,17 +12,79 @@ public class GunDataChanger : MonoBehaviour
     
     [Header("Input")]
     [SerializeField] private InputActionProperty onDataChange;
+
+    [Header("Params")]
+    [SerializeField] private float longPressSeconds = 0.5f; 
+
+    private float _seconds;
+    private GunSelectionUI _selectionUI;
     
     //TODO: UI
     
     private GunDataHandler _gunDataHandler;
-    private bool _isHolding;
+    private bool _isHolding, _uiActive, _inputPerformed;
 
-    private void OnGunDataChanged(InputAction.CallbackContext ctx)
+    private void SetActiveUI(bool isActive)
     {
+        _uiActive = isActive;
+
+        if(isActive)
+        {
+            GunSelectionUI.GetSelection(out _selectionUI);
+        }
+        else
+        {
+            if(!_selectionUI) return;
+            GunSelectionUI.ReturnSelection(_selectionUI);
+        }
+        //Todo: UI ACTIVAR
+    }
+
+    private void Update()
+    {
+        if(_inputPerformed) return;
+        if(_uiActive) return;
+
+        _seconds += Time.deltaTime;
+
+        if(_seconds >= longPressSeconds){
+            LongPress();
+        }
+    }
+
+    private void LongPress()
+    {
+        if(_uiActive) return;
+        if (!_isHolding) return;
+
+        SetActiveUI(true);
+    }
+
+    private void ShortPress(){
         if (!_isHolding) return;
         
         _gunDataHandler.NextGun(1);
+    }
+
+    private void OnGunDataPerfomed(InputAction.CallbackContext ctx)
+    {
+        _uiActive = false;
+        _seconds = 0;
+        _inputPerformed = true;
+    }
+
+    private void OngunDataCanceled(InputAction.CallbackContext ctx)
+    {
+        if(_uiActive)
+        {
+            SetActiveUI(false);
+        }
+        else
+        {
+            ShortPress();
+        }
+
+        _inputPerformed = false;
     }
 
     private void OnGrabbed(Hand hand, Grabbable grabbable)
@@ -48,12 +111,16 @@ public class GunDataChanger : MonoBehaviour
         attachedHand.OnReleased += OnReleased;
         
         onDataChange.action.Enable();
-        onDataChange.action.performed += OnGunDataChanged;
+        onDataChange.action.performed += OnGunDataPerfomed;
+        onDataChange.action.canceled += OngunDataCanceled;
     }
 
     private void OnDisable()
     {
-        onDataChange.action.performed -= OnGunDataChanged;
+        onDataChange.action.performed -= OnGunDataPerfomed;
+        onDataChange.action.canceled -= OngunDataCanceled;
+
+        attachedHand.OnGrabbed -= OnGrabbed;
         attachedHand.OnReleased -= OnReleased;
     }
 }

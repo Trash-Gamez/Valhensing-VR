@@ -7,37 +7,42 @@ namespace _VR_Helsing.Gun
 {
     public class GunSelectionUI : MonoBehaviour
     {
+        private static readonly List<GunSelectionUI> _SelectionMenus = new(2);
+
         [SerializeField] private CanvasGroup canvasGroup;
-        [SerializeField] private Transform pointToFollow;
+        
         [SerializeField] private List<GunSelectionSlotUI> slots;
         
-        private Hand _hand;
+        private Transform _followPoint;
+        private bool _isBeingUsed;
 
         private void Start()
         {
             Deactivate();
         }
 
-        public bool Activate(Hand hand)
+        public void Activate(Transform followTransform)
         {
-            if (_hand) return false;
-            
+            SetInitialConfig(followTransform);
+
             for (int i = 0; i < slots.Count; i++)
             {
-                slots[i].enabled = true;
+                slots[i].gameObject.SetActive(true);
             }
-            
-            return true;
+        }
+
+        private void SetInitialConfig(Transform followTransform)
+        {
+            _followPoint = followTransform;
         }
 
         public void Deactivate()
         {
             canvasGroup.alpha = 0;
-            _hand = null;
 
             for (int i = 0; i < slots.Count; i++)
             {
-                slots[i].enabled = false;
+                slots[i].gameObject.SetActive(false);
             }
         }
 
@@ -63,6 +68,7 @@ namespace _VR_Helsing.Gun
 
         private void OnEnable()
         {
+            _SelectionMenus.Add(this);
             GunSelectionSlotUI.OnSlotSelected += OnSlotSelected;
             GunSelectionSlotUI.OnSlotUnselected += OnSlotUnselected;
         }
@@ -71,6 +77,36 @@ namespace _VR_Helsing.Gun
         {
             GunSelectionSlotUI.OnSlotSelected -= OnSlotSelected;
             GunSelectionSlotUI.OnSlotUnselected -= OnSlotUnselected;
+            _SelectionMenus.Remove(this);
         }
+
+        #region Static Mehods
+        public static bool GetSelection(out GunSelectionUI selection){
+            selection = null;
+
+            for (int i = 0; i < _SelectionMenus.Count; i++)
+            {
+                if(_SelectionMenus[i]._isBeingUsed || !_SelectionMenus[i].enabled) continue;
+
+                selection = _SelectionMenus[i];
+                selection._isBeingUsed = true;
+            }
+
+            return selection;
+        }
+
+        public static void ReturnSelection(GunSelectionUI selection){
+            if(!selection) return;
+
+            if(!_SelectionMenus.Contains(selection)) return;
+
+            for (int i = 0; i < _SelectionMenus.Count; i++)
+            {
+                if(_SelectionMenus[i] == selection){
+                    selection._isBeingUsed = false;
+                }
+            }
+        }
+        #endregion
     }
 }
