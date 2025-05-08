@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3136473244071708127}
   - component: {fileID: 1149178701873522413}
   - component: {fileID: 7316788344712719043}
+  - component: {fileID: -8364405277184354972}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -110,8 +111,8 @@ MonoBehaviour:
   grabType: 1
   grabPoseType: 0
   handType: 0
-  singleHandOnly: 1
-  instantGrab: 0
+  singleHandOnly: 0
+  instantGrab: 1
   useGentleGrab: 0
   maintainGrabOffset: 0
   parentOnGrab: 0
@@ -121,7 +122,7 @@ MonoBehaviour:
   throwPower: 1
   jointBreakForce: 3500
   showAdvancedSettings: 1
-  makeChildrenGrabbable: 1
+  makeChildrenGrabbable: 0
   grabPriorityWeight: 1
   ignoreReleaseTime: 0.5
   minHeldDrag: 1.5
@@ -199,7 +200,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -260,3 +261,17 @@ MonoBehaviour:
   minRange: 0
   testAngle: 0
   testRange: 0
+--- !u!114 &-8364405277184354972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087854046546028388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1e358c1b681e8448d2f168014855c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axis: {x: 1, y: 1, z: 1}
+  stabber: {fileID: 0}
