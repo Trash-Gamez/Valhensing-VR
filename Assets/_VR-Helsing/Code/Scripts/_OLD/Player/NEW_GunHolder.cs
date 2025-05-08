@@ -10,12 +10,15 @@ public class NEW_GunHolder : MonoBehaviour
 
     [SerializeField] private Transform behindHeadPos;
 
+    [SerializeField] private bool startWithSecondWeapon;
+    
     private Hand _currentHoldingHand, _secondaryHoldingHand;
     private bool _hasSecondWeapon;
 
     private void Start()
     {
         HandleGunChange(rightHand);
+        _hasSecondWeapon = startWithSecondWeapon;
     }
     
     [VerticalGroup("Editor")]
