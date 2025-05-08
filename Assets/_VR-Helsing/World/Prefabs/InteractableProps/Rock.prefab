@@ -11,6 +11,10 @@ GameObject:
   - component: {fileID: 1038906032886495243}
   - component: {fileID: 2075944941849156567}
   - component: {fileID: 6449052371572145202}
+  - component: {fileID: 5848121068459652688}
+  - component: {fileID: 3136473244071708127}
+  - component: {fileID: 1149178701873522413}
+  - component: {fileID: 7316788344712719043}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -86,3 +90,173 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5848121068459652688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087854046546028388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822bc9090447b9c40833509c4a32e597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreMe: 0
+  body: {fileID: 3136473244071708127}
+  hightlightMaterial: {fileID: 0}
+  isGrabbable: 1
+  CopySettings: {fileID: 0}
+  grabType: 1
+  grabPoseType: 0
+  handType: 0
+  singleHandOnly: 1
+  instantGrab: 0
+  useGentleGrab: 0
+  maintainGrabOffset: 0
+  parentOnGrab: 0
+  heldNoFriction: 1
+  ignoreWeight: 0
+  allowHeldSwapping: 1
+  throwPower: 1
+  jointBreakForce: 3500
+  showAdvancedSettings: 1
+  makeChildrenGrabbable: 1
+  grabPriorityWeight: 1
+  ignoreReleaseTime: 0.5
+  minHeldDrag: 1.5
+  minHeldAngleDrag: 3
+  minHeldMass: 0.1
+  maxHeldVelocity: 10
+  heldPositionOffset: {x: 0, y: 0, z: 0}
+  heldRotationOffset: {x: 0, y: 0, z: 0}
+  customGrabJoint: {fileID: 0}
+  jointedBodies: []
+  heldIgnoreColliders: []
+  pullApartBreakOnly: 1
+  showEvents: 1
+  onGrab:
+    m_PersistentCalls:
+      m_Calls: []
+  onRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  onSqueeze:
+    m_PersistentCalls:
+      m_Calls: []
+  onUnsqueeze:
+    m_PersistentCalls:
+      m_Calls: []
+  onHighlight:
+    m_PersistentCalls:
+      m_Calls: []
+  onUnhighlight:
+    m_PersistentCalls:
+      m_Calls: []
+  OnJointBreak:
+    m_PersistentCalls:
+      m_Calls: []
+  lockHandOnGrab: 0
+--- !u!54 &3136473244071708127
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087854046546028388}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &1149178701873522413
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087854046546028388}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7316788344712719043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087854046546028388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b27d5a0e0d4dd8ab20e2bed42e835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreMe: 0
+  rightPose:
+    rotationOffset: {x: 0, y: 0, z: 0}
+    posePositions: []
+    poseRotations: []
+    handOffset: {x: 0, y: 0, z: 0}
+    localQuaternionOffset: {x: 0, y: 0, z: 0, w: 0}
+    globalHandScale: {x: 0, y: 0, z: 0}
+    fingerPoses: []
+    poseID:
+      fingerLengths: []
+  rightPoseSet: 0
+  leftPose:
+    rotationOffset: {x: 0, y: 0, z: 0}
+    posePositions: []
+    poseRotations: []
+    handOffset: {x: 0, y: 0, z: 0}
+    localQuaternionOffset: {x: 0, y: 0, z: 0, w: 0}
+    globalHandScale: {x: 0, y: 0, z: 0}
+    fingerPoses: []
+    poseID:
+      fingerLengths: []
+  leftPoseSet: 0
+  poseName: Rock Pose
+  poseIndex: 0
+  showEditorTools: 1
+  editorHand: {fileID: 0}
+  poseScriptable: {fileID: 0}
+  poseEnabled: 1
+  singleHanded: 1
+  showAdvanced: 1
+  positionWeight: 1
+  rotationWeight: 1
+  linkedPoses: []
+  centerObject: {fileID: 0}
+  up: {x: 0, y: 1, z: 0}
+  useInvertPose: 0
+  minAngle: 0
+  maxAngle: 360
+  maxRange: 0
+  minRange: 0
+  testAngle: 0
+  testRange: 0
