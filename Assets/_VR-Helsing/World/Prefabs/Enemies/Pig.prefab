@@ -35,6 +35,7 @@ Transform:
   - {fileID: 3771691247992823838}
   - {fileID: 4792943745229857792}
   - {fileID: 952128306983460956}
+  - {fileID: 8187628832814410651}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3852428435945293469
@@ -134,6 +135,7 @@ GameObject:
   - component: {fileID: 3771691247992823838}
   - component: {fileID: 6634120773319705920}
   - component: {fileID: 3707994324079376465}
+  - component: {fileID: 2029636101157189555}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -216,7 +218,44 @@ MonoBehaviour:
       m_Calls: []
   onDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3707994324079376465}
+        m_TargetAssemblyTypeName: SpawnEffects, Assembly-CSharp
+        m_MethodName: Effect01
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7312035559632380562}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2029636101157189555}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
+          Assembly-CSharp
+        m_MethodName: DestroySelf
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3707994324079376465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +270,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect01: {fileID: 7974277105815942764, guid: eebe526d41f431e40a19798c60c0afcd, type: 3}
   effect02: {fileID: 7875634403809466083, guid: 9851da637aeab8141835d5cd51c9c150, type: 3}
+--- !u!114 &2029636101157189555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721651865040491177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8f4674057f5a34a87ee1ed00fce7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1919396866642015733
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +394,68 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &2096802308748314309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8187628832814410651}
+  - component: {fileID: 6094752845975068002}
+  m_Layer: 0
+  m_Name: ExplosionAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8187628832814410651
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096802308748314309}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.24, z: 1.28}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 834724216816891675}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6094752845975068002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096802308748314309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24365b00e6846944a7b08c506018884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialRadius: 0.2
+  maxRadius: 0.4
+  explosionLayer:
+    serializedVersion: 2
+    m_Bits: 16384
+  explosionSeconds: 0.3
+  ignoreColliders:
+  - {fileID: 899860076788851679}
+  instantDeath: 0
+  damageValue: 15
+  onExplosionStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  onExplosion:
+    m_PersistentCalls:
+      m_Calls: []
+  DrawSphereExplosionGizmos: 1
+  DrawSphereRadiusGizmos: 1
 --- !u!1 &8512868947352615541
 GameObject:
   m_ObjectHideFlags: 0
