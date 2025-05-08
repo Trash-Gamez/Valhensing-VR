@@ -57,6 +57,7 @@ MonoBehaviour:
   - rid: 2594530967353032888
   - rid: 2594530967353033129
   - rid: 2594530970603618559
+  - rid: 2594530972930932947
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -102,6 +103,14 @@ MonoBehaviour:
           m_Value1: 2916590219547620404
         Name: Player
         m_Value: {fileID: 0}
+    - rid: 2594530972930932947
+      type: {class: 'BlackboardVariable`1[[_VanHelsingVR.Explosion.Explosion, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4960879766976053619
+          m_Value1: 14799435016802728566
+        Name: ExplosionAttack
+        m_Value: {fileID: 6094752845975068002}
 --- !u!195 &907412445363659220
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -404,7 +413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8187628832814410651}
   - component: {fileID: 6094752845975068002}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ExplosionAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialRadius: 0.2
-  maxRadius: 0.4
+  maxRadius: 0.45
   explosionLayer:
     serializedVersion: 2
     m_Bits: 16384
