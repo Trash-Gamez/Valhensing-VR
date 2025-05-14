@@ -39,6 +39,11 @@ namespace _VanHelsingVR.Explosion
 
         //private CancellationTokenSource _cancellationTokenSource = null;
 
+        public void DoExplosion()
+        {
+            DoExplosionAsync(explosionSeconds, CancellationToken.None);
+        }
+        
         public void DoExplosion(float seconds, CancellationToken token)
         { 
             DoExplosionAsync(seconds, token);
