@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 2988324833877111100}
   - component: {fileID: 744360883608576144}
   - component: {fileID: 5257734818796065029}
+  - component: {fileID: 3449824474516577254}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2988324833877111100
 Transform:
   m_ObjectHideFlags: 0
@@ -86,6 +87,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3449824474516577254
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572898196916038713}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5625, y: 2.78125, z: 0.1875}
+  m_Center: {x: 0, y: 1.390625, z: 0}
 --- !u!1 &5246167218512381973
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,12 +119,13 @@ GameObject:
   - component: {fileID: 6388930174332174625}
   - component: {fileID: 478969125968427328}
   - component: {fileID: 7730978763506659704}
+  - component: {fileID: 7414098225782822907}
   m_Layer: 0
   m_Name: ShortDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6388930174332174625
 Transform:
@@ -173,3 +196,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7414098225782822907
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5246167218512381973}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6274059880062070182, guid: c09f95809b6729b439ab8d173634b2f3, type: 3}
