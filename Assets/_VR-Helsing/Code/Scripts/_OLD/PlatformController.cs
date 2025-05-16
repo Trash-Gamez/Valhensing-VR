@@ -17,7 +17,8 @@ namespace _VanHelsingVR
 
         private void Start()
         {
-            AudioManager.Instance.SwampMusic("MainMenuMusic");          
+            if(AudioManager.Instance)
+                AudioManager.Instance.SwampMusic("MainMenuMusic");          
         }
         public void StartNextPoint(float delay)
         {
