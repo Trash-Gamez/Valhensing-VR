@@ -52,8 +52,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.07164526, y: 0.37074307, z: 0.13808104}
-  m_Center: {x: -0.031870127, y: 7.811391e-18, z: -0.016174674}
+  m_Size: {x: 0.07164526, y: 0.37074307, z: 0.7754097}
+  m_Center: {x: -0.031870127, y: -6.822718e-19, z: -0.0038582385}
 --- !u!54 &4137701893398213539
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -186,7 +186,31 @@ MonoBehaviour:
   grabbable: {fileID: 9191818961633056804}
   OnActivate:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 203862351204456418}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5391987036390351689}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7358991034257922515
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,26 +476,33 @@ MonoBehaviour:
   startStep: 0
   OnMax:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6102021203784850478}
-        m_TargetAssemblyTypeName: OneUseLever, Assembly-CSharp
-        m_MethodName: Activate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnMid:
     m_PersistentCalls:
       m_Calls: []
   OnMin:
     m_PersistentCalls:
       m_Calls: []
-  stepEvents: []
+  stepEvents:
+  - step: 2
+    OnStepEnter:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6102021203784850478}
+          m_TargetAssemblyTypeName: OneUseLever, Assembly-CSharp
+          m_MethodName: Activate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    OnStepExit:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!65 &203862351204456418
 BoxCollider:
   m_ObjectHideFlags: 0
