@@ -21,6 +21,7 @@ namespace _VanHelsingVR.Explosion
         [SerializeField] private LayerMask explosionLayer;
         [SerializeField, Min(0.25f)] private float explosionSeconds;
         [SerializeField] private List<Collider> ignoreColliders;
+        [SerializeField] private DamageTeam explosionTeam;
 
         [Title("Damage")] 
         [SerializeField] private bool instantDeath = true;
@@ -29,6 +30,9 @@ namespace _VanHelsingVR.Explosion
         [Title("Events")]
         [SerializeField] private UnityEvent onExplosionStarted;
         [SerializeField] private UnityEvent onExplosion;
+
+        public float InitialRadius => initialRadius;
+        public float MaxRadius => maxRadius;
         
         #if UNITY_EDITOR
         public bool DrawSphereExplosionGizmos;
@@ -97,9 +101,11 @@ namespace _VanHelsingVR.Explosion
                 if(ignoreColliders.Contains(collider)) continue;
                 if(!collider.isTrigger) continue;
                 if (!collider.TryGetComponent<Hurtbox>(out var hurtbox)) continue;
+                if (hurtbox.HurtboxTeam == explosionTeam) continue;
                 var health = hurtbox.HealthReference.HealthSystem;
                 if (health == null) continue;
                 if (healthTouched.Contains(health)) continue;
+                
                 
                 if(instantDeath)
                     hurtbox.ForceDeath();
@@ -129,7 +135,7 @@ namespace _VanHelsingVR.Explosion
         {
             if (!DrawSphereRadiusGizmos) return;
             Gizmos.color = Color.magenta;
-            Gizmos.DrawWireSphere(transform.position, initialRadius);
+            Gizmos.DrawWireSphere(transform.position, initialRadius );
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, maxRadius);
         }
