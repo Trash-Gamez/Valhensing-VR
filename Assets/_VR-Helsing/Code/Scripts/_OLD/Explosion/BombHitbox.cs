@@ -23,7 +23,7 @@ public class BombHitbox : Hitbox
         
         var scale = transform.lossyScale;
         var scaleFactor = Mathf.Max(scale.x, scale.y, scale.z);
-        var hits = Physics.OverlapSphereNonAlloc(sphereCollider.transform.position, sphereCollider.radius * scaleFactor, _Colliders, bombLayer);
+        var hits = Physics.OverlapSphereNonAlloc(sphereCollider.transform.position + sphereCollider.center, sphereCollider.radius * scaleFactor, _Colliders, bombLayer);
 
         for (int i = 0; i < hits; i++)
         {
@@ -40,6 +40,6 @@ public class BombHitbox : Hitbox
         Gizmos.color = Color.magenta;
         var scale = transform.lossyScale;
         var scaleFactor = Mathf.Max(scale.x, scale.y, scale.z);
-        Gizmos.DrawWireSphere(sphereCollider.transform.position, sphereCollider.radius * scaleFactor);
+        Gizmos.DrawWireSphere(sphereCollider.transform.position + sphereCollider.center, sphereCollider.radius * scaleFactor);
     }
 }
