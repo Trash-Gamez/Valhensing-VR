@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(Collider))]
 public class Checkpoint : MonoBehaviour
 {
     [SerializeField] private Transform returnPoint;
