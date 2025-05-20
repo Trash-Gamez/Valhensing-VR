@@ -8,8 +8,7 @@ public class TeleportTunnelingProvider : BaseTunnelingProvider
 
     public void Update()
     {
-        //var isTeleporting = _teleporter.ExecutingTeleport;
-        var isTeleporting = _teleporter.startTeleportAction.reference.action.ReadValue<bool>();
+        var isTeleporting = _teleporter.ExecutingTeleport;
         UpdateLocomotionPhase(isTeleporting);
     }
 }

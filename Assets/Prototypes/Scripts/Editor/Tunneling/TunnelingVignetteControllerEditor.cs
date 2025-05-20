@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEditor.XR.Interaction.Toolkit;
 using UnityEditor;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion;
 
 /// <summary>
 /// Custom editor for an <see cref="TunnelingVignetteController"/>.
@@ -40,7 +41,7 @@ public class TunnelingVignetteControllerEditor : BaseInteractionEditor
     /// <summary>
     /// Array for storing all of the <see cref="LocomotionProvider"/> components in the scene.
     /// </summary>
-    static TunnelingProvider[] s_CachedLocomotionProviders;
+    static LocomotionProvider[] s_CachedLocomotionProviders;
 
     /// <summary>
     /// Dictionary for storing <see cref="LocomotionProvider"/> components by the GameObjects they are attached to in the scene.
