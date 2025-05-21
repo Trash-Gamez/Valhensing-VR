@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Autohand;
+using MEC;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -9,11 +11,13 @@ using UnityEngine;
 /// </summary>
 public class PlayerCheckpointHandler : MonoBehaviour
 {
-    [Required]
-    [SerializeField]
-    private Checkpoint defaultCheckpoint;
-
     [SerializeField] private AutoHandPlayer player;
+    
+    [Required]
+    [SerializeField] private Checkpoint defaultCheckpoint;
+
+    [SerializeField] private DeadzoneTunnelingProvider provider;
+    [SerializeField] private float waitToTeleport;
     
     private Checkpoint _currentCheckpoint;
 
@@ -24,7 +28,25 @@ public class PlayerCheckpointHandler : MonoBehaviour
 
     public void UseLastCheckPoint()
     {
+        Timing.RunCoroutine(UseCheckpoint(_currentCheckpoint));
+    }
+
+    private IEnumerator<float> UseCheckpoint(Checkpoint checkpoint)
+    {
+        player.useMovement = false;
+
+        provider.SetIsInDeadZone(true);
         
+        yield return Timing.WaitForSeconds(waitToTeleport);
+        
+        player.SetPosition(checkpoint.ReturnPoint.position);
+        player.SetRotation(checkpoint.ReturnPoint.localRotation);
+        
+        //Esperar a colocar todo en escena
+        //Quitar vida
+        yield return Timing.WaitForSeconds(0.25f);
+        
+        provider.SetIsInDeadZone(false);
     }
 
     private void HandleTriggerCheckpoint(Checkpoint enteringCheckpoint)
