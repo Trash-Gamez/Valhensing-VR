@@ -118,10 +118,10 @@ namespace _VanHelsingVR.Health
 
         protected void OnForcedHit(int damageDealed = 1)
         {
-            if (HealthReference.HealthSystem == null) return;
-            
-            HealthReference.HealthSystem.Damage(damageDealed);
             onHit?.Invoke(damageDealed);
+            
+            if (HealthReference.HealthSystem == null) return;
+            HealthReference.HealthSystem.Damage(damageDealed);
         }
 
         //Fuerzxa la muerte del que contenga esto
