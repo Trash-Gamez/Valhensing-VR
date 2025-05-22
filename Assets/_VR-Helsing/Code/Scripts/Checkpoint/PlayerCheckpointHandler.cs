@@ -36,11 +36,12 @@ public class PlayerCheckpointHandler : MonoBehaviour
     private IEnumerator<float> UseCheckpoint(Checkpoint checkpoint)
     {
         _usingCheckpoint = true;
-        player.useMovement = false;
 
         provider.SetIsInDeadZone(true);
         
         yield return Timing.WaitForSeconds(waitToTeleport);
+        
+        player.useMovement = false;
         
         player.SetPosition(checkpoint.ReturnPoint.position);
         player.SetRotation(checkpoint.ReturnPoint.localRotation);
@@ -49,7 +50,9 @@ public class PlayerCheckpointHandler : MonoBehaviour
         //TODO: Quitar vida
         yield return Timing.WaitForSeconds(0.25f);
         
+        player.useMovement = true;
         provider.SetIsInDeadZone(false);
+        
         _usingCheckpoint = false;
     }
 
