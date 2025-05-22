@@ -20,7 +20,8 @@ public class PlayerCheckpointHandler : MonoBehaviour
     [SerializeField] private float waitToTeleport;
     
     private Checkpoint _currentCheckpoint;
-
+    private bool _usingCheckpoint = false;
+    
     private void Awake()
     {
         _currentCheckpoint = defaultCheckpoint;
@@ -28,11 +29,13 @@ public class PlayerCheckpointHandler : MonoBehaviour
 
     public void UseLastCheckPoint()
     {
+        if (_usingCheckpoint) return;
         Timing.RunCoroutine(UseCheckpoint(_currentCheckpoint));
     }
 
     private IEnumerator<float> UseCheckpoint(Checkpoint checkpoint)
     {
+        _usingCheckpoint = true;
         player.useMovement = false;
 
         provider.SetIsInDeadZone(true);
@@ -42,11 +45,12 @@ public class PlayerCheckpointHandler : MonoBehaviour
         player.SetPosition(checkpoint.ReturnPoint.position);
         player.SetRotation(checkpoint.ReturnPoint.localRotation);
         
-        //Esperar a colocar todo en escena
-        //Quitar vida
+        //Esperar a colocar to do en escena
+        //TODO: Quitar vida
         yield return Timing.WaitForSeconds(0.25f);
         
         provider.SetIsInDeadZone(false);
+        _usingCheckpoint = false;
     }
 
     private void HandleTriggerCheckpoint(Checkpoint enteringCheckpoint)
@@ -63,4 +67,8 @@ public class PlayerCheckpointHandler : MonoBehaviour
         
         HandleTriggerCheckpoint(check);
     }
+
+    private void OnEnable() => Deadzone.OnDeadzoneTouched += UseLastCheckPoint;
+
+    private void OnDisable() => Deadzone.OnDeadzoneTouched -= UseLastCheckPoint;
 }
