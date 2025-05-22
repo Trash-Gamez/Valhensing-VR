@@ -40,17 +40,16 @@ public class PlayerCheckpointHandler : MonoBehaviour
         provider.SetIsInDeadZone(true);
         
         yield return Timing.WaitForSeconds(waitToTeleport);
-        
-        player.useMovement = false;
-        
-        player.SetPosition(checkpoint.ReturnPoint.position);
-        player.SetRotation(checkpoint.ReturnPoint.localRotation);
+      
         
         //Esperar a colocar to do en escena
         //TODO: Quitar vida
         yield return Timing.WaitForSeconds(0.25f);
+
+        player.head
+        player.SetPosition(checkpoint.ReturnPoint.position);
+        player.SetRotation(checkpoint.ReturnPoint.localRotation);
         
-        player.useMovement = true;
         provider.SetIsInDeadZone(false);
         
         _usingCheckpoint = false;
