@@ -14,6 +14,6 @@ public class Chest : MonoBehaviour
     public void OpenChest()
     {
         anim.Play("Open");
-        Instantiate(SpawnObject, this.transform.position+spawnOffset, transform.parent.rotation);
+        Instantiate(SpawnObject, this.transform.position+spawnOffset, transform.rotation);
     }
 }
