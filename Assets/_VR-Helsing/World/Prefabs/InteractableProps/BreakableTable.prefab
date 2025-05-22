@@ -11,8 +11,11 @@ GameObject:
   - component: {fileID: 3219479163315700861}
   - component: {fileID: 3305677555215933505}
   - component: {fileID: 2870767562418928840}
+  - component: {fileID: 1681657199484558947}
   - component: {fileID: 8862160228255244912}
-  m_Layer: 0
+  - component: {fileID: 3363647947670049311}
+  - component: {fileID: 1809016009328260211}
+  m_Layer: 14
   m_Name: BreakableTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +90,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8862160228255244912
+--- !u!65 &1681657199484558947
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,3 +111,77 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.75, y: 0.0625, z: 4.71875}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &8862160228255244912
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571031653464888409}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.75, y: 0.0625, z: 4.71875}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3363647947670049311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571031653464888409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9780a0a404dcafa48b2c0d26682f2278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtBoxCollider: {fileID: 8862160228255244912}
+  hurtLayer:
+    serializedVersion: 2
+    m_Bits: 33088
+  <HurtboxTeam>k__BackingField: 2
+  friendlyFire:
+    defaultValue: 1
+    conditions: []
+  <HealthReference>k__BackingField:
+    <HealthSystem>k__BackingField: {fileID: 0}
+  inmunityType: 0
+  inmunityFrames: 0
+  speedToBeAttacked: 0.25
+  onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1809016009328260211}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
+          Assembly-CSharp
+        m_MethodName: DestroySelf
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1809016009328260211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571031653464888409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8f4674057f5a34a87ee1ed00fce7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
