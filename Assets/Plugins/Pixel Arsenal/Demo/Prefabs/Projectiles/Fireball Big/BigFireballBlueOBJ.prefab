@@ -51,7 +51,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &11478778
@@ -68,10 +68,8 @@ MonoBehaviour:
   impactParticle: {fileID: 178904, guid: 4e1a75ebaa18c364a8a2f4851ad9e027, type: 2}
   projectileParticle: {fileID: 150130, guid: 363cd6040db64694b9e1b64710119b8b, type: 2}
   muzzleParticle: {fileID: 110814, guid: 1ee3bc51a3949df4b8feecc3bf285c9a, type: 2}
-  trailParticles:
-  - {fileID: 139000, guid: 363cd6040db64694b9e1b64710119b8b, type: 2}
-  - {fileID: 174248, guid: 363cd6040db64694b9e1b64710119b8b, type: 2}
-  impactNormal: {x: 0, y: 0, z: 0}
+  colliderRadius: 1
+  collideOffset: 0.15
 --- !u!135 &13541744
 SphereCollider:
   m_ObjectHideFlags: 1
