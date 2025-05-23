@@ -46,7 +46,7 @@ public class PlayerCheckpointHandler : MonoBehaviour
         //TODO: Quitar vida
         yield return Timing.WaitForSeconds(0.25f);
 
-        player.head
+        
         player.SetPosition(checkpoint.ReturnPoint.position);
         player.SetRotation(checkpoint.ReturnPoint.localRotation);
         
