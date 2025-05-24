@@ -46,11 +46,10 @@ public class PlayerCheckpointHandler : MonoBehaviour
         //TODO: Quitar vida
         yield return Timing.WaitForSeconds(0.25f);
 
-        //player.transform.position = checkpoint.ReturnPoint.position;
-        //player.SetRotation(checkpoint.ReturnPoint.localRotation);
-        player.SetPosition(checkpoint.ReturnPoint.position, checkpoint.ReturnPoint.localRotation);
-        //player.SetRotation(checkpoint.ReturnPoint.localRotation);
-
+        
+        player.SetPosition(checkpoint.ReturnPoint.position);
+        player.SetRotation(checkpoint.ReturnPoint.localRotation);
+        
         provider.SetIsInDeadZone(false);
         //player.heightOffset = -player.trackingContainer.transform.position.y;
         
