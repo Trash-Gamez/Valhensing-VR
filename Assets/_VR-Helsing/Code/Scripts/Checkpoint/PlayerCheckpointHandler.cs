@@ -40,17 +40,19 @@ public class PlayerCheckpointHandler : MonoBehaviour
         provider.SetIsInDeadZone(true);
         
         yield return Timing.WaitForSeconds(waitToTeleport);
-      
+
         
         //Esperar a colocar to do en escena
         //TODO: Quitar vida
         yield return Timing.WaitForSeconds(0.25f);
 
-        player.head
-        player.SetPosition(checkpoint.ReturnPoint.position);
-        player.SetRotation(checkpoint.ReturnPoint.localRotation);
-        
+        //player.transform.position = checkpoint.ReturnPoint.position;
+        //player.SetRotation(checkpoint.ReturnPoint.localRotation);
+        player.SetPosition(checkpoint.ReturnPoint.position, checkpoint.ReturnPoint.localRotation);
+        //player.SetRotation(checkpoint.ReturnPoint.localRotation);
+
         provider.SetIsInDeadZone(false);
+        //player.heightOffset = -player.trackingContainer.transform.position.y;
         
         _usingCheckpoint = false;
     }
