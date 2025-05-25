@@ -38,8 +38,11 @@ public class FlyEnemy : MonoBehaviour
             Explode();
             return;
         }
-        else if (distanceToPlayer <= detectionRange)
+
+        // Si ya empezó a perseguir o está dentro del rango, sigue persiguiendo
+        if (isChasingPlayer || distanceToPlayer <= detectionRange)
         {
+            isChasingPlayer = true;
             ChasePlayer();
         }
         else
