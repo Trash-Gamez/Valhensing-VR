@@ -181,6 +181,7 @@ namespace Autohand {
         public CapsuleCollider bodyCollider { get { return bodyCapsule; } }
 
         public Rigidbody body { get; protected set; }
+        public Vector3 MoveDirection => moveDirection;
 
         public RaycastHit lastGroundHit { get; protected set; }
 
@@ -564,6 +565,25 @@ namespace Autohand {
 
             }
         }
+
+        public bool IsTurning()
+        {
+            if (rotationType == RotationType.snap)
+            {
+                return CanTurnWhenSnap();
+            }
+            else
+            {
+                return CanTurnWhenSmooth();
+            }
+        }
+
+        private bool CanTurnWhenSnap()
+            => Mathf.Abs(turningAxis) > turnDeadzone && axisReset;
+
+        private bool CanTurnWhenSmooth()
+            => Mathf.Abs(turningAxis) > turnDeadzone; 
+        
 
         /// <summary>This function is responsible for keeping the body matching the head position when moving the head within the tracking space</summary>
         protected virtual void SyncBodyHead() {

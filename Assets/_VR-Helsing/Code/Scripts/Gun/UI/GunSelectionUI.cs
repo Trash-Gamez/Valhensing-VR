@@ -29,7 +29,7 @@ namespace _VR_Helsing.Gun
         private int _slotsSelected;
 
         private GunSelectionSlotUI _currentSlot;
-        public int SlotGunIndex => _currentSlot.GunIndex;
+        public int SlotGunIndex => !_currentSlot ? -1 : _currentSlot.GunIndex;
 
         private void Start()
         {

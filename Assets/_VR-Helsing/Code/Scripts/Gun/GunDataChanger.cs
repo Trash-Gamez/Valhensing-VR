@@ -31,16 +31,19 @@ public class GunDataChanger : MonoBehaviour
     {
         _uiActive = isActive;
 
-        if(isActive)
+        if (isActive)
         {
             GunSelectionUI.GetSelection(out _selectionUI);
             _selectionUI.Show(showMenuPos.position, playerTransform, cameraTransform);
         }
         else
         {
-            if(!_selectionUI) return;
-            
-            _gunDataHandler.SetGun(_selectionUI.SlotGunIndex);
+            if (!_selectionUI) return;
+
+            if (_selectionUI.SlotGunIndex >= 0)
+            {
+                _gunDataHandler.SetGun(_selectionUI.SlotGunIndex);
+            }
             
             GunSelectionUI.ReturnSelection(_selectionUI);
             _selectionUI.Hide();
