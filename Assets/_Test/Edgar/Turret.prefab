@@ -736,6 +736,37 @@ Transform:
   - {fileID: 2791813656192103146}
   m_Father: {fileID: 7410041605295987682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3720199474669285529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4543866052220996978}
+  m_Layer: 0
+  m_Name: cannonBarrel
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4543866052220996978
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3720199474669285529}
+  serializedVersion: 2
+  m_LocalRotation: {x: -4.799807e-22, y: 0.000000043711385, z: 3.5527137e-15, w: 1}
+  m_LocalPosition: {x: 0.0031800012, y: 0.0076316358, z: 0.015059997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1002294636642523271}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4216579969308312290
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,6 +776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1002294636642523271}
+  - component: {fileID: 7719433467827223191}
   m_Layer: 0
   m_Name: DEF_Spine
   m_TagString: Untagged
@@ -760,16 +792,38 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4216579969308312290}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.00000004371139, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.0054983627, z: 0}
+  m_LocalRotation: {x: 6.352747e-22, y: -0.000000043711385, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0054983594, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5018885277108817602}
   - {fileID: 3612483452595218186}
   - {fileID: 2939659525013680808}
+  - {fileID: 4543866052220996978}
   m_Father: {fileID: 7410041605295987682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7719433467827223191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4216579969308312290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5047a1968342a48a5864052dd63ee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  shootRange: 15
+  fireRate: 1
+  bulletTag: Bullet
+  cannonBarrel: {fileID: 4543866052220996978}
+  turretTorso: {fileID: 0}
+  rotationSpeed: 5
+  horizontalAngleLimits: {x: -90, y: 90}
+  verticalAngleLimits: {x: -10, y: 90}
 --- !u!1 &4471675885314172719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,7 +1234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a361f306ea90c46951f39ec102dd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetoPadre: {fileID: 2559472297257469798}
   maxHealth: 100
 --- !u!1 &5702192220753242824
 GameObject:
