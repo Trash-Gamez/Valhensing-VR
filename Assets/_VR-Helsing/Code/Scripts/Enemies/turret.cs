@@ -4,18 +4,18 @@ public class Turret : MonoBehaviour
 {
     [Header("Referencias")]
     public Transform player;                  // Jugador objetivo
-    public Transform turretTorso;             // Parte que rota (torso o cabeza)
+    public Transform turretTorso;             // Parte que rota 
     public Transform cannonBarrel;            // Punto desde donde salen los disparos
 
     [Header("Configuración de disparo")]
     public float shootRange = 15f;            // Rango máximo de detección
-    public float fireRate = 1f;               // Disparos por segundo
+    public float fireRate = 0.5f;               // Disparos por segundo
     public string bulletTag = "Bullet";       // Tag usado en Object Pool
 
     [Header("Límites de rotación")]
     public float rotationSpeed = 5f;          // Velocidad de rotación
-    public Vector2 horizontalAngleLimits = new Vector2(-90f, 90f); // ±90° (180° total)
-    public Vector2 verticalAngleLimits = new Vector2(-90f, 90f);   // -90° a 90° (180° total)
+    public Vector2 horizontalAngleLimits = new Vector2(-90f, 90f); 
+    public Vector2 verticalAngleLimits = new Vector2(-90f, 90f);   
 
     private float fireTimer = 0f;
     private Quaternion initialTorsoRotation;
@@ -49,7 +49,7 @@ public class Turret : MonoBehaviour
         }
         else
         {
-            // Opcional: volver a rotación inicial
+            //volver a rotación inicial
             ResetTorsoRotation();
         }
     }
@@ -105,6 +105,7 @@ public class Turret : MonoBehaviour
         GameObject bullet = ObjectPool.Instance.GetPooledObject(bulletTag);
         if (bullet != null)
         {
+            AudioManager.Instance.PlaySound3D("TurretShoot", cannonBarrel.transform.position);
             bullet.transform.position = cannonBarrel.position;
             bullet.transform.rotation = cannonBarrel.rotation;
             bullet.SetActive(true);
