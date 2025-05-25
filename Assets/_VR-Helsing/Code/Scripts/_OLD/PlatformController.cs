@@ -17,6 +17,7 @@ namespace _VanHelsingVR
 
         private void Start()
         {
+            
             if(AudioManager.Instance)
                 AudioManager.Instance.SwampMusic("MainMenuMusic");          
         }
@@ -29,7 +30,7 @@ namespace _VanHelsingVR
         IEnumerator MoveToNextPoint(Vector3 nextPosition,float delay)
         {
             yield return new WaitForSeconds(delay);
-            PlayAudio(wayPoints[actualIndex].canRotate);
+            //PlayAudio(wayPoints[actualIndex].canRotate);
             while (canMove)
             {
                 if (wayPoints[actualIndex].canRotate)
@@ -82,8 +83,8 @@ namespace _VanHelsingVR
             
             if (!canContinue)
             {
-                AudioManager.Instance.PlaySound3D("CarritoStop", transform.position);
-                AudioManager.Instance.StopAmbient();
+                /*AudioManager.Instance.PlaySound3D("CarritoStop", transform.position);
+                AudioManager.Instance.StopAmbient();*/
 
                 return;
             }
@@ -114,8 +115,8 @@ namespace _VanHelsingVR
        public void OnPlayerDead()
         {
             StopAllCoroutines();
-            AudioManager.Instance.PlaySound3D("CarritoStop", transform.position);
-            AudioManager.Instance.StopAmbient();
+            /*AudioManager.Instance.PlaySound3D("CarritoStop", transform.position);
+            AudioManager.Instance.StopAmbient();*/
         }
     
     }
