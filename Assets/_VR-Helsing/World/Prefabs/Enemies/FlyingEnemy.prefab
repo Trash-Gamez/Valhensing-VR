@@ -180,9 +180,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0003083456
-  m_Height: 0.001524037
+  m_Height: 0.0018530714
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.00009449989}
+  m_Center: {x: 1.4925092e-18, y: -4.1733565e-12, z: -0.000070017355}
 --- !u!114 &3205767534413335245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -966,6 +966,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4258726566869203357}
+  - {fileID: 6822575753611310535}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &3972088117485618460
@@ -1422,7 +1423,7 @@ Transform:
   m_GameObject: {fileID: 8168196513655232353}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.189, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1494,7 +1495,19 @@ MonoBehaviour:
     conditions: []
   onDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6822575753592837497}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onHeal:
     m_PersistentCalls:
       m_Calls: []
@@ -1507,6 +1520,18 @@ MonoBehaviour:
       - m_Target: {fileID: 6337974510461303395}
         m_TargetAssemblyTypeName: _VanHelsingVR.Enemy.FlyingEnemyStateMachine, Assembly-CSharp
         m_MethodName: OnDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6822575753592837497}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1826,3 +1851,82 @@ Transform:
   - {fileID: 5538082008263540767}
   m_Father: {fileID: 4600964282902325925}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6822575753611624441
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3867792049758752140}
+    m_Modifications:
+    - target: {fileID: 137874, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: m_Name
+      value: BloodExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 477758, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 477758, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 477758, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 477758, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 477758, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 477758, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 477758, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 477758, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 477758, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 477758, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19811124, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19835520, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19892364, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+--- !u!198 &6822575753592837497 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19835520, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+  m_PrefabInstance: {fileID: 6822575753611624441}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6822575753611310535 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 477758, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+  m_PrefabInstance: {fileID: 6822575753611624441}
+  m_PrefabAsset: {fileID: 0}
