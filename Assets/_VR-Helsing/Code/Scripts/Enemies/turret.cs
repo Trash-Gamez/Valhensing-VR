@@ -22,6 +22,7 @@ public class Turret : MonoBehaviour
 
     void Start()
     {
+
         if (turretTorso == null)
         {
             Debug.LogError("turretTorso no asignado en el scriptable object.");
