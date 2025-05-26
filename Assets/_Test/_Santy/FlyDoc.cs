@@ -5,7 +5,6 @@ namespace _VR_Helsing.Enemy
     public class FlyDoc : FlyingEnemy
     {
         [Header("FlyDoc Settings")]
-        [SerializeField][Range(0,10)] private float bulletSpeed = 1f;
         [SerializeField] private float timeBetweenShots = 2f;
         private float lastShootTime = 0f;
 
@@ -52,11 +51,8 @@ namespace _VR_Helsing.Enemy
             if (bulletPool == null) return;
             GameObject bullet = bulletPool.GetObject(firePoint.position);
             bullet.transform.rotation = firePoint.rotation;
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.linearVelocity = firePoint.forward * bulletSpeed;
-            }
+            Projectile projectile = bullet.GetComponent<Projectile>();
+            projectile.SetPool(bulletPool);
         }
 
         private void DebugPath()
