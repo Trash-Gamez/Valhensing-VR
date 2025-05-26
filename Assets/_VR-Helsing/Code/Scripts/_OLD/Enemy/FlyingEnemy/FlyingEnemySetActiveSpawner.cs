@@ -13,19 +13,19 @@ public class FlyingEnemySetActiveSpawner : MonoBehaviour
 
     private void Start()
     {
-        _spawner = FindObjectOfType<FlyingEnemySpawner>();
+        _spawner = FindFirstObjectByType<FlyingEnemySpawner>();
     }
 
     private void Logic()
     {
         if (isActive)
         {
-            AudioManager.Instance.SwampMusic("GameplayMusic01");
+            //AudioManager.Instance.SwampMusic("GameplayMusic01");
             _spawner.ActivateSpawn(numberEnemies);
         }
         else
         {
-            AudioManager.Instance.SwampMusic("GameplayMusic03");
+            //AudioManager.Instance.SwampMusic("GameplayMusic03");
             _spawner.DeactivateSpawn();
         }
 
