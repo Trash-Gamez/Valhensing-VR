@@ -9,6 +9,8 @@ namespace Autohand.Demo{
         public Teleporter hand;
         public InputActionProperty startTeleportAction;
         public InputActionProperty finishTeleportAction;
+
+        public bool ExecutingTeleport = false;
         
         bool teleporting = false;
 
@@ -33,10 +35,19 @@ namespace Autohand.Demo{
         }
 
         void FinishTeleportAction(InputAction.CallbackContext a) {
-            if(teleporting){
-                hand.Teleport();
-                teleporting = false;
+            if(teleporting)
+            {
+                ExecutingTeleport = true;
+                StartCoroutine(TeleportCouroutine());
             }
+        }
+
+        private IEnumerator TeleportCouroutine()
+        {
+            yield return null;
+            hand.Teleport();
+            ExecutingTeleport = false;
+            teleporting = false;
         }
     }
 }
