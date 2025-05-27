@@ -6,6 +6,7 @@ public class RoomSpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemy;
     [SerializeField] private GameObject[] Doors;
+    [SerializeField] private GameObject[] Stairs;
     //[SerializeField] private GameObject[] ActiveAfterBattle;
     private bool _onCombat;
     private BoxCollider MyCollider;
@@ -31,6 +32,10 @@ public class RoomSpawner : MonoBehaviour
             foreach (GameObject doors in Doors)
             {
                 doors.SetActive(true);
+            }
+            foreach (GameObject stair in Stairs)
+            {
+                stair.SetActive(false);
             }
             /* foreach (GameObject activeObject in ActiveAfterBattle)
             {
@@ -67,6 +72,11 @@ public class RoomSpawner : MonoBehaviour
         foreach (GameObject doors in Doors)
         {
             doors.SetActive(false);
+        }
+
+        foreach (GameObject stair in Stairs)
+        {
+            stair.SetActive(true);
         }
 
         /* foreach (GameObject activeObject in ActiveAfterBattle)
