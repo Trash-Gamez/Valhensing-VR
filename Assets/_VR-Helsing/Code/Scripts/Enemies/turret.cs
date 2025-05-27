@@ -106,7 +106,7 @@ public class Turret : MonoBehaviour
         GameObject bullet = ObjectPool.Instance.GetPooledObject(bulletTag);
         if (bullet != null)
         {
-            AudioManager.Instance.PlaySound3D("TurretShoot", cannonBarrel.transform.position);
+            //AudioManager.Instance.PlaySound3D("TurretShoot", cannonBarrel.transform.position);
             bullet.transform.position = cannonBarrel.position;
             bullet.transform.rotation = cannonBarrel.rotation;
             bullet.SetActive(true);
