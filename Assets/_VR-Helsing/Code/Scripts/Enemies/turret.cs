@@ -20,6 +20,7 @@ public class Turret : MonoBehaviour
     private float fireTimer = 0f;
     private Quaternion initialTorsoRotation;
     private Transform turretBase; // Referencia a la base de la torreta
+    [SerializeField] private PoolManager bulletPool;
 
     void Start()
     {
@@ -122,7 +123,9 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = ObjectPool.Instance.GetPooledObject(bulletTag);
+        GameObject bullet = bulletPool.GetObject(cannonBarrel.position);
+        Projectile projectile = bullet.GetComponent<Projectile>();
+        projectile.SetPool(bulletPool);
         if (bullet != null)
         {
             AudioManager.Instance.PlaySound3D("TurretShoot", cannonBarrel.transform.position);
