@@ -26,7 +26,7 @@ namespace _VanHelsingVR.Proyectile
         private void Start()
         {
             //Esto se hace para que el proyectil no seig aal jugador y solo siga la pocision del jugador de cuando fue creado el proyectil
-            _targetDir = (target.position - transform.position).normalized;
+            _targetDir = ((target.position+new Vector3(0,1.5f,0)) - transform.position).normalized;
             
             Invoke(nameof(DestroyObject), _secondsForDestroy);
         }

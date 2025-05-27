@@ -22,6 +22,7 @@ public class Turret : MonoBehaviour
 
     void Start()
     {
+
         if (turretTorso == null)
         {
             Debug.LogError("turretTorso no asignado en el scriptable object.");
@@ -105,10 +106,11 @@ public class Turret : MonoBehaviour
         GameObject bullet = ObjectPool.Instance.GetPooledObject(bulletTag);
         if (bullet != null)
         {
-            AudioManager.Instance.PlaySound3D("TurretShoot", cannonBarrel.transform.position);
+            //AudioManager.Instance.PlaySound3D("TurretShoot", cannonBarrel.transform.position);
             bullet.transform.position = cannonBarrel.position;
             bullet.transform.rotation = cannonBarrel.rotation;
             bullet.SetActive(true);
+            //HAZ QUE DISPARE
         }
     }
 

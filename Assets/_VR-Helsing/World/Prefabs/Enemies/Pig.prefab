@@ -38,6 +38,7 @@ Transform:
   - {fileID: 952128306983460956}
   - {fileID: 8187628832814410651}
   - {fileID: 7752693749943785907}
+  - {fileID: 6220574823430572010}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3852428435945293469
@@ -123,8 +124,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 1479372276
   m_Radius: 0.5
-  m_Speed: 8
-  m_Acceleration: 8
+  m_Speed: 15
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 500
   m_StoppingDistance: 0
@@ -157,7 +158,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3771691247992823838}
   - component: {fileID: 6634120773319705920}
-  - component: {fileID: 2029636101157189555}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -195,7 +195,7 @@ MonoBehaviour:
   maxHealth:
     variableType: 0
     reference: {fileID: 0}
-    constant: 15
+    constant: 50
   currentHealth:
     variableType: 0
     reference: {fileID: 0}
@@ -241,52 +241,15 @@ MonoBehaviour:
   onDead:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7312035559632380562}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.5
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7752693749928671501}
-        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-        m_MethodName: Play
+      - m_Target: {fileID: 8159250126212016734}
+        m_TargetAssemblyTypeName: SpawnEffects, Assembly-CSharp
+        m_MethodName: Effect01
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0.5
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2029636101157189555}
-        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
-          Assembly-CSharp
-        m_MethodName: DestroySelf
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.5
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2096802308748314309}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.5
+          m_FloatArgument: 0.001
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -299,22 +262,10 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 1.5
+          m_FloatArgument: 0.001
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2029636101157189555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1721651865040491177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8f4674057f5a34a87ee1ed00fce7cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1919396866642015733
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,7 +365,7 @@ MonoBehaviour:
   hurtBoxCollider: {fileID: 899860076788851679}
   hurtLayer:
     serializedVersion: 2
-    m_Bits: 131392
+    m_Bits: 164160
   <HurtboxTeam>k__BackingField: 0
   friendlyFire:
     defaultValue: 0
@@ -573,6 +524,70 @@ CapsuleCollider:
   m_Height: 2.3
   m_Direction: 1
   m_Center: {x: 0, y: 1.15, z: 0}
+--- !u!1001 &6220574823430948892
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 834724216816891675}
+    m_Modifications:
+    - target: {fileID: 144806, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+      propertyPath: m_Name
+      value: PlasmaExplosionBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 413686, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413686, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.066
+      objectReference: {fileID: 0}
+    - target: {fileID: 413686, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413686, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 413686, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 413686, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413686, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413686, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 413686, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 413686, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8298014, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 185398, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+--- !u!4 &6220574823430572010 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 413686, guid: 72d348a2d2042e14fa766db64bb54a7b, type: 3}
+  m_PrefabInstance: {fileID: 6220574823430948892}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7618111758370381763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -633,9 +648,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8017449571587430431, guid: d614b6218119b9649a82b3d64d9a8498, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7492048d394b2ae49bfdf8927d098adc, type: 2}
     - target: {fileID: 919132149155446097, guid: d614b6218119b9649a82b3d64d9a8498, type: 3}
       propertyPath: m_Name
       value: Enemigo02
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d614b6218119b9649a82b3d64d9a8498, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -729,6 +752,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 19811124, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19835520, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 19835520, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
       propertyPath: CollisionModule.type
       value: 1
@@ -744,6 +775,10 @@ PrefabInstance:
     - target: {fileID: 19835520, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 19892364, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19892364, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -764,7 +799,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 137874, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8159250126212016734}
   m_SourcePrefab: {fileID: 100100000, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
 --- !u!198 &7752693749928671501 stripped
 ParticleSystem:
@@ -776,3 +814,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 477758, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
   m_PrefabInstance: {fileID: 7752693749943964557}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7752693749944092959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 137874, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+  m_PrefabInstance: {fileID: 7752693749943964557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8159250126212016734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7752693749944092959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb5d56b31c4d094eb8681107ba49a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect01: {fileID: 137874, guid: 5482371ac774a254fb6cfd3dea8f05f8, type: 3}
+  effect02: {fileID: 0}

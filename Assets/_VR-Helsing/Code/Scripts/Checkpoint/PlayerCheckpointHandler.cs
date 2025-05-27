@@ -30,7 +30,7 @@ public class PlayerCheckpointHandler : MonoBehaviour
     public void UseLastCheckPoint()
     {
         if (_usingCheckpoint) return;
-        Timing.RunCoroutine(UseCheckpoint(_currentCheckpoint));
+        Timing.RunCoroutine(UseCheckpoint(_currentCheckpoint), Segment.FixedUpdate);
     }
 
     private IEnumerator<float> UseCheckpoint(Checkpoint checkpoint)
@@ -50,8 +50,10 @@ public class PlayerCheckpointHandler : MonoBehaviour
         player.SetPosition(checkpoint.ReturnPoint.position);
         player.SetRotation(checkpoint.ReturnPoint.localRotation);
         
+        yield return Timing.WaitForOneFrame;
+        player.Recenter();
+        
         provider.SetIsInDeadZone(false);
-        //player.heightOffset = -player.trackingContainer.transform.position.y;
         
         _usingCheckpoint = false;
     }
