@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
@@ -7,13 +7,13 @@ public class Turret : MonoBehaviour
     public Transform turretTorso;             // Parte que rota 
     public Transform cannonBarrel;            // Punto desde donde salen los disparos
 
-    [Header("Configuración de disparo")]
-    public float shootRange = 15f;            // Rango máximo de detección
+    [Header("Configuraciï¿½n de disparo")]
+    public float shootRange = 15f;            // Rango mï¿½ximo de detecciï¿½n
     public float fireRate = 0.5f;               // Disparos por segundo
     public string bulletTag = "Bullet";       // Tag usado en Object Pool
 
-    [Header("Límites de rotación")]
-    public float rotationSpeed = 5f;          // Velocidad de rotación
+    [Header("Lï¿½mites de rotaciï¿½n")]
+    public float rotationSpeed = 5f;          // Velocidad de rotaciï¿½n
     public Vector2 horizontalAngleLimits = new Vector2(-90f, 90f);
     public Vector2 verticalAngleLimits = new Vector2(-90f, 90f);
 
@@ -53,7 +53,7 @@ public class Turret : MonoBehaviour
         }
         else
         {
-            //volver a rotación inicial
+            //volver a rotaciï¿½n inicial
             ResetTorsoRotation();
         }
     }
@@ -64,17 +64,17 @@ public class Turret : MonoBehaviour
         if (distanceToPlayer > shootRange)
             return false;
 
-        // Dirección desde la base de la torreta hacia el jugador
+        // Direcciï¿½n desde la base de la torreta hacia el jugador
         Vector3 directionToPlayer = (player.position - turretBase.position).normalized;
 
-        // Convertir la dirección a espacio local de la base
+        // Convertir la direcciï¿½n a espacio local de la base
         Vector3 localDirection = turretBase.InverseTransformDirection(directionToPlayer);
 
-        // Calcular ángulos en espacio local
+        // Calcular ï¿½ngulos en espacio local
         float horizontalAngle = Mathf.Atan2(localDirection.x, localDirection.z) * Mathf.Rad2Deg;
         float verticalAngle = Mathf.Atan2(localDirection.y, new Vector2(localDirection.x, localDirection.z).magnitude) * Mathf.Rad2Deg;
 
-        // Normalizar ángulos
+        // Normalizar ï¿½ngulos
         horizontalAngle = NormalizeAngle(horizontalAngle);
         verticalAngle = NormalizeAngle(verticalAngle);
 
@@ -86,36 +86,36 @@ public class Turret : MonoBehaviour
 
     void RotateTorsoTowardsPlayer()
     {
-        // Dirección desde el torso hacia el jugador
+        // Direcciï¿½n desde el torso hacia el jugador
         Vector3 direction = (player.position - turretTorso.position).normalized;
 
-        // Calcular rotación objetivo en espacio mundo
+        // Calcular rotaciï¿½n objetivo en espacio mundo
         Quaternion targetRotation = Quaternion.LookRotation(direction);
 
         // Convertir a espacio local del padre
         Quaternion localTargetRotation = Quaternion.Inverse(turretBase.rotation) * targetRotation;
         Vector3 eulerAngles = localTargetRotation.eulerAngles;
 
-        // Normalizar ángulos
+        // Normalizar ï¿½ngulos
         eulerAngles.x = NormalizeAngle(eulerAngles.x);
         eulerAngles.y = NormalizeAngle(eulerAngles.y);
-        eulerAngles.z = 0f; // No rotación en Z
+        eulerAngles.z = 0f; // No rotaciï¿½n en Z
 
-        // Aplicar límites
+        // Aplicar lï¿½mites
         float limitedY = Mathf.Clamp(eulerAngles.y, horizontalAngleLimits.x, horizontalAngleLimits.y);
         float limitedX = Mathf.Clamp(eulerAngles.x, verticalAngleLimits.x, verticalAngleLimits.y);
 
-        // Crear rotación final limitada
+        // Crear rotaciï¿½n final limitada
         Quaternion limitedLocalRotation = Quaternion.Euler(limitedX, limitedY, 0f);
         Quaternion finalWorldRotation = turretBase.rotation * limitedLocalRotation;
 
-        // Aplicar rotación suavemente
+        // Aplicar rotaciï¿½n suavemente
         turretTorso.rotation = Quaternion.Slerp(turretTorso.rotation, finalWorldRotation, Time.deltaTime * rotationSpeed);
     }
 
     void ResetTorsoRotation()
     {
-        // Convertir rotación inicial local a mundo
+        // Convertir rotaciï¿½n inicial local a mundo
         Quaternion worldInitialRotation = turretBase.rotation * initialTorsoRotation;
         turretTorso.rotation = Quaternion.Slerp(turretTorso.rotation, worldInitialRotation, Time.deltaTime * rotationSpeed);
     }
@@ -139,16 +139,16 @@ public class Turret : MonoBehaviour
         return angle;
     }
 
-    
+
     void OnDrawGizmosSelected()
     {
         if (turretBase == null) return;
 
-        // Dibujar rango de detección
+        // Dibujar rango de detecciï¿½n
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, shootRange);
 
-        // Dibujar límites de rotación horizontal
+        // Dibujar lï¿½mites de rotaciï¿½n horizontal
         Gizmos.color = Color.red;
         Vector3 leftLimit = Quaternion.AngleAxis(horizontalAngleLimits.x, turretBase.up) * turretBase.forward;
         Vector3 rightLimit = Quaternion.AngleAxis(horizontalAngleLimits.y, turretBase.up) * turretBase.forward;

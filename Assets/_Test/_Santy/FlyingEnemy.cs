@@ -10,7 +10,7 @@ namespace _VR_Helsing.Enemy
 
         [Header("Detection Variables")]
         [Range(0, 20)] public float detectionRange = 10f;
-        protected Transform target;
+        [SerializeField] protected Transform target;
 
         [Header("References")]
         protected WayPointManager wayPointManager;
@@ -20,10 +20,19 @@ namespace _VR_Helsing.Enemy
         [Header("Debug")]
         public bool drawGizmos = true;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             wayPointManager = GetComponent<WayPointManager>();
             animator = GetComponentInChildren<Animator>();
+
+            if (target == null)
+            {
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
+                {
+                    target = player.transform;
+                }
+            }
         }
 
         private void Start()
