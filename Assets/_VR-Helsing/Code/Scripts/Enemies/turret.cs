@@ -8,12 +8,12 @@ public class Turret : MonoBehaviour
     public Transform cannonBarrel;            // Punto desde donde salen los disparos
 
     [Header("Configuraci�n de disparo")]
-    public float shootRange = 15f;            // Rango m�ximo de detecci�n
+    public float shootRange = 15f;            // Rango maximo de deteccion
     public float fireRate = 0.5f;               // Disparos por segundo
     public string bulletTag = "Bullet";       // Tag usado en Object Pool
 
     [Header("L�mites de rotaci�n")]
-    public float rotationSpeed = 5f;          // Velocidad de rotaci�n
+    public float rotationSpeed = 5f;          // Velocidad de rotacion
     public Vector2 horizontalAngleLimits = new Vector2(-90f, 90f);
     public Vector2 verticalAngleLimits = new Vector2(-90f, 90f);
 
@@ -53,7 +53,7 @@ public class Turret : MonoBehaviour
         }
         else
         {
-            //volver a rotaci�n inicial
+            //volver a rotacion inicial
             ResetTorsoRotation();
         }
     }
@@ -64,17 +64,17 @@ public class Turret : MonoBehaviour
         if (distanceToPlayer > shootRange)
             return false;
 
-        // Direcci�n desde la base de la torreta hacia el jugador
+        // Direccion desde la base de la torreta hacia el jugador
         Vector3 directionToPlayer = (player.position - turretBase.position).normalized;
 
-        // Convertir la direcci�n a espacio local de la base
+        // Convertir la direccion a espacio local de la base
         Vector3 localDirection = turretBase.InverseTransformDirection(directionToPlayer);
 
-        // Calcular �ngulos en espacio local
+        // Calcular angulos en espacio local
         float horizontalAngle = Mathf.Atan2(localDirection.x, localDirection.z) * Mathf.Rad2Deg;
         float verticalAngle = Mathf.Atan2(localDirection.y, new Vector2(localDirection.x, localDirection.z).magnitude) * Mathf.Rad2Deg;
 
-        // Normalizar �ngulos
+        // Normalizar angulos
         horizontalAngle = NormalizeAngle(horizontalAngle);
         verticalAngle = NormalizeAngle(verticalAngle);
 
@@ -86,10 +86,10 @@ public class Turret : MonoBehaviour
 
     void RotateTorsoTowardsPlayer()
     {
-        // Direcci�n desde el torso hacia el jugador
+        // Direccion desde el torso hacia el jugador
         Vector3 direction = (player.position - turretTorso.position).normalized;
 
-        // Calcular rotaci�n objetivo en espacio mundo
+        // Calcular rotacion objetivo en espacio mundo
         Quaternion targetRotation = Quaternion.LookRotation(direction);
 
         // Convertir a espacio local del padre
@@ -99,13 +99,13 @@ public class Turret : MonoBehaviour
         // Normalizar �ngulos
         eulerAngles.x = NormalizeAngle(eulerAngles.x);
         eulerAngles.y = NormalizeAngle(eulerAngles.y);
-        eulerAngles.z = 0f; // No rotaci�n en Z
+        eulerAngles.z = 0f; // No rotacion en Z
 
         // Aplicar l�mites
         float limitedY = Mathf.Clamp(eulerAngles.y, horizontalAngleLimits.x, horizontalAngleLimits.y);
         float limitedX = Mathf.Clamp(eulerAngles.x, verticalAngleLimits.x, verticalAngleLimits.y);
 
-        // Crear rotaci�n final limitada
+        // Crear rotacion final limitada
         Quaternion limitedLocalRotation = Quaternion.Euler(limitedX, limitedY, 0f);
         Quaternion finalWorldRotation = turretBase.rotation * limitedLocalRotation;
 
@@ -115,7 +115,7 @@ public class Turret : MonoBehaviour
 
     void ResetTorsoRotation()
     {
-        // Convertir rotaci�n inicial local a mundo
+        // Convertir rotacion inicial local a mundo
         Quaternion worldInitialRotation = turretBase.rotation * initialTorsoRotation;
         turretTorso.rotation = Quaternion.Slerp(turretTorso.rotation, worldInitialRotation, Time.deltaTime * rotationSpeed);
     }
@@ -125,7 +125,7 @@ public class Turret : MonoBehaviour
         GameObject bullet = ObjectPool.Instance.GetPooledObject(bulletTag);
         if (bullet != null)
         {
-            //AudioManager.Instance.PlaySound3D("TurretShoot", cannonBarrel.transform.position);
+            AudioManager.Instance.PlaySound3D("TurretShoot", cannonBarrel.transform.position);
             bullet.transform.position = cannonBarrel.position;
             bullet.transform.rotation = cannonBarrel.rotation;
             bullet.SetActive(true);
@@ -144,11 +144,11 @@ public class Turret : MonoBehaviour
     {
         if (turretBase == null) return;
 
-        // Dibujar rango de detecci�n
+        // Dibujar rango de deteccion
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, shootRange);
 
-        // Dibujar l�mites de rotaci�n horizontal
+        // Dibujar limites de rotacion horizontal
         Gizmos.color = Color.red;
         Vector3 leftLimit = Quaternion.AngleAxis(horizontalAngleLimits.x, turretBase.up) * turretBase.forward;
         Vector3 rightLimit = Quaternion.AngleAxis(horizontalAngleLimits.y, turretBase.up) * turretBase.forward;
