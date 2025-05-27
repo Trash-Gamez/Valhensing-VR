@@ -38,6 +38,7 @@ namespace _VR_Helsing.Enemy
 
         private void Explode()
         {
+
         }
 
         public override void Movement()
