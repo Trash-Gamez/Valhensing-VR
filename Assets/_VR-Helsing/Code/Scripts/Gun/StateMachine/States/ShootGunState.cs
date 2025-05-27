@@ -98,7 +98,7 @@ namespace _VR_Helsing.Gun
             for (int i = 0; i < times; i++)
                 CastShoot();
                 
-            //if(AudioManager.Instance) AudioManager.Instance.PlaySound2D("Shoot_0"+Random.Range(1,8));
+            if(AudioManager.Instance) AudioManager.Instance.PlaySound2D("Shoot_0"+Random.Range(1,8));
                 
             _magazine.Value--;
             if (_magazine.Value <= 0)
