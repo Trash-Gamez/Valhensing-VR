@@ -110,6 +110,7 @@ public class Turret : MonoBehaviour
             bullet.transform.position = cannonBarrel.position;
             bullet.transform.rotation = cannonBarrel.rotation;
             bullet.SetActive(true);
+            //HAZ QUE DISPARE
         }
     }
 

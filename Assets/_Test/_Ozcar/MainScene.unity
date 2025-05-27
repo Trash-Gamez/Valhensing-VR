@@ -14793,6 +14793,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pig
       objectReference: {fileID: 0}
+    - target: {fileID: 237174042776658941, guid: 8ca59897326ce4f40be1c406be2ea92c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 834724216816891675, guid: 8ca59897326ce4f40be1c406be2ea92c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.44600868
@@ -113435,18 +113439,30 @@ PrefabInstance:
     - target: {fileID: 4915573694008427852, guid: 0a8c902b598883c40833358a687f41f6, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 5659373}
+      objectReference: {fileID: 1265376799}
+    - target: {fileID: 4915573694008427852, guid: 0a8c902b598883c40833358a687f41f6, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915573694008427852, guid: 0a8c902b598883c40833358a687f41f6, type: 3}
+      propertyPath: horizontalAngleLimits.x
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915573694008427852, guid: 0a8c902b598883c40833358a687f41f6, type: 3}
+      propertyPath: horizontalAngleLimits.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 7236725481542346508, guid: 0a8c902b598883c40833358a687f41f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.035638243
+      value: 23.95
       objectReference: {fileID: 0}
     - target: {fileID: 7236725481542346508, guid: 0a8c902b598883c40833358a687f41f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.267
       objectReference: {fileID: 0}
     - target: {fileID: 7236725481542346508, guid: 0a8c902b598883c40833358a687f41f6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.48171
+      value: 44.422
       objectReference: {fileID: 0}
     - target: {fileID: 7236725481542346508, guid: 0a8c902b598883c40833358a687f41f6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -113454,15 +113470,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236725481542346508, guid: 0a8c902b598883c40833358a687f41f6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7236725481542346508, guid: 0a8c902b598883c40833358a687f41f6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7236725481542346508, guid: 0a8c902b598883c40833358a687f41f6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7236725481542346508, guid: 0a8c902b598883c40833358a687f41f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -127877,6 +127893,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 270397224195920637, guid: 2a37637d6f89a8d41886dd2cf313a9a4, type: 3}
   m_PrefabInstance: {fileID: 1264794717}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1265376799 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 580815726834635771, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
+  m_PrefabInstance: {fileID: 5659370}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1265641961
 PrefabInstance:
@@ -150979,7 +151000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 834724216816891675, guid: 8ca59897326ce4f40be1c406be2ea92c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.028677
+      value: 27.028677
       objectReference: {fileID: 0}
     - target: {fileID: 834724216816891675, guid: 8ca59897326ce4f40be1c406be2ea92c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -215222,7 +215243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &3514692974539291912
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -218129,7 +218150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &7585669093926442745
 CanvasRenderer:
   m_ObjectHideFlags: 0
