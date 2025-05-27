@@ -10,7 +10,7 @@ namespace _VR_Helsing.Enemy
 
         [Header("Detection Variables")]
         [Range(0, 20)] public float detectionRange = 10f;
-        protected Transform target;
+        [SerializeField] protected Transform target;
 
         [Header("References")]
         protected WayPointManager wayPointManager;
