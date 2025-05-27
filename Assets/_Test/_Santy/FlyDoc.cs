@@ -14,6 +14,8 @@ namespace _VR_Helsing.Enemy
 
         private void Update()
         {
+            if (target == null) return;
+
             float distance = Vector3.Distance(transform.position, target.position);
             if (distance <= detectionRange)
             {
