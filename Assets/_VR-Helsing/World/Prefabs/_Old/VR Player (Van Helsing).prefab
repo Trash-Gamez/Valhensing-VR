@@ -5298,6 +5298,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8834320319295017362, guid: fdc3ba53f4e81a040b0471bbbafbb10a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5486668551998264530}
+    - targetCorrespondingSourceObject: {fileID: 8834320319295017362, guid: fdc3ba53f4e81a040b0471bbbafbb10a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7395605029529603845}
   m_SourcePrefab: {fileID: 100100000, guid: fdc3ba53f4e81a040b0471bbbafbb10a, type: 3}
 --- !u!1 &7213465901146843157 stripped
 GameObject:
@@ -5401,6 +5404,35 @@ MonoBehaviour:
   defaultCheckpoint: {fileID: 0}
   provider: {fileID: 3242451338996886568}
   waitToTeleport: 3
+--- !u!114 &7395605029529603845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7213465901146843157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dce7bb7fac4b2845bd45fdb3c654a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventReference:
+    reactiveEvent: {fileID: 11400000, guid: 8c05c3f917b840f40b0695ab14a86e79, type: 2}
+  UnityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5803332032354738941}
+        m_TargetAssemblyTypeName: _VR_Helsing.HealthSystem.HealthSystem, Assembly-CSharp
+        m_MethodName: Heal
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 30
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7213465901146843159 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8834320319295017360, guid: fdc3ba53f4e81a040b0471bbbafbb10a, type: 3}
