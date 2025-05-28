@@ -34,6 +34,8 @@ namespace _VR_Helsing.HealthSystem
         [SerializeField] public UnityEvent onOverHeal;
         [SerializeField] public UnityEvent onDead;
 
+        public bool IsHealthDead => _isHealthDead;
+
         private void Start()
         {
             SetInitialHealth();
@@ -51,6 +53,7 @@ namespace _VR_Helsing.HealthSystem
         /// <param name="removedLife">La vida que se removerá de este sistema de vida</param>
         public void Damage(int removedLife)
         {
+            if (_isHealthDead) return;
             if (!canBeDamaged) return;
             
             removedLife = OnDamage(removedLife);

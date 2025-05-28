@@ -52,8 +52,10 @@ namespace _VanHelsingVR.Health
 
         public void Hit(int damageDealed)
         {
+            
             if (HealthReference.HealthSystem)
             {
+                if (HealthReference.HealthSystem.IsHealthDead) return;
                 HealthReference.HealthSystem.Damage(damageDealed);                
             }
             
