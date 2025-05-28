@@ -1407,6 +1407,7 @@ GameObject:
   - component: {fileID: 4135547674928832787}
   - component: {fileID: 5625123445628556782}
   - component: {fileID: 6972304371086370576}
+  - component: {fileID: 1543411905556488732}
   m_Layer: 0
   m_Name: VampireDog
   m_TagString: Untagged
@@ -1508,6 +1509,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1543411905556488732}
+        m_TargetAssemblyTypeName: AudioPlayer, Assembly-CSharp
+        m_MethodName: Play2DSound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Bat
+          m_BoolArgument: 0
+        m_CallState: 2
   onHeal:
     m_PersistentCalls:
       m_Calls: []
@@ -1566,6 +1579,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 6337974510461303395}
+--- !u!114 &1543411905556488732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8168196513655232353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a053f3aad10e81f48b40def7d4931b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSound: 
 --- !u!1 &8182825748982419663
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8862160228255244912}
   - component: {fileID: 3363647947670049311}
   - component: {fileID: 1809016009328260211}
+  - component: {fileID: 8693854479411466891}
   m_Layer: 14
   m_Name: BreakableTable
   m_TagString: Untagged
@@ -173,6 +174,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8693854479411466891}
+        m_TargetAssemblyTypeName: AudioPlayer, Assembly-CSharp
+        m_MethodName: Play2DSound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Wood
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1809016009328260211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,3 +198,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8f4674057f5a34a87ee1ed00fce7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8693854479411466891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571031653464888409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a053f3aad10e81f48b40def7d4931b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSound: 

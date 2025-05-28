@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 1149312161128627076}
   - component: {fileID: 8067941609451213084}
   - component: {fileID: 4622738984852457886}
+  - component: {fileID: 5529416650279004691}
   m_Layer: 14
   m_Name: ChestSecure
   m_TagString: Untagged
@@ -447,6 +448,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5529416650279004691}
+        m_TargetAssemblyTypeName: AudioPlayer, Assembly-CSharp
+        m_MethodName: Play2DSound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Lock
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4622738984852457886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,3 +472,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8f4674057f5a34a87ee1ed00fce7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5529416650279004691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8367356102765983291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a053f3aad10e81f48b40def7d4931b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSound: 

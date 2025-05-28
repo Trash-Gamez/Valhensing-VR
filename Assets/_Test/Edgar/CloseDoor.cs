@@ -12,6 +12,7 @@ public class CloseDoor : MonoBehaviour
         {
             animator.SetBool("Close", true);
             AudioManager.Instance.PlaySound2D("BigDoor");
+            gameObject.SetActive(false);
         }
     }
 }

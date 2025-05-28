@@ -7,8 +7,8 @@ public class AudioPlayer : MonoBehaviour
     [SerializeField] private string startSound;
     private void OnEnable()
     {
-        if (startSound == null || startSound == "") return;
-        AudioManager.Instance.PlaySound3D(startSound, transform.position);
+        /*if (startSound == null || startSound == "") return;
+        AudioManager.Instance.PlaySound3D(startSound, transform.position);*/
     }
     public void Play3DSound(string soundName)
     {

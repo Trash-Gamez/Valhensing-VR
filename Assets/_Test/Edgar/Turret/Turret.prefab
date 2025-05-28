@@ -405,6 +405,7 @@ MonoBehaviour:
   rotationSpeed: 5
   horizontalAngleLimits: {x: -90, y: 90}
   verticalAngleLimits: {x: -90, y: 90}
+  bulletPool: {fileID: 0}
 --- !u!114 &145101637659376744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1167,6 +1168,7 @@ GameObject:
   - component: {fileID: 9199500645646397126}
   - component: {fileID: 8507613895754541564}
   - component: {fileID: 4097397614830250621}
+  - component: {fileID: 8772097121036913412}
   m_Layer: 14
   m_Name: HurtBox
   m_TagString: Untagged
@@ -1310,19 +1312,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 145101637659376744}
-        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
-          Assembly-CSharp
-        m_MethodName: DestroySelf
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.01
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4097397614830250621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,6 +1340,19 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8772097121036913412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5645885194687926491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a053f3aad10e81f48b40def7d4931b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSound: 
 --- !u!1 &5702192220753242824
 GameObject:
   m_ObjectHideFlags: 0

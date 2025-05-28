@@ -7,7 +7,7 @@ public class RoomSpawner : MonoBehaviour
     [SerializeField] private List<GameObject> enemy;
     [SerializeField] private GameObject[] Doors;
     [SerializeField] private GameObject[] Stairs;
-    //[SerializeField] private GameObject[] ActiveAfterBattle;
+    [SerializeField] private GameObject[] ActiveAfterBattle;
     private bool _onCombat;
     private BoxCollider MyCollider;
 
@@ -48,7 +48,7 @@ public class RoomSpawner : MonoBehaviour
 
             MyCollider.enabled = false;
 
-            //AudioManager.Instance.SwampMusic("GameplayMusic02");
+            AudioManager.Instance.SwampMusic("GameplayMusic02");
             StartCoroutine(OnCombat());
         }
     }
@@ -79,12 +79,12 @@ public class RoomSpawner : MonoBehaviour
             stair.SetActive(true);
         }
 
-        /* foreach (GameObject activeObject in ActiveAfterBattle)
+         foreach (GameObject activeObject in ActiveAfterBattle)
         {
             activeObject.SetActive(true);
-        } */
+        } 
 
-        //AudioManager.Instance.SwampMusic("GameplayMusic03");
+        AudioManager.Instance.SwampMusic("GameplayMusic03");
     }
 
     public void DeleteEnemy(GameObject temporalEnemy)
