@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 1463764339957287512}
   - component: {fileID: 4326196661661295391}
   - component: {fileID: 3709145285931777125}
+  - component: {fileID: 861879264983985463}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -250,6 +251,18 @@ MonoBehaviour:
   onSqueeze:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 861879264983985463}
+        m_TargetAssemblyTypeName: ChangeName, Assembly-CSharp
+        m_MethodName: ChangeObjectName
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0.001
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 11400000, guid: 8c05c3f917b840f40b0695ab14a86e79, type: 2}
         m_TargetAssemblyTypeName: _VanHelsingVR.Events.ReactiveEvent`1[[System.Int32,
           mscorlib
@@ -260,19 +273,6 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 40
           m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6114640297154396651}
-        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
-          Assembly-CSharp
-        m_MethodName: DestroySelf
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0.001
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -299,6 +299,19 @@ MonoBehaviour:
           m_FloatArgument: 0.001
           m_StringArgument: HeartExplotion
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6114640297154396651}
+        m_TargetAssemblyTypeName: _VanHelsingVR.Instructions.DestroyInstruction,
+          Assembly-CSharp
+        m_MethodName: DestroySelf
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0.001
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   onUnsqueeze:
     m_PersistentCalls:
@@ -552,6 +565,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &861879264983985463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718576890188637365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bff74a35ea5ac8408753f9a65048abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2018110073879183281
 GameObject:
   m_ObjectHideFlags: 0
