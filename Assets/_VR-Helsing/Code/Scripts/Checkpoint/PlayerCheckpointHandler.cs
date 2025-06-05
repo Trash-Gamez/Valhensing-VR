@@ -62,7 +62,9 @@ public class PlayerCheckpointHandler : MonoBehaviour
     {
         if (enteringCheckpoint && _currentCheckpoint == enteringCheckpoint) return;
 
+        _currentCheckpoint.ExitCheckpoint();
         _currentCheckpoint = enteringCheckpoint;
+        _currentCheckpoint.EnterCheckpoint();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -6,7 +6,14 @@ public class Deadzone : MonoBehaviour
 {
     public static event Action OnDeadzoneTouched; 
     
-    private void OnTriggerEnter(Collider other)
+    protected Collider collider;
+
+    protected virtual void Start()
+    {
+        collider = GetComponent<Collider>();
+    }
+
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
         
