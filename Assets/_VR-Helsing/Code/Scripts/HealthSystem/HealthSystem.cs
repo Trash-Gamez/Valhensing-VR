@@ -2,9 +2,12 @@ using _VanHelsingVR.Conditions;
 using _VanHelsingVR.Instructions;
 using RacTools.Variables;
 using Sirenix.OdinInspector;
-using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.Events;
+
+#if UNITY_EDITOR
+using UnityEditor.Events;
+#endif
 
 namespace _VR_Helsing.HealthSystem
 {
