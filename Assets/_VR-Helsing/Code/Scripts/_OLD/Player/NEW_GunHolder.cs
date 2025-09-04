@@ -10,6 +10,7 @@ public class NEW_GunHolder : MonoBehaviour
 
     [SerializeField] private Transform behindHeadPos;
 
+    [SerializeField] private bool equipMainWeaponOnStart = true;
     [SerializeField] private bool startWithSecondWeapon;
     
     private Hand _currentHoldingHand, _secondaryHoldingHand;
@@ -17,7 +18,7 @@ public class NEW_GunHolder : MonoBehaviour
 
     private void Start()
     {
-        HandleGunChange(rightHand);
+        if(equipMainWeaponOnStart)HandleGunChange(rightHand);
         _hasSecondWeapon = startWithSecondWeapon;
     }
     

@@ -924,6 +924,10 @@ PrefabInstance:
       propertyPath: guns.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6415459490218293843, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
+      propertyPath: gunRenderers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7213465901146843159, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
       propertyPath: useMovement
       value: 1
@@ -950,7 +954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8177597570292726457, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
       propertyPath: startWithSecondWeapon
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8957762121821984812, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
       propertyPath: reachDistance
@@ -958,6 +962,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9185296896789524320, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
       propertyPath: guns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9185296896789524320, guid: 8d1c5118cf8dbf441845efa484ce5be3, type: 3}
+      propertyPath: gunRenderers.Array.size
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -211773,7 +211781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightImage: {fileID: 6753030938910957340}
   gunImage: {fileID: 3769588620853740198}
-  gunSprite: {fileID: -7343220986905845580, guid: 215687feeab0b7445b4a1cd86c82c2e1, type: 3}
+  gunSprite: {fileID: 888595134, guid: 0b186a5333ae0ed4b8299f913ab1a422, type: 3}
   gunIndex: 0
 --- !u!114 &3769588620853740198
 MonoBehaviour:
@@ -213588,7 +213596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightImage: {fileID: 1490737020123615849}
   gunImage: {fileID: 4314797704089140401}
-  gunSprite: {fileID: -3386218922703161388, guid: 215687feeab0b7445b4a1cd86c82c2e1, type: 3}
+  gunSprite: {fileID: -1044302169, guid: 0b186a5333ae0ed4b8299f913ab1a422, type: 3}
   gunIndex: 1
 --- !u!222 &6426724920505459763
 CanvasRenderer:
@@ -213925,7 +213933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightImage: {fileID: 6335325027587547467}
   gunImage: {fileID: 7676299699649518752}
-  gunSprite: {fileID: -9160987577138628238, guid: 215687feeab0b7445b4a1cd86c82c2e1, type: 3}
+  gunSprite: {fileID: 260490512, guid: 0b186a5333ae0ed4b8299f913ab1a422, type: 3}
   gunIndex: 2
 --- !u!224 &6954663390204624156
 RectTransform:

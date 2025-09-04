@@ -53,5 +53,10 @@ namespace _VR_Helsing.Gun
             
             OnSlotUnselected?.Invoke(this);
         }
+
+        private void OnValidate()
+        {
+            if(gunImage) gunImage.sprite = gunSprite;
+        }
     }
 }
