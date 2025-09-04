@@ -4,7 +4,7 @@ using Autohand;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GunDataChanger : MonoBehaviour
+public class GunDataChangerInput : MonoBehaviour
 {
     [Header("Hand")]
     [SerializeField] private Hand attachedHand;
