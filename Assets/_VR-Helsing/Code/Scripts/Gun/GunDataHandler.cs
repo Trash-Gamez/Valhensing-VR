@@ -7,8 +7,8 @@ public class GunDataHandler : MonoBehaviour
 {
     private readonly int[] _magazinesLoad = new int[3];
     
-    [SerializeField] private Renderer[] gunRenderers;
     [SerializeField] private GunData[] guns;
+    [SerializeField] private Renderer[] gunRenderers;
     [SerializeField] private GunData currentData;
     
     [Header("Gun Variables")]
