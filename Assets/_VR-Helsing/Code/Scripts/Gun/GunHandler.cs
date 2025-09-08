@@ -7,7 +7,14 @@ namespace _VR_Helsing.Gun
     /// </summary>
     public class GunHandler : MonoBehaviour
     {
-    
+        [Header("Gun Settings")] 
+        [SerializeField] private GunDataHandler dataHandler;
+        
+        [Header("Gun Properties")]
+        [SerializeField] private Rigidbody gunRigidbody;
+        [SerializeField] private Animator gunAnimator;
+        [SerializeField] private Transform shootPoint;
+        
         void Update()
         {
             
