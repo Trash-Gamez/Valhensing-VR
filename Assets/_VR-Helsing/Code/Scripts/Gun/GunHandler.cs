@@ -29,10 +29,13 @@ namespace _VR_Helsing.Gun
         [SerializeField] private Crosshair crossHair;
 
         #region GETTERS & SETTERS
+        
+        public GunDataHandler DataHandler => dataHandler;
 
         public Grabbable Grabbable => grabbable;
+        public Crosshair Crosshair => crossHair;
+        public Transform ShootPoint => shootPoint;
         public bool IsEquipped => _isEquipped;
-        
         #endregion
 
         private bool _isEquipped;
@@ -41,6 +44,7 @@ namespace _VR_Helsing.Gun
         public void SetEquipped(bool value)
         {
             _isEquipped = value;
+            crossHair.SetCrosshairActive(value);
         }
     }
 }

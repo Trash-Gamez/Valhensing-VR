@@ -22,6 +22,7 @@ public class GunConfig : ScriptableObject
     [field: SerializeField] public float FireRange { get; private set; } = 50;
     [field: SerializeField] public float RecoilForce {get; private set;} = 50;
     [field: SerializeField] public int Damage { get; private set; } = 1;
+    [field: SerializeField, Range(0.01f, 1)] public float BulletRadius { get; private set; } = 0.25f;
 
 
 }

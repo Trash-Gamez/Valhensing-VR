@@ -116,7 +116,7 @@ namespace _VR_Helsing.Gun
             RaycastHit hit;
 
             Vector3 direction = GetDirection();
-            if (Physics.SphereCast(_shootPoint.position, 0.25f, direction, out hit, _config.FireRange, _hittableLayer))
+            if (Physics.SphereCast(_shootPoint.position, Config.BulletRadius, direction, out hit, _config.FireRange, _hittableLayer))
             {
                 var hurtbox = hit.transform.GetComponent<Hurtbox>();
                 if(hurtbox != null)

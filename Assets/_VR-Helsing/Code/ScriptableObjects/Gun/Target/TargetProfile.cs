@@ -7,7 +7,6 @@ namespace _VR_Helsing.Gun.Target
     {
         [field: SerializeField] public TargetType TargetType { get; private set; }
         [field: SerializeField] public Color CrosshairColor { get; private set; }
-        [field: SerializeField] public string AnimationState { get; private set; }
         [field: SerializeField] public bool IsHostile { get; private set; }
         
         //No se si esto encaje, quizás para secretos?, objetos que sean objetivos pero no se vean en el crosshair?

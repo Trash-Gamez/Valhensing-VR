@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1946561225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.001, y: 0.0289, z: 0.3386}
+  m_LocalPosition: {x: 0.001, y: 0.0289, z: 0.3349}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -249,6 +249,7 @@ GameObject:
   - component: {fileID: 9192556635033564219}
   - component: {fileID: 3747473631963196447}
   - component: {fileID: 6208397625314377333}
+  - component: {fileID: 5419038113894136725}
   m_Layer: 9
   m_Name: Gun_Main
   m_TagString: Untagged
@@ -590,6 +591,23 @@ MonoBehaviour:
   - {fileID: 2751733272423842635}
   currentData: {fileID: 11400000, guid: 2f50234c3d3fa6b4aab378d4bf631326, type: 2}
   magazine: {fileID: 11400000, guid: 811677921c028d743b3c76aab6a6888d, type: 2}
+--- !u!114 &5419038113894136725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3970090029669616151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3838ba23a1e4d1e98b192c000c6a588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunHandler: {fileID: 4882660233956323397}
+  updateFrequency: 0.05
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!1 &4785304885527533672
 GameObject:
   m_ObjectHideFlags: 0
