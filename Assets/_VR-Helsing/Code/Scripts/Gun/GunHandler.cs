@@ -1,4 +1,8 @@
+using System;
 using UnityEngine;
+using Autohand;
+
+using _VR_Helsing.Gun.Target;
 
 namespace _VR_Helsing.Gun
 {
@@ -9,15 +13,34 @@ namespace _VR_Helsing.Gun
     {
         [Header("Gun Settings")] 
         [SerializeField] private GunDataHandler dataHandler;
+
+        [Header("Grabbable")] 
+        [SerializeField] private Grabbable grabbable;
         
         [Header("Gun Properties")]
         [SerializeField] private Rigidbody gunRigidbody;
         [SerializeField] private Animator gunAnimator;
         [SerializeField] private Transform shootPoint;
         
-        void Update()
+        [Header("Gun Input")]
+        [SerializeField] private GunInput gunInput;
+
+        [Header("Crosshair")] 
+        [SerializeField] private Crosshair crossHair;
+
+        #region GETTERS & SETTERS
+
+        public Grabbable Grabbable => grabbable;
+        public bool IsEquipped => _isEquipped;
+        
+        #endregion
+
+        private bool _isEquipped;
+
+
+        public void SetEquipped(bool value)
         {
-            
+            _isEquipped = value;
         }
     }
 }

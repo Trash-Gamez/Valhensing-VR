@@ -1,11 +1,12 @@
+using _VR_Helsing.Gun;
 using Autohand;
 using Sirenix.OdinInspector;
 using UnityEngine;
 public class NEW_GunHolder : MonoBehaviour
 {
     private enum GunHolderType {Main, Secondary}
-    
-    [SerializeField] private Grabbable gunGrabbable, secondaryGunGrabbable;
+
+    [SerializeField] private GunHandler gunHandler, secondaryGunHandler;
     [SerializeField] private Hand leftHand, rightHand;
 
     [SerializeField] private Transform behindHeadPos;
@@ -60,7 +61,7 @@ public class NEW_GunHolder : MonoBehaviour
         }
         else
         {
-            if (!handToChange.CanGrab(gunGrabbable)) return;
+            if (!handToChange.CanGrab(gunHandler.Grabbable)) return;
             ShowWeapon(GunHolderType.Main, handToChange);
         }
     }
@@ -109,17 +110,18 @@ public class NEW_GunHolder : MonoBehaviour
     
     private void ShowWeapon(GunHolderType gunHolderType, Hand handToChange)
     {
-        Vector3 newScale = Vector3.zero;
+        
         switch (gunHolderType)
         {
             case GunHolderType.Main:
-                _currentHoldingHand = handToChange;
-                
-                _currentHoldingHand.ForceGrab(gunGrabbable);
+                _currentHoldingHand = handToChange;        
+                _currentHoldingHand.ForceGrab(gunHandler.Grabbable);
+                gunHandler.SetEquipped(true);
                 break;
             case GunHolderType.Secondary:
                 _secondaryHoldingHand = handToChange;
-                _secondaryHoldingHand.ForceGrab(secondaryGunGrabbable);
+                _secondaryHoldingHand.ForceGrab(secondaryGunHandler.Grabbable);
+                secondaryGunHandler.SetEquipped(true);
                 break;
         }
     }
@@ -131,12 +133,12 @@ public class NEW_GunHolder : MonoBehaviour
             case GunHolderType.Main:
                 _currentHoldingHand.ForceReleaseGrab();
                 _currentHoldingHand = null;
-                gunGrabbable.transform.position = behindHeadPos.position;
+                gunHandler.transform.position = behindHeadPos.position;
                 break;
             case GunHolderType.Secondary:
                 _secondaryHoldingHand.ForceReleaseGrab();
                 _secondaryHoldingHand = null;
-                secondaryGunGrabbable.transform.position = behindHeadPos.position;
+                secondaryGunHandler.transform.position = behindHeadPos.position;
                 break;
         }
     }
