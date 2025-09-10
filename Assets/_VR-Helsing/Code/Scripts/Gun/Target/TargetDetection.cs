@@ -16,11 +16,15 @@ namespace _VR_Helsing.Gun.Target
         [Header("Detection Params")]
         [SerializeField] private LayerMask targetMask;
 
+        [Header("Target Pofile")]
+        [SerializeField] private TargetProfile noneProfile;
+
         private GunConfig _config => gunHandler.DataHandler.Config;
         private Crosshair _crossHair;
         private float _lastUpdateTime;
 
         private ITargetable _targetable;
+        private ITargetable _lastTargetable;
 
         private void Start()
         {
@@ -29,6 +33,7 @@ namespace _VR_Helsing.Gun.Target
 
         private void Update()
         {
+            //Cada que la resta del triempo activo menos "lastUpdateTime" sea mayor a la frecuencia de actualizacion, intentara detectar un objetivo
             if (Time.time - _lastUpdateTime >= updateFrequency)
             {
                 DetectTarget();
@@ -57,12 +62,29 @@ namespace _VR_Helsing.Gun.Target
             if (hasDetectedTarget)
             {
                 ChangeCrosshair(_targetable.TargetProfile);
-            }//Hacer que cuando no, ponga el default
+                _lastTargetable = _targetable;
+            }
+            else
+            {
+                ResetCrosshair();
+            }
+        }
+
+        private void ResetCrosshair()
+        {
+            if (_lastTargetable == null) return;
+            
+            ChangeCrosshair(noneProfile);
+            _lastTargetable = null;
+            
+            //Poner crosshair en la distancia default
         }
 
         private void ChangeCrosshair(TargetProfile targetProfile)
         {
+            _crossHair.SetTargetProfile(targetProfile);
             
+            //poner crosshair en enemigo o target
         }
     }
 }
