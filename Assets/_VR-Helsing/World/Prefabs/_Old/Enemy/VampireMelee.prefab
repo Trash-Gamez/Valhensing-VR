@@ -690,6 +690,7 @@ GameObject:
   - component: {fileID: 4412317610759520965}
   - component: {fileID: 2682140970786348750}
   - component: {fileID: 708159084599533310}
+  - component: {fileID: 4265829373634118368}
   m_Layer: 14
   m_Name: VampireMelee
   m_TagString: Untagged
@@ -713,6 +714,7 @@ Transform:
   - {fileID: 1621328047579018864}
   - {fileID: 6803279291568121782}
   - {fileID: 2594064552325816418}
+  - {fileID: 4822635167932827107}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &9097182379495915995
@@ -987,6 +989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a053f3aad10e81f48b40def7d4931b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startSound: 
 --- !u!114 &708159084599533310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,6 +1004,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect01: {fileID: 7875634403809466083, guid: 9851da637aeab8141835d5cd51c9c150, type: 3}
   effect02: {fileID: 7974277105815942764, guid: eebe526d41f431e40a19798c60c0afcd, type: 3}
+--- !u!114 &4265829373634118368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563765711428223259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 659ef2ce8f1348c18407ce5ab0fefc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetProfile: {fileID: 11400000, guid: 140cce9f509b82b46b29c32203c65949, type: 2}
+  centerTarget: {fileID: 4822635167932827107}
 --- !u!1 &2576318135847409017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,6 +1229,37 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00018628407, y: -0.0014838036, z: 0.00044078066}
     m_Extent: {x: 0.0092037115, y: 0.00792098, z: 0.0034987195}
   m_DirtyAABB: 0
+--- !u!1 &2958446236167297857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4822635167932827107}
+  m_Layer: 0
+  m_Name: center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4822635167932827107
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958446236167297857}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.036, y: 0.798, z: 0.072}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2945217784104213409}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3015376858212816216
 GameObject:
   m_ObjectHideFlags: 0

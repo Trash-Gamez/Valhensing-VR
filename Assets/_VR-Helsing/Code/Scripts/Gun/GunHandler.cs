@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Autohand;
 
@@ -41,6 +42,8 @@ namespace _VR_Helsing.Gun
         private bool _isEquipped;
 
 
+        
+        
         public void SetEquipped(bool value)
         {
             _isEquipped = value;

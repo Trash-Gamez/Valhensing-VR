@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace _VR_Helsing.Gun.Target
@@ -6,23 +7,27 @@ namespace _VR_Helsing.Gun.Target
     public class Crosshair : MonoBehaviour
     {
         private static readonly int _IsActive = Animator.StringToHash("isActive");
-        
+        private static readonly int _IsPulseActive = Animator.StringToHash("isPulseActive");
+
+        public event Action<bool> OnCrosshairSetActive;
         
         [SerializeField] private SpriteRenderer[] crossHairSpriteRenderers;
         [SerializeField] private Animator crosshairAnimator;
-        private static readonly int _IsPulseActive = Animator.StringToHash("isPulseActive");
 
         private void Start()
         {
             transform.parent = null;
+            SetCrosshairActive(false);
         }
 
-        public void SetCrosshairActive(bool value)
+        public void SetCrosshairActive(bool isActive)
         {
             for (int i = 0; i < crossHairSpriteRenderers.Length; i++)
             {
-                crossHairSpriteRenderers[i].enabled = value;
+                crossHairSpriteRenderers[i].enabled = isActive;
             }
+            
+            OnCrosshairSetActive?.Invoke(isActive);
         }
 
         public void SetCrossHairColor(Color newColor)

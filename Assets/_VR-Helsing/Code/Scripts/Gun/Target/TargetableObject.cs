@@ -6,8 +6,10 @@ namespace _VR_Helsing.Gun.Target
     public class TargetableObject : MonoBehaviour, ITargetable
     {
         [SerializeField] private TargetProfile targetProfile;
+        [SerializeField] private Transform centerTarget;
         
         public virtual TargetProfile TargetProfile => targetProfile;
+        public Transform CenterTarget => centerTarget;
         public bool IsTargetable => _isTargetable;
 
         private bool _isTargetable = true;

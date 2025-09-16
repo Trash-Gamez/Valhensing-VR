@@ -16,8 +16,9 @@ namespace _VR_Helsing.Gun.Target
         [Header("Detection Params")]
         [SerializeField] private LayerMask targetMask;
 
-        [Header("Target Pofile")]
+        [Header("Target Params")]
         [SerializeField] private TargetProfile noneProfile;
+        [SerializeField] private TargetMovement targetMovement;
 
         private GunConfig _config => gunHandler.DataHandler.Config;
         private Crosshair _crossHair;
@@ -47,7 +48,11 @@ namespace _VR_Helsing.Gun.Target
             var aimRay = new Ray(gunHandler.ShootPoint.position, gunHandler.ShootPoint.forward);
             var hitCount = Physics.SphereCastNonAlloc(aimRay, _config.BulletRadius, _Hits, _config.FireRange, targetMask);
 
-            if (hitCount <= 0) return;
+            if (hitCount <= 0)
+            {
+                ResetCrosshair();
+                return;
+            }
 
             for (int i = 0; i < hitCount; i++)
             {
@@ -61,13 +66,22 @@ namespace _VR_Helsing.Gun.Target
 
             if (hasDetectedTarget)
             {
-                ChangeCrosshair(_targetable.TargetProfile);
                 _lastTargetable = _targetable;
+                SetCrosshairOnTarget(_lastTargetable);
             }
             else
             {
                 ResetCrosshair();
             }
+        }
+
+        private void SetCrosshairOnTarget(ITargetable targetable)
+        {
+            ChangeCrosshair(targetable.TargetProfile);
+            
+            // Cast from "IITargetable" -> "TargetableObject" to get transform from object
+            if(targetable is TargetableObject targetableObject)
+                targetMovement.SetTargetable(targetableObject);
         }
 
         private void ResetCrosshair()
@@ -77,14 +91,13 @@ namespace _VR_Helsing.Gun.Target
             ChangeCrosshair(noneProfile);
             _lastTargetable = null;
             
-            //Poner crosshair en la distancia default
+            //Nullifies the target on move to set default movement, no pointing in any target
+            targetMovement.SetTargetable(null);
         }
 
         private void ChangeCrosshair(TargetProfile targetProfile)
         {
             _crossHair.SetTargetProfile(targetProfile);
-            
-            //poner crosshair en enemigo o target
         }
     }
 }

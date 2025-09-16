@@ -116,12 +116,16 @@ public class NEW_GunHolder : MonoBehaviour
             case GunHolderType.Main:
                 _currentHoldingHand = handToChange;        
                 _currentHoldingHand.ForceGrab(gunHandler.Grabbable);
+                
                 gunHandler.SetEquipped(true);
+                
                 break;
             case GunHolderType.Secondary:
                 _secondaryHoldingHand = handToChange;
                 _secondaryHoldingHand.ForceGrab(secondaryGunHandler.Grabbable);
+                
                 secondaryGunHandler.SetEquipped(true);
+                
                 break;
         }
     }
@@ -134,11 +138,17 @@ public class NEW_GunHolder : MonoBehaviour
                 _currentHoldingHand.ForceReleaseGrab();
                 _currentHoldingHand = null;
                 gunHandler.transform.position = behindHeadPos.position;
+                
+                gunHandler.SetEquipped(false);
+                
                 break;
             case GunHolderType.Secondary:
                 _secondaryHoldingHand.ForceReleaseGrab();
                 _secondaryHoldingHand = null;
                 secondaryGunHandler.transform.position = behindHeadPos.position;
+                
+                secondaryGunHandler.SetEquipped(false);
+                
                 break;
         }
     }
