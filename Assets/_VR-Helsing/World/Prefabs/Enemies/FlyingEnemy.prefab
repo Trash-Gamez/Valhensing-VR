@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 9072321095816588344}
   - component: {fileID: 5071022655742841477}
   - component: {fileID: 3205767534413335245}
+  - component: {fileID: 8678307666849155837}
   m_Layer: 14
   m_Name: HurtBox
   m_TagString: Untagged
@@ -211,6 +212,20 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8678307666849155837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562729962690576108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 659ef2ce8f1348c18407ce5ab0fefc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetProfile: {fileID: 11400000, guid: 140cce9f509b82b46b29c32203c65949, type: 2}
+  centerTarget: {fileID: 9072321095816588344}
 --- !u!1 &1749315688610198025
 GameObject:
   m_ObjectHideFlags: 0
