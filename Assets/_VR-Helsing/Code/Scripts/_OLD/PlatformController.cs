@@ -17,89 +17,82 @@ namespace _VanHelsingVR
 
         private void Start()
         {
-            
             if(AudioManager.Instance)
                 AudioManager.Instance.SwampMusic("MainMenuMusic");          
         }
+        
         public void StartNextPoint(float delay)
         {
             AudioManager.Instance.SwampMusic("GameplayMusic03");
-            StartCoroutine(MoveToNextPoint(wayPoints[actualIndex].transform.position,delay));
+            StartCoroutine(MoveToCurrentPoint(wayPoints[actualIndex].transform.position,delay));
         }
 
-        IEnumerator MoveToNextPoint(Vector3 nextPosition,float delay)
+        IEnumerator MoveToCurrentPoint(Vector3 nextPosition,float delay)
         {
             yield return new WaitForSeconds(delay);
-            PlayAudio(wayPoints[actualIndex].canRotate);
+            PlayPlatformAudio(wayPoints[actualIndex].canRotate);
+            
             while (canMove)
             {
                 if (wayPoints[actualIndex].canRotate)
-                {
                     RotateToNextPoint(nextPosition);
-                }
+                
+                //Mueve la plataforma
                 transform.position = Vector3.MoveTowards(transform.position, nextPosition, speed * Time.deltaTime);
 
-                if (transform.position == nextPosition)
-                {
-
+                if (Vector3.Distance(transform.position, nextPosition) <= Mathf.Epsilon) //Llegó a la plataforma
                     canMove = false;
-
-                }
 
                 yield return null;
             }
-            if (wayPoints[actualIndex].Time > 0)
-            {
-                AudioManager.Instance.PlaySound3D("CarritoStop", transform.position);
-                AudioManager.Instance.StopAmbient();
-            }
-            yield return new WaitForSeconds(wayPoints[actualIndex].Time);
             
+            var newIndex = actualIndex + 1;
+            if (newIndex >= wayPoints.Length) //Si no hay más waypoints ni lo intentes
+            {
+                StopPlatform();
+                yield break;
+            }
+            
+            if (wayPoints[actualIndex].Time > 0)
+                StopPlatform();
+            
+            //Espera el tiempo que el waypoint necesite
+            yield return new WaitForSeconds(wayPoints[actualIndex].Time);
 
-            NextPoint(wayPoints[actualIndex].canContinue);
+            if(!wayPoints[actualIndex].canContinue)
+                StopPlatform();
+                
+            //Espera a que se pueda continuar la plataforma
+            yield return new WaitUntil(() => wayPoints[actualIndex].canContinue);
+            
+            NextPoint();
+        }
+
+        private void StopPlatform()
+        {
+            AudioManager.Instance.PlaySound3D("CarritoStop", transform.position);
+            AudioManager.Instance.StopAmbient();
         }
 
         void RotateToNextPoint(Vector3 nextPoint)
         {
-       
             Vector3 targetDirection = nextPoint - transform.position;
 
-       
             float singleStep = rotationSpeed * Time.deltaTime;
 
-        
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
 
-        
-            UnityEngine.Debug.DrawRay(transform.position, newDirection, Color.red);
-
-        
             transform.rotation = Quaternion.LookRotation(newDirection);
         }
 
-        void NextPoint(bool canContinue)
+        void NextPoint()
         {
             actualIndex++;
-            
-            if (!canContinue)
-            {
-                AudioManager.Instance.PlaySound3D("CarritoStop", transform.position);
-                AudioManager.Instance.StopAmbient();
-
-                return;
-            }
             canMove = true;
-            StartCoroutine(MoveToNextPoint(wayPoints[actualIndex].transform.position, 0));
+            StartCoroutine(MoveToCurrentPoint(wayPoints[actualIndex].transform.position, 0));
         }
 
-        public void RestartMovement(float delay)
-        { 
-            if (canMove) return;
-            canMove = true;
-            StartCoroutine(MoveToNextPoint(wayPoints[actualIndex].transform.position, delay));
-        }
-
-        private void PlayAudio(bool canRotate)
+        private void PlayPlatformAudio(bool canRotate)
         {
             if (canRotate)
             {
@@ -112,12 +105,11 @@ namespace _VanHelsingVR
                 AudioManager.Instance.PlayAmbient("Carrito_02", 0);
             }
         }
+        
        public void OnPlayerDead()
         {
             StopAllCoroutines();
-            AudioManager.Instance.PlaySound3D("CarritoStop", transform.position);
-            AudioManager.Instance.StopAmbient();
+            StopPlatform();
         }
-    
     }
 }
