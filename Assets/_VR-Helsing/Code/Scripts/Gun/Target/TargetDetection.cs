@@ -5,7 +5,7 @@ namespace _VR_Helsing.Gun.Target
 {
     public class TargetDetection : MonoBehaviour
     {
-        private static readonly RaycastHit[] _Hits = new RaycastHit[5];
+        private static readonly RaycastHit[] _Hits = new RaycastHit[2];
         
         [Header("Gun Params")]
         [SerializeField] private GunHandler gunHandler;
